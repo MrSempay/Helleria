@@ -1,0 +1,104 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
+[ext_resource path="res://Game/Enemy_2.gd" type="Script" id=2]
+[ext_resource path="res://Anims/Джейсон/animm1.png" type="Texture" id=3]
+[ext_resource path="res://Anims/Джейсон/animm2.png" type="Texture" id=4]
+[ext_resource path="res://Anims/Джейсон/animm3.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Джейсон/animm4.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Джейсон/animm5.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Джейсон/animm6.png" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 62.4999, 77.0745 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 109, 53.5 )
+
+[node name="Jaison" type="KinematicBody2D"]
+position = Vector2( 330, 163 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1.25, 6 )
+scale = Vector2( 0.208, 0.208 )
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 6.96848 )
+scale = Vector2( 0.208, 0.208 )
+shape = SubResource( 2 )
+one_way_collision_margin = 128.0
+
+[node name="HP_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -58.0
+margin_top = -74.0
+margin_right = 172.0
+margin_bottom = -52.0
+rect_scale = Vector2( 0.5, 0.5 )
+max_value = 500.0
+value = 500.0
+texture_progress = ExtResource( 1 )
+tint_progress = Color( 1, 0, 0, 1 )
+nine_patch_stretch = true
+
+[node name="Timer_Of_HP" type="Timer" parent="HP_Enemy_1"]
+autostart = true
+
+[node name="Mana_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -58.0
+margin_top = -63.0
+margin_right = 172.0
+margin_bottom = -41.0
+rect_scale = Vector2( 0.5, 0.5 )
+max_value = 250.0
+value = 250.0
+texture_progress = ExtResource( 1 )
+tint_progress = Color( 0, 0.133333, 1, 1 )
+nine_patch_stretch = true
+
+[node name="Timer_Of_Mana" type="Timer" parent="Mana_Enemy_1"]
+autostart = true
+
+[node name="value_of_HP" type="Label" parent="."]
+margin_left = -12.0
+margin_top = -75.0
+margin_right = 16.0
+margin_bottom = -44.0
+text = "500
+
+"
+
+[node name="value_of_Mana" type="Label" parent="."]
+margin_left = -12.0
+margin_top = -64.0
+margin_right = 28.0
+margin_bottom = -16.0
+text = "250
+
+"
+
+[node name="Trigger_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Area"]
+position = Vector2( 1, -21.5 )
+shape = SubResource( 3 )
+one_way_collision_margin = 0.0
+
+[connection signal="timeout" from="HP_Enemy_1/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
+[connection signal="timeout" from="Mana_Enemy_1/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
+[connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]

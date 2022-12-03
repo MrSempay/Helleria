@@ -1,0 +1,215 @@
+[gd_scene load_steps=81 format=2]
+
+[ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
+[ext_resource path="res://Game/Enemy_3.gd" type="Script" id=2]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim1.png" type="Texture" id=3]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim2.png" type="Texture" id=4]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim3.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim4.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim5.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim6.png" type="Texture" id=8]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim7.png" type="Texture" id=9]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone/бросок камня(больше камень)1.png" type="Texture" id=10]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone/бросок камня(больше камень)2.png" type="Texture" id=11]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone/бросок камня(больше камень)3.png" type="Texture" id=12]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone/бросок камня(больше камень)4.png" type="Texture" id=13]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone/бросок камня(больше камень)5.png" type="Texture" id=14]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone/бросок камня(больше камень)6.png" type="Texture" id=15]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone/бросок камня(больше камень)7.png" type="Texture" id=16]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone/бросок камня(больше камень)8.png" type="Texture" id=17]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone/бросок камня(больше камень)9.png" type="Texture" id=18]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone/бросок камня(больше камень)10.png" type="Texture" id=19]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone/бросок камня(больше камень)11.png" type="Texture" id=20]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone/бросок камня(больше камень)12.png" type="Texture" id=21]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++1.png" type="Texture" id=22]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++2.png" type="Texture" id=23]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++8.png" type="Texture" id=24]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++7.png" type="Texture" id=25]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++6.png" type="Texture" id=26]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++5.png" type="Texture" id=27]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++4.png" type="Texture" id=28]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++3.png" type="Texture" id=29]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++9.png" type="Texture" id=30]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++10.png" type="Texture" id=31]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++11.png" type="Texture" id=32]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++12.png" type="Texture" id=33]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++13.png" type="Texture" id=34]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++14.png" type="Texture" id=35]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++15.png" type="Texture" id=36]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++16.png" type="Texture" id=37]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++17.png" type="Texture" id=38]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++18.png" type="Texture" id=39]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++19.png" type="Texture" id=40]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Hedgehod/земляной ёж++20.png" type="Texture" id=41]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч1.png" type="Texture" id=42]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч2.png" type="Texture" id=43]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч8.png" type="Texture" id=44]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч7.png" type="Texture" id=45]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч6.png" type="Texture" id=46]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч5.png" type="Texture" id=47]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч4.png" type="Texture" id=48]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч3.png" type="Texture" id=49]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч9.png" type="Texture" id=50]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч10.png" type="Texture" id=51]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч11.png" type="Texture" id=52]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч12.png" type="Texture" id=53]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч13.png" type="Texture" id=54]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч14.png" type="Texture" id=55]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч15.png" type="Texture" id=56]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч16.png" type="Texture" id=57]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч17.png" type="Texture" id=58]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч18.png" type="Texture" id=59]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч19.png" type="Texture" id=60]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч20.png" type="Texture" id=61]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч21.png" type="Texture" id=62]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч22.png" type="Texture" id=63]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч23.png" type="Texture" id=64]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч24.png" type="Texture" id=65]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч25.png" type="Texture" id=66]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч26.png" type="Texture" id=67]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч27.png" type="Texture" id=68]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч28.png" type="Texture" id=69]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч29.png" type="Texture" id=70]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч30.png" type="Texture" id=71]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч31.png" type="Texture" id=72]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч32.png" type="Texture" id=73]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч33.png" type="Texture" id=74]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч34.png" type="Texture" id=75]
+[ext_resource path="res://Anims/Belotur/Belorur_Spells/Stone_Sword/каменныймеч35.png" type="Texture" id=76]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 17 ), ExtResource( 20 ), ExtResource( 21 ) ],
+"loop": false,
+"name": "stone",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 22 ), ExtResource( 23 ), ExtResource( 29 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 30 ), ExtResource( 24 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 38 ), ExtResource( 37 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ) ],
+"loop": false,
+"name": "hedgehod",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 42 ), ExtResource( 43 ), ExtResource( 49 ), ExtResource( 48 ), ExtResource( 47 ), ExtResource( 46 ), ExtResource( 45 ), ExtResource( 44 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 59 ), ExtResource( 60 ), ExtResource( 61 ), ExtResource( 62 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 65 ), ExtResource( 66 ), ExtResource( 67 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 70 ), ExtResource( 71 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 76 ) ],
+"loop": false,
+"name": "stoneSword",
+"speed": 20.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 62.4999, 77.0745 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 167, 53.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 19, 21.5 )
+
+[node name="Belotur" type="KinematicBody2D"]
+position = Vector2( 328, 165 )
+script = ExtResource( 2 )
+
+[node name="Timer_Stone" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Timer_Stone_Sword" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Timer_Hedgehod" type="Timer" parent="."]
+wait_time = 7.0
+one_shot = true
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.208, 0.208 )
+frames = SubResource( 1 )
+animation = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 0.208, 0.208 )
+shape = SubResource( 2 )
+one_way_collision_margin = 128.0
+
+[node name="HP_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -58.0
+margin_top = -74.0
+margin_right = 172.0
+margin_bottom = -52.0
+rect_scale = Vector2( 0.5, 0.5 )
+max_value = 500.0
+value = 500.0
+texture_progress = ExtResource( 1 )
+tint_progress = Color( 1, 0, 0, 1 )
+nine_patch_stretch = true
+
+[node name="Timer_Of_HP" type="Timer" parent="HP_Enemy_1"]
+autostart = true
+
+[node name="Mana_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -58.0
+margin_top = -63.0
+margin_right = 172.0
+margin_bottom = -41.0
+rect_scale = Vector2( 0.5, 0.5 )
+max_value = 250.0
+value = 250.0
+texture_progress = ExtResource( 1 )
+tint_progress = Color( 0, 0.133333, 1, 1 )
+nine_patch_stretch = true
+
+[node name="Timer_Of_Mana" type="Timer" parent="Mana_Enemy_1"]
+autostart = true
+
+[node name="value_of_HP" type="Label" parent="."]
+margin_left = -12.0
+margin_top = -75.0
+margin_right = 16.0
+margin_bottom = -44.0
+text = "500
+
+"
+
+[node name="value_of_Mana" type="Label" parent="."]
+margin_left = -12.0
+margin_top = -64.0
+margin_right = 28.0
+margin_bottom = -16.0
+text = "250
+
+"
+
+[node name="Trigger_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Area"]
+position = Vector2( 0, -21.5 )
+shape = SubResource( 3 )
+one_way_collision_margin = 0.0
+
+[node name="Stone_Position" type="Position2D" parent="."]
+position = Vector2( 34, -2 )
+
+[node name="Stone_Sword" type="Area2D" parent="."]
+position = Vector2( 33, -6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone_Sword"]
+shape = SubResource( 4 )
+disabled = true
+
+[connection signal="timeout" from="Timer_Stone" to="." method="_on_Timer_Stone_timeout"]
+[connection signal="timeout" from="Timer_Stone_Sword" to="." method="_on_Timer_Stone_Sword_timeout"]
+[connection signal="timeout" from="Timer_Hedgehod" to="." method="_on_Timer_Hedgehod_timeout"]
+[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
+[connection signal="timeout" from="HP_Enemy_1/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
+[connection signal="timeout" from="Mana_Enemy_1/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
+[connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]
+[connection signal="body_entered" from="Stone_Sword" to="." method="_on_Stone_Sword_body_entered"]

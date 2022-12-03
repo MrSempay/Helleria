@@ -1,0 +1,509 @@
+[gd_scene load_steps=36 format=2]
+
+[ext_resource path="res://Game/Button_attack.gd" type="Script" id=1]
+[ext_resource path="res://Game/Button_Second.gd" type="Script" id=2]
+[ext_resource path="res://Game/Button_Third.gd" type="Script" id=3]
+[ext_resource path="res://Game/CanvasLayer.gd" type="Script" id=4]
+[ext_resource path="res://Game/Heroe.gd" type="Script" id=5]
+[ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=6]
+[ext_resource path="res://Game/value_of_HP.gd" type="Script" id=7]
+[ext_resource path="res://Game/Weapon.gd" type="Script" id=8]
+[ext_resource path="res://Game/Hedgehod_spawn.gd" type="Script" id=9]
+[ext_resource path="res://Game/Weapon_Area.gd" type="Script" id=10]
+[ext_resource path="res://Game/Dialoge_Enemy.gd" type="Script" id=11]
+[ext_resource path="res://Game/Next.gd" type="Script" id=12]
+[ext_resource path="res://Game/Arrow_Amount.gd" type="Script" id=13]
+[ext_resource path="res://imgonline-com-ua-Resize-zWK4nj8RNwgAsbVb.png" type="Texture" id=14]
+[ext_resource path="res://Anims/гл. гр/anim-1-2.png" type="Texture" id=15]
+[ext_resource path="res://CtDnPXDocFwukJcuP8LpYC0crxbOApt_7RXkyjakJmieWOCz1Pjuw138Qrs_pM08jn0XEpqHzSQB0y4HuiMgfonN.jpg" type="Texture" id=16]
+[ext_resource path="res://Anims/гл. гр/anim-1-1.png" type="Texture" id=17]
+[ext_resource path="res://Anims/гл. гр/anim-1-3.png" type="Texture" id=18]
+[ext_resource path="res://Anims/гл. гр/anim-1-7.png" type="Texture" id=19]
+[ext_resource path="res://Anims/гл. гр/anim-1-6.png" type="Texture" id=20]
+[ext_resource path="res://Anims/гл. гр/anim-1-5.png" type="Texture" id=21]
+[ext_resource path="res://Anims/гл. гр/anim-1-4.png" type="Texture" id=22]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 147.5, 154 )
+
+[sub_resource type="Animation" id=14]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 0, 0, -8, 0, -8, 22, -1, 22, -1, 14, 0, 14, 0, 22, 6, 22, 6, 0 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "щгп"
+length = 0.2
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.09, 0.16 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 14, -1, 14, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 14, 8, 14, 8, -8 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 20 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 36.0903, 35.086 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "Attack_Animation"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -4.03247, 42.2535 ), Vector2( -4.03247, 42.2535 ), Vector2( -4.03247, 42.2535 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sword:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ -180.0, -89.9999, -180.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -2.01587, 58.3501 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sword:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -180.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Bow_Animation"
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 139.113, 58.35 ), Vector2( 139.113, 58.35 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 139.113, 58.35 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("..:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="SpatialMaterial" id=3]
+render_priority = 1
+
+[sub_resource type="CanvasItemMaterial" id=11]
+next_pass = SubResource( 3 )
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Theme" id=12]
+
+[sub_resource type="ShaderMaterial" id=13]
+
+[node name="Heroe" type="KinematicBody2D"]
+position = Vector2( 444, 370 )
+script = ExtResource( 5 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 4 )
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2( 8, 471 )
+scale = Vector2( 1.00781, 1.00781 )
+normal = ExtResource( 14 )
+
+[node name="Area2D" type="Area2D" parent="CanvasLayer"]
+position = Vector2( 29, 487 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Area2D"]
+position = Vector2( 42.5, -120 )
+shape = SubResource( 4 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, 3 )
+polygon = PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 14, 8, 14, 8, -8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionPolygon2D"]
+autoplay = "щгп"
+reset_on_save = false
+anims/RESET = SubResource( 14 )
+"anims/щгп" = SubResource( 15 )
+
+[node name="Timer_Of_Hedgehod" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="Icon" type="AnimatedSprite" parent="."]
+position = Vector2( -1.11304, 8.65002 )
+scale = Vector2( 0.207674, 0.208092 )
+z_index = 1
+frames = SubResource( 16 )
+animation = "run"
+
+[node name="Weapon" type="Area2D" parent="."]
+position = Vector2( 139.113, 58.35 )
+scale = Vector2( 0.496, 0.497 )
+z_index = 3
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
+position = Vector2( -22.1774, 2.01202 )
+shape = SubResource( 6 )
+disabled = true
+script = ExtResource( 10 )
+
+[node name="Sword" type="Sprite" parent="Weapon"]
+position = Vector2( -2.01587, 58.3501 )
+rotation = -3.14159
+scale = Vector2( 0.60048, 0.62855 )
+offset = Vector2( 10, 218.745 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Weapon"]
+anims/Attack_Animation = SubResource( 7 )
+anims/RESET = SubResource( 8 )
+
+[node name="Bow_Animation" type="AnimationPlayer" parent="Weapon/AnimationPlayer"]
+anims/Bow_Animation = SubResource( 9 )
+anims/RESET = SubResource( 10 )
+
+[node name="Position2D" type="Position2D" parent="Weapon"]
+position = Vector2( -60.484, -68.4103 )
+
+[node name="Hedgehod" type="Position2D" parent="Weapon"]
+position = Vector2( 639.113, 321.932 )
+script = ExtResource( 9 )
+
+[node name="Sword_Position" type="Position2D" parent="Weapon"]
+position = Vector2( 562.5, 384.306 )
+
+[node name="Timer_Of_Sheld" type="Timer" parent="Weapon"]
+wait_time = 6.0
+one_shot = true
+
+[node name="Timer_Of_Stone" type="Timer" parent="Weapon/Timer_Of_Sheld"]
+wait_time = 6.0
+one_shot = true
+
+[node name="Timer_Of_Spell" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="HP_Heroe" type="TextureProgress" parent="."]
+margin_left = -39.0
+margin_top = -42.0
+margin_right = 106.0
+margin_bottom = -21.0
+rect_scale = Vector2( 0.5, 0.5 )
+max_value = 150.0
+value = 150.0
+texture_progress = ExtResource( 6 )
+tint_progress = Color( 1, 0, 0, 1 )
+nine_patch_stretch = true
+
+[node name="Timer_Of_HP" type="Timer" parent="HP_Heroe"]
+autostart = true
+
+[node name="Mana_Heroe" type="TextureProgress" parent="."]
+margin_left = -39.0
+margin_top = -32.0
+margin_right = 106.0
+margin_bottom = -11.0
+rect_scale = Vector2( 0.5, 0.5 )
+max_value = 550.0
+value = 550.0
+texture_progress = ExtResource( 6 )
+tint_progress = Color( 0, 0.133333, 1, 1 )
+nine_patch_stretch = true
+
+[node name="Timer_Of_Mana" type="Timer" parent="Mana_Heroe"]
+autostart = true
+
+[node name="value_of_HP" type="Label" parent="."]
+margin_left = -12.105
+margin_top = -43.0
+margin_right = 15.895
+margin_bottom = -12.0
+text = "150
+"
+script = ExtResource( 7 )
+
+[node name="value_of_Mana" type="Label" parent="."]
+margin_left = -11.0
+margin_top = -33.0
+margin_right = 29.0
+margin_bottom = -2.00001
+text = "550
+"
+
+[node name="Control2" type="Control" parent="."]
+visible = false
+margin_left = 524.0
+margin_top = 270.0
+margin_right = 700.0
+margin_bottom = 318.0
+rect_scale = Vector2( 2, 2 )
+script = ExtResource( 11 )
+
+[node name="TextureRect" type="TextureRect" parent="Control2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 16 )
+expand = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control2/TextureRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -83.5
+margin_top = -19.5
+margin_right = 83.5
+margin_bottom = 19.5
+bbcode_enabled = true
+bbcode_text = "Hello!"
+tab_size = 7
+text = "Hello!"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 18, -85 )
+scale = Vector2( 0.496, 0.497 )
+current = true
+zoom = Vector2( 0.5, 0.5 )
+drag_margin_left = 0.36
+drag_margin_top = 0.37
+drag_margin_right = 0.4
+drag_margin_bottom = 0.39
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 248, 28.0001 )
+scale = Vector2( 0.2, 0.2 )
+z_index = 20
+
+[node name="Button_First" type="Button" parent="Sprite"]
+modulate = Color( 0.101961, 0.839216, 0.372549, 1 )
+self_modulate = Color( 0.741176, 1, 0.0980392, 1 )
+material = SubResource( 11 )
+margin_left = -153.226
+margin_top = -56.338
+margin_right = -46.2258
+margin_bottom = -20.338
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 0, 40 )
+theme = SubResource( 12 )
+text = "First Spell"
+script = ExtResource( 1 )
+
+[node name="Arrow_Amount" type="Label" parent="Sprite/Button_First"]
+margin_left = 117.0
+margin_top = 8.0
+margin_right = 157.0
+margin_bottom = 22.0
+script = ExtResource( 13 )
+
+[node name="Button_Second" type="Button" parent="Sprite"]
+modulate = Color( 0.101961, 0.839216, 0.631373, 1 )
+self_modulate = Color( 0.741176, 1, 0.0980392, 1 )
+material = SubResource( 13 )
+margin_left = -153.226
+margin_top = 19.8793
+margin_right = -46.2259
+margin_bottom = 55.8793
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 0, 40 )
+text = "Second Spell"
+script = ExtResource( 2 )
+
+[node name="Button_Third" type="Button" parent="Sprite"]
+modulate = Color( 0.101961, 0.839216, 0.631373, 1 )
+self_modulate = Color( 0.741176, 1, 0.0980392, 1 )
+material = SubResource( 13 )
+margin_left = -153.226
+margin_top = 96.3381
+margin_right = -46.2259
+margin_bottom = 132.338
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 0, 40 )
+text = "Third Spell"
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="Sprite"]
+visible = false
+margin_left = -1622.98
+margin_top = -38.2294
+margin_right = -1324.98
+margin_bottom = 24.7706
+rect_scale = Vector2( 2, 2 )
+
+[node name="Button" type="Button" parent="Sprite/Control"]
+anchor_right = 1.0
+margin_bottom = 30.0
+disabled = true
+text = "Yes, give him money"
+
+[node name="Button2" type="Button" parent="Sprite/Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -32.0
+margin_bottom = -2.0
+disabled = true
+text = "No, let's fight!"
+
+[node name="Next" type="Button" parent="Sprite"]
+visible = false
+margin_left = -985.887
+margin_top = -36.2173
+margin_right = -801.887
+margin_bottom = 2.78265
+rect_scale = Vector2( 2, 2 )
+disabled = true
+text = "Next"
+script = ExtResource( 12 )
+
+[node name="Timer" type="Timer" parent="Sprite/Next"]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="use_move_vector" from="CanvasLayer" to="." method="_on_CanvasLayer_use_move_vector"]
+[connection signal="released" from="CanvasLayer/TouchScreenButton" to="CanvasLayer" method="_on_TouchScreenButton_released"]
+[connection signal="input_event" from="CanvasLayer/Area2D" to="CanvasLayer" method="_on_Area2D_input_event"]
+[connection signal="mouse_entered" from="CanvasLayer/Area2D" to="CanvasLayer" method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/Area2D" to="CanvasLayer" method="_on_Area2D_mouse_exited"]
+[connection signal="timeout" from="Timer_Of_Hedgehod" to="Weapon" method="_on_Timer_Of_Hedgehod_timeout"]
+[connection signal="area_entered" from="Weapon" to="Weapon" method="_on_Weapon_area_entered"]
+[connection signal="body_entered" from="Weapon" to="Weapon" method="_on_Weapon_body_entered"]
+[connection signal="animation_finished" from="Weapon/AnimationPlayer/Bow_Animation" to="Weapon" method="_on_Bow_Animation_animation_finished"]
+[connection signal="timeout" from="Weapon/Timer_Of_Sheld" to="Weapon" method="_on_Timer_Of_Sheld_timeout"]
+[connection signal="timeout" from="Weapon/Timer_Of_Sheld/Timer_Of_Stone" to="Weapon" method="_on_Timer_Of_Stone_timeout"]
+[connection signal="timeout" from="HP_Heroe/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
+[connection signal="timeout" from="Mana_Heroe/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
+[connection signal="pressed" from="Sprite/Button_First" to="." method="_on_Button_First_pressed"]
+[connection signal="pressed" from="Sprite/Button_Second" to="." method="_on_Button_Second_pressed"]
+[connection signal="pressed" from="Sprite/Button_Third" to="." method="_on_Button_Third_pressed"]
+[connection signal="pressed" from="Sprite/Control/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Sprite/Control/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="Sprite/Next" to="." method="_on_Next_pressed"]
+[connection signal="timeout" from="Sprite/Next/Timer" to="Sprite/Next" method="_on_Timer_timeout"]

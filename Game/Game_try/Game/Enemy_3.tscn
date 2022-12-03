@@ -1,0 +1,94 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim3.png" type="Texture" id=2]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim2.png" type="Texture" id=3]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim1.png" type="Texture" id=4]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim4.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim5.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim6.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim7.png" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "move",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 62.4999, 77.0745 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 109, 53.5 )
+
+[node name="Belotur" type="KinematicBody2D"]
+position = Vector2( 44.9999, 134 )
+scale = Vector2( 0.208, 0.208 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, 24.0385 )
+frames = SubResource( 3 )
+animation = "move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 6.96848 )
+scale = Vector2( 0.208, 0.208 )
+shape = SubResource( 4 )
+one_way_collision_margin = 128.0
+
+[node name="HP_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -58.0
+margin_top = -74.0
+margin_right = 172.0
+margin_bottom = -52.0
+rect_scale = Vector2( 0.5, 0.5 )
+max_value = 500.0
+value = 500.0
+texture_progress = ExtResource( 1 )
+tint_progress = Color( 1, 0, 0, 1 )
+nine_patch_stretch = true
+
+[node name="Timer_Of_HP" type="Timer" parent="HP_Enemy_1"]
+autostart = true
+
+[node name="Mana_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -58.0
+margin_top = -63.0
+margin_right = 172.0
+margin_bottom = -41.0
+rect_scale = Vector2( 0.5, 0.5 )
+max_value = 250.0
+value = 250.0
+texture_progress = ExtResource( 1 )
+tint_progress = Color( 0, 0.133333, 1, 1 )
+nine_patch_stretch = true
+
+[node name="Timer_Of_Mana" type="Timer" parent="Mana_Enemy_1"]
+autostart = true
+
+[node name="value_of_HP" type="Label" parent="."]
+margin_left = -12.0
+margin_top = -75.0
+margin_right = 16.0
+margin_bottom = -44.0
+text = "500
+
+"
+
+[node name="value_of_Mana" type="Label" parent="."]
+margin_left = -12.0
+margin_top = -64.0
+margin_right = 28.0
+margin_bottom = -16.0
+text = "250
+
+"
+
+[node name="Trigger_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Area"]
+position = Vector2( 1, -21.5 )
+shape = SubResource( 5 )
+one_way_collision_margin = 0.0
