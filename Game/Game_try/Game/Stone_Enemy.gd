@@ -8,28 +8,32 @@ var velocity = Vector2()
 var damage_stone = 10
 var vector = 1
 
-onready var enemy = get_parent().get_node("Sprite")
-
+onready var heroe = get_node("../Heroe")
+onready var enemy = get_parent().get_node("Belotur/Sprite")
+onready var collision_of_stone = get_node("CollisionShape2D")
 
 func _ready():
-	pass
+	$Sprite.play("stone_lifting")
+	if enemy.is_flipped_h():
+		$Sprite.flip_h = 1
+		vector = -1
+	else:
+		$Sprite.flip_h = -1
+		vector = 1
 
 
 func _physics_process(delta):
-	if enemy.is_flipped_h():
-		$Sprite.flip_h = 1
-		velocity.x = -SPEED * delta * vector
-		translate(velocity)
-	else:
-		$Sprite.flip_h = -1
+	if $Sprite.get_animation() == "stone_flying":
+		collision_of_stone.set_disabled(false)
 		velocity.x = SPEED * delta * vector
 		translate(velocity)
 
 
 func _on_VisibilityNotifier2D_screen_exited():
+	if heroe.is_on_floor():
+		queue_free()
 	pass
-
-
+		
 
 func _on_Stone_body_entered(body):
 	if body.has_method("handle_hit") && body.has_method("start_jump"):
@@ -37,3 +41,8 @@ func _on_Stone_body_entered(body):
 		queue_free()
 	if !body.has_method("handle_hit"):
 		queue_free()
+
+
+func _on_Sprite_animation_finished():
+	if $Sprite.get_animation() == "stone_lifting":
+		$Sprite.play("stone_flying")
