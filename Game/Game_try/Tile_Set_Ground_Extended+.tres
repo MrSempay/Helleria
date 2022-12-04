@@ -5,29 +5,29 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 24, 16 )
 
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 8, 4.5 )
+[sub_resource type="ConvexPolygonShape2D" id=8]
+points = PoolVector2Array( -27, 12, -28, 13, -40, 13, -43, 11, -43, -7, -42, -7, -27, 5 )
 
-[sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 4, 3 )
+[sub_resource type="ConvexPolygonShape2D" id=11]
+points = PoolVector2Array( 43, -6, 27, 4, 14, -4 )
 
-[sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 8, 3 )
+[sub_resource type="ConvexPolygonShape2D" id=12]
+points = PoolVector2Array( -7, -5, -14, -3, -42, -7 )
 
 [sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 3, 2 )
+extents = Vector2( 24, 16 )
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 16, 16 )
+[sub_resource type="ConvexPolygonShape2D" id=7]
+points = PoolVector2Array( -42, -7, -42, -12, 84, -12, 84, -6, 43, -6 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 21, 3 )
 
 [sub_resource type="ConvexPolygonShape2D" id=13]
-points = PoolVector2Array( -42, -7, -42, -12, 84, -12, 84, -6, 43, -6 )
+points = PoolVector2Array( -7, -5, -42, -7, 43, -6, 9, -5 )
 
 [sub_resource type="ConvexPolygonShape2D" id=14]
-points = PoolVector2Array( -27, 12, -28, 13, -40, 13, -43, 11, -43, -7, -42, -7, -27, 5 )
+points = PoolVector2Array( 9, -5, 43, -6, 14, -4 )
 
 [sub_resource type="ConvexPolygonShape2D" id=15]
 points = PoolVector2Array( -14, -3, -27, 5, -42, -7 )
@@ -50,11 +50,11 @@ points = PoolVector2Array( 9, -5, 43, -6, 14, -4 )
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 24, 16 )
 
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 6, 4 )
+[sub_resource type="ConvexPolygonShape2D" id=9]
+points = PoolVector2Array( -14, -3, -27, 5, -42, -7 )
 
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 5, 3.5 )
+[sub_resource type="ConvexPolygonShape2D" id=10]
+points = PoolVector2Array( 43, 11, 41, 13, 31, 13, 29, 12, 27, 4, 43, -6 )
 
 [resource]
 0/name = "Sprite"

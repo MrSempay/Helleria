@@ -83,7 +83,6 @@ func _physics_process(delta):
 			stone_sword_ready = false
 			animate("stoneSword")
 		if stone_sword_finished:
-			print(true)
 			collision_of_stone_sword.set_disabled(false)
 			stone_sword_finished = false
 

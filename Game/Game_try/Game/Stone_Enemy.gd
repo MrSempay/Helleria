@@ -13,6 +13,7 @@ onready var enemy = get_parent().get_node("Belotur/Sprite")
 onready var collision_of_stone = get_node("CollisionShape2D")
 
 func _ready():
+	print(true)
 	$Sprite.play("stone_lifting")
 	if enemy.is_flipped_h():
 		$Sprite.flip_h = 1
@@ -44,5 +45,6 @@ func _on_Stone_body_entered(body):
 
 
 func _on_Sprite_animation_finished():
+	print(false)
 	if $Sprite.get_animation() == "stone_lifting":
 		$Sprite.play("stone_flying")
