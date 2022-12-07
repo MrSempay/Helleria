@@ -133,15 +133,15 @@ animations = [ {
 "name": "stone",
 "speed": 16.0
 }, {
-"frames": [ ExtResource( 26 ), ExtResource( 25 ), ExtResource( 23 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
-"loop": false,
-"name": "hedgehod",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 58 ), ExtResource( 47 ), ExtResource( 49 ), ExtResource( 52 ), ExtResource( 48 ), ExtResource( 46 ), ExtResource( 51 ) ],
 "loop": true,
 "name": "run",
 "speed": 15.0
+}, {
+"frames": [ ExtResource( 26 ), ExtResource( 25 ), ExtResource( 23 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "hedgehod",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 45 ), ExtResource( 76 ), ExtResource( 75 ), ExtResource( 77 ), ExtResource( 78 ), ExtResource( 79 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 3 ), ExtResource( 21 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 80 ), ExtResource( 81 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 85 ), ExtResource( 84 ) ],
 "loop": false,

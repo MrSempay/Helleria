@@ -33,9 +33,11 @@ func _physics_process(delta):
 			$Sprite.flip_h = true
 		
 		if ((self.global_position.x) - heroe.global_position.x < 35) && ((self.global_position.x) - heroe.global_position.x > -35):
+			$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x > 0
 			speed = 0
 			animate("idle")
 		else:
+			$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x > 0
 			speed = 140
 			animate("run")
 		if ((self.global_position.x) - heroe.global_position.x < 0):
@@ -47,7 +49,6 @@ func _physics_process(delta):
 
 	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * 2
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-	$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x > 0
 
 
 
