@@ -126,7 +126,7 @@ position = Vector2( 836, 1433 )
 position = Vector2( 364, 307 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 724, 1443 )
+position = Vector2( 709, 1407 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
