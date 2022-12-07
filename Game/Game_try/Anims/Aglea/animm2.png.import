@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/animm2.png-73edfaedfc13f287ffa58610a39109fe.stex"
+path="res://.import/animm2.png-c8265fa9128913a06ad4469015f12a04.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Аглеа/animm2.png"
-dest_files=[ "res://.import/animm2.png-73edfaedfc13f287ffa58610a39109fe.stex" ]
+source_file="res://Anims/Aglea/animm2.png"
+dest_files=[ "res://.import/animm2.png-c8265fa9128913a06ad4469015f12a04.stex" ]
 
 [params]
 

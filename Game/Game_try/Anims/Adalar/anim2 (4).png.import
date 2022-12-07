@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/anim2 (4).png-de4d25ad45d371f5a6b7a1119e449c59.stex"
+path="res://.import/anim2 (4).png-235638120d24e10b1187d1ea97d2ab7f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Адалард/anim2 (4).png"
-dest_files=[ "res://.import/anim2 (4).png-de4d25ad45d371f5a6b7a1119e449c59.stex" ]
+source_file="res://Anims/Adalar/anim2 (4).png"
+dest_files=[ "res://.import/anim2 (4).png-235638120d24e10b1187d1ea97d2ab7f.stex" ]
 
 [params]
 
