@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Game/Button_attack.gd" type="Script" id=1]
 [ext_resource path="res://Game/Button_Second.gd" type="Script" id=2]
@@ -23,10 +23,7 @@
 [ext_resource path="res://Anims/гл. гр/anim-1-5.png" type="Texture" id=21]
 [ext_resource path="res://Anims/гл. гр/anim-1-4.png" type="Texture" id=22]
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 147.5, 154 )
-
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=17]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:polygon")
@@ -41,9 +38,9 @@ tracks/0/keys = {
 "values": [ PoolVector2Array( 0, 0, -8, 0, -8, 22, -1, 22, -1, 14, 0, 14, 0, 22, 6, 22, 6, 0 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=18]
 resource_name = "щгп"
-length = 0.2
+length = 0.25
 loop = true
 step = 0.01
 tracks/0/type = "value"
@@ -53,11 +50,31 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.09, 0.16 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.08, 0.15, 0.23 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 14, -1, 14, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 14, 8, 14, 8, -8 ) ]
+"values": [ PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 13, 0, 13, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 13, -1, 13, -1, 13, 0, 13, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 13, 0, 13, 0, 13, 8, 13, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 13, 0, 13, 0, 22, 8, 22, 8, -8 ) ]
 }
+
+[sub_resource type="Animation" id=19]
+resource_name = "щгп_п"
+length = 0.3
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 13, 0.4, 13, 0.4, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 13, 0.4, 13, 0.4, 13, 8, 13, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 13, -1, 13, -1, 13, 0.4, 13, 0.4, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 13, 0.4, 13, 0.4, 22, 8, 22, 8, -8 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 147.5, 154 )
 
 [sub_resource type="SpriteFrames" id=16]
 animations = [ {
@@ -226,6 +243,18 @@ particles_anim_loop = false
 position = Vector2( 444, 370 )
 script = ExtResource( 5 )
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -0.210494, 0.770839 )
+scale = Vector2( 0.526316, 1.10417 )
+polygon = PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 13, 0.4, 13, 0.4, 22, 8, 22, 8, -8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionPolygon2D"]
+autoplay = "щгп_п"
+reset_on_save = false
+anims/RESET = SubResource( 17 )
+"anims/щгп" = SubResource( 18 )
+"anims/щгп_п" = SubResource( 19 )
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource( 4 )
 
@@ -240,16 +269,6 @@ position = Vector2( 29, 487 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Area2D"]
 position = Vector2( 42.5, -120 )
 shape = SubResource( 4 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( 0, 3 )
-polygon = PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 14, 8, 14, 8, -8 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionPolygon2D"]
-autoplay = "щгп"
-reset_on_save = false
-anims/RESET = SubResource( 14 )
-"anims/щгп" = SubResource( 15 )
 
 [node name="Timer_Of_Hedgehod" type="Timer" parent="."]
 wait_time = 10.0

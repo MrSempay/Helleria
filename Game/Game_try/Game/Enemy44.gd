@@ -1,10 +1,18 @@
 extends KinematicBody2D
 
 
+var scale_gravity = 2
 var speed = 140
 var velocity = Vector2()
-var name_enemy = "Enemy 1"
+var name_enemy = "Alira"
 var trigger_of_ally = false
+var stone = preload("res://Game/Stone_Enemy.tscn")
+var file = File.new()
+var point_of_position_string
+var point_of_position_string_x
+var point_of_position_string_x_saved = -10000
+var point_of_position_string_y
+var point_of_position_string_y_saved
 
 onready var heroe = get_parent().get_node("Heroe")
 onready var ally = get_parent().get_node("Ally")
@@ -26,28 +34,60 @@ func mana_using(manacost):
 	$value_of_Mana.text = str($Mana_Enemy_1.value)
 
 
+func _ready():
+	file.open("res://navigationR.txt", File.READ)
+
+
+
 func _physics_process(delta):
-	if trigger_of_ally:
+	if file.is_open():
+		if file.get_position() < file.get_len():
+			
+			animate("run")
+			scale_gravity = 0
+			point_of_position_string = file.get_line().split(",",true,1)
+			point_of_position_string_x = ((point_of_position_string[0].split("(",false,1)))
+			point_of_position_string_y = ((point_of_position_string[1].split(")",true,1)))
+			if point_of_position_string_x_saved < float(point_of_position_string_x[0]):
+				$Sprite.flip_h = false
+			else:
+				$Sprite.flip_h = true
+			self.set_global_position(Vector2(float(point_of_position_string_x[0]),float(point_of_position_string_y[0])))
+			point_of_position_string_x_saved = float(point_of_position_string_x[0])
+		elif file.is_open():
+			scale_gravity = 2
+			file.close()
+			animate("idle")
 	
+	var heroe = get_parent().get_node("Heroe")
+	var ally = get_parent().get_node("Ally")
+	
+	if trigger_of_ally:
+		if((self.global_position.x) - heroe.global_position.x) > 0:
+			$Sprite.flip_h = true
+		else:
+			$Sprite.flip_h = false
 		if abs((self.global_position.x - 0) - ally.global_position.x) < abs((self.global_position.x) - heroe.global_position.x):
 			$Sprite.flip_h = true
-		
+			
 		if ((self.global_position.x) - heroe.global_position.x < 35) && ((self.global_position.x) - heroe.global_position.x > -35):
 			speed = 0
 			animate("idle")
 		else:
 			speed = 140
 			animate("run")
+			
 		if ((self.global_position.x) - heroe.global_position.x < 0):
 			velocity.x = speed * delta
 			translate(velocity)
+			
 		if (self.global_position.x) - heroe.global_position.x > 0:
 			velocity.x = speed * delta
 			translate(-velocity)
 
-	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * 2
+	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * scale_gravity
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-	$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x > 0
+	#$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x > 0
 
 
 
@@ -67,11 +107,4 @@ func _on_Trigger_Area_body_entered(body):
 		
 		
 func animate(art):
-	var heroe = get_parent().get_node("Heroe")
-	var ally = get_parent().get_node("Ally")
-	if abs((self.global_position.x - 0) - ally.global_position.x) > abs((self.global_position.x) - heroe.global_position.x):
-		$Sprite.flip_h = false
-	elif abs((self.global_position.x - 0) - ally.global_position.x) < abs((self.global_position.x) - heroe.global_position.x):
-		$Sprite.flip_h = true
 	$Sprite.play(art)
-

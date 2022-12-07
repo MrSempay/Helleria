@@ -43,6 +43,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 6 )
 
 [node name="Stone" type="Area2D"]
 script = ExtResource( 1 )
@@ -53,11 +54,13 @@ frames = SubResource( 2 )
 animation = "stone_flying"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 5.96046e-07, 4.47035e-07 )
+position = Vector2( 1.19209e-07, 2.38419e-07 )
 shape = SubResource( 1 )
 disabled = true
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 4.17233e-07, 0 )
+scale = Vector2( 0.8, 0.6 )
 
 [connection signal="body_entered" from="." to="." method="_on_Stone_body_entered"]
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=2]
+[gd_scene load_steps=93 format=2]
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
 [ext_resource path="res://Game/Enemy_3.gd" type="Script" id=2]
@@ -88,6 +88,39 @@
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++13.png" type="Texture" id=91]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++12.png" type="Texture" id=92]
 
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 0, 0, -8, 0, -8, 22, -1, 22, -1, 14, 0, 14, 0, 22, 6, 22, 6, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "щгп"
+length = 0.24
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.09, 0.16, 0.22 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 14, -1, 14, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 14, 8, 14, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ) ]
+}
+
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 58 ) ],
@@ -116,9 +149,6 @@ animations = [ {
 "speed": 20.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 62.4999, 77.0745 )
-
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 167, 53.5 )
 
@@ -128,6 +158,17 @@ extents = Vector2( 19, 21.5 )
 [node name="Belotur" type="KinematicBody2D"]
 position = Vector2( 328, 165 )
 script = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0.338806, -6 )
+scale = Vector2( 0.55921, 1 )
+polygon = PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionPolygon2D"]
+autoplay = "щгп"
+reset_on_save = false
+anims/RESET = SubResource( 5 )
+"anims/щгп" = SubResource( 6 )
 
 [node name="Timer_Stone" type="Timer" parent="."]
 wait_time = 7.0
@@ -145,11 +186,6 @@ one_shot = true
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2( 0.208, 0.208 )
-shape = SubResource( 2 )
-one_way_collision_margin = 128.0
 
 [node name="HP_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -58.0

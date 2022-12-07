@@ -42,6 +42,11 @@ var arrow = Arrow.new()
 var defense = 1
 var beat_in_heroe = false
 
+var file = File.new()
+var mass_of_positions = []
+var point_of_position = Vector2()
+var i = 0
+
 
 func ally():
 	pass
@@ -66,10 +71,11 @@ func mana_using(manacost):
 	
 
 func _ready():
+	#file.open("res://navigationR.txt", File.WRITE)
+	
 	#if GLOBAL.counter_of_second_button == 1:
 	timer_of_spell.connect("timeout", self, "_Timer_Of_Spell")
 	timer_of_spell.set_autostart(true)
-	
 
 func _physics_process(delta):
 	move_and_slide(GLOBAL.move_vector_1 * speed)
@@ -78,6 +84,11 @@ func _physics_process(delta):
 	
 	animate()
 
+
+	#point_of_position = self.get_global_position()
+	#mass_of_positions.append(point_of_position)
+	#file.store_line(str(mass_of_positions[i]))
+	#i = i + 1
 	match GLOBAL.spell_of_button:
 			"body_seal": 
 				pass
@@ -250,13 +261,14 @@ func animate():
 	var anim = "idle"
 	if GLOBAL.move_vector_1.x != 0:
 		anim = "run"
-		anim_1.play("щгп")
 	if GLOBAL.move_vector_1.x == 0:
 		anim_1.stop(true)
 	if GLOBAL.move_vector_1.x > 0:
 		$Icon.flip_h = false
+		anim_1.play("щгп_п")
 	elif GLOBAL.move_vector_1.x < 0:
 		$Icon.flip_h = true
+		anim_1.play("щгп")
 	$Icon.play(anim)
 	
 	

@@ -44,13 +44,13 @@ func mana_using(manacost):
 	$Mana_Enemy_1.value -= manacost
 	$value_of_Mana.text = str($Mana_Enemy_1.value)
 
-
+test_move()
 func _physics_process(delta):
 	
 	var heroe = get_parent().get_node("Heroe")
 	var ally = get_parent().get_node("Ally")
 	collision_of_stone_sword.set_disabled(true)
-	print($Sprite.get_animation())
+	#print($Sprite.get_animation())
 	if(self.global_position.x - heroe.global_position.x) > 0:
 		$Stone_Sword.set_position(Vector2(-33,-6))
 		$Stone_Position.set_position(Vector2(-34,-2))
