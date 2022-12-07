@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Enemy_1.gd" type="Script" id=1]
-[ext_resource path="res://Anims/Aglea/animm1.png" type="Texture" id=2]
+[ext_resource path="res://Anims/Aglea/Движ/anim3.png" type="Texture" id=2]
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=3]
-[ext_resource path="res://Anims/Aglea/animm2.png" type="Texture" id=4]
-[ext_resource path="res://Anims/Aglea/animm3.png" type="Texture" id=5]
-[ext_resource path="res://Anims/Aglea/animm4.png" type="Texture" id=6]
-[ext_resource path="res://Anims/Aglea/animm5.png" type="Texture" id=7]
-[ext_resource path="res://Anims/Aglea/animm6.png" type="Texture" id=8]
-[ext_resource path="res://Anims/Aglea/animm7.png" type="Texture" id=9]
+[ext_resource path="res://Anims/Aglea/Движ/anim4.png" type="Texture" id=4]
+[ext_resource path="res://Anims/Aglea/Движ/anim5.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Aglea/Движ/anim6.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Aglea/Движ/anim7.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Aglea/Движ/anim8.png" type="Texture" id=8]
+[ext_resource path="res://Anims/Aglea/Движ/anim9.png" type="Texture" id=9]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -24,7 +24,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 62.4999, 77.0745 )
+extents = Vector2( 48.0769, 77.0745 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 109, 53.5 )
@@ -35,12 +35,12 @@ script = ExtResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.25, 6 )
-scale = Vector2( 0.208, 0.208 )
+scale = Vector2( 2, 2 )
 frames = SubResource( 3 )
-animation = "idle"
+animation = "run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 6.96848 )
+position = Vector2( -2, 6.00012 )
 scale = Vector2( 0.208, 0.208 )
 shape = SubResource( 1 )
 

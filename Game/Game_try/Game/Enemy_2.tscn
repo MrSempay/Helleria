@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
 [ext_resource path="res://Game/Enemy_2.gd" type="Script" id=2]
-[ext_resource path="res://Anims/Адалард/anim2 (1).png" type="Texture" id=3]
-[ext_resource path="res://Anims/Адалард/anim2 (2).png" type="Texture" id=4]
-[ext_resource path="res://Anims/Адалард/anim2 (4).png" type="Texture" id=5]
-[ext_resource path="res://Anims/Адалард/anim2 (5).png" type="Texture" id=6]
-[ext_resource path="res://Anims/Адалард/anim2 (6).png" type="Texture" id=7]
+[ext_resource path="res://Anims/Adalar/Движ/anim2.png" type="Texture" id=3]
+[ext_resource path="res://Anims/Adalar/Движ/anim3.png" type="Texture" id=4]
+[ext_resource path="res://Anims/Adalar/Движ/anim4.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Adalar/Движ/anim5.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Adalar/Движ/anim6.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Adalar/Движ/anim7.png" type="Texture" id=8]
+[ext_resource path="res://Anims/Adalar/Движ/anim8.png" type="Texture" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -15,7 +17,7 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "run",
 "speed": 5.0
@@ -33,12 +35,12 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.25, 6 )
-scale = Vector2( 0.208, 0.208 )
+scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 6.96848 )
+position = Vector2( 0, 6 )
 scale = Vector2( 0.208, 0.208 )
 shape = SubResource( 2 )
 one_way_collision_margin = 128.0
