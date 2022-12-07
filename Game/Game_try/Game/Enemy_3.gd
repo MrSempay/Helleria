@@ -44,7 +44,7 @@ func mana_using(manacost):
 	$Mana_Enemy_1.value -= manacost
 	$value_of_Mana.text = str($Mana_Enemy_1.value)
 
-test_move()
+#test_move()
 func _physics_process(delta):
 	
 	var heroe = get_parent().get_node("Heroe")
