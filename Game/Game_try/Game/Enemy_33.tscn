@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=2]
+[gd_scene load_steps=94 format=2]
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
 [ext_resource path="res://Game/Enemy_3.gd" type="Script" id=2]
@@ -133,15 +133,15 @@ animations = [ {
 "name": "stone",
 "speed": 16.0
 }, {
-"frames": [ ExtResource( 58 ), ExtResource( 47 ), ExtResource( 49 ), ExtResource( 52 ), ExtResource( 48 ), ExtResource( 46 ), ExtResource( 51 ) ],
-"loop": true,
-"name": "run",
-"speed": 15.0
-}, {
 "frames": [ ExtResource( 26 ), ExtResource( 25 ), ExtResource( 23 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": false,
 "name": "hedgehod",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 58 ), ExtResource( 47 ), ExtResource( 49 ), ExtResource( 52 ), ExtResource( 48 ), ExtResource( 46 ), ExtResource( 51 ) ],
+"loop": true,
+"name": "run",
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 45 ), ExtResource( 76 ), ExtResource( 75 ), ExtResource( 77 ), ExtResource( 78 ), ExtResource( 79 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 3 ), ExtResource( 21 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 80 ), ExtResource( 81 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 85 ), ExtResource( 84 ) ],
 "loop": false,
@@ -154,6 +154,9 @@ extents = Vector2( 167, 53.5 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 19, 21.5 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 33, 14 )
 
 [node name="Belotur" type="KinematicBody2D"]
 position = Vector2( 328, 165 )
@@ -252,6 +255,12 @@ position = Vector2( 33, -6 )
 shape = SubResource( 4 )
 disabled = true
 
+[node name="Area_Of_Jumping" type="Area2D" parent="."]
+position = Vector2( 0, -6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_Of_Jumping"]
+shape = SubResource( 7 )
+
 [connection signal="timeout" from="Timer_Stone" to="." method="_on_Timer_Stone_timeout"]
 [connection signal="timeout" from="Timer_Stone_Sword" to="." method="_on_Timer_Stone_Sword_timeout"]
 [connection signal="timeout" from="Timer_Hedgehod" to="." method="_on_Timer_Hedgehod_timeout"]
@@ -260,3 +269,4 @@ disabled = true
 [connection signal="timeout" from="Mana_Enemy_1/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
 [connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]
 [connection signal="body_entered" from="Stone_Sword" to="." method="_on_Stone_Sword_body_entered"]
+[connection signal="body_entered" from="Area_Of_Jumping" to="." method="_on_Area_Of_Jumping_body_entered"]

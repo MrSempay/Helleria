@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://13831_big.jpg" type="Texture" id=1]
+[ext_resource path="res://321.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 74.5, 78 )
@@ -50,3 +51,21 @@ __meta__ = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite3/StaticBody2D"]
 scale = Vector2( 0.055, 0.05 )
 shape = SubResource( 1 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 267, 15 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 8, 8 )
+
+[node name="Sprite5" type="Sprite" parent="."]
+position = Vector2( 267, 25 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 48, 88, 8, 8 )
+
+[node name="Sprite6" type="Sprite" parent="."]
+position = Vector2( 267, 36 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 56, 112, 8, 8 )
