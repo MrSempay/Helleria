@@ -40,24 +40,24 @@ func _ready():
 
 
 func _physics_process(delta):
-	if file.is_open():
-		if file.get_position() < file.get_len():
+	#if file.is_open():
+		#if file.get_position() < file.get_len():
 			
-			animate("run")
-			scale_gravity = 0
-			point_of_position_string = file.get_line().split(",",true,1)
-			point_of_position_string_x = ((point_of_position_string[0].split("(",false,1)))
-			point_of_position_string_y = ((point_of_position_string[1].split(")",true,1)))
-			if point_of_position_string_x_saved < float(point_of_position_string_x[0]):
-				$Sprite.flip_h = false
-			else:
-				$Sprite.flip_h = true
-			self.set_global_position(Vector2(float(point_of_position_string_x[0]),float(point_of_position_string_y[0])))
-			point_of_position_string_x_saved = float(point_of_position_string_x[0])
-		elif file.is_open():
-			scale_gravity = 2
-			file.close()
-			animate("idle")
+			#animate("run")
+			#scale_gravity = 0
+			#point_of_position_string = file.get_line().split(",",true,1)
+			#point_of_position_string_x = ((point_of_position_string[0].split("(",false,1)))
+			#point_of_position_string_y = ((point_of_position_string[1].split(")",true,1)))
+			#if point_of_position_string_x_saved < float(point_of_position_string_x[0]):
+			#	$Sprite.flip_h = false
+			#else:
+			#	$Sprite.flip_h = true
+			#self.set_global_position(Vector2(float(point_of_position_string_x[0]),float(point_of_position_string_y[0])))
+			#point_of_position_string_x_saved = float(point_of_position_string_x[0])
+		#elif file.is_open():
+			#scale_gravity = 2
+			#file.close()
+			#animate("idle")
 	
 	var heroe = get_parent().get_node("Heroe")
 	var ally = get_parent().get_node("Ally")

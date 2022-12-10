@@ -99,6 +99,9 @@ position = Vector2( -3.5, -21.5 )
 shape = SubResource( 2 )
 disabled = true
 
+[node name="Dialoge_Window_Position" type="Position2D" parent="."]
+position = Vector2( 30, -42 )
+
 [connection signal="timeout" from="HP_Enemy_1/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
 [connection signal="timeout" from="Mana_Enemy_1/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
 [connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]

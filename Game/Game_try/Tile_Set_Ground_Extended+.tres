@@ -36,31 +36,31 @@ extents = Vector2( 38, 1 )
 extents = Vector2( 10, 1 )
 
 [sub_resource type="RectangleShape2D" id=21]
-extents = Vector2( 7.5, 1 )
+extents = Vector2( 24, 16 )
 
-[sub_resource type="RectangleShape2D" id=22]
-extents = Vector2( 5, 1 )
+[sub_resource type="ConvexPolygonShape2D" id=22]
+points = PoolVector2Array( -42, -7, -42, -12, 84, -12, 84, -6, 43, -6 )
 
-[sub_resource type="RectangleShape2D" id=23]
-extents = Vector2( 4, 1 )
+[sub_resource type="ConvexPolygonShape2D" id=23]
+points = PoolVector2Array( -27, 12, -28, 13, -40, 13, -43, 11, -43, -7, -42, -7, -27, 5 )
 
-[sub_resource type="RectangleShape2D" id=24]
-extents = Vector2( 3.5, 1 )
+[sub_resource type="ConvexPolygonShape2D" id=24]
+points = PoolVector2Array( -14, -3, -27, 5, -42, -7 )
 
-[sub_resource type="RectangleShape2D" id=25]
-extents = Vector2( 4, 0.75 )
+[sub_resource type="ConvexPolygonShape2D" id=25]
+points = PoolVector2Array( 43, 11, 41, 13, 31, 13, 29, 12, 27, 4, 43, -6 )
 
-[sub_resource type="RectangleShape2D" id=26]
-extents = Vector2( 6.5, 0.75 )
+[sub_resource type="ConvexPolygonShape2D" id=26]
+points = PoolVector2Array( 43, -6, 27, 4, 14, -4 )
 
-[sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 5, 1 )
+[sub_resource type="ConvexPolygonShape2D" id=27]
+points = PoolVector2Array( -7, -5, -14, -3, -42, -7 )
 
-[sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 4, 0.75 )
+[sub_resource type="ConvexPolygonShape2D" id=28]
+points = PoolVector2Array( -7, -5, -42, -7, 43, -6, 9, -5 )
 
-[sub_resource type="RectangleShape2D" id=29]
-extents = Vector2( 5, 1 )
+[sub_resource type="ConvexPolygonShape2D" id=29]
+points = PoolVector2Array( 9, -5, 43, -6, 14, -4 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 2, 1 )
@@ -102,7 +102,7 @@ extents = Vector2( 24, 16 )
 extents = Vector2( 5.25, 0.75 )
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 3.25, 0.5 )
+extents = Vector2( 3.5, 0.5 )
 
 [resource]
 0/name = "Sprite"

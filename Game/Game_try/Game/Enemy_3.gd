@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-var speed = 140
+var speed = 2
 var velocity = Vector2()
 var name_enemy = "Enemy 3"
 var trigger_of_ally = false
@@ -48,10 +48,19 @@ func mana_using(manacost):
 
 #test_move()
 func _physics_process(delta):
-	if is_on_floor():
-		collision_of_jumping_area.set_disabled(false)
+	velocity.x = 0
 	var heroe = get_parent().get_node("Heroe")
 	var ally = get_parent().get_node("Ally")
+
+	if is_on_floor():
+		collision_of_jumping_area.set_disabled(false)
+	else:
+		collision_of_jumping_area.set_disabled(true)
+		
+	velocity.y += delta * 970 * 2
+	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
+	
+	
 	collision_of_stone_sword.set_disabled(true)
 	#print($Sprite.get_animation())
 	if(self.global_position.x - heroe.global_position.x) > 0:
@@ -63,19 +72,20 @@ func _physics_process(delta):
 	
 	#$CollisionShape2D.set_position(Vector2(0,0))
 	if trigger_of_ally:
-	
-		"""if abs((self.global_position.x - 0) - ally.global_position.x) < abs((self.global_position.x) - heroe.global_position.x):
-			$Sprite.flip_h = true
-			if $Sprite.get_animation() == "stone":
-				$Sprite.set_position(sprite_position)"""
+		
+		if ((self.global_position.x) - heroe.global_position.x < 0) && $Sprite.get_animation() == "run":
+			translate(Vector2(1,0) * speed)
+		if ((self.global_position.x) - heroe.global_position.x > 0) && $Sprite.get_animation() == "run":
+			translate(Vector2(-1,0) * speed)
 		
 		if (((self.global_position.x) - heroe.global_position.x > 55) or ((self.global_position.x) - heroe.global_position.x < -55) or !((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20))) && $Sprite.get_animation() != "stone" && $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
 			if((self.global_position.x) - heroe.global_position.x) > 0:
 				$Sprite.flip_h = true
 			else:
 				$Sprite.flip_h = false
-			speed = 140
+			speed = 2
 			animate("run")
+			
 		if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20)):
 			if((self.global_position.x) - heroe.global_position.x) > 0:
 				$Sprite.flip_h = true
@@ -88,7 +98,7 @@ func _physics_process(delta):
 		if stone_sword_finished:
 			collision_of_stone_sword.set_disabled(false)
 			stone_sword_finished = false
-		print(heroe.get_position().y)
+			
 		if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && stone_ready && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20)):
 			if $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
 				if((self.global_position.x) - heroe.global_position.x) > 0:
@@ -118,19 +128,8 @@ func _physics_process(delta):
 				hedgehod_1.position = heroe.global_position - Vector2(1577, 1495)
 				add_child(hedgehod_1)
 		
-		if ((self.global_position.x) - heroe.global_position.x < 0):
-			#velocity.y = 0
-			velocity.x = speed * delta
-			move_and_slide(Vector2(1, 0) * speed)
-		if (self.global_position.x) - heroe.global_position.x > 0:
-			#velocity.y = 0
-			velocity.x = speed * delta
-			move_and_slide(Vector2(-1, 0) * speed)
 	else:
 		pass
-	velocity.y += delta * 970 * 2
-	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-
 
 
 func start_jump():
@@ -195,5 +194,6 @@ func _on_Timer_Hedgehod_timeout():
 
 
 func _on_Area_Of_Jumping_body_entered(body):
-	if body.has_method("for_jumping"):
+	var heroe = get_parent().get_node("Heroe")
+	if body.has_method("for_jumping") && ((self.global_position.x - body.get_global_position().x > 0 && self.global_position.x - heroe.get_global_position().x > 0) or (self.global_position.x - body.get_global_position().x < 0 && self.global_position.x - heroe.get_global_position().x < 0)) && self.global_position.y - heroe.get_global_position().y > 20:
 		start_jump()
