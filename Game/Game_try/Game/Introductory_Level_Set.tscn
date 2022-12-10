@@ -197,7 +197,7 @@ shape = SubResource( 9 )
 position = Vector2( 155, 41 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 130.772, 39.5746, 10.843, 7.94317 )
+region_rect = Rect2( 130.772, 39.5746, 17.228, 9.4254 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite10"]
 
@@ -288,8 +288,6 @@ shape = SubResource( 28 )
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="Sprite14/StaticBody2D"]
 position = Vector2( 24, -9 )
 shape = SubResource( 29 )
-
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="Sprite14/StaticBody2D"]
 
 [node name="Sprite13" type="Sprite" parent="."]
 position = Vector2( 212, 52 )

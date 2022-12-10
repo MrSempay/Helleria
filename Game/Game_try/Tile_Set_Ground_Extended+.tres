@@ -344,12 +344,12 @@ extents = Vector2( 3.25, 0.5 )
 9/texture = ExtResource( 1 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
-9/region = Rect2( 130, 39, 10, 7 )
+9/region = Rect2( 130, 39, 17, 9 )
 9/tile_mode = 0
-9/occluder_offset = Vector2( 5.4215, 3.97159 )
-9/navigation_offset = Vector2( 5.4215, 3.97159 )
-9/shape_offset = Vector2( 4.9215, 0.971585 )
-9/shape_transform = Transform2D( 1, 0, 0, 1, 4.9215, 0.971585 )
+9/occluder_offset = Vector2( 8.614, 4.7127 )
+9/navigation_offset = Vector2( 8.614, 4.7127 )
+9/shape_offset = Vector2( 8.114, 1.7127 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 8.114, 1.7127 )
 9/shape = SubResource( 10 )
 9/shape_one_way = false
 9/shape_one_way_margin = 1.0
@@ -358,19 +358,19 @@ extents = Vector2( 3.25, 0.5 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 10 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 4.9215, 0.971585 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 8.114, 1.7127 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 10 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 5.4215, 1.97159 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 8.614, 2.7127 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 10 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 6.4215, 2.97159 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 9.614, 3.7127 )
 } ]
 9/z_index = 0
 10/name = "Sprite11"
