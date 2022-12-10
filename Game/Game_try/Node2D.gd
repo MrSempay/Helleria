@@ -16,7 +16,7 @@ var heroe_1 = heroe.instance()
 
 
 func _ready():
-	enemy_1_1.position = $Position2D.global_position
+	enemy_1_1.position = $Position_Aglea.global_position
 	self.add_child(enemy_1_1)
 	ally_1.position = $Position_Ally.global_position
 	self.add_child(ally_1)

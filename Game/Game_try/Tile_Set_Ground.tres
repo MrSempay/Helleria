@@ -4,7 +4,7 @@
 [ext_resource path="res://321.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 74.5, 78 )
+extents = Vector2( 76.9231, 78.2609 )
 
 [resource]
 0/name = "Sprite"
@@ -15,8 +15,8 @@ extents = Vector2( 74.5, 78 )
 0/tile_mode = 0
 0/occluder_offset = Vector2( 76, 80 )
 0/navigation_offset = Vector2( 76, 80 )
-0/shape_offset = Vector2( 76.5, 80.5 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 76.5, 80.5 )
+0/shape_offset = Vector2( 75.7885, 80 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 75.7885, 80 )
 0/shape = SubResource( 1 )
 0/shape_one_way = false
 0/shape_one_way_margin = 1.0
@@ -25,7 +25,7 @@ extents = Vector2( 74.5, 78 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 76.5, 80.5 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 75.7885, 80 )
 } ]
 0/z_index = 0
 1/name = "Sprite2"

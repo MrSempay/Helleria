@@ -156,14 +156,14 @@ extents = Vector2( 167, 53.5 )
 extents = Vector2( 19, 21.5 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 33, 14 )
+extents = Vector2( 31, 14 )
 
 [node name="Belotur" type="KinematicBody2D"]
 position = Vector2( 328, 165 )
 script = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( 0.338806, -6 )
+position = Vector2( 0, -6 )
 scale = Vector2( 0.55921, 1 )
 polygon = PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 )
 

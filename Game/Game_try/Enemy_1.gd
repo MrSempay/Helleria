@@ -3,8 +3,10 @@ extends KinematicBody2D
 
 var speed = 140
 var velocity = Vector2()
-var name_enemy = "Enemy 1"
+var name_enemy = "Aglea"
 var trigger_of_ally = false
+var dialoge_window = preload("res://Game/Dialoge_Window.tscn")
+var i = 1
 
 onready var heroe = get_parent().get_node("Heroe")
 onready var ally = get_parent().get_node("Ally")
@@ -26,7 +28,18 @@ func mana_using(manacost):
 	$value_of_Mana.text = str($Mana_Enemy_1.value)
 
 
+func _ready():
+	pass
+
+
+
 func _physics_process(delta):
+	if i == 1:
+		var dialoge_window_1 = dialoge_window.instance()
+		dialoge_window_1.position = $Dialoge_Window_Position.position
+		add_child(dialoge_window_1)
+		dialoge_window_1.choosing_text("Aglea",i)
+		i += 1
 	if trigger_of_ally:
 	
 		if abs((self.global_position.x - 0) - ally.global_position.x) < abs((self.global_position.x) - heroe.global_position.x):

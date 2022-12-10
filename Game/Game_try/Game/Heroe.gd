@@ -78,10 +78,10 @@ func _ready():
 	timer_of_spell.set_autostart(true)
 
 func _physics_process(delta):
-	translate(GLOBAL.move_vector_1 * 2)
+	velocity.x = 0
+	translate(GLOBAL.move_vector_1 * 2.5)
 	velocity.y += delta * 970 * 2
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-	
 	animate()
 
 
