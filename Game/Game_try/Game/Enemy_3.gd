@@ -19,6 +19,7 @@ var JUMP_POWER = 500
 
 
 onready var stone_position = get_node("Weapon/Stone_Position/")
+onready var collision_of_jumping_area = get_node("Area_Of_Jumping/CollisionShape2D")
 onready var timer_of_stone = get_node("Timer_Stone")
 onready var timer_of_stone_sword = get_node("Timer_Stone_Sword")
 onready var timer_of_hedgehod = get_node("Timer_Hedgehod")
@@ -47,7 +48,8 @@ func mana_using(manacost):
 
 #test_move()
 func _physics_process(delta):
-	
+	if is_on_floor():
+		collision_of_jumping_area.set_disabled(false)
 	var heroe = get_parent().get_node("Heroe")
 	var ally = get_parent().get_node("Ally")
 	collision_of_stone_sword.set_disabled(true)
@@ -58,7 +60,7 @@ func _physics_process(delta):
 	else:
 		$Stone_Sword.set_position(Vector2(33,-6))
 		$Stone_Position.set_position(Vector2(34,-2))
-		
+	
 	#$CollisionShape2D.set_position(Vector2(0,0))
 	if trigger_of_ally:
 	
@@ -67,14 +69,14 @@ func _physics_process(delta):
 			if $Sprite.get_animation() == "stone":
 				$Sprite.set_position(sprite_position)"""
 		
-		if (((self.global_position.x) - heroe.global_position.x > 55) or ((self.global_position.x) - heroe.global_position.x < -55)) && $Sprite.get_animation() != "stone" && $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
+		if (((self.global_position.x) - heroe.global_position.x > 55) or ((self.global_position.x) - heroe.global_position.x < -55) or !((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20))) && $Sprite.get_animation() != "stone" && $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
 			if((self.global_position.x) - heroe.global_position.x) > 0:
 				$Sprite.flip_h = true
 			else:
 				$Sprite.flip_h = false
 			speed = 140
 			animate("run")
-		if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor():
+		if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20)):
 			if((self.global_position.x) - heroe.global_position.x) > 0:
 				$Sprite.flip_h = true
 			else:
@@ -86,8 +88,8 @@ func _physics_process(delta):
 		if stone_sword_finished:
 			collision_of_stone_sword.set_disabled(false)
 			stone_sword_finished = false
-
-		if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && stone_ready && is_on_floor():
+		print(heroe.get_position().y)
+		if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && stone_ready && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20)):
 			if $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
 				if((self.global_position.x) - heroe.global_position.x) > 0:
 					$Sprite.flip_h = true
@@ -126,7 +128,6 @@ func _physics_process(delta):
 			move_and_slide(Vector2(-1, 0) * speed)
 	else:
 		pass
-	print(velocity.y)
 	velocity.y += delta * 970 * 2
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 
@@ -135,6 +136,7 @@ func _physics_process(delta):
 func start_jump():
 	if is_on_floor():
 		velocity.y = -JUMP_POWER 
+		collision_of_jumping_area.set_disabled(true)
 		
 
 func _on_Timer_Of_HP_timeout():
