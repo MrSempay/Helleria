@@ -4,7 +4,7 @@ extends KinematicBody2D
 var scale_gravity = 2
 var speed = 140
 var velocity = Vector2()
-var name_enemy = "Alira"
+var name_enemy = "Akira"
 var trigger_of_ally = false
 var stone = preload("res://Game/Stone_Enemy.tscn")
 var file = File.new()

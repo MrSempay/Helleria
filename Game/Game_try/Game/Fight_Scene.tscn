@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Node2D.gd" type="Script" id=1]
 [ext_resource path="res://13831_big.jpg" type="Texture" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://3d37a52637314e3cabe02b2d26d77b0b.jpg" type="Texture" id=6]
 [ext_resource path="res://Tile_Set_Ground.tres" type="TileSet" id=7]
 [ext_resource path="res://Game/Jumping_Platform.gd" type="Script" id=8]
+[ext_resource path="res://Game/Camera_For_Speaking.gd" type="Script" id=9]
+[ext_resource path="res://Game/Area_Of_Dialoge_Camera.gd" type="Script" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 500.832, 213.268 )
@@ -23,6 +25,9 @@ extents = Vector2( 500, 323.289 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 35.2999, 56.9276 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 256, 150 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -131,7 +136,7 @@ position = Vector2( 1857, 1803 )
 position = Vector2( 1645, 1803 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 1766, 1805 )
+position = Vector2( 722, 1424 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
@@ -294,3 +299,14 @@ offset = Vector2( 3.31152, 6.80664 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/Jumping_Platform9"]
 position = Vector2( 0, 323.289 )
 shape = SubResource( 5 )
+
+[node name="Camera_For_Speaking" type="Camera2D" parent="."]
+position = Vector2( 1753, 1812 )
+zoom = Vector2( 0.5, 0.5 )
+script = ExtResource( 9 )
+
+[node name="Area_Of_Dialoge_Camera" type="Area2D" parent="Camera_For_Speaking"]
+script = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera_For_Speaking/Area_Of_Dialoge_Camera"]
+shape = SubResource( 6 )
