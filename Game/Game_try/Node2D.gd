@@ -26,3 +26,5 @@ func _ready():
 	self.add_child(enemy_1_44)
 	heroe_1.position = $Position_Heroe.global_position
 	self.add_child(heroe_1)
+
+

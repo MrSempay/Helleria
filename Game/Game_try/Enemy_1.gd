@@ -6,10 +6,14 @@ var velocity = Vector2()
 var name_enemy = "Aglea"
 var trigger_of_ally = false
 var dialoge_window = preload("res://Game/Dialoge_Window.tscn")
-var i = 1
+var JUMP_POWER = 500
+
+var array_first_dialoge_flags = [1,2,3,5,7,9,10,11,13,15]
+var i = 0
 
 onready var heroe = get_parent().get_node("Heroe")
 onready var ally = get_parent().get_node("Ally")
+onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
 func handle_hit(damage):
 	#health -= damage
@@ -34,12 +38,29 @@ func _ready():
 
 
 func _physics_process(delta):
-	if i == 1:
-		var dialoge_window_1 = dialoge_window.instance()
-		dialoge_window_1.position = $Dialoge_Window_Position.position
-		add_child(dialoge_window_1)
-		dialoge_window_1.choosing_text("Aglea",i)
-		i += 1
+	
+	if i != (array_first_dialoge_flags.size() - 1):
+		if area_of_dialoge_camera.input_touch == array_first_dialoge_flags[i] && area_of_dialoge_camera.was_pressed:
+			var dialoge_window_1 = dialoge_window.instance()
+			print(array_first_dialoge_flags[i])
+			dialoge_window_1.position = $Dialoge_Window_Position.position + Vector2(0,-20)
+			if array_first_dialoge_flags[i] - array_first_dialoge_flags[i - 1] == 1 && self.has_node("Dialoge_Window"):
+				print(area_of_dialoge_camera.input_touch)
+				$Dialoge_Window.choosing_text("Aglea", area_of_dialoge_camera.input_touch)
+				area_of_dialoge_camera.was_pressed = false
+			else:
+				add_child(dialoge_window_1)
+				dialoge_window_1.choosing_text("Aglea", area_of_dialoge_camera.input_touch)
+				area_of_dialoge_camera.was_pressed = false
+			if i != (array_first_dialoge_flags.size() - 1):
+				i += 1
+	
+				
+	if (area_of_dialoge_camera.input_touch != array_first_dialoge_flags[i]) && area_of_dialoge_camera.was_pressed && self.has_node("Dialoge_Window"):
+		print("deleted")
+		$Dialoge_Window.queue_free()
+
+
 	if trigger_of_ally:
 	
 		if abs((self.global_position.x - 0) - ally.global_position.x) < abs((self.global_position.x) - heroe.global_position.x):
@@ -59,10 +80,9 @@ func _physics_process(delta):
 		if (self.global_position.x) - heroe.global_position.x > 0:
 			velocity.x = speed * delta
 			translate(-velocity)
-
+			
 	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * 2
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-
 
 
 func _on_Timer_Of_HP_timeout():

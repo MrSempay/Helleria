@@ -22,7 +22,7 @@
 [ext_resource path="res://Anims/гл. гр/anim-1-6.png" type="Texture" id=20]
 [ext_resource path="res://Anims/гл. гр/anim-1-5.png" type="Texture" id=21]
 [ext_resource path="res://Anims/гл. гр/anim-1-4.png" type="Texture" id=22]
-[ext_resource path="res://Game/Camera2D.gd" type="Script" id=23]
+[ext_resource path="res://Game/Camera_Of_Heroe.gd" type="Script" id=23]
 
 [sub_resource type="Animation" id=17]
 length = 0.001
@@ -407,10 +407,9 @@ bbcode_text = "Hello!"
 tab_size = 7
 text = "Hello!"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera_Of_Heroe" type="Camera2D" parent="."]
 position = Vector2( 18, -85 )
 scale = Vector2( 0.496, 0.497 )
-current = true
 zoom = Vector2( 0.5, 0.5 )
 drag_margin_left = 0.36
 drag_margin_top = 0.37
