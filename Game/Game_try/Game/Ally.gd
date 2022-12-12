@@ -40,7 +40,8 @@ func _physics_process(delta):
 
 	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * 2
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-	$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x < 0
+	if get_parent().has_node("Heroe"):
+		$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x < 0
 
 
 func _on_Timer_Of_HP_timeout():

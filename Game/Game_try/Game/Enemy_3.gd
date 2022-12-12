@@ -63,73 +63,74 @@ func _physics_process(delta):
 	
 	collision_of_stone_sword.set_disabled(true)
 	#print($Sprite.get_animation())
-	if(self.global_position.x - heroe.global_position.x) > 0:
-		$Stone_Sword.set_position(Vector2(-33,-6))
-		$Stone_Position.set_position(Vector2(-34,-2))
-	else:
-		$Stone_Sword.set_position(Vector2(33,-6))
-		$Stone_Position.set_position(Vector2(34,-2))
 	
 	#$CollisionShape2D.set_position(Vector2(0,0))
-	if trigger_of_ally:
-		
-		if ((self.global_position.x) - heroe.global_position.x < 0) && $Sprite.get_animation() == "run":
-			translate(Vector2(1,0) * speed)
-		if ((self.global_position.x) - heroe.global_position.x > 0) && $Sprite.get_animation() == "run":
-			translate(Vector2(-1,0) * speed)
-		
-		if (((self.global_position.x) - heroe.global_position.x > 55) or ((self.global_position.x) - heroe.global_position.x < -55) or !((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20))) && $Sprite.get_animation() != "stone" && $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
-			if((self.global_position.x) - heroe.global_position.x) > 0:
-				$Sprite.flip_h = true
+	if get_parent().has_node("Heroe"):
+		if trigger_of_ally:
+			if(self.global_position.x - heroe.global_position.x) > 0:
+				$Stone_Sword.set_position(Vector2(-33,-6))
+				$Stone_Position.set_position(Vector2(-34,-2))
 			else:
-				$Sprite.flip_h = false
-			speed = 2
-			animate("run")
+				$Stone_Sword.set_position(Vector2(33,-6))
+				$Stone_Position.set_position(Vector2(34,-2))
 			
-		if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20)):
-			if((self.global_position.x) - heroe.global_position.x) > 0:
-				$Sprite.flip_h = true
-			else:
-				$Sprite.flip_h = false
-			speed = 0
-			timer_of_stone_sword.start()
-			stone_sword_ready = false
-			animate("stoneSword")
-		if stone_sword_finished:
-			collision_of_stone_sword.set_disabled(false)
-			stone_sword_finished = false
+			if ((self.global_position.x) - heroe.global_position.x < 0) && $Sprite.get_animation() == "run":
+				translate(Vector2(1,0) * speed)
+			if ((self.global_position.x) - heroe.global_position.x > 0) && $Sprite.get_animation() == "run":
+				translate(Vector2(-1,0) * speed)
 			
-		if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && stone_ready && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20)):
-			if $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
+			if (((self.global_position.x) - heroe.global_position.x > 55) or ((self.global_position.x) - heroe.global_position.x < -55) or !((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20))) && $Sprite.get_animation() != "stone" && $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
 				if((self.global_position.x) - heroe.global_position.x) > 0:
 					$Sprite.flip_h = true
 				else:
 					$Sprite.flip_h = false
-				timer_of_stone.start()
-				speed = 0
-				stone_ready = false
-				animate("stone")
-				var stone_1 = stone.instance()
-				stone_1.position = $Stone_Position.global_position
-				get_node("..").add_child(stone_1)
-				stone_finished = true
-					
-		if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && hedgehod_ready && is_on_floor():
-			if $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "stone":
+				speed = 2
+				animate("run")
+				
+			if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20)):
 				if((self.global_position.x) - heroe.global_position.x) > 0:
 					$Sprite.flip_h = true
 				else:
 					$Sprite.flip_h = false
-				timer_of_hedgehod.start()
 				speed = 0
-				hedgehod_ready = false
-				animate("hedgehod")
-				var hedgehod_1 = hedgehod.instance()
-				hedgehod_1.position = heroe.global_position - Vector2(1577, 1495)
-				add_child(hedgehod_1)
-		
-	else:
-		pass
+				timer_of_stone_sword.start()
+				stone_sword_ready = false
+				animate("stoneSword")
+			if stone_sword_finished:
+				collision_of_stone_sword.set_disabled(false)
+				stone_sword_finished = false
+				
+			if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && stone_ready && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20)):
+				if $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
+					if((self.global_position.x) - heroe.global_position.x) > 0:
+						$Sprite.flip_h = true
+					else:
+						$Sprite.flip_h = false
+					timer_of_stone.start()
+					speed = 0
+					stone_ready = false
+					animate("stone")
+					var stone_1 = stone.instance()
+					stone_1.position = $Stone_Position.global_position
+					get_node("..").add_child(stone_1)
+					stone_finished = true
+						
+			if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && hedgehod_ready && is_on_floor():
+				if $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "stone":
+					if((self.global_position.x) - heroe.global_position.x) > 0:
+						$Sprite.flip_h = true
+					else:
+						$Sprite.flip_h = false
+					timer_of_hedgehod.start()
+					speed = 0
+					hedgehod_ready = false
+					animate("hedgehod")
+					var hedgehod_1 = hedgehod.instance()
+					hedgehod_1.position = heroe.global_position - Vector2(1577, 1495)
+					add_child(hedgehod_1)
+			
+		else:
+			pass
 
 
 func start_jump():

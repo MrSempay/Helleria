@@ -18,11 +18,11 @@ var heroe_1 = heroe.instance()
 func _ready():
 	ally_1.position = $Ally.global_position
 	self.add_child(ally_1)
-	enemy_1_1.position = $Enemy_1.global_position
+	enemy_1_1.position = $Position_Aglea.global_position
 	self.add_child(enemy_1_1)
-	enemy_1_2.position = $Enemy_2.global_position
+	enemy_1_2.position = $Position_Adalard.global_position
 	self.add_child(enemy_1_2)
-	enemy_1_3.position = $Enemy_3.global_position
+	enemy_1_3.position = $Position_Belotur.global_position
 	self.add_child(enemy_1_3)
 	heroe_1.position = $Position_Heroe.global_position
 	self.add_child(heroe_1)

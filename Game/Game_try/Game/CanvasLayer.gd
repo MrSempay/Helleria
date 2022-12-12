@@ -5,6 +5,7 @@ onready var heroe = get_parent()
 signal use_move_vector
 var ongoing_drag = -1
 
+
 func _input(event):
 	#if event is InputEventScreenTouch or event is InputEventScreenDrag:
 	if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed()):

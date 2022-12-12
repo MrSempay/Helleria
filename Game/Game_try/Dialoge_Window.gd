@@ -13,15 +13,15 @@ func choosing_text(parent_name, number_of_phrase):
 			if number_of_phrase == 6:
 				print("already here")
 			match number_of_phrase:
-				1: dialoge_phrase.set_text("So, Hello!")
-				2: dialoge_phrase.set_text("So, Helloqweqweqwe!")
-				3: dialoge_phrase.set_text("Oh... I'm fine!!!")
-				5: dialoge_phrase.set_text("I will enslave you")
-				7: dialoge_phrase.set_text("123")
-				9: dialoge_phrase.set_text("321")
-				10: dialoge_phrase.set_text("qwerewq")
-				11: dialoge_phrase.set_text("323221")
-				13: dialoge_phrase.set_text("321dddddddd")
+				1: dialoge_phrase.set_text("Where is he?...")
+				2: dialoge_phrase.set_text("Where...")
+				3: dialoge_phrase.set_text("Where?!????....")
+				5: dialoge_phrase.set_text("WHEEERRREEEE!!!!?!??")
+				7: dialoge_phrase.set_text("ДА КУДА ОН ДЕЛСЯ ЧЁРТ ВОЗЬМИ")
+				9: dialoge_phrase.set_text("325м5е1")
+				10: dialoge_phrase.set_text("qwerewq!")
+				11: dialoge_phrase.set_text("3235wg5g221!")
+				13: dialoge_phrase.set_text("32gg1dddddddd!")
 		"Akira":
 			match number_of_phrase:
 				2: dialoge_phrase.set_text("Hi! How are you?")

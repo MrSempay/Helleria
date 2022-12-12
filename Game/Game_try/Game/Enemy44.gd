@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 
-var scale_gravity = 2
 var speed = 140
 var velocity = Vector2()
 var name_enemy = "Akira"
@@ -44,7 +43,6 @@ func _physics_process(delta):
 		#if file.get_position() < file.get_len():
 			
 			#animate("run")
-			#scale_gravity = 0
 			#point_of_position_string = file.get_line().split(",",true,1)
 			#point_of_position_string_x = ((point_of_position_string[0].split("(",false,1)))
 			#point_of_position_string_y = ((point_of_position_string[1].split(")",true,1)))
@@ -55,7 +53,6 @@ func _physics_process(delta):
 			#self.set_global_position(Vector2(float(point_of_position_string_x[0]),float(point_of_position_string_y[0])))
 			#point_of_position_string_x_saved = float(point_of_position_string_x[0])
 		#elif file.is_open():
-			#scale_gravity = 2
 			#file.close()
 			#animate("idle")
 	

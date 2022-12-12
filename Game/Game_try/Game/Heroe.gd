@@ -48,6 +48,15 @@ var point_of_position = Vector2()
 var i = 0
 
 
+var point_of_position_string
+var point_of_position_string_x
+var point_of_position_string_x_saved = -10000
+var point_of_position_string_y
+var point_of_position_string_y_saved
+
+
+
+
 func ally():
 	pass
 
@@ -71,18 +80,42 @@ func mana_using(manacost):
 	
 
 func _ready():
-	#file.open("res://navigationR.txt", File.WRITE)
+	file.open("res://Navigations/Heroe/navigationH1D.txt", File.READ)
+	#file.open("res://Navigations/Aglea/navigationA1D.txt", File.WRITE)
 	
 	#if GLOBAL.counter_of_second_button == 1:
 	timer_of_spell.connect("timeout", self, "_Timer_Of_Spell")
 	timer_of_spell.set_autostart(true)
 
 func _physics_process(delta):
+	
+	if file.is_open():
+		if file.get_position() < file.get_len():
+			
+			$Icon.play("run")
+			point_of_position_string = file.get_line().split(",",true,1)
+			point_of_position_string_x = ((point_of_position_string[0].split("(",false,1)))
+			point_of_position_string_y = ((point_of_position_string[1].split(")",true,1)))
+			if point_of_position_string_x_saved < float(point_of_position_string_x[0]):
+				$Icon.flip_h = false
+			else:
+				$Icon.flip_h = true
+			self.set_global_position(Vector2(float(point_of_position_string_x[0]),float(point_of_position_string_y[0])))
+			point_of_position_string_x_saved = float(point_of_position_string_x[0])
+		elif file.is_open():
+			file.close()
+			$Icon.play("idle")
+			queue_free()
+	
+	
+	
+	
 	velocity.x = 0
 	translate(GLOBAL.move_vector_1 * 2.5)
 	velocity.y += delta * 970 * 2
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-	animate()
+	if !file.is_open():
+		animate()
 
 
 	#point_of_position = self.get_global_position()

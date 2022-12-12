@@ -30,29 +30,31 @@ func mana_using(manacost):
 func _physics_process(delta):
 	var heroe = get_parent().get_node("Heroe")
 	var ally = get_parent().get_node("Ally")
-	if trigger_of_ally:
-	
-		if abs((self.global_position.x - 0) - ally.global_position.x) < abs((self.global_position.x) - heroe.global_position.x):
-			$Sprite.flip_h = true
-			
-		if ((self.global_position.x) - heroe.global_position.x < 35) && ((self.global_position.x) - heroe.global_position.x > -35):
-			speed = 0
-			animate("idle")
-		else:
-			speed = 140
-			animate("run")
-			
-		if ((self.global_position.x) - heroe.global_position.x < 0):
-			velocity.x = speed * delta
-			translate(velocity)
-			
-		if (self.global_position.x) - heroe.global_position.x > 0:
-			velocity.x = speed * delta
-			translate(-velocity)
+	if get_parent().has_node("Heroe"):
+		if trigger_of_ally:
+		
+			if abs((self.global_position.x - 0) - ally.global_position.x) < abs((self.global_position.x) - heroe.global_position.x):
+				$Sprite.flip_h = true
+				
+			if ((self.global_position.x) - heroe.global_position.x < 35) && ((self.global_position.x) - heroe.global_position.x > -35):
+				$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x > 0
+				speed = 0
+				animate("idle")
+			else:
+				$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x > 0
+				speed = 140
+				animate("run")
+				
+			if ((self.global_position.x) - heroe.global_position.x < 0):
+				velocity.x = speed * delta
+				translate(velocity)
+				
+			if (self.global_position.x) - heroe.global_position.x > 0:
+				velocity.x = speed * delta
+				translate(-velocity)
 
 	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * 2
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-	$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x > 0
 
 
 
