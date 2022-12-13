@@ -1,23 +1,29 @@
 extends KinematicBody2D
 
-
+var scale_gravity = 2
 var speed = 140
 var velocity = Vector2()
-var name_enemy = "Aglea"
+var name_character = "Aglea"
 var trigger_of_ally = false
 var dialoge_window = preload("res://Game/Dialoge_Window.tscn")
 var JUMP_POWER = 500
 
-var array_first_dialoge_flags = [1,2,3,5,7,9,10,11,13,15]
+
+var array_dialoge_flags = []
 var i = 0
+var number_of_dialoge
+
 
 var file = File.new()
-
 var point_of_position_string
 var point_of_position_string_x
 var point_of_position_string_x_saved = -10000
 var point_of_position_string_y
 var point_of_position_string_y_saved
+var moving_state
+var number_of_moving
+
+
 
 
 
@@ -30,9 +36,9 @@ func handle_hit(damage):
 	$HP_Enemy_1.value -= damage
 	$value_of_HP.text = str($HP_Enemy_1.value)
 	if $HP_Enemy_1.value > 0:
-		print(name_enemy + " was hit! Health of enemy: ", $HP_Enemy_1.value)
+		print(name_character + " was hit! Health of enemy: ", $HP_Enemy_1.value)
 	else:
-		print(name_enemy + " was destroyed")
+		print(name_character + " was destroyed")
 		GLOBAL.life_first_enemy = false
 		queue_free()
 
@@ -43,51 +49,19 @@ func mana_using(manacost):
 
 
 func _ready():
-	file.open("res://Navigations/Aglea/navigationA1D.txt", File.READ)
+	pass
 
 
 
 func _physics_process(delta):
 	
-	if file.is_open() && !get_parent().has_node("Heroe"):
-		if file.get_position() < file.get_len():
-			
-			animate("run")
-			point_of_position_string = file.get_line().split(",",true,1)
-			point_of_position_string_x = ((point_of_position_string[0].split("(",false,1)))
-			point_of_position_string_y = ((point_of_position_string[1].split(")",true,1)))
-			if point_of_position_string_x_saved < float(point_of_position_string_x[0]):
-				$Sprite.flip_h = false
-			else:
-				$Sprite.flip_h = true
-			self.set_global_position(Vector2(float(point_of_position_string_x[0]),float(point_of_position_string_y[0])))
-			point_of_position_string_x_saved = float(point_of_position_string_x[0])
-		elif file.is_open():
-			file.close()
-			animate("idle")
-			GLOBAL.first_dialoge_started = true
+
+	if moving_state:
+		navigation(number_of_moving)
 	
+	if GLOBAL.aglea_dialoge_started:
+		dialoge(array_dialoge_flags, number_of_dialoge)
 	
-	if i != (array_first_dialoge_flags.size() - 1):
-		if area_of_dialoge_camera.input_touch == array_first_dialoge_flags[i] && area_of_dialoge_camera.was_pressed:
-			var dialoge_window_1 = dialoge_window.instance()
-			print(array_first_dialoge_flags[i])
-			dialoge_window_1.position = $Dialoge_Window_Position.position + Vector2(0,-20)
-			if array_first_dialoge_flags[i] - array_first_dialoge_flags[i - 1] == 1 && self.has_node("Dialoge_Window"):
-				print(area_of_dialoge_camera.input_touch)
-				$Dialoge_Window.choosing_text("Aglea", area_of_dialoge_camera.input_touch)
-				area_of_dialoge_camera.was_pressed = false
-			else:
-				add_child(dialoge_window_1)
-				dialoge_window_1.choosing_text("Aglea", area_of_dialoge_camera.input_touch)
-				area_of_dialoge_camera.was_pressed = false
-			if i != (array_first_dialoge_flags.size() - 1):
-				i += 1
-	
-				
-	if (area_of_dialoge_camera.input_touch != array_first_dialoge_flags[i]) && area_of_dialoge_camera.was_pressed && self.has_node("Dialoge_Window"):
-		print("deleted")
-		$Dialoge_Window.queue_free()
 
 	if get_parent().has_node("Heroe"):
 		if trigger_of_ally:
@@ -110,7 +84,7 @@ func _physics_process(delta):
 				velocity.x = speed * delta
 				translate(-velocity)
 			
-	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * 2
+	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * 2 * scale_gravity
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 
 
@@ -138,4 +112,60 @@ func animate(art):
 		elif abs((self.global_position.x - 0) - ally.global_position.x) < abs((self.global_position.x) - heroe.global_position.x):
 			$Sprite.flip_h = true
 	$Sprite.play(art)
+
+
+func navigation(number_of_moving):	
+	
+	if !file.is_open() && moving_state:
+		file.open("res://Navigations/" + name_character + "/navigation" + str(number_of_moving) + ".txt", File.READ)
+	
+	if file.is_open():
+		if file.get_position() < file.get_len():
+			point_of_position_string = file.get_line().split(",",true,1)
+			point_of_position_string_x = ((point_of_position_string[0].split("(",false,1)))
+			point_of_position_string_y = ((point_of_position_string[1].split(")",true,1)))
+			scale_gravity = 0
+			if point_of_position_string_x_saved != float(point_of_position_string_x[0]):
+				if point_of_position_string_x_saved < float(point_of_position_string_x[0]):
+					$Sprite.flip_h = false
+				else:
+					$Sprite.flip_h = true
+				animate("run")
+			else:
+				animate("idle")
+				
+			self.set_global_position(Vector2(float(point_of_position_string_x[0]),float(point_of_position_string_y[0]) + 3))
+			point_of_position_string_x_saved = float(point_of_position_string_x[0])
+		elif file.is_open():
+			moving_state = false
+			file.close()
+			animate("idle")
+			scale_gravity = 2
+			match number_of_moving:
+				1: GLOBAL.aglea_dialoge_started = true
+
+
+func dialoge(array_dialoge_flags, number_of_dialoge):
+	if array_dialoge_flags.size() != 0:
+		if i != (array_dialoge_flags.size() - 1):
+			if area_of_dialoge_camera.input_touch == array_dialoge_flags[i] && area_of_dialoge_camera.was_pressed:
+				var dialoge_window_1 = dialoge_window.instance()
+				print(array_dialoge_flags[i])
+				dialoge_window_1.position = $Dialoge_Window_Position.position + Vector2(0,-20)
+				if array_dialoge_flags[i] - array_dialoge_flags[i - 1] == 1 && self.has_node("Dialoge_Window"):
+					print(area_of_dialoge_camera.input_touch)
+					$Dialoge_Window.choosing_text(name_character, area_of_dialoge_camera.input_touch, number_of_dialoge)
+					area_of_dialoge_camera.was_pressed = false
+				else:
+					add_child(dialoge_window_1)
+					dialoge_window_1.choosing_text(name_character, area_of_dialoge_camera.input_touch, number_of_dialoge)
+					area_of_dialoge_camera.was_pressed = false
+				if i != (array_dialoge_flags.size() - 1):
+					i += 1
+		
+		if (area_of_dialoge_camera.input_touch != array_dialoge_flags[i]) && area_of_dialoge_camera.was_pressed && self.has_node("Dialoge_Window"):
+			print("deleted")
+			$Dialoge_Window.queue_free()
+	
+
 

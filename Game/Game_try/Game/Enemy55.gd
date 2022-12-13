@@ -3,9 +3,15 @@ extends KinematicBody2D
 
 var speed = 140
 var velocity = Vector2()
-var name_character = "Adalard"
+var name_character = "Jeison"
 var trigger_of_ally = false
 var stone = preload("res://Game/Stone_Enemy.tscn")
+var file = File.new()
+var point_of_position_string
+var point_of_position_string_x
+var point_of_position_string_x_saved = -10000
+var point_of_position_string_y
+var point_of_position_string_y_saved
 
 onready var heroe = get_parent().get_node("Heroe")
 onready var ally = get_parent().get_node("Ally")
@@ -17,12 +23,6 @@ var i = 0
 var number_of_dialoge
 var scale_gravity = 2
 
-var file = File.new()
-var point_of_position_string
-var point_of_position_string_x
-var point_of_position_string_x_saved = -10000
-var point_of_position_string_y
-var point_of_position_string_y_saved
 var moving_state
 var number_of_moving
 
@@ -44,30 +44,35 @@ func mana_using(manacost):
 	$value_of_Mana.text = str($Mana_Enemy_1.value)
 
 
+func _ready():
+	pass
+
+
+
 func _physics_process(delta):
+	
 	var heroe = get_parent().get_node("Heroe")
 	var ally = get_parent().get_node("Ally")
-	
+		
 	if moving_state:
 		navigation(number_of_moving)
 	
 	if GLOBAL.belotur_dialoge_started:
 		dialoge(array_dialoge_flags, number_of_dialoge)
 	
-	
-	
 	if get_parent().has_node("Heroe"):
 		if trigger_of_ally:
-		
+			if((self.global_position.x) - heroe.global_position.x) > 0:
+				$Sprite.flip_h = true
+			else:
+				$Sprite.flip_h = false
 			if abs((self.global_position.x - 0) - ally.global_position.x) < abs((self.global_position.x) - heroe.global_position.x):
 				$Sprite.flip_h = true
 				
 			if ((self.global_position.x) - heroe.global_position.x < 35) && ((self.global_position.x) - heroe.global_position.x > -35):
-				$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x > 0
 				speed = 0
 				animate("idle")
 			else:
-				$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x > 0
 				speed = 140
 				animate("run")
 				
@@ -79,8 +84,9 @@ func _physics_process(delta):
 				velocity.x = speed * delta
 				translate(-velocity)
 
-	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * 2
+	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * scale_gravity
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
+	#$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x > 0
 
 
 
@@ -101,10 +107,8 @@ func _on_Trigger_Area_body_entered(body):
 		
 func animate(art):
 	$Sprite.play(art)
-	
-	
-	
-	
+
+
 func navigation(number_of_moving):	
 	
 	if !file.is_open() && moving_state:
@@ -125,7 +129,7 @@ func navigation(number_of_moving):
 			else:
 				animate("idle")
 				
-			self.set_global_position(Vector2(float(point_of_position_string_x[0]),float(point_of_position_string_y[0]) + 3))
+			self.set_global_position(Vector2(float(point_of_position_string_x[0]),float(point_of_position_string_y[0]) + 2))
 			point_of_position_string_x_saved = float(point_of_position_string_x[0])
 		elif file.is_open():
 			moving_state = false

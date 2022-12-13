@@ -20,7 +20,7 @@ onready var picture_weapon = get_node("Weapon/Sword")
 onready var count_of_arrow = get_node("Weapon/value_of_HP/Arrow_Amount")
 onready var stone_position = get_node("Weapon/Position2D/")
 
-
+var scale_gravity = 2
 var Arrow = load("res://Game/Arrow.gd")
 var velocity = Vector2()
 var sheld_position
@@ -31,6 +31,8 @@ var texture = preload("res://Icedeath.jpg")
 var Button1 = Button.new()
 var speed = 150
 var armor = 1
+var name_character = "Heroe"
+
 
 var picture_sheld = preload("res://pngwing.com (13).png")
 var picture_bow = preload("res://Bow.png")
@@ -45,7 +47,10 @@ var beat_in_heroe = false
 var file = File.new()
 var mass_of_positions = []
 var point_of_position = Vector2()
+
+
 var i = 0
+var number_of_dialoge
 
 
 var point_of_position_string
@@ -53,7 +58,8 @@ var point_of_position_string_x
 var point_of_position_string_x_saved = -10000
 var point_of_position_string_y
 var point_of_position_string_y_saved
-
+var moving_state
+var number_of_moving
 
 
 
@@ -81,7 +87,7 @@ func mana_using(manacost):
 
 func _ready():
 	file.open("res://Navigations/Heroe/navigationH1D.txt", File.READ)
-	#file.open("res://Navigations/Aglea/navigationA1D.txt", File.WRITE)
+	#file.open("res://Navigations/Jeison/navigation1.txt", File.WRITE)
 	
 	#if GLOBAL.counter_of_second_button == 1:
 	timer_of_spell.connect("timeout", self, "_Timer_Of_Spell")
@@ -89,25 +95,8 @@ func _ready():
 
 func _physics_process(delta):
 	
-	if file.is_open():
-		if file.get_position() < file.get_len():
-			
-			$Icon.play("run")
-			point_of_position_string = file.get_line().split(",",true,1)
-			point_of_position_string_x = ((point_of_position_string[0].split("(",false,1)))
-			point_of_position_string_y = ((point_of_position_string[1].split(")",true,1)))
-			if point_of_position_string_x_saved < float(point_of_position_string_x[0]):
-				$Icon.flip_h = false
-			else:
-				$Icon.flip_h = true
-			self.set_global_position(Vector2(float(point_of_position_string_x[0]),float(point_of_position_string_y[0])))
-			point_of_position_string_x_saved = float(point_of_position_string_x[0])
-		elif file.is_open():
-			file.close()
-			$Icon.play("idle")
-			queue_free()
-	
-	
+	if moving_state:
+		navigation(number_of_moving)	
 	
 	
 	velocity.x = 0
@@ -115,7 +104,16 @@ func _physics_process(delta):
 	velocity.y += delta * 970 * 2
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 	if !file.is_open():
-		animate()
+		if GLOBAL.move_vector_1.x != 0:
+			animate("run")
+		if GLOBAL.move_vector_1.x == 0:
+			animate("idle")
+		if GLOBAL.move_vector_1.x > 0:
+			$Icon.flip_h = false
+			get_node("CollisionPolygon2D/AnimationPlayer").play("щгп_п")
+		elif GLOBAL.move_vector_1.x < 0:
+			$Icon.flip_h = true
+			get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 
 
 	#point_of_position = self.get_global_position()
@@ -290,21 +288,42 @@ func get_position_x():
 	return int(self.get_position().x)
 	
 	
-func animate():
-	var anim = "idle"
-	if GLOBAL.move_vector_1.x != 0:
-		anim = "run"
-	if GLOBAL.move_vector_1.x == 0:
-		anim_1.stop(true)
-	if GLOBAL.move_vector_1.x > 0:
-		$Icon.flip_h = false
-		anim_1.play("щгп_п")
-	elif GLOBAL.move_vector_1.x < 0:
-		$Icon.flip_h = true
-		anim_1.play("щгп")
-	$Icon.play(anim)
+func animate(art):
+	$Icon.play(art)
 	
 	
+	
+func navigation(number_of_moving):	
+	
+	if !file.is_open() && moving_state:
+		file.open("res://Navigations/" + name_character + "/navigation" + str(number_of_moving) + ".txt", File.READ)
+	
+	if file.is_open():
+		if file.get_position() < file.get_len():
+			point_of_position_string = file.get_line().split(",",true,1)
+			point_of_position_string_x = ((point_of_position_string[0].split("(",false,1)))
+			point_of_position_string_y = ((point_of_position_string[1].split(")",true,1)))
+			scale_gravity = 0
+			if point_of_position_string_x_saved != float(point_of_position_string_x[0]):
+				if point_of_position_string_x_saved < float(point_of_position_string_x[0]):
+					$Icon.flip_h = false
+				else:
+					$Icon.flip_h = true
+				animate("run")
+			else:
+				animate("idle")	
+				
+			self.set_global_position(Vector2(float(point_of_position_string_x[0]),float(point_of_position_string_y[0]) + 3))
+			point_of_position_string_x_saved = float(point_of_position_string_x[0])
+		elif file.is_open():
+			moving_state = false
+			file.close()
+			animate("idle")
+			scale_gravity = 2
+			match number_of_moving:
+				1: queue_free()
+			match number_of_dialoge:
+				1: pass
 	
 	
 	

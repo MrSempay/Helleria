@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
-[ext_resource path="res://Game/Enemy_2.gd" type="Script" id=2]
+[ext_resource path="res://Game/Enemy55.gd" type="Script" id=2]
 [ext_resource path="res://Anims/Джейсон/animm1.png" type="Texture" id=3]
 [ext_resource path="res://Anims/Джейсон/animm2.png" type="Texture" id=4]
 [ext_resource path="res://Anims/Джейсон/animm3.png" type="Texture" id=5]
@@ -19,7 +19,7 @@ animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "run",
-"speed": 5.0
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -28,15 +28,21 @@ extents = Vector2( 62.4999, 77.0745 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 109, 53.5 )
 
-[node name="Jaison" type="KinematicBody2D"]
-position = Vector2( 330, 163 )
+[node name="Jeison" type="KinematicBody2D"]
+position = Vector2( 332, 164 )
+collision_layer = 16
+collision_mask = 16
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 187.0 ]
+}
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.25, 6 )
 scale = Vector2( 0.208, 0.208 )
 frames = SubResource( 1 )
-animation = "idle"
+animation = "run"
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 6.96848 )

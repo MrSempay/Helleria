@@ -20,7 +20,7 @@ animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "run",
-"speed": 5.0
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -31,13 +31,15 @@ extents = Vector2( 109, 53.5 )
 
 [node name="Adalard" type="KinematicBody2D"]
 position = Vector2( 330, 163 )
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.25, 6 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
-animation = "idle"
+animation = "run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 6 )

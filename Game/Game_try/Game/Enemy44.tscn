@@ -19,7 +19,7 @@ animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "run",
-"speed": 5.0
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -30,13 +30,16 @@ extents = Vector2( 18, 38 )
 
 [node name="Akira" type="KinematicBody2D"]
 position = Vector2( 330, 163 )
+collision_layer = 8
+collision_mask = 8
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( -1.25, 6 )
 scale = Vector2( 0.208, 0.208 )
 frames = SubResource( 1 )
-animation = "idle"
+animation = "run"
+frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 6.96848 )

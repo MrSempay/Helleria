@@ -40,7 +40,12 @@ var life_heroe = true
 var heroe_uploaded = false
 
 
-var first_dialoge_started = false
+var aglea_dialoge_started = false
+var heroe_dialoge_started = false
+var akira_dialoge_started = false
+var belotur_dialoge_started = false
+var adalard_dialoge_started = false
+var jaison_dialoge_started = false
 
 
 func scene(name):
@@ -50,7 +55,6 @@ func scene(name):
 func first_spell_changing(speed, armor=0):
 	speed = speed * 0.5
 	return speed
-	
 	
 
 

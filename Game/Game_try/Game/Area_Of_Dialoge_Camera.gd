@@ -7,7 +7,7 @@ var was_pressed = false
 
 
 func _physics_process(delta):
-	if GLOBAL.first_dialoge_started:
+	if GLOBAL.aglea_dialoge_started:
 		$CollisionShape2D.set_disabled(false)
 	else:
 		$CollisionShape2D.set_disabled(true)
