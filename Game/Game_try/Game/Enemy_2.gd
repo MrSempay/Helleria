@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-var speed = 140
+var speed = 2
 var velocity = Vector2()
 var name_character = "Adalard"
 var trigger_of_ally = false
@@ -45,18 +45,25 @@ func mana_using(manacost):
 
 
 func _physics_process(delta):
-	var heroe = get_parent().get_node("Heroe")
-	var ally = get_parent().get_node("Ally")
+	velocity.x = 0
+
 	
 	if moving_state:
 		navigation(number_of_moving)
 	
 	if GLOBAL.belotur_dialoge_started:
 		dialoge(array_dialoge_flags, number_of_dialoge)
-	
+	if GLOBAL.adalard_dialoge_finished:
+		if str(get_parent()) == "First_Scene:[Node2D:1938]":
+				translate(Vector2(1,0) * speed)
+				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+				animate("run")
+				$Sprite.flip_h = false
 	
 	
 	if get_parent().has_node("Heroe"):
+		var heroe = get_parent().get_node("Heroe")
+		var ally = get_parent().get_node("Ally")
 		if trigger_of_ally:
 		
 			if abs((self.global_position.x - 0) - ally.global_position.x) < abs((self.global_position.x) - heroe.global_position.x):
@@ -68,7 +75,8 @@ func _physics_process(delta):
 				animate("idle")
 			else:
 				$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x > 0
-				speed = 140
+				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+				speed = 2
 				animate("run")
 				
 			if ((self.global_position.x) - heroe.global_position.x < 0):
@@ -133,7 +141,7 @@ func navigation(number_of_moving):
 			animate("idle")
 			scale_gravity = 2
 			match number_of_moving:
-				1: GLOBAL.aglea_dialoge_started = true
+				1: pass
 
 
 func dialoge(array_dialoge_flags, number_of_dialoge):
@@ -141,10 +149,8 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 		if i != (array_dialoge_flags.size() - 1):
 			if area_of_dialoge_camera.input_touch == array_dialoge_flags[i] && area_of_dialoge_camera.was_pressed:
 				var dialoge_window_1 = dialoge_window.instance()
-				print(array_dialoge_flags[i])
-				dialoge_window_1.position = $Dialoge_Window_Position.position + Vector2(0,-20)
+				dialoge_window_1.position = $Dialoge_Window_Position.position
 				if array_dialoge_flags[i] - array_dialoge_flags[i - 1] == 1 && self.has_node("Dialoge_Window"):
-					print(area_of_dialoge_camera.input_touch)
 					$Dialoge_Window.choosing_text(name_character, area_of_dialoge_camera.input_touch, number_of_dialoge)
 					area_of_dialoge_camera.was_pressed = false
 				else:
@@ -155,5 +161,9 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 					i += 1
 		
 		if (area_of_dialoge_camera.input_touch != array_dialoge_flags[i]) && area_of_dialoge_camera.was_pressed && self.has_node("Dialoge_Window"):
-			print("deleted")
 			$Dialoge_Window.queue_free()
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	if str(get_parent()) == "First_Scene:[Node2D:1938]":
+		queue_free()

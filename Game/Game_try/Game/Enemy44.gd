@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-var speed = 140
+var speed = 2
 var velocity = Vector2()
 var name_character = "Akira"
 var trigger_of_ally = false
@@ -50,17 +50,24 @@ func _ready():
 
 
 func _physics_process(delta):
-	
-	var heroe = get_parent().get_node("Heroe")
-	var ally = get_parent().get_node("Ally")
+	velocity.x = 0
 		
 	if moving_state:
 		navigation(number_of_moving)
 	
-	if GLOBAL.belotur_dialoge_started:
+	if GLOBAL.akira_dialoge_started:
 		dialoge(array_dialoge_flags, number_of_dialoge)
+	if GLOBAL.akira_dialoge_finished:
+		match number_of_dialoge:
+			1:
+				translate(Vector2(-1,0) * speed)
+				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+				animate("run")
+				$Sprite.flip_h = true
 	
 	if get_parent().has_node("Heroe"):
+		var heroe = get_parent().get_node("Heroe")
+		var ally = get_parent().get_node("Ally")
 		if trigger_of_ally:
 			if((self.global_position.x) - heroe.global_position.x) > 0:
 				$Sprite.flip_h = true
@@ -73,7 +80,8 @@ func _physics_process(delta):
 				speed = 0
 				animate("idle")
 			else:
-				speed = 140
+				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+				speed = 2
 				animate("run")
 				
 			if ((self.global_position.x) - heroe.global_position.x < 0):
@@ -84,9 +92,8 @@ func _physics_process(delta):
 				velocity.x = speed * delta
 				translate(-velocity)
 
-	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * scale_gravity
+	velocity.y += delta * 970 * 2 * scale_gravity
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-	#$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x > 0
 
 
 
@@ -137,27 +144,40 @@ func navigation(number_of_moving):
 			animate("idle")
 			scale_gravity = 2
 			match number_of_moving:
-				1: GLOBAL.aglea_dialoge_started = true
+				1: pass
 
 
 func dialoge(array_dialoge_flags, number_of_dialoge):
 	if array_dialoge_flags.size() != 0:
+		
+		if array_dialoge_flags[i] == 1:
+			var dialoge_window_1 = dialoge_window.instance()
+			dialoge_window_1.position = $Dialoge_Window_Position.position
+			add_child(dialoge_window_1)
+			$Dialoge_Window.choosing_text(name_character, 1, number_of_dialoge)
+			area_of_dialoge_camera.was_pressed_1 = false
+			area_of_dialoge_camera.input_touch += 1
+			if i != (array_dialoge_flags.size() - 1):
+					i += 1		
+		
 		if i != (array_dialoge_flags.size() - 1):
-			if area_of_dialoge_camera.input_touch == array_dialoge_flags[i] && area_of_dialoge_camera.was_pressed:
+			if area_of_dialoge_camera.input_touch == array_dialoge_flags[i] && area_of_dialoge_camera.was_pressed_2:
 				var dialoge_window_1 = dialoge_window.instance()
-				print(array_dialoge_flags[i])
-				dialoge_window_1.position = $Dialoge_Window_Position.position + Vector2(0,-20)
+				dialoge_window_1.position = $Dialoge_Window_Position.position
 				if array_dialoge_flags[i] - array_dialoge_flags[i - 1] == 1 && self.has_node("Dialoge_Window"):
-					print(area_of_dialoge_camera.input_touch)
 					$Dialoge_Window.choosing_text(name_character, area_of_dialoge_camera.input_touch, number_of_dialoge)
-					area_of_dialoge_camera.was_pressed = false
+					area_of_dialoge_camera.was_pressed_2 = false
 				else:
 					add_child(dialoge_window_1)
 					dialoge_window_1.choosing_text(name_character, area_of_dialoge_camera.input_touch, number_of_dialoge)
-					area_of_dialoge_camera.was_pressed = false
+					area_of_dialoge_camera.was_pressed_2= false
 				if i != (array_dialoge_flags.size() - 1):
 					i += 1
 		
-		if (area_of_dialoge_camera.input_touch != array_dialoge_flags[i]) && area_of_dialoge_camera.was_pressed && self.has_node("Dialoge_Window"):
-			print("deleted")
+		if (area_of_dialoge_camera.input_touch != array_dialoge_flags[i]) && area_of_dialoge_camera.was_pressed_2 && self.has_node("Dialoge_Window"):
 			$Dialoge_Window.queue_free()
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	if str(get_parent()) == "First_Scene:[Node2D:1938]":
+		queue_free()

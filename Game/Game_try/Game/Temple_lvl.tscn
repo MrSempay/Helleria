@@ -1,11 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Tile_Set_Temple.tres" type="TileSet" id=1]
+[ext_resource path="res://Game/Temple_lvl.gd" type="Script" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="Temple_lvl" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 show_collision = true
+collision_layer = 31
+collision_mask = 31
 format = 1
 tile_data = PoolIntArray( -65536, 2, 0, -65533, 2, 0, -65530, 2, 0, -65527, 2, 0, -65524, 2, 0, 0, 3, 0, 15, 3, 0, 131072, 2, 0, 131075, 2, 0, 131078, 2, 0, 131081, 2, 0, 131084, 2, 0, 262144, 3, 0, 262159, 3, 0, 327680, 2, 0, 327683, 2, 0, 327686, 2, 0, 327687, 1, 0, 327689, 2, 0, 327692, 2, 0, 458758, 4, 0, 524288, 0, 0, 524296, 0, 0 )
+
+[node name="Position_Heroe" type="Position2D" parent="."]
+position = Vector2( 87, 475 )

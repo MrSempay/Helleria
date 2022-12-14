@@ -25,6 +25,7 @@ var stop_Adalard_1M = false
 var stop_Akira_1M = false
 var stop_Jeison_1M = false
 var stop_Aglea_1D = false
+var stop_Akira_1D = false
 var stop_Heroe_1M = false
 
 
@@ -81,9 +82,17 @@ func _physics_process(delta):
 	
 	if GLOBAL.aglea_dialoge_started && !stop_Aglea_1D:
 		$Aglea.number_of_dialoge = 1
-		$Aglea.array_dialoge_flags = [1,2,3,5,7,9,10,11,13]
+		$Aglea.array_dialoge_flags = [1,2,3,5,7,9,10,11,13,15]
 		stop_Aglea_1D = true
+		
+	if GLOBAL.akira_dialoge_started && !stop_Akira_1D:
+		$Akira.number_of_dialoge = 1
+		$Akira.array_dialoge_flags = [4,6,8,12,14]
+		stop_Akira_1D = true
 	
+	if !self.has_node("Akira") && !self.has_node("Aglea") && !self.has_node("Jeison") && !self.has_node("Adalard") && !self.has_node("Belotur"):
+		GLOBAL.scene("Temple_lvl")
+		self.queue_free()
 	
 	
 	

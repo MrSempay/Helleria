@@ -18,7 +18,6 @@ var damage_stone_sword = 10
 var JUMP_POWER = 500
 
 
-onready var stone_position = get_node("Weapon/Stone_Position/")
 onready var collision_of_jumping_area = get_node("Area_Of_Jumping/CollisionShape2D")
 onready var timer_of_stone = get_node("Timer_Stone")
 onready var timer_of_stone_sword = get_node("Timer_Stone_Sword")
@@ -64,8 +63,7 @@ func mana_using(manacost):
 #test_move()
 func _physics_process(delta):
 	velocity.x = 0
-	var heroe = get_parent().get_node("Heroe")
-	var ally = get_parent().get_node("Ally")
+
 
 	if is_on_floor():
 		collision_of_jumping_area.set_disabled(false)
@@ -77,7 +75,12 @@ func _physics_process(delta):
 	
 	if GLOBAL.belotur_dialoge_started:
 		dialoge(array_dialoge_flags, number_of_dialoge)
-	
+	if GLOBAL.belotur_dialoge_finished:
+		if str(get_parent()) == "First_Scene:[Node2D:1938]":
+				translate(Vector2(-1,0) * speed)
+				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+				animate("run")
+				$Sprite.flip_h = true
 	
 	velocity.y += delta * 970 * 2 * scale_gravity
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
@@ -86,6 +89,8 @@ func _physics_process(delta):
 	collision_of_stone_sword.set_disabled(true)
 
 	if get_parent().has_node("Heroe"):
+		var heroe = get_parent().get_node("Heroe")
+		var ally = get_parent().get_node("Ally")
 		if trigger_of_ally:
 			if(self.global_position.x - heroe.global_position.x) > 0:
 				$Stone_Sword.set_position(Vector2(-33,-6))
@@ -101,8 +106,10 @@ func _physics_process(delta):
 			
 			if (((self.global_position.x) - heroe.global_position.x > 55) or ((self.global_position.x) - heroe.global_position.x < -55) or !((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20))) && $Sprite.get_animation() != "stone" && $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
 				if((self.global_position.x) - heroe.global_position.x) > 0:
+					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 					$Sprite.flip_h = true
 				else:
+					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 					$Sprite.flip_h = false
 				speed = 2
 				animate("run")
@@ -175,14 +182,6 @@ func _on_Trigger_Area_body_entered(body):
 		
 		
 func animate(art):
-	var heroe = get_parent().get_node("Heroe")
-	var ally = get_parent().get_node("Ally")
-	"""
-	if abs((self.global_position.x - 0) - ally.global_position.x) > abs((self.global_position.x) - heroe.global_position.x):
-		$Sprite.flip_h = false
-	elif abs((self.global_position.x - 0) - ally.global_position.x) < abs((self.global_position.x) - heroe.global_position.x):
-		$Sprite.flip_h = true
-	"""
 	$Sprite.play(art)
 
 
@@ -248,7 +247,7 @@ func navigation(number_of_moving):
 			animate("idle")
 			scale_gravity = 2
 			match number_of_moving:
-				1: GLOBAL.aglea_dialoge_started = true
+				1: pass
 
 
 func dialoge(array_dialoge_flags, number_of_dialoge):
@@ -256,10 +255,8 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 		if i != (array_dialoge_flags.size() - 1):
 			if area_of_dialoge_camera.input_touch == array_dialoge_flags[i] && area_of_dialoge_camera.was_pressed:
 				var dialoge_window_1 = dialoge_window.instance()
-				print(array_dialoge_flags[i])
-				dialoge_window_1.position = $Dialoge_Window_Position.position + Vector2(0,-20)
+				dialoge_window_1.position = $Dialoge_Window_Position.position
 				if array_dialoge_flags[i] - array_dialoge_flags[i - 1] == 1 && self.has_node("Dialoge_Window"):
-					print(area_of_dialoge_camera.input_touch)
 					$Dialoge_Window.choosing_text(name_character, area_of_dialoge_camera.input_touch, number_of_dialoge)
 					area_of_dialoge_camera.was_pressed = false
 				else:
@@ -270,10 +267,15 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 					i += 1
 		
 		if (area_of_dialoge_camera.input_touch != array_dialoge_flags[i]) && area_of_dialoge_camera.was_pressed && self.has_node("Dialoge_Window"):
-			print("deleted")
 			$Dialoge_Window.queue_free()
+			if i == (array_dialoge_flags.size() - 1):
+				pass
 
 
 
 
 
+
+func _on_VisibilityNotifier2D_screen_exited():
+	if str(get_parent()) == "First_Scene:[Node2D:1938]":
+		queue_free()

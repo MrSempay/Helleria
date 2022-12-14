@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 
 onready var anim_1 = get_node("CollisionPolygon2D/AnimationPlayer")
-onready var joystick = get_node("../Joystick/TouchScreenButton")
 onready var weapon = $Weapon
 onready var joystick_new = $CanvasLayer
 onready var dialoge = $Control2
@@ -86,17 +85,23 @@ func mana_using(manacost):
 	
 
 func _ready():
+	
+	if get_parent().has_method("Temple_lvl"):
+		print(true)
+		$Camera_Of_Heroe._set_current(true)
+	
 	file.open("res://Navigations/Heroe/navigationH1D.txt", File.READ)
 	#file.open("res://Navigations/Jeison/navigation1.txt", File.WRITE)
 	
-	#if GLOBAL.counter_of_second_button == 1:
 	timer_of_spell.connect("timeout", self, "_Timer_Of_Spell")
 	timer_of_spell.set_autostart(true)
 
 func _physics_process(delta):
 	
+	
+	
 	if moving_state:
-		navigation(number_of_moving)	
+		navigation(number_of_moving)
 	
 	
 	velocity.x = 0

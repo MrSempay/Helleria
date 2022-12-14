@@ -86,6 +86,11 @@ animations = [ {
 "loop": true,
 "name": "run",
 "speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "injured",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
@@ -240,6 +245,7 @@ particles_anim_loop = false
 
 [node name="Heroe" type="KinematicBody2D"]
 position = Vector2( 444, 370 )
+z_index = 3
 collision_layer = 31
 collision_mask = 31
 script = ExtResource( 5 )
@@ -281,7 +287,7 @@ position = Vector2( -1.11304, 8.65002 )
 scale = Vector2( 0.207674, 0.208092 )
 z_index = 1
 frames = SubResource( 16 )
-animation = "run"
+animation = "idle"
 
 [node name="Weapon" type="Area2D" parent="."]
 position = Vector2( 139.113, 58.35 )
@@ -332,11 +338,11 @@ wait_time = 2.0
 one_shot = true
 
 [node name="HP_Heroe" type="TextureProgress" parent="."]
-margin_left = -39.0
-margin_top = -42.0
-margin_right = 106.0
-margin_bottom = -21.0
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = -20.0
+margin_top = -27.0
+margin_right = 125.0
+margin_bottom = -6.0
+rect_scale = Vector2( 0.25, 0.25 )
 max_value = 150.0
 value = 150.0
 texture_progress = ExtResource( 6 )
@@ -347,11 +353,11 @@ nine_patch_stretch = true
 autostart = true
 
 [node name="Mana_Heroe" type="TextureProgress" parent="."]
-margin_left = -39.0
-margin_top = -32.0
-margin_right = 106.0
-margin_bottom = -11.0
-rect_scale = Vector2( 0.5, 0.5 )
+margin_left = -20.0
+margin_top = -22.0
+margin_right = 125.0
+margin_bottom = -1.0
+rect_scale = Vector2( 0.25, 0.25 )
 max_value = 550.0
 value = 550.0
 texture_progress = ExtResource( 6 )
@@ -362,19 +368,21 @@ nine_patch_stretch = true
 autostart = true
 
 [node name="value_of_HP" type="Label" parent="."]
-margin_left = -12.105
-margin_top = -43.0
-margin_right = 15.895
-margin_bottom = -12.0
+margin_left = -8.0
+margin_top = -28.0
+margin_right = 20.0
+margin_bottom = 3.0
+rect_scale = Vector2( 0.5, 0.5 )
 text = "150
 "
 script = ExtResource( 7 )
 
 [node name="value_of_Mana" type="Label" parent="."]
-margin_left = -11.0
-margin_top = -33.0
-margin_right = 29.0
-margin_bottom = -2.00001
+margin_left = -8.0
+margin_top = -22.0
+margin_right = 32.0
+margin_bottom = 9.0
+rect_scale = Vector2( 0.5, 0.5 )
 text = "550
 "
 

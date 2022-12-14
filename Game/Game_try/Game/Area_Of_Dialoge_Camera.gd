@@ -3,7 +3,8 @@ extends Area2D
 
 var mouse_in_area
 var input_touch = 0
-var was_pressed = false
+var was_pressed_1 = false
+var was_pressed_2 = false
 
 
 func _physics_process(delta):
@@ -17,7 +18,8 @@ func _physics_process(delta):
 func _input(event):
 	if event is InputEventScreenTouch and event.is_pressed() && mouse_in_area:
 		input_touch += 1
-		was_pressed = true
+		was_pressed_1 = true
+		was_pressed_2 = true
 
 
 func _on_Area_Of_Dialoge_Camera_mouse_entered():

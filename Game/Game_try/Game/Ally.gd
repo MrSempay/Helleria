@@ -28,19 +28,21 @@ func mana_using(manacost):
 
 
 func _ready():
-	var heroe = get_parent().get_node("Heroe")
-	var heroe_icon = get_parent().get_node("Heroe/Icon")
+	pass
 
 func _physics_process(delta):
-	var heroe = get_parent().get_node("Heroe")
-	var heroe_icon = get_parent().get_node("Heroe/Icon")
 	
-	if outgo_area && $Sprite.flip_h != heroe_icon.flip_h:
-		move_and_slide(GLOBAL.move_vector_1 * speed)
+	if get_parent().has_node("Heroe"):
+		var heroe = get_parent().get_node("Heroe")
+		var heroe_icon = get_parent().get_node("Heroe/Icon")
+		if outgo_area && $Sprite.flip_h != heroe_icon.flip_h:
+			move_and_slide(GLOBAL.move_vector_1 * speed)
 
 	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * 2
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 	if get_parent().has_node("Heroe"):
+		var heroe = get_parent().get_node("Heroe")
+		var heroe_icon = get_parent().get_node("Heroe/Icon")
 		$Sprite.flip_h = (self.global_position.x) - heroe.global_position.x < 0
 
 
