@@ -84,7 +84,7 @@ func _physics_process(delta):
 		$Aglea.number_of_dialoge = 1
 		$Aglea.array_dialoge_flags = [1,2,3,5,7,9,10,11,13,15]
 		stop_Aglea_1D = true
-		
+	#i
 	if GLOBAL.akira_dialoge_started && !stop_Akira_1D:
 		$Akira.number_of_dialoge = 1
 		$Akira.array_dialoge_flags = [4,6,8,12,14]
