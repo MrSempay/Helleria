@@ -202,5 +202,5 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 
 
 func _on_VisibilityNotifier2D_screen_exited():
-	if str(get_parent()) == "First_Scene:[Node2D:1938]":
+	if get_parent().has_method("First_Scene"):
 		queue_free()

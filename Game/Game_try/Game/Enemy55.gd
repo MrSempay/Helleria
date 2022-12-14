@@ -59,7 +59,7 @@ func _physics_process(delta):
 	if GLOBAL.jeison_dialoge_started:
 		dialoge(array_dialoge_flags, number_of_dialoge)
 	if GLOBAL.jeison_dialoge_finished:
-		if str(get_parent()) == "First_Scene:[Node2D:1938]":
+		if get_parent().has_method("First_Scene"):
 				translate(Vector2(1,0) * speed)
 				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 				animate("run")
@@ -170,5 +170,5 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 
 
 func _on_VisibilityNotifier2D_screen_exited():
-	if str(get_parent()) == "First_Scene:[Node2D:1938]":
+	if get_parent().has_method("First_Scene"):
 		queue_free()
