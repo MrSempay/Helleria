@@ -82,7 +82,7 @@ func _physics_process(delta):
 				animate("run")
 				$Sprite.flip_h = true
 	
-	velocity.y += delta * 970 * 2 * scale_gravity
+	velocity.y += delta * 970 * scale_gravity
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 	
 	
@@ -153,8 +153,8 @@ func _physics_process(delta):
 					hedgehod_ready = false
 					animate("hedgehod")
 					var hedgehod_1 = hedgehod.instance()
-					hedgehod_1.position = heroe.global_position - Vector2(1577, 1495)
-					add_child(hedgehod_1)
+					hedgehod_1.position = heroe.global_position - Vector2(0, -25)
+					get_node("..").add_child(hedgehod_1)
 			
 		else:
 			pass

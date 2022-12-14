@@ -140,7 +140,7 @@ shape = SubResource( 3 )
 one_way_collision_margin = 0.0
 
 [node name="Dialoge_Window_Position" type="Position2D" parent="."]
-position = Vector2( -16, -43 )
+position = Vector2( 10, -43 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( -1, 2 )

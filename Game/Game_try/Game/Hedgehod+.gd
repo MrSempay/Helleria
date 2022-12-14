@@ -3,6 +3,7 @@ extends Area2D
 
 var velocity = Vector2()
 var damage_hedgehod = 25
+var first = true
 
 
 func _ready():
@@ -21,5 +22,7 @@ func _on_Timer_timeout():
 
 
 func _on_KinematicBody2D_body_entered(body):
-	if body.has_method("handle_hit") && body.has_method("start_jump"):
-		body.handle_hit(damage_hedgehod)
+	if first:
+		if body.has_method("handle_hit") && body.has_method("start_jump"):
+			body.handle_hit(damage_hedgehod)
+	first = false

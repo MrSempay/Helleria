@@ -94,7 +94,7 @@ func _physics_process(delta):
 				velocity.x = speed * delta
 				translate(-velocity)
 			
-	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * 2 * scale_gravity
+	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * scale_gravity
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 
 
@@ -160,6 +160,11 @@ func navigation(number_of_moving):
 func dialoge(array_dialoge_flags, number_of_dialoge):
 	if array_dialoge_flags.size() != 0:
 		
+		if $Sprite.is_flipped_h():
+			$Dialoge_Window_Position.set_position(Vector2(-10,-42))
+		else:
+			$Dialoge_Window_Position.set_position(Vector2(10,-42))
+			
 		if array_dialoge_flags[i] == 1:
 			var dialoge_window_1 = dialoge_window.instance()
 			dialoge_window_1.position = $Dialoge_Window_Position.position

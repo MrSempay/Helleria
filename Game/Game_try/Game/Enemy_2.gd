@@ -87,7 +87,7 @@ func _physics_process(delta):
 				velocity.x = speed * delta
 				translate(-velocity)
 
-	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * 2
+	velocity.y += delta * FOR_ANY_UNITES.GRAVITY * scale_gravity
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 
 

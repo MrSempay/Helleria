@@ -87,7 +87,6 @@ func mana_using(manacost):
 func _ready():
 	
 	if get_parent().has_method("Temple_lvl"):
-		print(true)
 		$Camera_Of_Heroe._set_current(true)
 	
 	file.open("res://Navigations/Heroe/navigationH1D.txt", File.READ)

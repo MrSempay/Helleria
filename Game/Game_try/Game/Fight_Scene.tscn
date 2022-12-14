@@ -327,6 +327,7 @@ position = Vector2( 0, 323.289 )
 shape = SubResource( 5 )
 
 [node name="Camera_For_Speaking" type="Camera2D" parent="."]
+visible = false
 position = Vector2( 1753, 1812 )
 zoom = Vector2( 0.5, 0.5 )
 script = ExtResource( 9 )

@@ -8,6 +8,10 @@ var enemy_44 = preload("res://Game/Enemy44.tscn")
 var heroe = preload("res://Game/Heroe.tscn")
 
 
+func Fight_Scene():
+	pass
+
+
 var ally_1 = ally.instance()
 var enemy_1_1 = enemy_1.instance()
 var enemy_1_33 = enemy_33.instance()
