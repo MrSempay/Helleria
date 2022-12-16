@@ -1,10 +1,29 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Game/Area_Of_Dialoge_Camera.gd" type="Script" id=1]
 [ext_resource path="res://Game/First_Scene.gd" type="Script" id=2]
 [ext_resource path="res://Game/Camera_For_Speaking.gd" type="Script" id=3]
 [ext_resource path="res://Tile_Set_Ground_Extended+.tres" type="TileSet" id=4]
-[ext_resource path="res://Дверь храма.png" type="Texture" id=5]
+[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!1.png" type="Texture" id=5]
+[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!2.png" type="Texture" id=6]
+[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!3.png" type="Texture" id=7]
+[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!4.png" type="Texture" id=8]
+[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!5.png" type="Texture" id=9]
+[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!6.png" type="Texture" id=10]
+[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!7.png" type="Texture" id=11]
+[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!8.png" type="Texture" id=12]
+[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!9.png" type="Texture" id=13]
+[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!10.png" type="Texture" id=14]
+[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!11.png" type="Texture" id=15]
+[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!12.png" type="Texture" id=16]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": false,
+"name": "door",
+"speed": 6.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 256, 150 )
@@ -12,12 +31,12 @@ extents = Vector2( 256, 150 )
 [node name="First_Scene" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 2212, 1521 )
+[node name="Door" type="AnimatedSprite" parent="."]
+position = Vector2( 2212, 1518 )
 scale = Vector2( 1.5, 1.5 )
 z_index = 1
-texture = ExtResource( 5 )
-region_rect = Rect2( 260, 160, 380, 580 )
+frames = SubResource( 2 )
+animation = "door"
 
 [node name="Position_Jeison" type="Position2D" parent="."]
 position = Vector2( 2602, 1527 )

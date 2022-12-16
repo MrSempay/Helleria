@@ -36,7 +36,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 		
 
 func _on_Stone_body_entered(body):
-	if body.has_method("handle_hit") && body.has_method("start_jump"):
+	if body.has_method("handle_hit") && body.has_method("start_jump_heroe"):
 		body.handle_hit(damage_stone)
 		queue_free()
 	if !body.has_method("handle_hit"):

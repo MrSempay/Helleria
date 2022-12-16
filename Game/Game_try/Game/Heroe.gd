@@ -28,10 +28,9 @@ var JUMP_POWER = 500
 var Button = load("res://Game/Button_attack.gd")
 var texture = preload("res://Icedeath.jpg")
 var Button1 = Button.new()
-var speed = 150
+var speed = 2
 var armor = 1
 var name_character = "Heroe"
-
 
 var picture_sheld = preload("res://pngwing.com (13).png")
 var picture_bow = preload("res://Bow.png")
@@ -87,7 +86,7 @@ func mana_using(manacost):
 func _ready():
 	
 	if get_parent().has_method("Temple_lvl"):
-		$Camera_Of_Heroe._set_current(true)
+		$Camera_Of_Heroe._set_current(false)
 	
 	file.open("res://Navigations/Heroe/navigationH1D.txt", File.READ)
 	#file.open("res://Navigations/Jeison/navigation1.txt", File.WRITE)
@@ -98,6 +97,16 @@ func _ready():
 func _physics_process(delta):
 	
 	
+	if get_parent().has_method("First_Scene") && self.get_global_position().x > 2223:
+		$Icon.flip_h = true
+		translate(Vector2(-1,0) * speed)
+		get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+		animate("injured")
+	elif get_parent().has_method("First_Scene") && self.get_global_position().x < 2223:
+		animate("door_opening")
+		get_parent().get_node("Door").play("door")
+		
+	
 	
 	if moving_state:
 		navigation(number_of_moving)
@@ -107,7 +116,7 @@ func _physics_process(delta):
 	translate(GLOBAL.move_vector_1 * 2.5)
 	velocity.y += delta * 970 * 2
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-	if !file.is_open():
+	if !file.is_open() && !get_parent().has_method("First_Scene"):
 		if GLOBAL.move_vector_1.x != 0:
 			animate("run")
 		if GLOBAL.move_vector_1.x == 0:
@@ -154,7 +163,7 @@ func _physics_process(delta):
 						picture_weapon.set_visible(true)
 
 
-func start_jump():
+func start_jump_heroe():
 	if is_on_floor():
 		velocity.y = -JUMP_POWER 
 
@@ -304,6 +313,7 @@ func navigation(number_of_moving):
 	
 	if file.is_open():
 		if file.get_position() < file.get_len():
+			print(file.get_line())
 			point_of_position_string = file.get_line().split(",",true,1)
 			point_of_position_string_x = ((point_of_position_string[0].split("(",false,1)))
 			point_of_position_string_y = ((point_of_position_string[1].split(")",true,1)))
@@ -313,9 +323,9 @@ func navigation(number_of_moving):
 					$Icon.flip_h = false
 				else:
 					$Icon.flip_h = true
-				animate("run")
-			else:
-				animate("idle")	
+				match number_of_moving:
+					1: pass
+	
 				
 			self.set_global_position(Vector2(float(point_of_position_string_x[0]),float(point_of_position_string_y[0]) + 3))
 			point_of_position_string_x_saved = float(point_of_position_string_x[0])
@@ -328,14 +338,11 @@ func navigation(number_of_moving):
 				1: queue_free()
 			match number_of_dialoge:
 				1: pass
+				
+				
 	
 	
 	
-	
-	
-	
-	
-	
-	
-
-	
+func _on_Icon_animation_finished():
+	if $Icon.get_animation() == "door_opening":
+		queue_free()

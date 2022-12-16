@@ -23,6 +23,6 @@ func _on_Timer_timeout():
 
 func _on_KinematicBody2D_body_entered(body):
 	if first:
-		if body.has_method("handle_hit") && body.has_method("start_jump"):
+		if body.has_method("handle_hit") && body.has_method("start_jump_heroe"):
 			body.handle_hit(damage_hedgehod)
 	first = false

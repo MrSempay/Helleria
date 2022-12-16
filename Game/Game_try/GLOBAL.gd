@@ -10,7 +10,9 @@ var variable_2
 
 var life_first_enemy = true
 var stop = false
+var stop_ghost = false
 var continue_jump = false
+var continue_jump_ghost = false
 var spell_of_button
 var counter_of_body_armor = 0
 var time_out_of_body_seal = false
@@ -35,6 +37,7 @@ var arrow_amount = 7
 var vector_of_moving = 1
 var count_of_containment = 7
 var move_vector_1 = Vector2(0, 0)
+var move_vector_1_ghost = Vector2(0, 0)
 
 var life_heroe = true
 var heroe_uploaded = false

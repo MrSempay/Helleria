@@ -161,7 +161,7 @@ func _physics_process(delta):
 			pass
 
 
-func start_jump():
+func start_jump_enemy():
 	if is_on_floor():
 		velocity.y = -JUMP_POWER 
 		collision_of_jumping_area.set_disabled(true)
@@ -198,7 +198,7 @@ func _on_Sprite_animation_finished():
 
 
 func _on_Stone_Sword_body_entered(body: Node2D):
-	if body.has_method("handle_hit") && body.has_method("start_jump"):
+	if body.has_method("handle_hit") && body.has_method("start_jump_heroe"):
 		body.handle_hit(damage_stone_sword)
 
 func _on_Timer_Stone_timeout():
@@ -217,7 +217,7 @@ func _on_Timer_Hedgehod_timeout():
 func _on_Area_Of_Jumping_body_entered(body):
 	var heroe = get_parent().get_node("Heroe")
 	if body.has_method("for_jumping") && ((self.global_position.x - body.get_global_position().x > 0 && self.global_position.x - heroe.get_global_position().x > 0) or (self.global_position.x - body.get_global_position().x < 0 && self.global_position.x - heroe.get_global_position().x < 0)) && self.global_position.y - heroe.get_global_position().y > 20:
-		start_jump()
+		start_jump_enemy()
 
 
 func navigation(number_of_moving):

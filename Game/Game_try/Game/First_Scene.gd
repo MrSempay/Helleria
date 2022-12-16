@@ -77,9 +77,10 @@ func _physics_process(delta):
 		stop_Jeison_1M = true
 		
 	if self.has_node("Heroe") && !stop_Heroe_1M:
-		$Heroe.number_of_moving = 1
-		$Heroe.moving_state = true
-		stop_Heroe_1M = true
+		#$Heroe.number_of_moving = 1
+		#$Heroe.moving_state = true
+		#stop_Heroe_1M = true
+		pass
 	
 	if GLOBAL.aglea_dialoge_started && !stop_Aglea_1D:
 		$Aglea.number_of_dialoge = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Game/Button_attack.gd" type="Script" id=1]
 [ext_resource path="res://Game/Button_Second.gd" type="Script" id=2]
@@ -14,14 +14,29 @@
 [ext_resource path="res://Game/Buttons_Of_Heroe.gd" type="Script" id=12]
 [ext_resource path="res://Game/Arrow_Amount.gd" type="Script" id=13]
 [ext_resource path="res://imgonline-com-ua-Resize-zWK4nj8RNwgAsbVb.png" type="Texture" id=14]
-[ext_resource path="res://Anims/гл. гр/anim-1-2.png" type="Texture" id=15]
-[ext_resource path="res://Anims/гл. гр/anim-1-1.png" type="Texture" id=17]
-[ext_resource path="res://Anims/гл. гр/anim-1-3.png" type="Texture" id=18]
-[ext_resource path="res://Anims/гл. гр/anim-1-7.png" type="Texture" id=19]
-[ext_resource path="res://Anims/гл. гр/anim-1-6.png" type="Texture" id=20]
-[ext_resource path="res://Anims/гл. гр/anim-1-5.png" type="Texture" id=21]
-[ext_resource path="res://Anims/гл. гр/anim-1-4.png" type="Texture" id=22]
+[ext_resource path="res://Anims/гл. гр/Ранен/animRanen5.png" type="Texture" id=15]
+[ext_resource path="res://Anims/гл. гр/Ранен/animRanen6.png" type="Texture" id=16]
+[ext_resource path="res://Anims/гл. гр/Ранен/animRanen7.png" type="Texture" id=17]
+[ext_resource path="res://Anims/гл. гр/Движ/animDwiz1.png" type="Texture" id=18]
+[ext_resource path="res://Anims/гл. гр/Движ/animDwiz2.png" type="Texture" id=19]
+[ext_resource path="res://Anims/гл. гр/Движ/animDwiz3.png" type="Texture" id=20]
+[ext_resource path="res://Anims/гл. гр/Движ/animDwiz4.png" type="Texture" id=21]
+[ext_resource path="res://Anims/гл. гр/Движ/animDwiz5.png" type="Texture" id=22]
 [ext_resource path="res://Game/Camera_Of_Heroe.gd" type="Script" id=23]
+[ext_resource path="res://Anims/гл. гр/Движ/animDwiz6.png" type="Texture" id=24]
+[ext_resource path="res://Anims/гл. гр/Движ/animDwiz7.png" type="Texture" id=25]
+[ext_resource path="res://Anims/гл. гр/Ранен/animRanen3.png" type="Texture" id=26]
+[ext_resource path="res://Anims/гл. гр/Ранен/animRanen4.png" type="Texture" id=27]
+[ext_resource path="res://Anims/гл. гр/Ранен/animRanen2.png" type="Texture" id=28]
+[ext_resource path="res://Anims/гл. гр/Ранен/animRanen1.png" type="Texture" id=29]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe1.png" type="Texture" id=30]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe2.png" type="Texture" id=31]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe3.png" type="Texture" id=32]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe4.png" type="Texture" id=33]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe5.png" type="Texture" id=34]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe6.png" type="Texture" id=35]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe7.png" type="Texture" id=36]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe8.png" type="Texture" id=37]
 
 [sub_resource type="Animation" id=17]
 length = 0.001
@@ -77,20 +92,25 @@ extents = Vector2( 147.5, 154 )
 
 [sub_resource type="SpriteFrames" id=16]
 animations = [ {
-"frames": [ ExtResource( 17 ) ],
+"frames": [ ExtResource( 18 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 17 ), ExtResource( 15 ), ExtResource( 18 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 20 ), ExtResource( 19 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 25 ) ],
 "loop": true,
 "name": "run",
-"speed": 5.0
+"speed": 10.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 29 ), ExtResource( 28 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "injured",
-"speed": 5.0
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ) ],
+"loop": false,
+"name": "door_opening",
+"speed": 7.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
@@ -229,11 +249,11 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="SpatialMaterial" id=3]
+[sub_resource type="SpatialMaterial" id=20]
 render_priority = 1
 
 [sub_resource type="CanvasItemMaterial" id=11]
-next_pass = SubResource( 3 )
+next_pass = SubResource( 20 )
 particles_animation = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
@@ -251,8 +271,8 @@ collision_mask = 31
 script = ExtResource( 5 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( -1, 1 )
-scale = Vector2( 0.526316, 1.10417 )
+position = Vector2( -1, 1.49786 )
+scale = Vector2( 0.526316, 1.08811 )
 polygon = PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 13, 0, 13, 0, 22, 8, 22, 8, -8 )
 one_way_collision_margin = 12.0
 
@@ -283,11 +303,11 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Icon" type="AnimatedSprite" parent="."]
-position = Vector2( -1.11304, 8.65002 )
-scale = Vector2( 0.207674, 0.208092 )
+position = Vector2( -2, 9 )
+scale = Vector2( 2.05, 2.08 )
 z_index = 1
 frames = SubResource( 16 )
-animation = "idle"
+animation = "door_opening"
 
 [node name="Weapon" type="Area2D" parent="."]
 position = Vector2( 139.113, 58.35 )
@@ -478,6 +498,7 @@ text = "No, let's fight!"
 [connection signal="mouse_entered" from="CanvasLayer/Area_For_Jumping" to="CanvasLayer" method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Area_For_Jumping" to="CanvasLayer" method="_on_Area2D_mouse_exited"]
 [connection signal="timeout" from="Timer_Of_Hedgehod" to="Weapon" method="_on_Timer_Of_Hedgehod_timeout"]
+[connection signal="animation_finished" from="Icon" to="." method="_on_Icon_animation_finished"]
 [connection signal="area_entered" from="Weapon" to="Weapon" method="_on_Weapon_area_entered"]
 [connection signal="body_entered" from="Weapon" to="Weapon" method="_on_Weapon_body_entered"]
 [connection signal="animation_finished" from="Weapon/AnimationPlayer/Bow_Animation" to="Weapon" method="_on_Bow_Animation_animation_finished"]

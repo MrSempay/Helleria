@@ -16,3 +16,6 @@ tile_data = PoolIntArray( -65536, 2, 0, -65533, 2, 0, -65530, 2, 0, -65527, 2, 0
 
 [node name="Position_Heroe" type="Position2D" parent="."]
 position = Vector2( 87, 475 )
+
+[node name="Position_Ghost" type="Position2D" parent="."]
+position = Vector2( 923, 476 )
