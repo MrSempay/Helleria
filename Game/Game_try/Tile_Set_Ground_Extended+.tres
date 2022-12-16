@@ -107,32 +107,32 @@ extents = Vector2( 16, 16 )
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 21, 3 )
 
-[sub_resource type="ConvexPolygonShape2D" id=43]
+[sub_resource type="ConvexPolygonShape2D" id=44]
 points = PoolVector2Array( -42, -7, -42, -12, 84, -12, 84, -6, 43, -6 )
 
-[sub_resource type="ConvexPolygonShape2D" id=44]
+[sub_resource type="ConvexPolygonShape2D" id=45]
 points = PoolVector2Array( -27, 12, -28, 13, -40, 13, -43, 11, -43, -7, -42, -7, -27, 5 )
 
-[sub_resource type="ConvexPolygonShape2D" id=45]
+[sub_resource type="ConvexPolygonShape2D" id=46]
 points = PoolVector2Array( -14, -3, -27, 5, -42, -7 )
 
-[sub_resource type="ConvexPolygonShape2D" id=46]
+[sub_resource type="ConvexPolygonShape2D" id=47]
 points = PoolVector2Array( 43, 11, 41, 13, 31, 13, 29, 12, 27, 4, 43, -6 )
 
-[sub_resource type="ConvexPolygonShape2D" id=47]
+[sub_resource type="ConvexPolygonShape2D" id=48]
 points = PoolVector2Array( 43, -6, 27, 4, 14, -4 )
 
-[sub_resource type="ConvexPolygonShape2D" id=48]
+[sub_resource type="ConvexPolygonShape2D" id=49]
 points = PoolVector2Array( -7, -5, -14, -3, -42, -7 )
 
-[sub_resource type="ConvexPolygonShape2D" id=49]
+[sub_resource type="ConvexPolygonShape2D" id=50]
 points = PoolVector2Array( -7, -5, -42, -7, 43, -6, 9, -5 )
 
-[sub_resource type="ConvexPolygonShape2D" id=40]
+[sub_resource type="ConvexPolygonShape2D" id=51]
 points = PoolVector2Array( 9, -5, 43, -6, 14, -4 )
 
-[sub_resource type="RectangleShape2D" id=50]
-extents = Vector2( 24, 16 )
+[sub_resource type="RectangleShape2D" id=43]
+extents = Vector2( 4.5, 0.5 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 5.25, 0.75 )
@@ -168,10 +168,10 @@ extents = Vector2( 3.25, 0.5 )
 1/modulate = Color( 1, 1, 1, 1 )
 1/region = Rect2( 48, 19, 16, 9 )
 1/tile_mode = 0
-1/occluder_offset = Vector2( 8.23436, 4.75059 )
-1/navigation_offset = Vector2( 8.23436, 4.75059 )
-1/shape_offset = Vector2( 8.23436, 1.75059 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 8.23436, 1.75059 )
+1/occluder_offset = Vector2( 8.23435, 4.75059 )
+1/navigation_offset = Vector2( 8.23435, 4.75059 )
+1/shape_offset = Vector2( 8.23435, 1.75059 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 8.23435, 1.75059 )
 1/shape = SubResource( 8 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
@@ -180,13 +180,13 @@ extents = Vector2( 3.25, 0.5 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 8 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 8.23436, 1.75059 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 8.23435, 1.75059 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 8 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 9.23436, 3.75059 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 9.23435, 3.75059 )
 } ]
 1/z_index = 0
 2/name = "Sprite3"
@@ -195,10 +195,10 @@ extents = Vector2( 3.25, 0.5 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 68, 27, 5, 3 )
 2/tile_mode = 0
-2/occluder_offset = Vector2( 2.76141, 1.93492 )
-2/navigation_offset = Vector2( 2.76141, 1.93492 )
-2/shape_offset = Vector2( 2.76141, 0.934916 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 2.76141, 0.934916 )
+2/occluder_offset = Vector2( 2.76142, 1.93491 )
+2/navigation_offset = Vector2( 2.76142, 1.93491 )
+2/shape_offset = Vector2( 2.76142, 0.934915 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 2.76142, 0.934915 )
 2/shape = SubResource( 6 )
 2/shape_one_way = false
 2/shape_one_way_margin = 1.0
@@ -207,7 +207,7 @@ extents = Vector2( 3.25, 0.5 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 6 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 2.76141, 0.934916 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 2.76142, 0.934915 )
 } ]
 2/z_index = 0
 3/name = "Sprite4"
@@ -216,10 +216,10 @@ extents = Vector2( 3.25, 0.5 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 0, 80, 34, 31 )
 3/tile_mode = 0
-3/occluder_offset = Vector2( 17.0057, 15.6118 )
-3/navigation_offset = Vector2( 17.0057, 15.6118 )
-3/shape_offset = Vector2( 17.0057, 15.6118 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 17.0057, 15.6118 )
+3/occluder_offset = Vector2( 17.0057, 15.6117 )
+3/navigation_offset = Vector2( 17.0057, 15.6117 )
+3/shape_offset = Vector2( 17.0057, 15.6117 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 17.0057, 15.6117 )
 3/shape = SubResource( 7 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
@@ -228,7 +228,7 @@ extents = Vector2( 3.25, 0.5 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 7 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 17.0057, 15.6118 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 17.0057, 15.6117 )
 } ]
 3/z_index = 0
 4/name = "Sprite5"
@@ -237,8 +237,8 @@ extents = Vector2( 3.25, 0.5 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 0, 110, 169, 28 )
 4/tile_mode = 0
-4/occluder_offset = Vector2( 84.8485, 14.2313 )
-4/navigation_offset = Vector2( 84.8485, 14.2313 )
+4/occluder_offset = Vector2( 84.8485, 14.2312 )
+4/navigation_offset = Vector2( 84.8485, 14.2312 )
 4/shape_offset = Vector2( 21.8485, 4.23125 )
 4/shape_transform = Transform2D( 1, 0, 0, 1, 21.8485, 4.23125 )
 4/shape = SubResource( 5 )
@@ -254,71 +254,131 @@ extents = Vector2( 3.25, 0.5 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 43 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2313 )
-}, {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
 "shape": SubResource( 44 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2313 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2312 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 45 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2313 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2312 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 46 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2313 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2312 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 47 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2313 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2312 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 48 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2313 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2312 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 49 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2313 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2312 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 40 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2313 )
+"shape": SubResource( 50 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2312 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 51 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 84.8485, 14.2312 )
 } ]
 4/z_index = 0
 5/name = "Sprite6"
 5/texture = ExtResource( 1 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
-5/region = Rect2( 16, 48, 48, 32 )
+5/region = Rect2( 174, 35, 65, 21 )
 5/tile_mode = 0
-5/occluder_offset = Vector2( 24.0809, 16 )
-5/navigation_offset = Vector2( 24.0809, 16 )
-5/shape_offset = Vector2( 24.0809, 16 )
-5/shape_transform = Transform2D( 1, 0, 0, 1, 24.0809, 16 )
-5/shape = SubResource( 50 )
+5/occluder_offset = Vector2( 32.5, 10.5 )
+5/navigation_offset = Vector2( 32.5, 10.5 )
+5/shape_offset = Vector2( 5.5, 1.5 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 5.5, 1.5 )
+5/shape = SubResource( 43 )
 5/shape_one_way = false
 5/shape_one_way_margin = 1.0
 5/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 50 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 24.0809, 16 )
+"shape": SubResource( 43 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 5.5, 1.5 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 43 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 13.5, 3.5 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 43 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 8.5, 2.5 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 43 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 14.5, 4.5 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 43 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 23.5, 5.5 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 43 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 27.5, 5.5 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 43 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 34.5, 6.5 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 43 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 41.5, 7.5 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 43 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 48.5, 8.5 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 43 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 56.5, 9.5 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 43 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 59.5, 10.5 )
 } ]
 5/z_index = 0
 6/name = "Sprite7"
@@ -442,10 +502,10 @@ extents = Vector2( 3.25, 0.5 )
 11/modulate = Color( 1, 1, 1, 1 )
 11/region = Rect2( 46, 32, 17, 15 )
 11/tile_mode = 0
-11/occluder_offset = Vector2( 8.9951, 7.67018 )
-11/navigation_offset = Vector2( 8.9951, 7.67018 )
-11/shape_offset = Vector2( 8.9951, 0.670183 )
-11/shape_transform = Transform2D( 1, 0, 0, 1, 8.9951, 0.670183 )
+11/occluder_offset = Vector2( 8.9951, 7.6702 )
+11/navigation_offset = Vector2( 8.9951, 7.6702 )
+11/shape_offset = Vector2( 8.9951, 0.6702 )
+11/shape_transform = Transform2D( 1, 0, 0, 1, 8.9951, 0.6702 )
 11/shape = SubResource( 12 )
 11/shape_one_way = false
 11/shape_one_way_margin = 1.0
@@ -454,19 +514,19 @@ extents = Vector2( 3.25, 0.5 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 12 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 8.9951, 0.670183 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 8.9951, 0.6702 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 13 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 9.9951, 2.67018 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 9.9951, 2.6702 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 13 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 8.9951, 1.67018 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 8.9951, 1.6702 )
 } ]
 11/z_index = 0
 12/name = "прямая платформа"
@@ -508,10 +568,10 @@ extents = Vector2( 3.25, 0.5 )
 13/modulate = Color( 1, 1, 1, 1 )
 13/region = Rect2( 95, 0, 80, 16 )
 13/tile_mode = 0
-13/occluder_offset = Vector2( 40.4058, 8.08117 )
-13/navigation_offset = Vector2( 40.4058, 8.08117 )
-13/shape_offset = Vector2( 39.9058, 1.58117 )
-13/shape_transform = Transform2D( 1, 0, 0, 1, 39.9058, 1.58117 )
+13/occluder_offset = Vector2( 40.4058, 8.08115 )
+13/navigation_offset = Vector2( 40.4058, 8.08115 )
+13/shape_offset = Vector2( 39.9058, 1.58115 )
+13/shape_transform = Transform2D( 1, 0, 0, 1, 39.9058, 1.58115 )
 13/shape = SubResource( 30 )
 13/shape_one_way = false
 13/shape_one_way_margin = 1.0
@@ -520,19 +580,19 @@ extents = Vector2( 3.25, 0.5 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 30 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 39.9058, 1.58117 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 39.9058, 1.58115 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 41 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 11.4058, 4.08117 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 11.4058, 4.08115 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 42 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 69.4058, 4.08117 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 69.4059, 4.08115 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
@@ -549,8 +609,8 @@ extents = Vector2( 3.25, 0.5 )
 14/tile_mode = 0
 14/occluder_offset = Vector2( 29.8894, 9.8501 )
 14/navigation_offset = Vector2( 29.8894, 9.8501 )
-14/shape_offset = Vector2( 5.88937, 7.8501 )
-14/shape_transform = Transform2D( 1, 0, 0, 1, 5.88937, 7.8501 )
+14/shape_offset = Vector2( 5.88935, 7.8501 )
+14/shape_transform = Transform2D( 1, 0, 0, 1, 5.88935, 7.8501 )
 14/shape = SubResource( 22 )
 14/shape_one_way = false
 14/shape_one_way_margin = 1.0
@@ -559,7 +619,7 @@ extents = Vector2( 3.25, 0.5 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 22 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 5.88937, 7.8501 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 5.88935, 7.8501 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
@@ -601,7 +661,7 @@ extents = Vector2( 3.25, 0.5 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 29 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 53.8894, 0.850096 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 53.8894, 0.8501 )
 } ]
 14/z_index = 0
 15/name = "Sprite15"
@@ -610,10 +670,10 @@ extents = Vector2( 3.25, 0.5 )
 15/modulate = Color( 1, 1, 1, 1 )
 15/region = Rect2( 176, 0, 61, 35 )
 15/tile_mode = 0
-15/occluder_offset = Vector2( 30.9644, 17.5229 )
-15/navigation_offset = Vector2( 30.9644, 17.5229 )
-15/shape_offset = Vector2( 8.96436, 3.52293 )
-15/shape_transform = Transform2D( 1, 0, 0, 1, 8.96436, 3.52293 )
+15/occluder_offset = Vector2( 30.9643, 17.5229 )
+15/navigation_offset = Vector2( 30.9643, 17.5229 )
+15/shape_offset = Vector2( 8.96435, 3.52295 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 8.96435, 3.52295 )
 15/shape = SubResource( 16 )
 15/shape_one_way = false
 15/shape_one_way_margin = 1.0
@@ -622,72 +682,72 @@ extents = Vector2( 3.25, 0.5 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 16 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 8.96436, 3.52293 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 8.96435, 3.52295 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 17 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 11.9644, 5.52293 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 11.9643, 5.52295 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 18 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 13.9644, 7.52293 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 13.9643, 7.52295 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 19 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 14.9644, 11.5229 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 14.9643, 11.5229 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 20 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 12.9644, 9.52293 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 12.9643, 9.52295 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 21 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 15.9644, 13.5229 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 15.9643, 13.5229 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 34 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 23.4644, 15.5229 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 23.4643, 15.5229 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 35 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 25.9644, 17.5229 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 25.9643, 17.5229 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 36 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 26.9644, 20.0229 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 26.9643, 20.0229 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 37 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 34.9644, 22.5229 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 34.9643, 22.5229 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 38 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 41.4644, 24.5229 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 41.4643, 24.5229 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 39 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 48.9644, 27.5229 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 48.9643, 27.5229 )
 } ]
 15/z_index = 0

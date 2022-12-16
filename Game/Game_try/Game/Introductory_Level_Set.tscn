@@ -1,6 +1,9 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Introductory level set.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=43]
+extents = Vector2( 4.5, 0.5 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 2, 1 )
@@ -114,6 +117,60 @@ region_rect = Rect2( -0.835922, -0.666959, 49.4772, 32.2678 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="Sprite6" type="Sprite" parent="."]
+position = Vector2( 401, 114 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 174, 35, 65, 21 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite6/StaticBody2D"]
+position = Vector2( -27, -9 )
+shape = SubResource( 43 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Sprite6/StaticBody2D"]
+position = Vector2( -19, -7 )
+shape = SubResource( 43 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Sprite6/StaticBody2D"]
+position = Vector2( -18, -6 )
+shape = SubResource( 43 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Sprite6/StaticBody2D"]
+position = Vector2( -9, -5 )
+shape = SubResource( 43 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Sprite6/StaticBody2D"]
+position = Vector2( -5, -5 )
+shape = SubResource( 43 )
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Sprite6/StaticBody2D"]
+position = Vector2( 2, -4 )
+shape = SubResource( 43 )
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Sprite6/StaticBody2D"]
+position = Vector2( 9, -3 )
+shape = SubResource( 43 )
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Sprite6/StaticBody2D"]
+position = Vector2( 16, -2 )
+shape = SubResource( 43 )
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Sprite6/StaticBody2D"]
+position = Vector2( 24, -1 )
+shape = SubResource( 43 )
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Sprite6/StaticBody2D"]
+position = Vector2( 27, 0 )
+shape = SubResource( 43 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Sprite6/StaticBody2D"]
+position = Vector2( -24, -8 )
+shape = SubResource( 43 )
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Sprite6/StaticBody2D"]
 
 [node name="Sprite3" type="Sprite" parent="."]
 position = Vector2( 129, 42 )
