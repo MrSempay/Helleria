@@ -330,12 +330,6 @@ extents = Vector2( 3.25, 0.5 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 43 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 8.5, 2.5 )
-}, {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 43 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 14.5, 4.5 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
@@ -379,6 +373,12 @@ extents = Vector2( 3.25, 0.5 )
 "one_way_margin": 1.0,
 "shape": SubResource( 43 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 59.5, 10.5 )
+}, {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 43 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 8.5, 2.5 )
 } ]
 5/z_index = 0
 6/name = "Sprite7"

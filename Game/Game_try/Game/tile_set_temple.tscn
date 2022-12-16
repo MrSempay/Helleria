@@ -27,6 +27,7 @@ extents = Vector2( 9, 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 316, 331 )
+z_index = 2
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 30.3134, 126.695, 176.463, 15.0665 )
@@ -64,6 +65,7 @@ position = Vector2( 2, 0 )
 
 [node name="Sprite9" type="Sprite" parent="."]
 position = Vector2( 455, 390 )
+z_index = 2
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 124.801, 29.0735, 21.6615, 92.025 )
@@ -77,6 +79,7 @@ shape = SubResource( 6 )
 
 [node name="Sprite11" type="Sprite" parent="."]
 position = Vector2( 427, 563 )
+z_index = 2
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 225, 120, 155, 83 )
