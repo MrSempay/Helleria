@@ -19,4 +19,4 @@ tile_data = PoolIntArray( 458751, 2, 0, 393216, 3, 0, 393217, 2, 0, 393219, 2, 0
 position = Vector2( 87, 475 )
 
 [node name="Position_Ghost" type="Position2D" parent="."]
-position = Vector2( 923, 476 )
+position = Vector2( 239, 435 )
