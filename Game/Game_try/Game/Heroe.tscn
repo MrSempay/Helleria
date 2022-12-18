@@ -307,7 +307,7 @@ position = Vector2( -2, 9 )
 scale = Vector2( 2.05, 2.08 )
 z_index = 1
 frames = SubResource( 16 )
-animation = "door_opening"
+animation = "run"
 
 [node name="Weapon" type="Area2D" parent="."]
 position = Vector2( 139.113, 58.35 )
