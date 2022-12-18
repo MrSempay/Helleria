@@ -5,10 +5,12 @@ var mouse_in_area
 var input_touch = 0
 var was_pressed_1 = false
 var was_pressed_2 = false
+var was_pressed_3 = false
+var was_pressed_4 = false
 
 
 func _physics_process(delta):
-	if GLOBAL.aglea_dialoge_started:
+	if GLOBAL.aglea_dialoge_started or GLOBAL.heroe_dialoge_started:
 		$CollisionShape2D.set_disabled(false)
 	else:
 		$CollisionShape2D.set_disabled(true)

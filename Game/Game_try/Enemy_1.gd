@@ -62,7 +62,8 @@ func _physics_process(delta):
 	
 	if GLOBAL.aglea_dialoge_started:
 		dialoge(array_dialoge_flags, number_of_dialoge)
-	if GLOBAL.aglea_dialoge_finished:
+		
+	if GLOBAL.aglea_dialoge_finished:		
 		match number_of_dialoge:
 			1:
 				translate(Vector2(-1,0) * speed)

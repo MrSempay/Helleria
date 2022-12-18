@@ -29,6 +29,9 @@ var stop_Akira_1D = false
 var stop_Heroe_1M = false
 
 
+var first_cat_scene = true
+
+
 func First_Scene():
 	pass
 

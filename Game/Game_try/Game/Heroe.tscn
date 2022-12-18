@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Game/Button_attack.gd" type="Script" id=1]
 [ext_resource path="res://Game/Button_Second.gd" type="Script" id=2]
@@ -29,14 +29,22 @@
 [ext_resource path="res://Anims/гл. гр/Ранен/animRanen4.png" type="Texture" id=27]
 [ext_resource path="res://Anims/гл. гр/Ранен/animRanen2.png" type="Texture" id=28]
 [ext_resource path="res://Anims/гл. гр/Ранен/animRanen1.png" type="Texture" id=29]
-[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe1.png" type="Texture" id=30]
-[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe2.png" type="Texture" id=31]
-[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe3.png" type="Texture" id=32]
-[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe4.png" type="Texture" id=33]
-[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe5.png" type="Texture" id=34]
-[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe6.png" type="Texture" id=35]
-[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe7.png" type="Texture" id=36]
-[ext_resource path="res://Anims/гл. гр/Открытие двери/animDverBratChelONOe8.png" type="Texture" id=37]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe18.png" type="Texture" id=30]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe19.png" type="Texture" id=31]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe20.png" type="Texture" id=32]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe21.png" type="Texture" id=33]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe25.png" type="Texture" id=34]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe23.png" type="Texture" id=35]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe24.png" type="Texture" id=36]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe22.png" type="Texture" id=37]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe1.png" type="Texture" id=38]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe2.png" type="Texture" id=39]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe3.png" type="Texture" id=40]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe4.png" type="Texture" id=41]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe5.png" type="Texture" id=42]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe6.png" type="Texture" id=43]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe7.png" type="Texture" id=44]
+[ext_resource path="res://Anims/гл. гр/Открытие двери/AnimONOe8.png" type="Texture" id=45]
 
 [sub_resource type="Animation" id=17]
 length = 0.001
@@ -97,7 +105,7 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 25 ) ],
+"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 25 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
@@ -107,10 +115,10 @@ animations = [ {
 "name": "injured",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ) ],
+"frames": [ ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 37 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 34 ) ],
 "loop": false,
 "name": "door_opening",
-"speed": 7.0
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=6]
@@ -304,10 +312,10 @@ one_shot = true
 
 [node name="Icon" type="AnimatedSprite" parent="."]
 position = Vector2( -2, 9 )
-scale = Vector2( 2.05, 2.08 )
+scale = Vector2( 2, 2 )
 z_index = 1
 frames = SubResource( 16 )
-animation = "run"
+animation = "idle"
 
 [node name="Weapon" type="Area2D" parent="."]
 position = Vector2( 139.113, 58.35 )
@@ -491,6 +499,9 @@ margin_top = -32.0
 margin_bottom = -2.0
 disabled = true
 text = "No, let's fight!"
+
+[node name="Dialoge_Window_Position" type="Position2D" parent="."]
+position = Vector2( 8, -38 )
 
 [connection signal="use_move_vector" from="CanvasLayer" to="." method="_on_CanvasLayer_use_move_vector"]
 [connection signal="released" from="CanvasLayer/TouchScreenButton" to="CanvasLayer" method="_on_TouchScreenButton_released"]

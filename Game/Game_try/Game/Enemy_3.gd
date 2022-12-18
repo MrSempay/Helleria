@@ -77,8 +77,7 @@ func _physics_process(delta):
 		dialoge(array_dialoge_flags, number_of_dialoge)
 	if GLOBAL.belotur_dialoge_finished:
 		if get_parent().has_method("First_Scene"):
-				print(true)
-				translate(Vector2(-1,0) * 2)
+				translate(Vector2(1,0) * 2)
 				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 				animate("run")
 				$Sprite.flip_h = true

@@ -18,6 +18,9 @@ onready var timer_of_spell = $Timer_Of_Spell
 onready var picture_weapon = get_node("Weapon/Sword")
 onready var count_of_arrow = get_node("Weapon/value_of_HP/Arrow_Amount")
 onready var stone_position = get_node("Weapon/Position2D/")
+onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
+
+
 
 var scale_gravity = 2
 var Arrow = load("res://Game/Arrow.gd")
@@ -46,10 +49,10 @@ var file = File.new()
 var mass_of_positions = []
 var point_of_position = Vector2()
 
-
+var dialoge_window = preload("res://Game/Dialoge_Window.tscn")
+var array_dialoge_flags = []
 var i = 0
 var number_of_dialoge
-
 
 var point_of_position_string
 var point_of_position_string_x
@@ -96,17 +99,23 @@ func _ready():
 
 func _physics_process(delta):
 	
-	
-	if get_parent().has_method("First_Scene") && self.get_global_position().x > 2223:
-		$Icon.flip_h = true
-		translate(Vector2(-1,0) * speed)
-		get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-		animate("injured")
-	elif get_parent().has_method("First_Scene") && self.get_global_position().x < 2223:
-		animate("door_opening")
-		get_parent().get_node("Door").play("door")
-		
-	
+	if get_parent().has_method("First_Scene"):
+		if get_parent().first_cat_scene:
+			if self.get_global_position().x > 2225:
+				$Icon.flip_h = true
+				translate(Vector2(-1,0) * speed)
+				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+				animate("injured")
+			elif self.get_global_position().x < 2225:
+				animate("door_opening")
+				if $Icon.get_frame() == 4:
+					get_parent().get_node("Door").play("door")
+				if $Icon.get_frame() > 6:
+					translate(Vector2(-1, 0) * 0.283)
+
+	if GLOBAL.heroe_dialoge_started:
+		dialoge(array_dialoge_flags, number_of_dialoge)
+
 	
 	if moving_state:
 		navigation(number_of_moving)
@@ -313,7 +322,6 @@ func navigation(number_of_moving):
 	
 	if file.is_open():
 		if file.get_position() < file.get_len():
-			print(file.get_line())
 			point_of_position_string = file.get_line().split(",",true,1)
 			point_of_position_string_x = ((point_of_position_string[0].split("(",false,1)))
 			point_of_position_string_y = ((point_of_position_string[1].split(")",true,1)))
@@ -339,10 +347,54 @@ func navigation(number_of_moving):
 			match number_of_dialoge:
 				1: pass
 				
-				
+
+func dialoge(array_dialoge_flags, number_of_dialoge):
+	if array_dialoge_flags.size() != 0:
+		
+		if $Icon.is_flipped_h():
+			$Dialoge_Window_Position.set_position(Vector2(-10,-42))
+		else:
+			$Dialoge_Window_Position.set_position(Vector2(10,-42))
+			
+		if array_dialoge_flags[i] == 1:
+			var dialoge_window_1 = dialoge_window.instance()
+			dialoge_window_1.position = $Dialoge_Window_Position.position
+			add_child(dialoge_window_1)
+			$Dialoge_Window.choosing_text(name_character, 1, number_of_dialoge)
+			area_of_dialoge_camera.was_pressed_1 = false
+			area_of_dialoge_camera.input_touch += 1
+			if i != (array_dialoge_flags.size() - 1):
+					i += 1
+		
+		if i != (array_dialoge_flags.size() - 1):
+			if area_of_dialoge_camera.input_touch == array_dialoge_flags[i] && area_of_dialoge_camera.was_pressed_1:
+				var dialoge_window_1 = dialoge_window.instance()
+				dialoge_window_1.position = $Dialoge_Window_Position.position
+				if array_dialoge_flags[i] - array_dialoge_flags[i - 1] == 1 && self.has_node("Dialoge_Window"):
+					$Dialoge_Window.choosing_text(name_character, area_of_dialoge_camera.input_touch, number_of_dialoge)
+					area_of_dialoge_camera.was_pressed_1 = false
+				else:
+					add_child(dialoge_window_1)
+					dialoge_window_1.choosing_text(name_character, area_of_dialoge_camera.input_touch, number_of_dialoge)
+					area_of_dialoge_camera.was_pressed_1 = false
+				if i != (array_dialoge_flags.size() - 1):
+					i += 1
+					
+		if (area_of_dialoge_camera.input_touch != array_dialoge_flags[i]) && area_of_dialoge_camera.was_pressed_1 && self.has_node("Dialoge_Window"):
+			if i == (array_dialoge_flags.size() - 1):
+				match number_of_dialoge:
+					1:
+						#get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera/CollisionShape2D").set_disabled(true)
+						GLOBAL.heroe_dialoge_finished = true
+						GLOBAL.heroe_dialoge_started = false
+						get_node("Camera_Of_Heroe")._set_current(true)
+			$Dialoge_Window.queue_free()
 	
 	
 	
 func _on_Icon_animation_finished():
 	if $Icon.get_animation() == "door_opening":
-		queue_free()
+		if get_parent().has_method("First_Scene"):
+			if get_parent().first_cat_scene:
+				get_parent().first_cat_scene = false
+		self.queue_free()

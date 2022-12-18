@@ -45,6 +45,7 @@ var heroe_uploaded = false
 
 var aglea_dialoge_started = false
 var heroe_dialoge_started = false
+var imaginary_heroe_dialoge_started = false
 var akira_dialoge_started = false
 var belotur_dialoge_started = false
 var adalard_dialoge_started = false
@@ -52,6 +53,7 @@ var jeison_dialoge_started = false
 
 var aglea_dialoge_finished = false
 var heroe_dialoge_finished = false
+var imaginary_heroe_dialoge_finished = false
 var akira_dialoge_finished = false
 var belotur_dialoge_finished = false
 var adalard_dialoge_finished = false
