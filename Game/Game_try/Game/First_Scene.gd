@@ -1,13 +1,15 @@
 extends Node2D
 
+onready var area_of_dialoge_camera = get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
-var ally = preload("res://Game/Ally.tscn")
-var enemy_1 = preload("res://Game/Enemy_1.tscn")
-var enemy_2 = preload("res://Game/Enemy_2.tscn")
-var enemy_3 = preload("res://Game/Enemy_33.tscn")
-var enemy_4 = preload("res://Game/Enemy44.tscn")
-var enemy_5 = preload("res://Game/Enemy55.tscn")
-var heroe = preload("res://Game/Heroe.tscn")
+
+var ally = preload("res://Game/Characters/Ally.tscn")
+var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
+var enemy_2 = preload("res://Game/Characters/Enemy_2.tscn")
+var enemy_3 = preload("res://Game/Characters/Enemy_33.tscn")
+var enemy_4 = preload("res://Game/Characters/Enemy44.tscn")
+var enemy_5 = preload("res://Game/Characters/Enemy55.tscn")
+var heroe = preload("res://Game/Characters/Heroe.tscn")
 
 
 var ally_1 = ally.instance()
@@ -29,14 +31,30 @@ var stop_Akira_1D = false
 var stop_Heroe_1M = false
 
 
-var first_cat_scene = true
-
-
 func First_Scene():
 	pass
 
 
 func _ready():
+	if GLOBAL.first_cat_scene:
+		$Position_Heroe.set_global_position(Vector2(2535, 1528))
+	else:
+		$Position_Heroe.set_global_position(Vector2(2218, 1528))
+		
+	if GLOBAL.first_cat_scene:
+		$Position_Belotur.set_global_position(Vector2(3535, 1528))
+	else:
+		$Position_Belotur.set_global_position(Vector2(1182, 1400))
+		
+	if GLOBAL.first_cat_scene:
+		$Position_Adalard.set_global_position(Vector2(3535, 1528))
+	else:
+		$Position_Adalard.set_global_position(Vector2(2478, 1400))
+		
+	if GLOBAL.first_cat_scene:
+		$Position_Jeison.set_global_position(Vector2(3535, 1528))
+	else:
+		$Position_Jeison.set_global_position(Vector2(1150, 2190))
 	ally_1.position = $Ally.global_position
 	self.add_child(ally_1)
 	enemy_1_1.position = $Position_Aglea.global_position
@@ -54,32 +72,32 @@ func _ready():
 	GLOBAL.heroe_uploaded = true
 	
 func _physics_process(delta):
-	if !self.has_node("Heroe") && !stop_Aglea_1M:
+	if !self.has_node("Heroe") && !stop_Aglea_1M && GLOBAL.first_cat_scene:
 		$Aglea.number_of_moving = 1
 		$Aglea.moving_state = true
 		stop_Aglea_1M = true
 		
-	if !self.has_node("Heroe") && !stop_Belotur_1M:
+	if !self.has_node("Heroe") && !stop_Belotur_1M && GLOBAL.first_cat_scene:
 		$Belotur.number_of_moving = 1
 		$Belotur.moving_state = true
 		stop_Belotur_1M = true
 		
-	if !self.has_node("Heroe") && !stop_Adalard_1M:
+	if !self.has_node("Heroe") && !stop_Adalard_1M && GLOBAL.first_cat_scene:
 		$Adalard.number_of_moving = 1
 		$Adalard.moving_state = true
 		stop_Adalard_1M = true
 		
-	if !self.has_node("Heroe") && !stop_Akira_1M:
+	if !self.has_node("Heroe") && !stop_Akira_1M && GLOBAL.first_cat_scene:
 		$Akira.number_of_moving = 1
 		$Akira.moving_state = true
 		stop_Akira_1M = true
 		
-	if !self.has_node("Heroe") && !stop_Jeison_1M:
+	if !self.has_node("Heroe") && !stop_Jeison_1M && GLOBAL.first_cat_scene:
 		$Jeison.number_of_moving = 1
 		$Jeison.moving_state = true
 		stop_Jeison_1M = true
 		
-	if self.has_node("Heroe") && !stop_Heroe_1M:
+	if self.has_node("Heroe") && !stop_Heroe_1M && GLOBAL.first_cat_scene:
 		#$Heroe.number_of_moving = 1
 		#$Heroe.moving_state = true
 		#stop_Heroe_1M = true
@@ -95,16 +113,21 @@ func _physics_process(delta):
 		$Akira.array_dialoge_flags = [4,6,8,12,14]
 		stop_Akira_1D = true
 	
-	if !self.has_node("Akira") && !self.has_node("Aglea") && !self.has_node("Jeison") && !self.has_node("Adalard") && !self.has_node("Belotur"):
-		GLOBAL.scene("Temple_lvl")
+	if !self.has_node("Akira") && !self.has_node("Aglea") && !self.has_node("Jeison") && !self.has_node("Adalard") && !self.has_node("Belotur") && !self.has_node("Heroe"):
+		match GLOBAL.first_cat_scene:
+			true: GLOBAL.scene("Temple_lvl")
+		GLOBAL.first_cat_scene = false
+		area_of_dialoge_camera.was_pressed_1 = false
+		area_of_dialoge_camera.was_pressed_2 = false
+		area_of_dialoge_camera.was_pressed_3 = false
+		area_of_dialoge_camera.was_pressed_4 = false
+		area_of_dialoge_camera.input_touch = 0
 		self.queue_free()
 	
 	
 	
 	
-	
-	
-	
+		
 	
 	
 	

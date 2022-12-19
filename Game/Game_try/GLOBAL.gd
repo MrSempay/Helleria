@@ -60,8 +60,13 @@ var adalard_dialoge_finished = false
 var jeison_dialoge_finished = false
 
 
+var first_cat_scene = true
+
+
+
+
 func scene(name):
-	get_tree().change_scene("res://Game/"+name+".tscn")
+	get_tree().change_scene("res://Game/LocationsLevels/"+name+".tscn")
 	
 
 func first_spell_changing(speed, armor=0):

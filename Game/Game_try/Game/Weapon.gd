@@ -20,15 +20,15 @@ onready var shape = $CollisionShape2D
 
 var count_hit_in_area = 0
 var count_hit_in_sheld = 0
-var arrow = preload("res://Game/Arrow.tscn")
-var stone = preload("res://Game/Stone.tscn")
-var hedgehod = preload("res://Game/Hedgehod.tscn")
-var stone_sword = preload("res://Game/Stone_Sword.tscn")
+#var arrow = preload("res://Game/Arrow.tscn")
+#var stone = preload("res://Game/Stone.tscn")
+#var hedgehod = preload("res://Game/Hedgehod.tscn")
+#var stone_sword = preload("res://Game/Stone_Sword.tscn")
 var count_of_attacku = 0
 var arrow_amount = 7
 var beat_in_sheld = false
 var first_spawn = true
-var stone_sword_1 = stone_sword.instance()
+#var stone_sword_1 = stone_sword.instance()
 #var hedgehod_1 = hedgehod.instance()
 
 

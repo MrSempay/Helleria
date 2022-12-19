@@ -1,11 +1,11 @@
 extends Node2D
 
 
-var ally = preload("res://Game/Ally.tscn")
-var enemy_1 = preload("res://Game/Enemy_1.tscn")
-var enemy_33 = preload("res://Game/Enemy_33.tscn")
-var enemy_44 = preload("res://Game/Enemy44.tscn")
-var heroe = preload("res://Game/Heroe.tscn")
+var ally = preload("res://Game/Characters/Ally.tscn")
+var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
+var enemy_33 = preload("res://Game/Characters/Enemy_33.tscn")
+var enemy_44 = preload("res://Game/Characters/Enemy44.tscn")
+var heroe = preload("res://Game/Characters/Heroe.tscn")
 
 
 func Fight_Scene():

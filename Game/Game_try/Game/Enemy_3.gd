@@ -5,8 +5,8 @@ var speed = 2
 var velocity = Vector2()
 var name_character = "Belotur"
 var trigger_of_ally = false
-var stone = preload("res://Game/Stone_Enemy.tscn")
-var hedgehod = preload("res://Game/Hedgehod+.tscn")
+var stone = preload("res://Game/Spells/Stone_Enemy.tscn")
+var hedgehod = preload("res://Game/Spells/Hedgehod+.tscn")
 var stone_ready = true
 var hedgehod_ready = true
 var stone_sword_ready = true
@@ -75,7 +75,7 @@ func _physics_process(delta):
 	
 	if GLOBAL.belotur_dialoge_started:
 		dialoge(array_dialoge_flags, number_of_dialoge)
-	if GLOBAL.belotur_dialoge_finished:
+	if GLOBAL.belotur_dialoge_finished && GLOBAL.first_cat_scene:
 		if get_parent().has_method("First_Scene"):
 				translate(Vector2(1,0) * 2)
 				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")

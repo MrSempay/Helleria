@@ -5,7 +5,6 @@ var speed = 2
 var velocity = Vector2()
 var name_character = "Adalard"
 var trigger_of_ally = false
-var stone = preload("res://Game/Stone_Enemy.tscn")
 
 onready var heroe = get_parent().get_node("Heroe")
 onready var ally = get_parent().get_node("Ally")
@@ -53,7 +52,7 @@ func _physics_process(delta):
 	
 	if GLOBAL.belotur_dialoge_started:
 		dialoge(array_dialoge_flags, number_of_dialoge)
-	if GLOBAL.adalard_dialoge_finished:
+	if GLOBAL.adalard_dialoge_finished && GLOBAL.first_cat_scene:
 		if get_parent().has_method("First_Scene"):
 				translate(Vector2(1,0) * speed)
 				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")

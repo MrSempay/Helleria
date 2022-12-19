@@ -63,7 +63,7 @@ func _physics_process(delta):
 	if GLOBAL.aglea_dialoge_started:
 		dialoge(array_dialoge_flags, number_of_dialoge)
 		
-	if GLOBAL.aglea_dialoge_finished:		
+	if GLOBAL.aglea_dialoge_finished && GLOBAL.first_cat_scene:
 		match number_of_dialoge:
 			1:
 				translate(Vector2(-1,0) * speed)
@@ -175,7 +175,7 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 			area_of_dialoge_camera.input_touch += 1
 			if i != (array_dialoge_flags.size() - 1):
 					i += 1
-		
+
 		if i != (array_dialoge_flags.size() - 1):
 			if area_of_dialoge_camera.input_touch == array_dialoge_flags[i] && area_of_dialoge_camera.was_pressed_1:
 				var dialoge_window_1 = dialoge_window.instance()
