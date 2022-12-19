@@ -1,42 +1,9 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Tile_Set_Temple.tres" type="TileSet" id=1]
 [ext_resource path="res://Game/Temple_lvl.gd" type="Script" id=2]
-[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!1.png" type="Texture" id=3]
-[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!2.png" type="Texture" id=4]
-[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!3.png" type="Texture" id=5]
-[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!4.png" type="Texture" id=6]
-[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!5.png" type="Texture" id=7]
-[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!6.png" type="Texture" id=8]
-[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!7.png" type="Texture" id=9]
-[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!8.png" type="Texture" id=10]
-[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!9.png" type="Texture" id=11]
-[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!10.png" type="Texture" id=12]
-[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!11.png" type="Texture" id=13]
-[ext_resource path="res://Anims/гл. гр/ДвЭрь/animDverBrat!12.png" type="Texture" id=14]
 [ext_resource path="res://Game/Area_Of_Dialoge_Camera.gd" type="Script" id=16]
 [ext_resource path="res://Game/Camera_For_Speaking.gd" type="Script" id=17]
-[ext_resource path="res://Game/Door.gd" type="Script" id=19]
-[ext_resource path="res://Door2.png" type="Texture" id=20]
-
-[sub_resource type="SpriteFrames" id=7]
-animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
-"loop": false,
-"name": "door",
-"speed": 6.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 3.33333, 3.5 )
-
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 14.6667, 16.3333 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 61.0781, 4.5 )
@@ -66,39 +33,6 @@ __meta__ = {
 "_edit_vertical_guides_": [ 316.0, 338.0 ]
 }
 
-[node name="Door" type="AnimatedSprite" parent="."]
-position = Vector2( 49, 483 )
-scale = Vector2( 1.5, 1.5 )
-z_index = 1
-frames = SubResource( 7 )
-animation = "idle"
-script = ExtResource( 19 )
-
-[node name="Entering" type="Node2D" parent="Door"]
-visible = false
-position = Vector2( -20.6667, -34.6667 )
-
-[node name="Area2D" type="Area2D" parent="Door/Entering"]
-position = Vector2( 20.6667, 7.33334 )
-z_index = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Entering/Area2D"]
-position = Vector2( -3.8147e-06, 0.166656 )
-shape = SubResource( 10 )
-
-[node name="Sprite" type="Sprite" parent="Door/Entering"]
-position = Vector2( 20.6666, 7.33203 )
-scale = Vector2( 0.01, 0.01 )
-texture = ExtResource( 20 )
-region_enabled = true
-region_rect = Rect2( 164.376, 166.927, 602.507, 676.232 )
-
-[node name="Area2D" type="Area2D" parent="Door"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Area2D"]
-position = Vector2( 0, 3.66669 )
-shape = SubResource( 9 )
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )
@@ -109,7 +43,7 @@ format = 1
 tile_data = PoolIntArray( 458751, 2, 0, 393216, 3, 0, 393217, 2, 0, 393219, 2, 0, 393221, 2, 0, 393223, 2, 0, 393225, 2, 0, 393226, 2, 0, 393228, 2, 0, 393229, 2, 0, 589823, 2, 0, 524288, 3, 0, 524289, 2, 0, 524291, 2, 0, 524293, 2, 0, 524295, 2, 0, 524297, 2, 0, 524299, 2, 0, 524301, 2, 0, 524303, 3, 0, 720895, 2, 0, 655360, 3, 0, 655361, 2, 0, 655363, 2, 0, 655365, 2, 0, 655367, 2, 0, 655369, 2, 0, 655371, 2, 0, 655373, 2, 0, 655375, 3, 0, 851967, 2, 0, 786432, 3, 0, 786433, 2, 0, 786435, 2, 0, 786437, 2, 0, 786439, 2, 0, 786441, 2, 0, 786443, 2, 0, 786445, 2, 0, 786447, 3, 0, 851976, 1, 0, 983039, 2, 0, 917504, 3, 0, 917505, 2, 0, 917507, 2, 0, 917509, 2, 0, 917510, 4, 0, 917511, 2, 0, 917513, 2, 0, 917515, 2, 0, 917517, 2, 0, 917519, 3, 0, 1048576, 0, 0, 1048581, 0, 0, 1048586, 0, 0 )
 
 [node name="Position_Door" type="Position2D" parent="."]
-position = Vector2( 96, 494 )
+position = Vector2( 43, 486 )
 
 [node name="Position_Imaginary_Heroe" type="Position2D" parent="."]
 position = Vector2( 176, 495 )
@@ -169,10 +103,5 @@ script = ExtResource( 16 )
 shape = SubResource( 8 )
 disabled = true
 
-[connection signal="animation_finished" from="Door" to="Door" method="_on_Door_animation_finished"]
-[connection signal="mouse_entered" from="Door/Entering/Area2D" to="Door" method="_on_Area2D_mouse_entered"]
-[connection signal="mouse_exited" from="Door/Entering/Area2D" to="Door" method="_on_Area2D_mouse_exited"]
-[connection signal="body_entered" from="Door/Area2D" to="Door" method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Door/Area2D" to="Door" method="_on_Area2D_body_exited"]
 [connection signal="mouse_entered" from="Camera_For_Speaking/Area_Of_Dialoge_Camera" to="Camera_For_Speaking/Area_Of_Dialoge_Camera" method="_on_Area_Of_Dialoge_Camera_mouse_entered"]
 [connection signal="mouse_exited" from="Camera_For_Speaking/Area_Of_Dialoge_Camera" to="Camera_For_Speaking/Area_Of_Dialoge_Camera" method="_on_Area_Of_Dialoge_Camera_mouse_exited"]
