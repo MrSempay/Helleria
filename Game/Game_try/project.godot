@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="Game_try"
-run/main_scene="res://Game/Main_Menu_Scene.tscn"
+run/main_scene="res://Game/LocationsLevels/Main_Menu_Scene.tscn"
 
 [autoload]
 

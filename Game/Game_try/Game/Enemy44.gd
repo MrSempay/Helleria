@@ -5,7 +5,6 @@ var speed = 2
 var velocity = Vector2()
 var name_character = "Akira"
 var trigger_of_ally = false
-var stone = preload("res://Game/Stone_Enemy.tscn")
 var file = File.new()
 var point_of_position_string
 var point_of_position_string_x
@@ -57,7 +56,7 @@ func _physics_process(delta):
 	
 	if GLOBAL.akira_dialoge_started:
 		dialoge(array_dialoge_flags, number_of_dialoge)
-	if GLOBAL.akira_dialoge_finished:
+	if GLOBAL.akira_dialoge_finished && GLOBAL.first_cat_scene:
 		match number_of_dialoge:
 			1:
 				translate(Vector2(-1,0) * speed)

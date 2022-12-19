@@ -100,7 +100,7 @@ func _ready():
 func _physics_process(delta):
 	
 	if get_parent().has_method("First_Scene"):
-		if get_parent().first_cat_scene:
+		if GLOBAL.first_cat_scene:
 			if self.get_global_position().x > 2225:
 				$Icon.flip_h = true
 				translate(Vector2(-1,0) * speed)
@@ -125,7 +125,7 @@ func _physics_process(delta):
 	translate(GLOBAL.move_vector_1 * 2.5)
 	velocity.y += delta * 970 * 2
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-	if !file.is_open() && !get_parent().has_method("First_Scene"):
+	if !file.is_open() && !GLOBAL.first_cat_scene:
 		if GLOBAL.move_vector_1.x != 0:
 			animate("run")
 		if GLOBAL.move_vector_1.x == 0:
@@ -349,8 +349,9 @@ func navigation(number_of_moving):
 				
 
 func dialoge(array_dialoge_flags, number_of_dialoge):
+	#print(array_dialoge_flags[i])
+	#print(area_of_dialoge_camera.input_touch)
 	if array_dialoge_flags.size() != 0:
-		
 		if $Icon.is_flipped_h():
 			$Dialoge_Window_Position.set_position(Vector2(-10,-42))
 		else:
@@ -361,26 +362,26 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 			dialoge_window_1.position = $Dialoge_Window_Position.position
 			add_child(dialoge_window_1)
 			$Dialoge_Window.choosing_text(name_character, 1, number_of_dialoge)
-			area_of_dialoge_camera.was_pressed_1 = false
+			area_of_dialoge_camera.was_pressed_4 = false
 			area_of_dialoge_camera.input_touch += 1
 			if i != (array_dialoge_flags.size() - 1):
 					i += 1
-		
+					
 		if i != (array_dialoge_flags.size() - 1):
-			if area_of_dialoge_camera.input_touch == array_dialoge_flags[i] && area_of_dialoge_camera.was_pressed_1:
+			if area_of_dialoge_camera.input_touch == array_dialoge_flags[i] && area_of_dialoge_camera.was_pressed_4:
 				var dialoge_window_1 = dialoge_window.instance()
 				dialoge_window_1.position = $Dialoge_Window_Position.position
 				if array_dialoge_flags[i] - array_dialoge_flags[i - 1] == 1 && self.has_node("Dialoge_Window"):
 					$Dialoge_Window.choosing_text(name_character, area_of_dialoge_camera.input_touch, number_of_dialoge)
-					area_of_dialoge_camera.was_pressed_1 = false
+					area_of_dialoge_camera.was_pressed_4 = false
 				else:
 					add_child(dialoge_window_1)
 					dialoge_window_1.choosing_text(name_character, area_of_dialoge_camera.input_touch, number_of_dialoge)
-					area_of_dialoge_camera.was_pressed_1 = false
+					area_of_dialoge_camera.was_pressed_4 = false
 				if i != (array_dialoge_flags.size() - 1):
 					i += 1
 					
-		if (area_of_dialoge_camera.input_touch != array_dialoge_flags[i]) && area_of_dialoge_camera.was_pressed_1 && self.has_node("Dialoge_Window"):
+		if (area_of_dialoge_camera.input_touch != array_dialoge_flags[i]) && area_of_dialoge_camera.was_pressed_4 && self.has_node("Dialoge_Window"):
 			if i == (array_dialoge_flags.size() - 1):
 				match number_of_dialoge:
 					1:
@@ -395,6 +396,6 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 func _on_Icon_animation_finished():
 	if $Icon.get_animation() == "door_opening":
 		if get_parent().has_method("First_Scene"):
-			if get_parent().first_cat_scene:
-				get_parent().first_cat_scene = false
+			if GLOBAL.first_cat_scene:
+				pass
 		self.queue_free()

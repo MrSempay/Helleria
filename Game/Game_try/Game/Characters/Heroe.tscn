@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Game/Button_attack.gd" type="Script" id=1]
 [ext_resource path="res://Game/Button_Second.gd" type="Script" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Game/Heroe.gd" type="Script" id=5]
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=6]
 [ext_resource path="res://Game/value_of_HP.gd" type="Script" id=7]
-[ext_resource path="res://Game/Weapon.gd" type="Script" id=8]
 [ext_resource path="res://Game/Hedgehod_spawn.gd" type="Script" id=9]
 [ext_resource path="res://Game/Weapon_Area.gd" type="Script" id=10]
 [ext_resource path="res://Game/Area_For_Jumping.gd" type="Script" id=11]
@@ -321,7 +320,6 @@ animation = "idle"
 position = Vector2( 139.113, 58.35 )
 scale = Vector2( 0.496, 0.497 )
 z_index = 3
-script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
 position = Vector2( -22.1774, 2.01202 )
