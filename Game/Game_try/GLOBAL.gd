@@ -60,8 +60,8 @@ var adalard_dialoge_finished = false
 var jeison_dialoge_finished = false
 
 
-var first_cat_scene = true
-
+var first_cat_scene = false
+var first_starting_temple_lvl = true
 
 
 

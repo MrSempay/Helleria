@@ -87,8 +87,8 @@ func mana_using(manacost):
 	
 
 func _ready():
-	
-	if get_parent().has_method("Temple_lvl"):
+	GLOBAL.move_vector_1 = Vector2(0, 0)
+	if get_parent().has_method("Temple_lvl") && get_parent().has_node("Ghost"):
 		$Camera_Of_Heroe._set_current(false)
 	
 	file.open("res://Navigations/Heroe/navigationH1D.txt", File.READ)
@@ -132,45 +132,18 @@ func _physics_process(delta):
 			animate("idle")
 		if GLOBAL.move_vector_1.x > 0:
 			$Icon.flip_h = false
-			get_node("CollisionPolygon2D/AnimationPlayer").play("щгп_п")
+			if !get_parent().get_node("Door").get_animation() == "idle_heroe":
+				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп_п")
 		elif GLOBAL.move_vector_1.x < 0:
 			$Icon.flip_h = true
-			get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+			if !get_parent().get_node("Door").get_animation() == "idle_heroe":
+				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 
 
 	#point_of_position = self.get_global_position()
 	#mass_of_positions.append(point_of_position)
 	#file.store_line(str(mass_of_positions[i]))
 	#i = i + 1
-	match GLOBAL.spell_of_button:
-			"body_seal": 
-				pass
-				
-			"sheld":
-				if GLOBAL.vector_of_moving > 0:
-						sheld_position = Vector2(30, -170)
-						picture_weapon.set_position(sheld_position)
-						picture_weapon.set_rotation_degrees(0)
-						picture_weapon.set_texture(picture_sheld)
-				elif GLOBAL.vector_of_moving < 0:
-						sheld_position = Vector2(-250, -170)
-						picture_weapon.set_position(sheld_position)
-						picture_weapon.set_rotation_degrees(0)
-						picture_weapon.set_texture(picture_sheld)
-			"bow":
-					if GLOBAL.vector_of_moving > 0:
-						bow_position = Vector2(0, 0)
-						picture_weapon.set_position(bow_position)
-						picture_weapon.set_rotation_degrees(-140)
-						picture_weapon.set_texture(picture_bow)
-						picture_weapon.set_visible(true)
-					elif GLOBAL.vector_of_moving < 0:
-						bow_position = Vector2(-170, -170)
-						picture_weapon.set_rotation_degrees(40)
-						picture_weapon.set_position(bow_position)
-						picture_weapon.set_texture(picture_bow)
-						picture_weapon.set_visible(true)
-
 
 func start_jump_heroe():
 	if is_on_floor():
@@ -220,69 +193,12 @@ func _on_Button2_pressed():
 	variable.queue_free()
 	
 
-func _on_Button_First_pressed():
-	GLOBAL.counter_of_first_button += 1
-	match GLOBAL.stone:
-		1:
-			GLOBAL.counter_of_bow += 1
-			GLOBAL.spell_of_button = "bow"
-			weapon.visible = visible
-			defense = 1
-			if GLOBAL.counter_of_first_button > 0:
-					GLOBAL.counter_of_third_button = 0
-		2:
-			GLOBAL.spell_of_button = "stone_sword"
-
-
-func _on_Button_Second_pressed():
-	GLOBAL.counter_of_second_button += 1
-	match GLOBAL.stone:
-		1:
-			GLOBAL.spell_of_button = "body_seal"
-			if GLOBAL.counter_of_second_button%2 != 0:
-				speed = 190
-				JUMP_POWER = 900
-				armor = 1.5
-				
-			else:
-				armor = 1
-				speed = 150
-				JUMP_POWER = 700
-		2:
-			GLOBAL.spell_of_button = "stone"
-			GLOBAL.counter_of_stone += 1
-		
-
-func _on_Button_Third_pressed():
-	GLOBAL.counter_of_third_button += 1
-	match GLOBAL.stone:
-		1:
-			GLOBAL.spell_of_button = "sheld"
-			if GLOBAL.counter_of_third_button%2 != 0:
-				weapon.visible = visible
-				#defense = 0
-				array_arrows.resize(10)
-				GLOBAL.counter_of_first_button = 0
-				picture_weapon.set_visible(true)
-				#for i in range(10):
-				#	array_arrows[int(i)] = arrow
-				#	print(array_arrows[int(i)].number)
-					#print(array_arrows[int(i)])
-			else:
-				picture_weapon.set_visible(false)
-				#defense = 1
-		2:
-			GLOBAL.spell_of_button = "hedgehod"
-			GLOBAL.counter_of_hedgehod += 1
-
-	
 func _on_Timer_Of_Spell_timeout():
 	GLOBAL.time_out_of_body_seal = true
 
 
 
 func _on_CanvasLayer_use_move_vector(move_vector):
-	"""$Icon.flip_h = move_vector.x < 0"""
 	var stone_position_1 = Vector2()
 	if move_vector.x < 0:
 		stone_position_1 = Vector2(-221, -68)
@@ -385,7 +301,6 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 			if i == (array_dialoge_flags.size() - 1):
 				match number_of_dialoge:
 					1:
-						#get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera/CollisionShape2D").set_disabled(true)
 						GLOBAL.heroe_dialoge_finished = true
 						GLOBAL.heroe_dialoge_started = false
 						get_node("Camera_Of_Heroe")._set_current(true)

@@ -17,22 +17,27 @@
 
 [sub_resource type="SpriteFrames" id=7]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": false,
 "name": "door",
 "speed": 6.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle_heroe",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 3.33333, 3.5 )
 
 [sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 14.6667, 16.3333 )
+extents = Vector2( 16, 17.6667 )
 
 [node name="Door" type="AnimatedSprite"]
 scale = Vector2( 1.5, 1.5 )
@@ -63,7 +68,7 @@ region_rect = Rect2( 164.376, 166.927, 602.507, 676.232 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 0, 3.66669 )
+position = Vector2( -4.76837e-07, 5 )
 shape = SubResource( 9 )
 
 [connection signal="animation_finished" from="." to="." method="_on_Door_animation_finished"]
