@@ -25,8 +25,10 @@ func Temple_lvl():
 func _ready():
 	heroe_1.position = $Position_Heroe.global_position
 	self.add_child(heroe_1)
-	ghost_1.position = $Position_Ghost.global_position
-	self.add_child(ghost_1)
+	if GLOBAL.first_starting_temple_lvl:
+		ghost_1.position = $Position_Ghost.global_position
+		self.add_child(ghost_1)
+		GLOBAL.first_starting_temple_lvl = false
 	imaginary_heroe_1.position = $Position_Imaginary_Heroe.global_position
 	self.add_child(imaginary_heroe_1)
 	door_1.position = $Position_Door.global_position

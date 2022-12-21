@@ -13,8 +13,13 @@ func _input(event):
 				var move_vector = calculate_move_vector(event.position)
 				emit_signal("use_move_vector", move_vector)
 				ongoing_drag = event.get_index()
-				GLOBAL.move_vector_1 = move_vector
-				
+				if move_vector.x > 0:
+					GLOBAL.move_vector_1 = Vector2(1,0)
+				if move_vector.x < 0:
+					GLOBAL.move_vector_1 = Vector2(-1,0)
+				if move_vector.x == 0:
+					GLOBAL.move_vector_1 = move_vector
+					
 		if event is InputEventScreenTouch and !event.is_pressed() and event.get_index() == ongoing_drag:
 			ongoing_drag = -1
 			GLOBAL.move_vector_1 = Vector2(0, 0)

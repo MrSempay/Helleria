@@ -68,6 +68,12 @@ func _physics_process(delta):
 		var heroe = get_parent().get_node("Heroe")
 		var ally = get_parent().get_node("Ally")
 		if trigger_of_ally:
+			
+			if ((self.global_position.x) - heroe.global_position.x < 0) && $Sprite.get_animation() == "run":
+				translate(Vector2(1,0) * speed)
+			if ((self.global_position.x) - heroe.global_position.x > 0) && $Sprite.get_animation() == "run":
+				translate(Vector2(-1,0) * speed)
+			
 			if((self.global_position.x) - heroe.global_position.x) > 0:
 				$Sprite.flip_h = true
 			else:
@@ -82,14 +88,7 @@ func _physics_process(delta):
 				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 				speed = 2
 				animate("run")
-				
-			if ((self.global_position.x) - heroe.global_position.x < 0):
-				velocity.x = speed * delta
-				translate(velocity)
-				
-			if (self.global_position.x) - heroe.global_position.x > 0:
-				velocity.x = speed * delta
-				translate(-velocity)
+			
 
 	velocity.y += delta * 970 * scale_gravity
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
@@ -183,5 +182,5 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 
 
 func _on_VisibilityNotifier2D_screen_exited():
-	if get_parent().has_method("First_Scene"):
+	if get_parent().has_method("First_Scene") && GLOBAL.first_cat_scene:
 		queue_free()

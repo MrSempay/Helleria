@@ -62,7 +62,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=18]
 resource_name = "щгп"
-length = 0.27
+length = 0.15
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:polygon")
@@ -71,7 +71,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.07, 0.14, 0.22 ),
+"times": PoolRealArray( 0, 0.02, 0.06, 0.1 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 13, 0, 13, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 13, -1, 13, -1, 13, 0, 13, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 13, 0, 13, 0, 13, 8, 13, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 13, 0, 13, 0, 22, 8, 22, 8, -8 ) ]
@@ -79,7 +79,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=19]
 resource_name = "щгп_п"
-length = 0.3
+length = 0.15
 step = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:polygon")
@@ -88,7 +88,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.08, 0.18, 0.26 ),
+"times": PoolRealArray( 0, 0.03, 0.06, 0.11 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ PoolVector2Array( 0, -8, -11, -8, -11.0001, 21.9433, -1.50012, 21.9433, -1.50012, 12.8867, 0.399902, 12.8867, 0.399902, 21.9433, 7.99988, 21.9433, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11.0001, 21.9433, -1.50012, 21.9433, -1.50012, 12.8867, 0.399902, 12.8867, 0.399902, 12.8867, 7.99988, 12.8867, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11.0001, 12.8867, -1.50012, 12.8867, -1.50012, 12.8867, 0.399902, 12.8867, 0.399902, 21.9433, 7.99988, 21.9433, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11.0001, 21.9433, -1.50012, 21.9433, -1.50012, 12.8867, 0.399902, 12.8867, 0.399902, 21.9433, 7.99988, 21.9433, 8, -8 ) ]
@@ -280,7 +280,7 @@ script = ExtResource( 5 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -1, 1.49786 )
 scale = Vector2( 0.526316, 1.08811 )
-polygon = PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 13, 0, 13, 0, 22, 8, 22, 8, -8 )
+polygon = PoolVector2Array( 0, -8, -11, -8, -11.0001, 21.9433, -1.50012, 21.9433, -1.50012, 12.8867, 0.399902, 12.8867, 0.399902, 21.9433, 7.99988, 21.9433, 8, -8 )
 one_way_collision_margin = 12.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionPolygon2D"]

@@ -10,6 +10,7 @@ var enemy_3 = preload("res://Game/Characters/Enemy_33.tscn")
 var enemy_4 = preload("res://Game/Characters/Enemy44.tscn")
 var enemy_5 = preload("res://Game/Characters/Enemy55.tscn")
 var heroe = preload("res://Game/Characters/Heroe.tscn")
+var door = preload("res://Game/Tile_setsTools_for_level/Tools_for_level/Doors/Door.tscn")
 
 
 var ally_1 = ally.instance()
@@ -19,6 +20,7 @@ var enemy_1_3 = enemy_3.instance()
 var enemy_1_4 = enemy_4.instance()
 var enemy_1_5 = enemy_5.instance()
 var heroe_1 = heroe.instance()
+var door_1 = door.instance()
 
 
 var stop_Aglea_1M = false
@@ -54,7 +56,7 @@ func _ready():
 	if GLOBAL.first_cat_scene:
 		$Position_Jeison.set_global_position(Vector2(3535, 1528))
 	else:
-		$Position_Jeison.set_global_position(Vector2(1150, 2190))
+		$Position_Jeison.set_global_position(Vector2(2189, 1151))
 	ally_1.position = $Ally.global_position
 	self.add_child(ally_1)
 	enemy_1_1.position = $Position_Aglea.global_position
@@ -69,6 +71,8 @@ func _ready():
 	self.add_child(enemy_1_5)
 	heroe_1.position = $Position_Heroe.global_position
 	self.add_child(heroe_1)
+	door_1.position = $Position_Door.global_position
+	self.add_child(door_1)
 	GLOBAL.heroe_uploaded = true
 	
 func _physics_process(delta):
