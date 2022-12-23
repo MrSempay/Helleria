@@ -132,12 +132,14 @@ func _physics_process(delta):
 			animate("idle")
 		if GLOBAL.move_vector_1.x > 0:
 			$Icon.flip_h = false
-			if !get_parent().get_node("Door").get_animation() == "idle_heroe":
-				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп_п")
+			if get_parent().has_node("Door"):
+				if !get_parent().get_node("Door").get_animation() == "idle_heroe":
+					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп_п")
 		elif GLOBAL.move_vector_1.x < 0:
 			$Icon.flip_h = true
-			if !get_parent().get_node("Door").get_animation() == "idle_heroe":
-				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+			if get_parent().has_node("Door"):
+				if !get_parent().get_node("Door").get_animation() == "idle_heroe":
+					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 
 
 	#point_of_position = self.get_global_position()
@@ -150,35 +152,7 @@ func start_jump_heroe():
 		velocity.y = -JUMP_POWER 
 
 
-func _on_Next_pressed():
-	GLOBAL.counter_of_phrase += 1
-	if GLOBAL.life_first_enemy:
-		if GLOBAL.counter_of_phrase%2 == 0:
-			dialoge.visible = visible
-		else:
-			dialoge.visible = not visible
-		match GLOBAL.counter_of_phrase:
-			4:
-				 dialoge_phrase.set_text("Ha-ha... Are you kidding me?")
-			6: 
-				variable_1.set_disabled(false)
-				variable_2.set_disabled(false)
-				variable.set_visible(true)
-				dialoge_phrase.set_text("")
-				next.set_disabled(true)
-			8: 
-				if GLOBAL.variable_1:
-					dialoge_phrase.set_text("I will give you all that I have! Don't beat me please!")
-				if GLOBAL.variable_2:
-					dialoge_phrase.set_text("What have you said? Come to me, I will make you mine slave!")
-	else:
-		GLOBAL.counter_of_phrase = 10
-	if GLOBAL.counter_of_phrase == 10:
-		next.set_disabled(true)
-		next.visible = false
-		dialoge.queue_free()
-		
-		
+
 func _on_Button_pressed():
 	dialoge_phrase.set_text("I will give you money... :(")
 	next.set_disabled(false)
@@ -199,15 +173,7 @@ func _on_Timer_Of_Spell_timeout():
 
 
 func _on_CanvasLayer_use_move_vector(move_vector):
-	var stone_position_1 = Vector2()
-	if move_vector.x < 0:
-		stone_position_1 = Vector2(-221, -68)
-		stone_position.set_position(stone_position_1)
-		GLOBAL.vector_of_moving = -1
-	else:
-		stone_position_1 = Vector2(-60, -68)
-		stone_position.set_position(stone_position_1)
-		GLOBAL.vector_of_moving = 1
+	pass
 
 
 func _on_Timer_Of_HP_timeout():
@@ -314,3 +280,15 @@ func _on_Icon_animation_finished():
 			if GLOBAL.first_cat_scene:
 				pass
 		self.queue_free()
+
+
+func _on_Button_Third_pressed():
+	pass # Replace with function body.
+
+
+func _on_Button_Second_pressed():
+	pass # Replace with function body.
+
+
+func _on_Button_First_pressed():
+	pass # Replace with function body.

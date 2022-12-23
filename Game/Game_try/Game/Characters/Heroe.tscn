@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Game/Button_attack.gd" type="Script" id=1]
 [ext_resource path="res://Game/Button_Second.gd" type="Script" id=2]
@@ -7,8 +7,6 @@
 [ext_resource path="res://Game/Heroe.gd" type="Script" id=5]
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=6]
 [ext_resource path="res://Game/value_of_HP.gd" type="Script" id=7]
-[ext_resource path="res://Game/Hedgehod_spawn.gd" type="Script" id=9]
-[ext_resource path="res://Game/Weapon_Area.gd" type="Script" id=10]
 [ext_resource path="res://Game/Area_For_Jumping.gd" type="Script" id=11]
 [ext_resource path="res://Game/Buttons_Of_Heroe.gd" type="Script" id=12]
 [ext_resource path="res://Game/Arrow_Amount.gd" type="Script" id=13]
@@ -99,162 +97,26 @@ extents = Vector2( 147.5, 154 )
 
 [sub_resource type="SpriteFrames" id=16]
 animations = [ {
+"frames": [ ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 37 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 34 ) ],
+"loop": false,
+"name": "door_opening",
+"speed": 10.0
+}, {
 "frames": [ ExtResource( 18 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 25 ) ],
-"loop": true,
-"name": "run",
-"speed": 10.0
 }, {
 "frames": [ ExtResource( 29 ), ExtResource( 28 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "injured",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 37 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 34 ) ],
-"loop": false,
-"name": "door_opening",
+"frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "run",
 "speed": 10.0
 } ]
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 36.0903, 35.086 )
-
-[sub_resource type="Animation" id=7]
-resource_name = "Attack_Animation"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sword:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( -4.03247, 42.2535 ), Vector2( -4.03247, 42.2535 ), Vector2( -4.03247, 42.2535 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sword:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ -180.0, -89.9999, -180.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
-[sub_resource type="Animation" id=8]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sword:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -2.01587, 58.3501 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sword:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ -180.0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ true ]
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "Bow_Animation"
-tracks/0/type = "value"
-tracks/0/path = NodePath("..:rotation_degrees")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 0.0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("..:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 139.113, 58.35 ), Vector2( 139.113, 58.35 ) ]
-}
-
-[sub_resource type="Animation" id=10]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("..:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 139.113, 58.35 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("..:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
 
 [sub_resource type="SpatialMaterial" id=20]
 render_priority = 1
@@ -315,49 +177,6 @@ scale = Vector2( 2, 2 )
 z_index = 1
 frames = SubResource( 16 )
 animation = "idle"
-
-[node name="Weapon" type="Area2D" parent="."]
-position = Vector2( 139.113, 58.35 )
-scale = Vector2( 0.496, 0.497 )
-z_index = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
-position = Vector2( -22.1774, 2.01202 )
-shape = SubResource( 6 )
-disabled = true
-script = ExtResource( 10 )
-
-[node name="Sword" type="Sprite" parent="Weapon"]
-position = Vector2( -2.01587, 58.3501 )
-rotation = -3.14159
-scale = Vector2( 0.60048, 0.62855 )
-offset = Vector2( 10, 218.745 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Weapon"]
-anims/Attack_Animation = SubResource( 7 )
-anims/RESET = SubResource( 8 )
-
-[node name="Bow_Animation" type="AnimationPlayer" parent="Weapon/AnimationPlayer"]
-anims/Bow_Animation = SubResource( 9 )
-anims/RESET = SubResource( 10 )
-
-[node name="Position2D" type="Position2D" parent="Weapon"]
-position = Vector2( -60.484, -68.4103 )
-
-[node name="Hedgehod" type="Position2D" parent="Weapon"]
-position = Vector2( 639.113, 321.932 )
-script = ExtResource( 9 )
-
-[node name="Sword_Position" type="Position2D" parent="Weapon"]
-position = Vector2( 562.5, 384.306 )
-
-[node name="Timer_Of_Sheld" type="Timer" parent="Weapon"]
-wait_time = 6.0
-one_shot = true
-
-[node name="Timer_Of_Stone" type="Timer" parent="Weapon/Timer_Of_Sheld"]
-wait_time = 6.0
-one_shot = true
 
 [node name="Timer_Of_Spell" type="Timer" parent="."]
 wait_time = 2.0
@@ -506,13 +325,7 @@ position = Vector2( 8, -38 )
 [connection signal="input_event" from="CanvasLayer/Area_For_Jumping" to="CanvasLayer" method="_on_Area2D_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/Area_For_Jumping" to="CanvasLayer" method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Area_For_Jumping" to="CanvasLayer" method="_on_Area2D_mouse_exited"]
-[connection signal="timeout" from="Timer_Of_Hedgehod" to="Weapon" method="_on_Timer_Of_Hedgehod_timeout"]
 [connection signal="animation_finished" from="Icon" to="." method="_on_Icon_animation_finished"]
-[connection signal="area_entered" from="Weapon" to="Weapon" method="_on_Weapon_area_entered"]
-[connection signal="body_entered" from="Weapon" to="Weapon" method="_on_Weapon_body_entered"]
-[connection signal="animation_finished" from="Weapon/AnimationPlayer/Bow_Animation" to="Weapon" method="_on_Bow_Animation_animation_finished"]
-[connection signal="timeout" from="Weapon/Timer_Of_Sheld" to="Weapon" method="_on_Timer_Of_Sheld_timeout"]
-[connection signal="timeout" from="Weapon/Timer_Of_Sheld/Timer_Of_Stone" to="Weapon" method="_on_Timer_Of_Stone_timeout"]
 [connection signal="timeout" from="HP_Heroe/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
 [connection signal="timeout" from="Mana_Heroe/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
 [connection signal="pressed" from="Buttons_Of_Heroe/Button_First" to="." method="_on_Button_First_pressed"]

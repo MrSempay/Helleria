@@ -117,7 +117,7 @@ func _physics_process(delta):
 					$Sprite.flip_h = false
 				speed = 2
 				animate("run")
-		if get_parent().has_method("Fight_Scene"):
+			if get_parent().has_method("Fight_Scene"):
 				if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20)):
 					if((self.global_position.x) - heroe.global_position.x) > 0:
 						$Sprite.flip_h = true
