@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Game/Button_attack.gd" type="Script" id=1]
 [ext_resource path="res://Game/Button_Second.gd" type="Script" id=2]
@@ -97,6 +97,11 @@ extents = Vector2( 147.5, 154 )
 
 [sub_resource type="SpriteFrames" id=16]
 animations = [ {
+"frames": [ null, null, null, null, null, null, null, null, null ],
+"loop": true,
+"name": "bow",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 37 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 34 ) ],
 "loop": false,
 "name": "door_opening",
@@ -116,7 +121,20 @@ animations = [ {
 "loop": true,
 "name": "run",
 "speed": 10.0
+}, {
+"frames": [ null, null, null, null, null, null, null, null ],
+"loop": false,
+"name": "stone_sword",
+"speed": 5.0
+}, {
+"frames": [ null ],
+"loop": true,
+"name": "сolumn",
+"speed": 5.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 19, 21.5 )
 
 [sub_resource type="SpatialMaterial" id=20]
 render_priority = 1
@@ -167,10 +185,6 @@ script = ExtResource( 11 )
 position = Vector2( 42.5, -120 )
 shape = SubResource( 4 )
 
-[node name="Timer_Of_Hedgehod" type="Timer" parent="."]
-wait_time = 10.0
-one_shot = true
-
 [node name="Icon" type="AnimatedSprite" parent="."]
 position = Vector2( -2, 9 )
 scale = Vector2( 2, 2 )
@@ -178,9 +192,14 @@ z_index = 1
 frames = SubResource( 16 )
 animation = "idle"
 
-[node name="Timer_Of_Spell" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
+[node name="Stone_Sword" type="Area2D" parent="."]
+position = Vector2( 26, 3 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone_Sword"]
+shape = SubResource( 21 )
+disabled = true
 
 [node name="HP_Heroe" type="TextureProgress" parent="."]
 margin_left = -20.0
@@ -281,6 +300,18 @@ rect_pivot_offset = Vector2( 0, 40 )
 text = "Second Spell"
 script = ExtResource( 2 )
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Buttons_Of_Heroe/Button_Second"]
+margin_left = 114.113
+margin_top = 10.0601
+margin_right = 154.113
+margin_bottom = 50.0601
+text = "12
+"
+
+[node name="Timer_Of_Bow" type="Timer" parent="Buttons_Of_Heroe/Button_Second"]
+wait_time = 5.0
+one_shot = true
+
 [node name="Button_Third" type="Button" parent="Buttons_Of_Heroe"]
 modulate = Color( 0.101961, 0.839216, 0.631373, 1 )
 self_modulate = Color( 0.741176, 1, 0.0980392, 1 )
@@ -320,16 +351,27 @@ text = "No, let's fight!"
 [node name="Dialoge_Window_Position" type="Position2D" parent="."]
 position = Vector2( 8, -38 )
 
+[node name="Timers_For_Spells" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Timer" type="Timer" parent="Timers_For_Spells"]
+
+[node name="Position_Arrow" type="Position2D" parent="."]
+position = Vector2( 26, 3 )
+
 [connection signal="use_move_vector" from="CanvasLayer" to="." method="_on_CanvasLayer_use_move_vector"]
 [connection signal="released" from="CanvasLayer/TouchScreenButton" to="CanvasLayer" method="_on_TouchScreenButton_released"]
 [connection signal="input_event" from="CanvasLayer/Area_For_Jumping" to="CanvasLayer" method="_on_Area2D_input_event"]
 [connection signal="mouse_entered" from="CanvasLayer/Area_For_Jumping" to="CanvasLayer" method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Area_For_Jumping" to="CanvasLayer" method="_on_Area2D_mouse_exited"]
 [connection signal="animation_finished" from="Icon" to="." method="_on_Icon_animation_finished"]
+[connection signal="body_entered" from="Stone_Sword" to="." method="_on_Stone_Sword_body_entered"]
 [connection signal="timeout" from="HP_Heroe/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
 [connection signal="timeout" from="Mana_Heroe/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
 [connection signal="pressed" from="Buttons_Of_Heroe/Button_First" to="." method="_on_Button_First_pressed"]
 [connection signal="pressed" from="Buttons_Of_Heroe/Button_Second" to="." method="_on_Button_Second_pressed"]
+[connection signal="timeout" from="Buttons_Of_Heroe/Button_Second/Timer_Of_Bow" to="." method="_on_Timer_Of_Bow_timeout"]
 [connection signal="pressed" from="Buttons_Of_Heroe/Button_Third" to="." method="_on_Button_Third_pressed"]
 [connection signal="pressed" from="Buttons_Of_Heroe/Control/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Buttons_Of_Heroe/Control/Button2" to="." method="_on_Button2_pressed"]

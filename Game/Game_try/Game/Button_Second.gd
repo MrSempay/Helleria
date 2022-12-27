@@ -8,4 +8,4 @@ func _ready():
 		1:
 			set_text("Body Seal")
 		2:
-			set_text("Stone")
+			set_text("Bow")

@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var name_character = "Heroe"
 
 onready var anim_1 = get_node("CollisionPolygon2D/AnimationPlayer")
 onready var weapon = $Weapon
@@ -21,29 +22,19 @@ onready var stone_position = get_node("Weapon/Position2D/")
 onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
 
-
+var amount_arrows = 5
+var damage_stone_sword = 10
 var scale_gravity = 2
-var Arrow = load("res://Game/Arrow.gd")
+var arrow = preload("res://Game/Spells/Arrow.tscn")
 var velocity = Vector2()
-var sheld_position
-var bow_position
 var JUMP_POWER = 500
 var Button = load("res://Game/Button_attack.gd")
 var texture = preload("res://Icedeath.jpg")
 var Button1 = Button.new()
-var speed = 2
+var speed = 2.5
 var armor = 1
-var name_character = "Heroe"
-
-var picture_sheld = preload("res://pngwing.com (13).png")
-var picture_bow = preload("res://Bow.png")
-var picture_word = preload("res://pngwing.com (13).png")
-var picture_stone_sword = preload("res://Attack.png")
-
-var array_arrows = []
-var arrow = Arrow.new()
 var defense = 1
-var beat_in_heroe = false
+
 
 var file = File.new()
 var mass_of_positions = []
@@ -69,7 +60,6 @@ func ally():
 
 
 func handle_hit(damage, damage_save = 0):
-	beat_in_heroe = true
 	print(damage)
 	$HP_Heroe.value -= damage * armor * defense
 	$value_of_HP.text = str($HP_Heroe.value)
@@ -94,10 +84,13 @@ func _ready():
 	file.open("res://Navigations/Heroe/navigationH1D.txt", File.READ)
 	#file.open("res://Navigations/Jeison/navigation1.txt", File.WRITE)
 	
-	timer_of_spell.connect("timeout", self, "_Timer_Of_Spell")
-	timer_of_spell.set_autostart(true)
+	#timer_of_spell.connect("timeout", self, "_Timer_Of_Spell")
+	#timer_of_spell.set_autostart(true)
 
 func _physics_process(delta):
+	
+	get_node("Stone_Sword/CollisionShape2D").set_disabled(true)
+	
 	
 	if get_parent().has_method("First_Scene"):
 		if GLOBAL.first_cat_scene:
@@ -113,6 +106,18 @@ func _physics_process(delta):
 				if $Icon.get_frame() > 6:
 					translate(Vector2(-1, 0) * 0.283)
 
+	match $Icon.get_animation():
+		"stone_sword":
+			speed = 0
+			if $Icon.get_frame() == 5:
+				get_node("Stone_Sword/CollisionShape2D").set_disabled(false)
+		"bow":
+			speed = 0
+			if $Icon.get_frame() == 5 && !self.has_node("Arrow"):
+				var arrow_1 = arrow.instance()
+				add_child(arrow_1)
+	
+
 	if GLOBAL.heroe_dialoge_started:
 		dialoge(array_dialoge_flags, number_of_dialoge)
 
@@ -122,20 +127,26 @@ func _physics_process(delta):
 	
 	
 	velocity.x = 0
-	translate(GLOBAL.move_vector_1 * 2.5)
 	velocity.y += delta * 970 * 2
-	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-	if !file.is_open() && !GLOBAL.first_cat_scene:
+	if ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run"):
+		speed = 2.5
+		translate(GLOBAL.move_vector_1 * speed)
+		velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
+	if !file.is_open() && !GLOBAL.first_cat_scene && ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run"):
 		if GLOBAL.move_vector_1.x != 0:
 			animate("run")
 		if GLOBAL.move_vector_1.x == 0:
 			animate("idle")
 		if GLOBAL.move_vector_1.x > 0:
+			$Stone_Sword.set_position(Vector2(26, 3))
+			$Position_Arrow.set_position(Vector2(26, 3))
 			$Icon.flip_h = false
 			if get_parent().has_node("Door"):
 				if !get_parent().get_node("Door").get_animation() == "idle_heroe":
 					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп_п")
 		elif GLOBAL.move_vector_1.x < 0:
+			$Stone_Sword.set_position(Vector2(-26, 3))
+			$Position_Arrow.set_position(Vector2(-26, 3))
 			$Icon.flip_h = true
 			if get_parent().has_node("Door"):
 				if !get_parent().get_node("Door").get_animation() == "idle_heroe":
@@ -166,10 +177,6 @@ func _on_Button2_pressed():
 	GLOBAL.variable_2 = true
 	variable.queue_free()
 	
-
-func _on_Timer_Of_Spell_timeout():
-	GLOBAL.time_out_of_body_seal = true
-
 
 
 func _on_CanvasLayer_use_move_vector(move_vector):
@@ -275,20 +282,47 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 	
 	
 func _on_Icon_animation_finished():
-	if $Icon.get_animation() == "door_opening":
-		if get_parent().has_method("First_Scene"):
-			if GLOBAL.first_cat_scene:
-				pass
-		self.queue_free()
+	match $Icon.get_animation():
+		"door_opening":
+			if get_parent().has_method("First_Scene"):
+				if GLOBAL.first_cat_scene:
+					pass
+			self.queue_free()
+		"stone_sword":
+			$Icon.play("idle")
+		"bow":
+			$Icon.play("idle")
+
+
+func _on_Button_First_pressed():
+	if !$Icon.get_animation() == "stone_sword":
+		animate("stone_sword")
+		mana_using(10)
+
+
+func _on_Button_Second_pressed():
+	if !$Icon.get_animation() == "bow":
+		animate("bow")
+		if amount_arrows == 5:
+			mana_using(10)
+		amount_arrows -= 1
+		if amount_arrows == 0:
+			get_node("Buttons_Of_Heroe/Button_Second").set_disabled(true)
+			get_node("Buttons_Of_Heroe/Button_Second/Timer_Of_Bow").start()
 
 
 func _on_Button_Third_pressed():
 	pass # Replace with function body.
 
 
-func _on_Button_Second_pressed():
-	pass # Replace with function body.
+func _on_Stone_Sword_body_entered(body: Node2D):
+	print(body.has_method("handle_hit"))
+	print(body.has_method("enemy"))
+	if body.has_method("handle_hit") && body.has_method("enemy"):
+		print(false)
+		body.handle_hit(damage_stone_sword)
 
 
-func _on_Button_First_pressed():
-	pass # Replace with function body.
+func _on_Timer_Of_Bow_timeout():
+	get_node("Buttons_Of_Heroe/Button_Second").set_disabled(false)
+	amount_arrows = 5

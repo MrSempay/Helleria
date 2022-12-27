@@ -44,6 +44,10 @@ func _ready():
 	pass
 
 
+func enemy():
+	pass
+
+
 func handle_hit(damage):
 	#health -= damage
 	$HP_Enemy_1.value -= damage
@@ -92,7 +96,6 @@ func _physics_process(delta):
 		var heroe = get_parent().get_node("Heroe")
 		var ally = get_parent().get_node("Ally")
 		if trigger_of_ally:
-			print(global_position)
 			if(self.global_position.x - heroe.global_position.x) > 0:
 				$Stone_Sword.set_position(Vector2(-33,-6))
 				$Stone_Position.set_position(Vector2(-34,-2))
