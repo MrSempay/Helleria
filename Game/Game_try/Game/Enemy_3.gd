@@ -16,6 +16,7 @@ var hedgehod_finished = false
 var sprite_position = Vector2(67,0)
 var damage_stone_sword = 10
 var JUMP_POWER = 500
+var stun = false
 
 
 onready var collision_of_jumping_area = get_node("Area_Of_Jumping/CollisionShape2D")
@@ -92,7 +93,7 @@ func _physics_process(delta):
 	
 	collision_of_stone_sword.set_disabled(true)
 
-	if get_parent().has_node("Heroe"):
+	if get_parent().has_node("Heroe") && !stun:
 		var heroe = get_parent().get_node("Heroe")
 		var ally = get_parent().get_node("Ally")
 		if trigger_of_ally:
@@ -286,3 +287,7 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 func _on_VisibilityNotifier2D_screen_exited():
 	if get_parent().has_method("First_Scene") && GLOBAL.first_cat_scene:
 		queue_free()
+
+
+func _on_Timer_Of_Stun_timeout():
+	stun = false

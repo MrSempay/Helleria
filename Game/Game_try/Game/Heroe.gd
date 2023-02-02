@@ -26,6 +26,7 @@ var amount_arrows = 5
 var damage_stone_sword = 10
 var scale_gravity = 2
 var arrow = preload("res://Game/Spells/Arrow.tscn")
+var column = preload("res://Game/Spells/Column.tscn")
 var velocity = Vector2()
 var JUMP_POWER = 500
 var Button = load("res://Game/Button_attack.gd")
@@ -77,6 +78,7 @@ func mana_using(manacost):
 	
 
 func _ready():
+	get_node("Buttons_Of_Heroe/Button_Second/RichTextLabel").set_text(str(amount_arrows))
 	GLOBAL.move_vector_1 = Vector2(0, 0)
 	if get_parent().has_method("Temple_lvl") && get_parent().has_node("Ghost"):
 		$Camera_Of_Heroe._set_current(false)
@@ -109,12 +111,13 @@ func _physics_process(delta):
 	match $Icon.get_animation():
 		"stone_sword":
 			speed = 0
-			if $Icon.get_frame() == 5:
+			if $Icon.get_frame() == 14:
 				get_node("Stone_Sword/CollisionShape2D").set_disabled(false)
 		"bow":
 			speed = 0
-			if $Icon.get_frame() == 5 && !self.has_node("Arrow"):
+			if $Icon.get_frame() == 10 && !self.has_node("Arrow"):
 				var arrow_1 = arrow.instance()
+				arrow_1.position = $Position_Arrow.position
 				add_child(arrow_1)
 	
 
@@ -139,14 +142,16 @@ func _physics_process(delta):
 			animate("idle")
 		if GLOBAL.move_vector_1.x > 0:
 			$Stone_Sword.set_position(Vector2(26, 3))
-			$Position_Arrow.set_position(Vector2(26, 3))
+			$Position_Arrow.set_position(Vector2(21, 5))
+			$Ray_Cast_Column.set_cast_to(Vector2(274, 0))
 			$Icon.flip_h = false
 			if get_parent().has_node("Door"):
 				if !get_parent().get_node("Door").get_animation() == "idle_heroe":
 					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп_п")
 		elif GLOBAL.move_vector_1.x < 0:
 			$Stone_Sword.set_position(Vector2(-26, 3))
-			$Position_Arrow.set_position(Vector2(-26, 3))
+			$Position_Arrow.set_position(Vector2(-21, 5))
+			$Ray_Cast_Column.set_cast_to(Vector2(-274, 0))
 			$Icon.flip_h = true
 			if get_parent().has_node("Door"):
 				if !get_parent().get_node("Door").get_animation() == "idle_heroe":
@@ -306,23 +311,32 @@ func _on_Button_Second_pressed():
 		if amount_arrows == 5:
 			mana_using(10)
 		amount_arrows -= 1
+		get_node("Buttons_Of_Heroe/Button_Second/RichTextLabel").set_text(str(amount_arrows))
 		if amount_arrows == 0:
 			get_node("Buttons_Of_Heroe/Button_Second").set_disabled(true)
 			get_node("Buttons_Of_Heroe/Button_Second/Timer_Of_Bow").start()
 
 
 func _on_Button_Third_pressed():
-	pass # Replace with function body.
+	if $Ray_Cast_Column.get_collider():
+		if $Ray_Cast_Column.get_collider().has_method("enemy"):
+			mana_using(25)
+			var column_1 = column.instance()
+			column_1.position = $Ray_Cast_Column.get_collider().global_position - Vector2(0, -16)
+			get_parent().add_child(column_1)
+			get_node("Buttons_Of_Heroe/Button_Third").set_disabled(true)
+			get_node("Buttons_Of_Heroe/Button_Third/Timer_Of_Column").start()
 
 
 func _on_Stone_Sword_body_entered(body: Node2D):
-	print(body.has_method("handle_hit"))
-	print(body.has_method("enemy"))
 	if body.has_method("handle_hit") && body.has_method("enemy"):
-		print(false)
 		body.handle_hit(damage_stone_sword)
 
 
 func _on_Timer_Of_Bow_timeout():
 	get_node("Buttons_Of_Heroe/Button_Second").set_disabled(false)
 	amount_arrows = 5
+
+
+func _on_Timer_Of_Column_timeout():
+	get_node("Buttons_Of_Heroe/Button_Third").set_disabled(false)

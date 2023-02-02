@@ -268,6 +268,10 @@ shape = SubResource( 7 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
+[node name="Timer_Of_Stun" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="timeout" from="Timer_Stone" to="." method="_on_Timer_Stone_timeout"]
 [connection signal="timeout" from="Timer_Stone_Sword" to="." method="_on_Timer_Stone_Sword_timeout"]
 [connection signal="timeout" from="Timer_Hedgehod" to="." method="_on_Timer_Hedgehod_timeout"]
@@ -278,3 +282,4 @@ shape = SubResource( 7 )
 [connection signal="body_entered" from="Stone_Sword" to="." method="_on_Stone_Sword_body_entered"]
 [connection signal="body_entered" from="Area_Of_Jumping" to="." method="_on_Area_Of_Jumping_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="Timer_Of_Stun" to="." method="_on_Timer_Of_Stun_timeout"]
