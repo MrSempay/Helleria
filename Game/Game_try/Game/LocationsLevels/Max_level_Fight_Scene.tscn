@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Tile_Set_For_Fight_Scene.tres" type="TileSet" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+format = 1
+tile_data = PoolIntArray( -262139, 4, 0, -196607, 4, 0, -196600, 4, 0, -131072, 1, 0, -131062, 1, 0, -65532, 2, 0, -65529, 2, 0, 65531, 0, 0, 65534, 0, 0, 1, 0, 0, 7, 0, 0, 10, 0, 0, 13, 0, 0 )
