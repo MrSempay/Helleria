@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=103 format=2]
 
 [ext_resource path="res://Game/Button_attack.gd" type="Script" id=1]
 [ext_resource path="res://Game/Button_Second.gd" type="Script" id=2]
@@ -85,6 +85,13 @@
 [ext_resource path="res://Anims/гл. гр/Способности/Лук/animLyk3.png" type="Texture" id=83]
 [ext_resource path="res://Anims/гл. гр/Способности/Лук/animLyk21.png" type="Texture" id=84]
 [ext_resource path="res://Anims/гл. гр/Способности/Меч/animMech5.png" type="Texture" id=85]
+[ext_resource path="res://Anims/гл. гр/Способности/Колона/animK6.png" type="Texture" id=86]
+[ext_resource path="res://Anims/гл. гр/Способности/Колона/animK3.png" type="Texture" id=87]
+[ext_resource path="res://Anims/гл. гр/Способности/Колона/animK4.png" type="Texture" id=88]
+[ext_resource path="res://Anims/гл. гр/Способности/Колона/animK1.png" type="Texture" id=89]
+[ext_resource path="res://Anims/гл. гр/Способности/Колона/animK7.png" type="Texture" id=90]
+[ext_resource path="res://Anims/гл. гр/Способности/Колона/animK2.png" type="Texture" id=91]
+[ext_resource path="res://Anims/гл. гр/Способности/Колона/animK5.png" type="Texture" id=92]
 
 [sub_resource type="Animation" id=17]
 length = 0.001
@@ -170,10 +177,10 @@ animations = [ {
 "name": "stone_sword",
 "speed": 10.0
 }, {
-"frames": [ null ],
-"loop": true,
+"frames": [ ExtResource( 89 ), ExtResource( 91 ), ExtResource( 87 ), ExtResource( 88 ), ExtResource( 92 ), ExtResource( 86 ), ExtResource( 90 ) ],
+"loop": false,
 "name": "сolumn",
-"speed": 5.0
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=21]
@@ -399,7 +406,7 @@ text = "No, let's fight!"
 position = Vector2( 8, -38 )
 
 [node name="Position_Arrow" type="Position2D" parent="."]
-position = Vector2( 21, 5 )
+position = Vector2( 22, 4 )
 
 [node name="Timers_For_Spells" type="Control" parent="."]
 margin_right = 40.0
@@ -411,6 +418,14 @@ margin_bottom = 40.0
 enabled = true
 cast_to = Vector2( 274, 0 )
 collision_mask = 63
+
+[node name="Ray_Cast_Random_Spell" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 133, -181 )
+rotation = 1.5708
+enabled = true
+cast_to = Vector2( 246, 0 )
+collision_mask = 2097152
 
 [connection signal="use_move_vector" from="CanvasLayer" to="." method="_on_CanvasLayer_use_move_vector"]
 [connection signal="released" from="CanvasLayer/TouchScreenButton" to="CanvasLayer" method="_on_TouchScreenButton_released"]

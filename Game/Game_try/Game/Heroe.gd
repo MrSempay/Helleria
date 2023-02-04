@@ -115,11 +115,14 @@ func _physics_process(delta):
 				get_node("Stone_Sword/CollisionShape2D").set_disabled(false)
 		"bow":
 			speed = 0
-			if $Icon.get_frame() == 10 && !self.has_node("Arrow"):
+			if $Icon.get_frame() == 17 && !self.has_node("Arrow"):
 				var arrow_1 = arrow.instance()
 				arrow_1.position = $Position_Arrow.position
 				add_child(arrow_1)
-	
+		"сolumn":
+			speed = 0
+			if $Icon.get_frame() == 6:
+				$Icon.play("idle")
 
 	if GLOBAL.heroe_dialoge_started:
 		dialoge(array_dialoge_flags, number_of_dialoge)
@@ -142,16 +145,18 @@ func _physics_process(delta):
 			animate("idle")
 		if GLOBAL.move_vector_1.x > 0:
 			$Stone_Sword.set_position(Vector2(26, 3))
-			$Position_Arrow.set_position(Vector2(21, 5))
+			$Position_Arrow.set_position(Vector2(22, 4))
 			$Ray_Cast_Column.set_cast_to(Vector2(274, 0))
+			$Ray_Cast_Random_Spell.set_position(Vector2(133, -181))
 			$Icon.flip_h = false
 			if get_parent().has_node("Door"):
 				if !get_parent().get_node("Door").get_animation() == "idle_heroe":
 					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп_п")
 		elif GLOBAL.move_vector_1.x < 0:
 			$Stone_Sword.set_position(Vector2(-26, 3))
-			$Position_Arrow.set_position(Vector2(-21, 5))
+			$Position_Arrow.set_position(Vector2(-22, 4))
 			$Ray_Cast_Column.set_cast_to(Vector2(-274, 0))
+			$Ray_Cast_Random_Spell.set_position(Vector2(-133, -181))
 			$Icon.flip_h = true
 			if get_parent().has_node("Door"):
 				if !get_parent().get_node("Door").get_animation() == "idle_heroe":
@@ -320,14 +325,23 @@ func _on_Button_Second_pressed():
 func _on_Button_Third_pressed():
 	if $Ray_Cast_Column.get_collider():
 		if $Ray_Cast_Column.get_collider().has_method("enemy"):
+			$Icon.play("сolumn")
 			mana_using(25)
 			var column_1 = column.instance()
 			column_1.position = $Ray_Cast_Column.get_collider().global_position - Vector2(0, -16)
 			get_parent().add_child(column_1)
 			get_node("Buttons_Of_Heroe/Button_Third").set_disabled(true)
 			get_node("Buttons_Of_Heroe/Button_Third/Timer_Of_Column").start()
-
-
+	if $Ray_Cast_Random_Spell.get_collider() && !get_parent().has_node("Column"):
+			$Icon.play("сolumn")
+			mana_using(25)
+			var column_1 = column.instance()
+			column_1.position = $Ray_Cast_Random_Spell.get_collision_point()
+			get_parent().add_child(column_1)
+			get_node("Buttons_Of_Heroe/Button_Third").set_disabled(true)
+			get_node("Buttons_Of_Heroe/Button_Third/Timer_Of_Column").start()
+	
+			
 func _on_Stone_Sword_body_entered(body: Node2D):
 	if body.has_method("handle_hit") && body.has_method("enemy"):
 		body.handle_hit(damage_stone_sword)

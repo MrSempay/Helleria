@@ -11,6 +11,9 @@ var heroe = preload("res://Game/Characters/Heroe.tscn")
 func Fight_Scene():
 	pass
 
+func landscape():
+	pass
+
 
 var ally_1 = ally.instance()
 var enemy_1_1 = enemy_1.instance()
