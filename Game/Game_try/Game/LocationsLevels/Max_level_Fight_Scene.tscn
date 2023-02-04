@@ -1,10 +1,20 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Tile_Set_For_Fight_Scene.tres" type="TileSet" id=1]
+[ext_resource path="res://Game/LocationsLevels/Max_level_Fight_Scene.gd" type="Script" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="Max_Level_Fight_Scene" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
+collision_layer = 2097215
+collision_mask = 2097215
 format = 1
 tile_data = PoolIntArray( -262139, 4, 0, -196607, 4, 0, -196600, 4, 0, -131072, 1, 0, -131062, 1, 0, -65532, 2, 0, -65529, 2, 0, 65531, 0, 0, 65534, 0, 0, 1, 0, 0, 7, 0, 0, 10, 0, 0, 13, 0, 0 )
+
+[node name="Position_Belotur" type="Position2D" parent="."]
+position = Vector2( 576, -222 )
+
+[node name="Position_Heroe" type="Position2D" parent="."]
+position = Vector2( 394, -283 )
