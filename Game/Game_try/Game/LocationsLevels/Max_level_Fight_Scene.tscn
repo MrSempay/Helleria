@@ -8,13 +8,14 @@ script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
 collision_layer = 2097215
 collision_mask = 2097215
 format = 1
-tile_data = PoolIntArray( -262139, 4, 0, -196607, 4, 0, -196600, 4, 0, -131072, 1, 0, -131062, 1, 0, -65532, 2, 0, -65529, 2, 0, 65531, 0, 0, 65534, 0, 0, 1, 0, 0, 7, 0, 0, 10, 0, 0, 13, 0, 0 )
+tile_data = PoolIntArray( -720869, 3, 0, -589802, 4, 0, -589789, 4, 0, -458735, 4, 0, -458711, 4, 0, -393203, 1, 0, -393168, 1, 0, -262094, 5, 0, -196598, 2, 0, -196592, 4, 0, -196584, 2, 0, -196573, 5, 0, -196569, 4, 0, 0, 0, 0, 8, 0, 0, 16, 0, 0, 35, 0, 0, 43, 0, 0, 51, 0, 0 )
 
 [node name="Position_Belotur" type="Position2D" parent="."]
 position = Vector2( 576, -222 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 394, -283 )
+position = Vector2( 94, -27 )
