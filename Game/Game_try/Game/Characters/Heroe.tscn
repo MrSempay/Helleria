@@ -175,7 +175,7 @@ animations = [ {
 "frames": [ ExtResource( 71 ), ExtResource( 59 ), ExtResource( 55 ), ExtResource( 72 ), ExtResource( 85 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 75 ), ExtResource( 60 ), ExtResource( 49 ), ExtResource( 77 ), ExtResource( 51 ), ExtResource( 54 ), ExtResource( 78 ), ExtResource( 61 ), ExtResource( 80 ), ExtResource( 52 ), ExtResource( 64 ), ExtResource( 53 ), ExtResource( 57 ), ExtResource( 58 ) ],
 "loop": false,
 "name": "stone_sword",
-"speed": 20.0
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 89 ), ExtResource( 91 ), ExtResource( 87 ), ExtResource( 88 ), ExtResource( 92 ), ExtResource( 86 ), ExtResource( 90 ) ],
 "loop": false,

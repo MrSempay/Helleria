@@ -47,7 +47,8 @@ func _ready():
 		$Position_Heroe.set_global_position(GLOBAL.position_heroe_before_fight)
 		GLOBAL.position_heroe_before_fight = 0
 	else:
-		$Position_Heroe.set_global_position(Vector2(2218, 1528))
+		#$Position_Heroe.set_global_position(Vector2(2218, 1528))
+		pass
 		
 	if GLOBAL.first_cat_scene:
 		$Position_Belotur.set_global_position(Vector2(3535, 1528))

@@ -148,7 +148,6 @@ func _physics_process(delta):
 			animate("run")
 		if GLOBAL.move_vector_1.x == 0:
 			animate("idle")
-		print(true)
 		if GLOBAL.move_vector_1.x > 0:
 			$Stone_Sword.set_position(Vector2(26, 3))
 			$Position_Arrow.set_position(Vector2(22, 4))
