@@ -152,7 +152,7 @@ animations = [ {
 extents = Vector2( 167, 53.5 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 19, 21.5 )
+extents = Vector2( 26, 21.5 )
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 31, 14 )
@@ -199,8 +199,8 @@ margin_top = -35.0
 margin_right = 200.0
 margin_bottom = -13.0
 rect_scale = Vector2( 0.25, 0.25 )
-max_value = 500.0
-value = 500.0
+max_value = 10.0
+value = 10.0
 texture_progress = ExtResource( 1 )
 tint_progress = Color( 1, 0, 0, 1 )
 nine_patch_stretch = true
@@ -229,7 +229,8 @@ margin_top = -36.0
 margin_right = 20.0
 margin_bottom = 12.0
 rect_scale = Vector2( 0.5, 0.5 )
-text = "500
+text = "10
+
 
 "
 
@@ -254,7 +255,7 @@ one_way_collision_margin = 0.0
 position = Vector2( 34, -2 )
 
 [node name="Stone_Sword" type="Area2D" parent="."]
-position = Vector2( 33, -6 )
+position = Vector2( 25, -6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stone_Sword"]
 shape = SubResource( 4 )
@@ -271,6 +272,39 @@ shape = SubResource( 7 )
 [node name="Timer_Of_Stun" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
+
+[node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0, -22 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_2" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0, -6 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0, 7 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_For_Heroe" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+cast_to = Vector2( 192, 0 )
+
+[node name="RayCastVertical" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 11, 1 )
+enabled = true
+cast_to = Vector2( 0, 22 )
+collision_mask = 4194304
 
 [connection signal="timeout" from="Timer_Stone" to="." method="_on_Timer_Stone_timeout"]
 [connection signal="timeout" from="Timer_Stone_Sword" to="." method="_on_Timer_Stone_Sword_timeout"]

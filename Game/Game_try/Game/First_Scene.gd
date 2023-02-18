@@ -32,6 +32,9 @@ var stop_Aglea_1D = false
 var stop_Akira_1D = false
 var stop_Heroe_1M = false
 
+var fight_scene_for_Belotur = "Max_level_Fight_Scene"
+
+
 
 func First_Scene():
 	pass
@@ -40,6 +43,9 @@ func First_Scene():
 func _ready():
 	if GLOBAL.first_cat_scene:
 		$Position_Heroe.set_global_position(Vector2(2535, 1528))
+	elif GLOBAL.position_heroe_before_fight != Vector2(0, 0):
+		$Position_Heroe.set_global_position(GLOBAL.position_heroe_before_fight)
+		GLOBAL.position_heroe_before_fight = 0
 	else:
 		$Position_Heroe.set_global_position(Vector2(2218, 1528))
 		
@@ -63,8 +69,9 @@ func _ready():
 	self.add_child(enemy_1_1)
 	enemy_1_2.position = $Position_Adalard.global_position
 	self.add_child(enemy_1_2)
-	enemy_1_3.position = $Position_Belotur.global_position
-	self.add_child(enemy_1_3)
+	if GLOBAL.life_Belotur == true:
+		enemy_1_3.position = $Position_Belotur.global_position
+		self.add_child(enemy_1_3)
 	enemy_1_4.position = $Position_Akira.global_position
 	self.add_child(enemy_1_4)
 	enemy_1_5.position = $Position_Jeison.global_position
@@ -76,6 +83,12 @@ func _ready():
 	GLOBAL.heroe_uploaded = true
 	
 func _physics_process(delta):
+	
+	if !GLOBAL.first_cat_scene && GLOBAL.life_Belotur == true:
+		if (($Belotur.global_position.x) - $Heroe.global_position.x < 25) && (($Belotur.global_position.x) - $Heroe.global_position.x > -26):
+			GLOBAL.position_heroe_before_fight = $Heroe.global_position
+			GLOBAL.scene("Max_level_Fight_Scene")
+	
 	if !self.has_node("Heroe") && !stop_Aglea_1M && GLOBAL.first_cat_scene:
 		$Aglea.number_of_moving = 1
 		$Aglea.moving_state = true

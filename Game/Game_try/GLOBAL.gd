@@ -8,7 +8,7 @@ var counter = 0
 var variable_1 
 var variable_2 
 
-var life_first_enemy = true
+var life_Belotur = true
 var stop = false
 var stop_ghost = false
 var continue_jump = false
@@ -41,6 +41,7 @@ var move_vector_1_ghost = Vector2(0, 0)
 
 var life_heroe = true
 var heroe_uploaded = false
+var position_heroe_before_fight = Vector2(0, 0)
 
 
 var aglea_dialoge_started = false

@@ -29,6 +29,7 @@ onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/
 var dialoge_window = preload("res://Game/Dialoge_Window.tscn")
 var array_dialoge_flags = []
 var i = 0
+var c = 0
 var number_of_dialoge
 var scale_gravity = 2
 
@@ -57,7 +58,7 @@ func handle_hit(damage):
 		print(name_character + " was hit! Health of enemy: ", $HP_Enemy_1.value)
 	else:
 		print(name_character + " was destroyed")
-		GLOBAL.life_first_enemy = false
+		GLOBAL.life_Belotur = false
 		queue_free()
 
 
@@ -68,7 +69,6 @@ func mana_using(manacost):
 #test_move()
 func _physics_process(delta):
 	velocity.x = 0
-
 
 	if is_on_floor():
 		collision_of_jumping_area.set_disabled(false)
@@ -96,23 +96,33 @@ func _physics_process(delta):
 	if get_parent().has_node("Heroe") && !stun:
 		var heroe = get_parent().get_node("Heroe")
 		var ally = get_parent().get_node("Ally")
-		if trigger_of_ally:
-			if(self.global_position.x - heroe.global_position.x) > 0:
-				$Stone_Sword.set_position(Vector2(-33,-6))
-				$Stone_Position.set_position(Vector2(-34,-2))
-			else:
-				$Stone_Sword.set_position(Vector2(33,-6))
-				$Stone_Position.set_position(Vector2(34,-2))
+		if trigger_of_ally && !get_parent().has_method("Fight_Scene"):
 			
-			if ((self.global_position.x) - heroe.global_position.x < 0) && $Sprite.get_animation() == "run":
+			if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_3.get_collider()) && speed != 0:
+				start_jump_enemy()
+			if $RayCastVertical.get_collider() && speed != 0:
+				start_jump_enemy()
+			
+			if(self.global_position.x - heroe.global_position.x) > 0:
+				$RayCastHorizontal_1.set_cast_to(Vector2(-16,0))
+				$RayCastHorizontal_2.set_cast_to(Vector2(-16,0))
+				$RayCastHorizontal_3.set_cast_to(Vector2(-16,0))
+				$RayCastVertical.set_position(Vector2(-11,1))
+			else:
+				$RayCastHorizontal_1.set_cast_to(Vector2(16,0))
+				$RayCastHorizontal_2.set_cast_to(Vector2(16,0))
+				$RayCastHorizontal_3.set_cast_to(Vector2(16,0))
+				$RayCastVertical.set_position(Vector2(11,1))
+			
+			if ((self.global_position.x) - heroe.global_position.x < 25) && $Sprite.get_animation() == "run":
 				translate(Vector2(1,0) * speed)
 				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 
-			if ((self.global_position.x) - heroe.global_position.x > 0) && $Sprite.get_animation() == "run":
+			if ((self.global_position.x) - heroe.global_position.x > -25) && $Sprite.get_animation() == "run":
 				translate(Vector2(-1,0) * speed)
 				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 			
-			if (((self.global_position.x) - heroe.global_position.x > 55) or ((self.global_position.x) - heroe.global_position.x < -55) or !((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20))) && $Sprite.get_animation() != "stone" && $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
+			if (((self.global_position.x) - heroe.global_position.x > 55) or ((self.global_position.x) - heroe.global_position.x < -55) or !((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20))):
 				if((self.global_position.x) - heroe.global_position.x) > 0:
 					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 					$Sprite.flip_h = true
@@ -121,7 +131,90 @@ func _physics_process(delta):
 					$Sprite.flip_h = false
 				speed = 2
 				animate("run")
-			if get_parent().has_method("Fight_Scene"):
+			
+				
+		if get_parent().has_method("Fight_Scene"):
+			if get_parent().in_area_for_artifical_intelligance_controlling && get_parent().mass_of_points.size() != 0:
+				speed = 2
+				if $RayCastHorizontal_For_Heroe.get_collider():
+					if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
+						if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_3.get_collider()) && speed != 0:
+							start_jump_enemy()
+				if $RayCastVertical.get_collider() && speed != 0:
+					start_jump_enemy()
+				if (self.global_position.x - get_parent().mass_of_points[c]) > 0:
+					$RayCastHorizontal_1.set_cast_to(Vector2(-16,0))
+					$RayCastHorizontal_2.set_cast_to(Vector2(-16,0))
+					$RayCastHorizontal_3.set_cast_to(Vector2(-16,0))
+					$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
+					$RayCastVertical.set_position(Vector2(-11,1))
+					$Stone_Sword.set_position(Vector2(-25,-6))
+					$Stone_Position.set_position(Vector2(-34,-2))
+					translate(Vector2(-1,0) * speed)
+					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+					animate("run")
+					$Sprite.flip_h = true
+				if (self.global_position.x - get_parent().mass_of_points[c]) < 0:
+					$RayCastHorizontal_1.set_cast_to(Vector2(16,0))
+					$RayCastHorizontal_2.set_cast_to(Vector2(16,0))
+					$RayCastHorizontal_3.set_cast_to(Vector2(16,0))
+					$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
+					$RayCastVertical.set_position(Vector2(11,1))
+					$Stone_Sword.set_position(Vector2(25,-6))
+					$Stone_Position.set_position(Vector2(34,-2))
+					translate(Vector2(1,0) * speed)
+					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+					animate("run")
+					$Sprite.flip_h = false
+				if ((self.global_position.x - get_parent().mass_of_points[c]) < 3 && (self.global_position.x - get_parent().mass_of_points[c]) > -3) && c + 1 != get_parent().mass_of_points.size():
+					c += 1
+				if c + 1 == get_parent().mass_of_points.size():
+					get_parent().in_area_for_artifical_intelligance_controlling = false
+					c = 0
+				
+			else:
+				if $RayCastHorizontal_For_Heroe.get_collider():
+					if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
+						if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_3.get_collider()) && speed != 0:
+							start_jump_enemy()
+				if $RayCastVertical.get_collider() && speed != 0:
+					start_jump_enemy()
+				
+				if(self.global_position.x - heroe.global_position.x) > 0:
+					$RayCastHorizontal_1.set_cast_to(Vector2(-16,0))
+					$RayCastHorizontal_2.set_cast_to(Vector2(-16,0))
+					$RayCastHorizontal_3.set_cast_to(Vector2(-16,0))
+					$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
+					$RayCastVertical.set_position(Vector2(-11,1))
+					$Stone_Sword.set_position(Vector2(-25,-6))
+					$Stone_Position.set_position(Vector2(-34,-2))
+				else:
+					$RayCastHorizontal_1.set_cast_to(Vector2(16,0))
+					$RayCastHorizontal_2.set_cast_to(Vector2(16,0))
+					$RayCastHorizontal_3.set_cast_to(Vector2(16,0))
+					$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
+					$RayCastVertical.set_position(Vector2(11,1))
+					$Stone_Sword.set_position(Vector2(25,-6))
+					$Stone_Position.set_position(Vector2(34,-2))
+				
+				if ((self.global_position.x) - heroe.global_position.x < 0) && $Sprite.get_animation() == "run":
+					translate(Vector2(1,0) * speed)
+					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+
+				if ((self.global_position.x) - heroe.global_position.x > 0) && $Sprite.get_animation() == "run":
+					translate(Vector2(-1,0) * speed)
+					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+				
+				if (((self.global_position.x) - heroe.global_position.x > 55) or ((self.global_position.x) - heroe.global_position.x < -55) or !((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20))) && $Sprite.get_animation() != "stone" && $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
+					if((self.global_position.x) - heroe.global_position.x) > 0:
+						get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+						$Sprite.flip_h = true
+					else:
+						get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+						$Sprite.flip_h = false
+					speed = 2
+					animate("run")
+				
 				if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20)):
 					if((self.global_position.x) - heroe.global_position.x) > 0:
 						$Sprite.flip_h = true
@@ -163,7 +256,7 @@ func _physics_process(delta):
 						var hedgehod_1 = hedgehod.instance()
 						hedgehod_1.position = heroe.global_position - Vector2(0, -25)
 						get_node("..").add_child(hedgehod_1)
-			
+				
 		else:
 			pass
 
@@ -224,7 +317,8 @@ func _on_Timer_Hedgehod_timeout():
 func _on_Area_Of_Jumping_body_entered(body):
 	var heroe = get_parent().get_node("Heroe")
 	if body.has_method("for_jumping") && ((self.global_position.x - body.get_global_position().x > 0 && self.global_position.x - heroe.get_global_position().x > 0) or (self.global_position.x - body.get_global_position().x < 0 && self.global_position.x - heroe.get_global_position().x < 0)) && self.global_position.y - heroe.get_global_position().y > 20:
-		start_jump_enemy()
+		#start_jump_enemy()
+		pass
 
 
 func navigation(number_of_moving):
@@ -291,3 +385,4 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_Timer_Of_Stun_timeout():
 	stun = false
+

@@ -1,9 +1,24 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Tile_Set_For_Fight_Scene.tres" type="TileSet" id=1]
 [ext_resource path="res://Game/LocationsLevels/Max_level_Fight_Scene.gd" type="Script" id=2]
+[ext_resource path="res://Game/Jumping_Platform.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 48.875, 21.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 33.5, 14.5 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 78, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+[sub_resource type="RectangleShape2D" id=5]
 
 [node name="Max_Level_Fight_Scene" type="Node2D"]
+position = Vector2( -42, -219 )
 script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -12,10 +27,277 @@ cell_size = Vector2( 16, 16 )
 collision_layer = 2097215
 collision_mask = 2097215
 format = 1
-tile_data = PoolIntArray( -720869, 3, 0, -589802, 4, 0, -589789, 4, 0, -458735, 4, 0, -458711, 4, 0, -393203, 1, 0, -393168, 1, 0, -262094, 5, 0, -196598, 2, 0, -196592, 4, 0, -196584, 2, 0, -196573, 5, 0, -196569, 4, 0, 0, 0, 0, 8, 0, 0, 16, 0, 0, 35, 0, 0, 43, 0, 0, 51, 0, 0 )
+tile_data = PoolIntArray( -720869, 3, 0, -589802, 4, 0, -589789, 4, 0, -458735, 4, 0, -458711, 4, 0, -393203, 1, 0, -393168, 1, 0, -262094, 5, 0, -196598, 2, 0, -196592, 4, 0, -196584, 2, 0, -196573, 5, 0, -196566, 4, 0, 0, 0, 0, 8, 0, 0, 16, 0, 0, 35, 0, 0, 43, 0, 0, 51, 0, 0 )
 
 [node name="Position_Belotur" type="Position2D" parent="."]
-position = Vector2( 576, -222 )
+position = Vector2( 910, -17 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 94, -27 )
+position = Vector2( 126, -26 )
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+position = Vector2( 485, -195 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="Area2D4" type="Area2D" parent="."]
+visible = false
+position = Vector2( 596, -157 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D4"]
+shape = SubResource( 2 )
+
+[node name="Area2D5" type="Area2D" parent="."]
+visible = false
+position = Vector2( 387, -157 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D5"]
+shape = SubResource( 2 )
+
+[node name="Area2D6" type="Area2D" parent="."]
+visible = false
+position = Vector2( 692, -125 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D6"]
+shape = SubResource( 2 )
+
+[node name="Area2D7" type="Area2D" parent="."]
+visible = false
+position = Vector2( 708, -61 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D7"]
+shape = SubResource( 2 )
+
+[node name="Area2D8" type="Area2D" parent="."]
+visible = false
+position = Vector2( 87, -8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D8"]
+shape = SubResource( 3 )
+
+[node name="Area2D9" type="Area2D" parent="."]
+visible = false
+position = Vector2( 915, -8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D9"]
+position = Vector2( 0.25, 0 )
+shape = SubResource( 3 )
+
+[node name="Area2DT" type="Area2D" parent="."]
+visible = false
+position = Vector2( 305, -8 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT"]
+position = Vector2( 2, 0 )
+shape = SubResource( 3 )
+
+[node name="Area2DT1" type="Area2D" parent="."]
+visible = false
+position = Vector2( 678, -8 )
+scale = Vector2( 1.05, 1 )
+collision_layer = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT1"]
+shape = SubResource( 3 )
+
+[node name="Area2DT2" type="Area2D" parent="."]
+visible = false
+position = Vector2( 292, -61 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT2"]
+shape = SubResource( 2 )
+
+[node name="Area2D3" type="Area2D" parent="."]
+visible = false
+position = Vector2( 308, -125 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+shape = SubResource( 2 )
+
+[node name="Area2DT3" type="Area2D" parent="."]
+visible = false
+position = Vector2( 175, -57 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT3"]
+shape = SubResource( 4 )
+
+[node name="Area2D13" type="Area2D" parent="."]
+visible = false
+position = Vector2( 815, -68 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D13"]
+shape = SubResource( 4 )
+
+[node name="Area2D14" type="Area2D" parent="."]
+visible = false
+position = Vector2( 775, -99 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D14"]
+shape = SubResource( 4 )
+
+[node name="Area2D15" type="Area2D" parent="."]
+visible = false
+position = Vector2( 216, -99 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D15"]
+shape = SubResource( 4 )
+
+[node name="Areas_For_Jumping" type="Area2D" parent="."]
+visible = false
+
+[node name="Jumping_Area" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 647, -100 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area2" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 551, -131 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area2"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area4" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 432, -132 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area4"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area5" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 352, -100 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area5"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area1" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 197, -35 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area1"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area6" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 236, -79 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area6"]
+position = Vector2( 0, 1 )
+shape = SubResource( 5 )
+
+[node name="Jumping_Area8" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 757, -75 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area8"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area9" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 736, -100 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area9"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area10" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 793, -48 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area10"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area7" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 263, -99 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area7"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area11" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 196, -78 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area11"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area12" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 248, -36 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area12"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area13" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 640, -132 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area13"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area3" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 752, -36 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area3"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area14" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 664, -36 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area14"]
+shape = SubResource( 5 )
+
+[node name="Jumping_Area15" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 336, -36 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area15"]
+shape = SubResource( 5 )
+
+[connection signal="body_entered" from="Area2DT" to="." method="_on_Area2DT_body_entered"]
+[connection signal="body_exited" from="Area2DT" to="." method="_on_Area2DT_body_exited"]
+[connection signal="body_entered" from="Area2DT1" to="." method="_on_Area2DT1_body_entered"]
+[connection signal="body_exited" from="Area2DT1" to="." method="_on_Area2DT1_body_exited"]
+[connection signal="body_entered" from="Area2DT2" to="." method="_on_Area2DT2_body_entered"]

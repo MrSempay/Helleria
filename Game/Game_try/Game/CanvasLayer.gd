@@ -32,7 +32,8 @@ func calculate_move_vector(event_position):
 	
 func _physics_process(delta):
 	if GLOBAL.continue_jump && GLOBAL.stop != true:
-			heroe.start_jump_heroe()
+			pass
+			#heroe.start_jump_heroe()
 
 
 func return_move_vector(move_vector):

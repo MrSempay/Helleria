@@ -89,19 +89,24 @@ func _ready():
 	#timer_of_spell.connect("timeout", self, "_Timer_Of_Spell")
 	#timer_of_spell.set_autostart(true)
 
+
 func _physics_process(delta):
+	
+	if Input.is_action_pressed("jump") && !get_parent().has_node("Ghost"):
+		start_jump_heroe()
+	
 	
 	get_node("Stone_Sword/CollisionShape2D").set_disabled(true)
 	
 	
 	if get_parent().has_method("First_Scene"):
 		if GLOBAL.first_cat_scene:
-			if self.get_global_position().x > 2225:
+			if self.get_global_position().x > 2228:
 				$Icon.flip_h = true
 				translate(Vector2(-1,0) * speed)
 				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 				animate("injured")
-			elif self.get_global_position().x < 2225:
+			elif self.get_global_position().x < 2228:
 				animate("door_opening")
 				if $Icon.get_frame() == 4:
 					get_parent().get_node("Door").play("door")
@@ -143,6 +148,7 @@ func _physics_process(delta):
 			animate("run")
 		if GLOBAL.move_vector_1.x == 0:
 			animate("idle")
+		print(true)
 		if GLOBAL.move_vector_1.x > 0:
 			$Stone_Sword.set_position(Vector2(26, 3))
 			$Position_Arrow.set_position(Vector2(22, 4))

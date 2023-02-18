@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Node2D.gd" type="Script" id=1]
 [ext_resource path="res://13831_big.jpg" type="Texture" id=2]
@@ -28,6 +28,8 @@ extents = Vector2( 35.2999, 56.9276 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 256, 150 )
+
+[sub_resource type="RectangleShape2D" id=7]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
@@ -337,3 +339,32 @@ script = ExtResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera_For_Speaking/Area_Of_Dialoge_Camera"]
 shape = SubResource( 6 )
+
+[node name="Areas_For_Jumping" type="Area2D" parent="."]
+
+[node name="Jumping_Area" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2594, 1369 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area"]
+shape = SubResource( 7 )
+
+[node name="Jumping_Area2" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2442, 1417 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area2"]
+shape = SubResource( 7 )
+
+[node name="Jumping_Area3" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2293, 1443 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area3"]
+shape = SubResource( 7 )
