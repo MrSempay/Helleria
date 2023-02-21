@@ -33,14 +33,14 @@ func _physics_process(delta):
 			if !self.get_node("Belotur/RayCastHorizontal_For_Heroe").get_collider().has_method("start_jump_heroe"):
 				match current_position_enemy:
 					"Area2DT":
-						mass_of_points = [198, 231]
+						mass_of_points = [240, 290]
 					"Area2DT1":
-						mass_of_points = [170]
+						mass_of_points = [215]
 					"Area2DT2":
 						if current_position_heroe == "Area2DT":
-							mass_of_points = [198]
+							mass_of_points = [240]
 						else:
-							mass_of_points = [170]
+							mass_of_points = [215]
 					"Area2DT3":
 						point_1
 						point_2

@@ -330,19 +330,27 @@ func _on_Button_Second_pressed():
 func _on_Button_Third_pressed():
 	if $Ray_Cast_Column.get_collider():
 		if $Ray_Cast_Column.get_collider().has_method("enemy"):
+			print($Ray_Cast_Column.get_collider().global_position)
+			print(get_parent().get_node("Belotur").global_position)
 			$Icon.play("сolumn")
 			mana_using(25)
 			var column_1 = column.instance()
-			column_1.position = $Ray_Cast_Column.get_collider().global_position - Vector2(0, -16)
+			column_1.global_position = $Ray_Cast_Column.get_collider().global_position - Vector2(0, -16)
+			print(column_1.global_position)
 			get_parent().add_child(column_1)
+			print(get_parent().get_node("Column").global_position)
 			get_node("Buttons_Of_Heroe/Button_Third").set_disabled(true)
 			get_node("Buttons_Of_Heroe/Button_Third/Timer_Of_Column").start()
 	if $Ray_Cast_Random_Spell.get_collider() && !get_parent().has_node("Column"):
+			print(true)
 			$Icon.play("сolumn")
 			mana_using(25)
 			var column_1 = column.instance()
 			column_1.position = $Ray_Cast_Random_Spell.get_collision_point()
+			print($Ray_Cast_Random_Spell.get_collision_point())
 			get_parent().add_child(column_1)
+			print(column_1.position)
+			print(get_parent().get_node("Column").position)
 			get_node("Buttons_Of_Heroe/Button_Third").set_disabled(true)
 			get_node("Buttons_Of_Heroe/Button_Third/Timer_Of_Column").start()
 	

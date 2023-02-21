@@ -18,7 +18,6 @@ extents = Vector2( 78, 10 )
 [sub_resource type="RectangleShape2D" id=5]
 
 [node name="Max_Level_Fight_Scene" type="Node2D"]
-position = Vector2( -42, -219 )
 script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]

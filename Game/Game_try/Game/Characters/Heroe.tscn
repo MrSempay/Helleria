@@ -416,7 +416,7 @@ margin_bottom = 40.0
 visible = false
 enabled = true
 cast_to = Vector2( 274, 0 )
-collision_mask = 63
+collision_mask = 512
 
 [node name="Ray_Cast_Random_Spell" type="RayCast2D" parent="."]
 visible = false

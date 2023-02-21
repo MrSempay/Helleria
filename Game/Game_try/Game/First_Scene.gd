@@ -53,7 +53,7 @@ func _ready():
 	if GLOBAL.first_cat_scene:
 		$Position_Belotur.set_global_position(Vector2(3535, 1528))
 	else:
-		$Position_Belotur.set_global_position(Vector2(1182, 1400))
+		$Position_Belotur.set_global_position(Vector2(1600, 1340))
 		
 	if GLOBAL.first_cat_scene:
 		$Position_Adalard.set_global_position(Vector2(3535, 1528))

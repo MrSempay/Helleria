@@ -8,6 +8,9 @@ var enemy_44 = preload("res://Game/Characters/Enemy44.tscn")
 var heroe = preload("res://Game/Characters/Heroe.tscn")
 
 
+var in_area_for_artifical_intelligance_controlling
+var mass_of_points = []
+
 func Fight_Scene():
 	pass
 

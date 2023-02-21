@@ -328,6 +328,70 @@ offset = Vector2( 3.31152, 6.80664 )
 position = Vector2( 0, 323.289 )
 shape = SubResource( 5 )
 
+[node name="JP1" type="StaticBody2D" parent="StaticBody2D2"]
+position = Vector2( 2686, 1972 )
+scale = Vector2( 0.151, 0.0734632 )
+collision_layer = 2097183
+collision_mask = 2097183
+script = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="StaticBody2D2/JP1"]
+position = Vector2( 0, 326.693 )
+texture = ExtResource( 2 )
+offset = Vector2( 3.31152, 6.80664 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/JP1"]
+position = Vector2( 0, 323.289 )
+shape = SubResource( 5 )
+
+[node name="JP2" type="StaticBody2D" parent="StaticBody2D2"]
+position = Vector2( 2478, 1973 )
+scale = Vector2( 0.151, 0.0734632 )
+collision_layer = 2097183
+collision_mask = 2097183
+script = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="StaticBody2D2/JP2"]
+position = Vector2( 0, 326.693 )
+texture = ExtResource( 2 )
+offset = Vector2( 3.31152, 6.80664 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/JP2"]
+position = Vector2( 0, 323.289 )
+shape = SubResource( 5 )
+
+[node name="JP3" type="StaticBody2D" parent="StaticBody2D2"]
+position = Vector2( 2582, 1860 )
+scale = Vector2( 0.151, 0.0734632 )
+collision_layer = 2097183
+collision_mask = 2097183
+script = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="StaticBody2D2/JP3"]
+position = Vector2( 0, 326.693 )
+texture = ExtResource( 2 )
+offset = Vector2( 3.31152, 6.80664 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/JP3"]
+position = Vector2( 0, 323.289 )
+shape = SubResource( 5 )
+
+[node name="JP4" type="StaticBody2D" parent="StaticBody2D2"]
+position = Vector2( 2362, 1860 )
+scale = Vector2( 0.151, 0.0734632 )
+collision_layer = 2097183
+collision_mask = 2097183
+script = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="StaticBody2D2/JP4"]
+position = Vector2( 0, 326.693 )
+texture = ExtResource( 2 )
+offset = Vector2( 3.31152, 6.80664 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/JP4"]
+position = Vector2( 0, 323.289 )
+shape = SubResource( 5 )
+
 [node name="Camera_For_Speaking" type="Camera2D" parent="."]
 visible = false
 position = Vector2( 1753, 1812 )

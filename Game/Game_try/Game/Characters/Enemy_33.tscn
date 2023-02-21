@@ -160,8 +160,8 @@ extents = Vector2( 31, 14 )
 [node name="Belotur" type="KinematicBody2D"]
 position = Vector2( 328, 165 )
 z_index = 3
-collision_layer = 4
-collision_mask = 4
+collision_layer = 516
+collision_mask = 516
 script = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
@@ -199,7 +199,7 @@ margin_top = -35.0
 margin_right = 200.0
 margin_bottom = -13.0
 rect_scale = Vector2( 0.25, 0.25 )
-max_value = 10.0
+max_value = 200.0
 value = 10.0
 texture_progress = ExtResource( 1 )
 tint_progress = Color( 1, 0, 0, 1 )
@@ -229,7 +229,8 @@ margin_top = -36.0
 margin_right = 20.0
 margin_bottom = 12.0
 rect_scale = Vector2( 0.5, 0.5 )
-text = "10
+text = "200
+
 
 
 "
