@@ -35,6 +35,8 @@ var Button1 = Button.new()
 var speed = 2.5
 var armor = 1
 var defense = 1
+var counter_of_stone_sword = 0
+var saving_current_animation_of_stone_sword
 
 
 var file = File.new()
@@ -91,6 +93,7 @@ func _ready():
 
 
 func _physics_process(delta):
+
 	
 	if Input.is_action_pressed("jump") && !get_parent().has_node("Ghost"):
 		start_jump_heroe()
@@ -117,6 +120,14 @@ func _physics_process(delta):
 		"stone_sword":
 			speed = 0
 			if $Icon.get_frame() == 14:
+				get_node("Stone_Sword/CollisionShape2D").set_disabled(false)
+		"stone_sword_1":
+			speed = 0
+			if $Icon.get_frame() == 14:
+				get_node("Stone_Sword/CollisionShape2D").set_disabled(false)
+		"stone_sword_2":
+			speed = 0
+			if $Icon.get_frame() == 6:
 				get_node("Stone_Sword/CollisionShape2D").set_disabled(false)
 		"bow":
 			speed = 0
@@ -304,15 +315,37 @@ func _on_Icon_animation_finished():
 					pass
 			self.queue_free()
 		"stone_sword":
+			get_node("Buttons_Of_Heroe/Button_First").set_disabled(false)
+			$Icon.play("idle")
+			get_node("Buttons_Of_Heroe/Button_First/Timer_Of_First_Animation_Sword").start()
+		"stone_sword_1":
+			get_node("Buttons_Of_Heroe/Button_First").set_disabled(false)
+			$Icon.play("idle")
+		"stone_sword_2":
+			get_node("Buttons_Of_Heroe/Button_First").set_disabled(false)
 			$Icon.play("idle")
 		"bow":
 			$Icon.play("idle")
 
 
 func _on_Button_First_pressed():
-	if !$Icon.get_animation() == "stone_sword":
-		animate("stone_sword")
+	print(counter_of_stone_sword)
+	counter_of_stone_sword += 1
+	if !$Icon.get_animation() == "stone_sword" && !$Icon.get_animation() == "stone_sword_1" && !$Icon.get_animation() == "stone_sword_2":
 		mana_using(10)
+		match counter_of_stone_sword:
+			1:
+				animate("stone_sword")
+				get_node("Buttons_Of_Heroe/Button_First").set_disabled(true)
+				saving_current_animation_of_stone_sword = 1
+			2:
+				animate("stone_sword_1")
+				get_node("Buttons_Of_Heroe/Button_First").set_disabled(true)
+				saving_current_animation_of_stone_sword = 2
+			3:
+				get_node("Buttons_Of_Heroe/Button_First").set_disabled(true)
+				counter_of_stone_sword = 0
+				animate("stone_sword_2")
 
 
 func _on_Button_Second_pressed():
@@ -367,3 +400,9 @@ func _on_Timer_Of_Bow_timeout():
 
 func _on_Timer_Of_Column_timeout():
 	get_node("Buttons_Of_Heroe/Button_Third").set_disabled(false)
+
+
+func _on_Timer_Of_First_Animation_Sword_timeout():
+	if saving_current_animation_of_stone_sword == counter_of_stone_sword:
+		counter_of_stone_sword = 0
+
