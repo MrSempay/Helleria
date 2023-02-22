@@ -192,12 +192,12 @@ animations = [ {
 "frames": [ ExtResource( 71 ), ExtResource( 59 ), ExtResource( 55 ), ExtResource( 72 ), ExtResource( 85 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 75 ), ExtResource( 60 ), ExtResource( 49 ), ExtResource( 77 ), ExtResource( 51 ), ExtResource( 54 ), ExtResource( 78 ), ExtResource( 61 ), ExtResource( 80 ), ExtResource( 52 ), ExtResource( 64 ), ExtResource( 53 ), ExtResource( 57 ), ExtResource( 58 ) ],
 "loop": false,
 "name": "stone_sword",
-"speed": 35.0
+"speed": 27.0
 }, {
 "frames": [ ExtResource( 71 ), ExtResource( 59 ), ExtResource( 55 ), ExtResource( 72 ), ExtResource( 85 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 75 ), ExtResource( 60 ), ExtResource( 49 ), ExtResource( 99 ), ExtResource( 97 ), ExtResource( 101 ), ExtResource( 13 ), ExtResource( 93 ), ExtResource( 105 ), ExtResource( 100 ), ExtResource( 108 ), ExtResource( 94 ) ],
 "loop": false,
 "name": "stone_sword_1",
-"speed": 32.0
+"speed": 24.0
 }, {
 "frames": [ ExtResource( 106 ), ExtResource( 95 ), ExtResource( 109 ), ExtResource( 96 ), ExtResource( 98 ), ExtResource( 102 ), ExtResource( 104 ), ExtResource( 103 ), ExtResource( 107 ) ],
 "loop": false,
@@ -356,6 +356,7 @@ text = "First Spell"
 script = ExtResource( 1 )
 
 [node name="Timer_Of_First_Animation_Sword" type="Timer" parent="Buttons_Of_Heroe/Button_First"]
+wait_time = 1.5
 one_shot = true
 
 [node name="Button_Second" type="Button" parent="Buttons_Of_Heroe"]
