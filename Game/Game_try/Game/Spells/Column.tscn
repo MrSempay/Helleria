@@ -39,6 +39,7 @@ one_shot = true
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -1, -10 )
 shape = SubResource( 2 )
 

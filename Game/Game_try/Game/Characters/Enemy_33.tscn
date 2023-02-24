@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=2]
+[gd_scene load_steps=97 format=2]
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
 [ext_resource path="res://Game/Enemy_3.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++14.png" type="Texture" id=14]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++15.png" type="Texture" id=15]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++16.png" type="Texture" id=16]
+[ext_resource path="res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3" type="AudioStream" id=17]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч12.png" type="Texture" id=21]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч9.png" type="Texture" id=22]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++3.png" type="Texture" id=23]
@@ -145,17 +146,48 @@ animations = [ {
 "frames": [ ExtResource( 45 ), ExtResource( 76 ), ExtResource( 75 ), ExtResource( 77 ), ExtResource( 78 ), ExtResource( 79 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 3 ), ExtResource( 21 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 80 ), ExtResource( 81 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 85 ), ExtResource( 84 ) ],
 "loop": false,
 "name": "stoneSword",
-"speed": 20.0
+"speed": 30.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 167, 53.5 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 26, 21.5 )
+extents = Vector2( 26, 33.75 )
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 31, 14 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "EXTRA"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [node name="Belotur" type="KinematicBody2D"]
 position = Vector2( 328, 165 )
@@ -166,7 +198,7 @@ script = ExtResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -6 )
-scale = Vector2( 0.55921, 1 )
+scale = Vector2( 0.559, 1 )
 polygon = PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 )
 one_way_collision_margin = 12.0
 
@@ -200,7 +232,7 @@ margin_right = 200.0
 margin_bottom = -13.0
 rect_scale = Vector2( 0.25, 0.25 )
 max_value = 200.0
-value = 10.0
+value = 200.0
 texture_progress = ExtResource( 1 )
 tint_progress = Color( 1, 0, 0, 1 )
 nine_patch_stretch = true
@@ -246,6 +278,7 @@ text = "250
 "
 
 [node name="Trigger_Area" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Area"]
 position = Vector2( 0, -21.5 )
@@ -256,19 +289,23 @@ one_way_collision_margin = 0.0
 position = Vector2( 34, -2 )
 
 [node name="Stone_Sword" type="Area2D" parent="."]
+visible = false
 position = Vector2( 25, -6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stone_Sword"]
+position = Vector2( 0, -12.25 )
 shape = SubResource( 4 )
 disabled = true
 
 [node name="Area_Of_Jumping" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, -6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_Of_Jumping"]
 shape = SubResource( 7 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
 
 [node name="Timer_Of_Stun" type="Timer" parent="."]
 wait_time = 3.0
@@ -306,6 +343,21 @@ position = Vector2( 11, 1 )
 enabled = true
 cast_to = Vector2( 0, 22 )
 collision_mask = 4194304
+
+[node name="RayCastVertical_2" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0, -6 )
+enabled = true
+cast_to = Vector2( 0, -15 )
+collision_mask = 2097152
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 17 )
+autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/EXTRA = SubResource( 8 )
+anims/RESET = SubResource( 9 )
 
 [connection signal="timeout" from="Timer_Stone" to="." method="_on_Timer_Stone_timeout"]
 [connection signal="timeout" from="Timer_Stone_Sword" to="." method="_on_Timer_Stone_Sword_timeout"]

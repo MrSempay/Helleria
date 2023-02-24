@@ -140,7 +140,7 @@ position = Vector2( 1857, 1803 )
 position = Vector2( 1645, 1803 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 722, 1424 )
+position = Vector2( 2359, 1803 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 4 )
@@ -329,7 +329,7 @@ position = Vector2( 0, 323.289 )
 shape = SubResource( 5 )
 
 [node name="JP1" type="StaticBody2D" parent="StaticBody2D2"]
-position = Vector2( 2686, 1972 )
+position = Vector2( 2687, 1947 )
 scale = Vector2( 0.151, 0.0734632 )
 collision_layer = 2097183
 collision_mask = 2097183
@@ -345,7 +345,7 @@ position = Vector2( 0, 323.289 )
 shape = SubResource( 5 )
 
 [node name="JP2" type="StaticBody2D" parent="StaticBody2D2"]
-position = Vector2( 2478, 1973 )
+position = Vector2( 2471, 1942 )
 scale = Vector2( 0.151, 0.0734632 )
 collision_layer = 2097183
 collision_mask = 2097183
@@ -361,7 +361,7 @@ position = Vector2( 0, 323.289 )
 shape = SubResource( 5 )
 
 [node name="JP3" type="StaticBody2D" parent="StaticBody2D2"]
-position = Vector2( 2582, 1860 )
+position = Vector2( 2592, 1893 )
 scale = Vector2( 0.151, 0.0734632 )
 collision_layer = 2097183
 collision_mask = 2097183
@@ -389,6 +389,70 @@ texture = ExtResource( 2 )
 offset = Vector2( 3.31152, 6.80664 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/JP4"]
+position = Vector2( 0, 323.289 )
+shape = SubResource( 5 )
+
+[node name="JP5" type="StaticBody2D" parent="StaticBody2D2"]
+position = Vector2( 2869, 1973 )
+scale = Vector2( 0.151, 0.0734632 )
+collision_layer = 2097183
+collision_mask = 2097183
+script = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="StaticBody2D2/JP5"]
+position = Vector2( 0, 326.693 )
+texture = ExtResource( 2 )
+offset = Vector2( 3.31152, 6.80664 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/JP5"]
+position = Vector2( 0, 323.289 )
+shape = SubResource( 5 )
+
+[node name="JP6" type="StaticBody2D" parent="StaticBody2D2"]
+position = Vector2( 2815, 2085 )
+scale = Vector2( 0.151, 0.0734632 )
+collision_layer = 2097183
+collision_mask = 2097183
+script = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="StaticBody2D2/JP6"]
+position = Vector2( 0, 326.693 )
+texture = ExtResource( 2 )
+offset = Vector2( 3.31152, 6.80664 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/JP6"]
+position = Vector2( 0, 323.289 )
+shape = SubResource( 5 )
+
+[node name="JP7" type="StaticBody2D" parent="StaticBody2D2"]
+position = Vector2( 2639, 2054 )
+scale = Vector2( 0.151, 0.0734632 )
+collision_layer = 2097183
+collision_mask = 2097183
+script = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="StaticBody2D2/JP7"]
+position = Vector2( 0, 326.693 )
+texture = ExtResource( 2 )
+offset = Vector2( 3.31152, 6.80664 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/JP7"]
+position = Vector2( 0, 323.289 )
+shape = SubResource( 5 )
+
+[node name="JP8" type="StaticBody2D" parent="StaticBody2D2"]
+position = Vector2( 2806, 1862 )
+scale = Vector2( 0.151, 0.0734632 )
+collision_layer = 2097183
+collision_mask = 2097183
+script = ExtResource( 8 )
+
+[node name="Sprite3" type="Sprite" parent="StaticBody2D2/JP8"]
+position = Vector2( 0, 326.693 )
+texture = ExtResource( 2 )
+offset = Vector2( 3.31152, 6.80664 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/JP8"]
 position = Vector2( 0, 323.289 )
 shape = SubResource( 5 )
 

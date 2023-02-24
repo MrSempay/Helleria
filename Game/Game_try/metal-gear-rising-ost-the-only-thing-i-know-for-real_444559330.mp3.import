@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3-beb069a753c1dfcf45f025a2e80b1435.mp3str"
+
+[deps]
+
+source_file="res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3"
+dest_files=[ "res://.import/metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3-beb069a753c1dfcf45f025a2e80b1435.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

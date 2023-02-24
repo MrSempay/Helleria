@@ -17,7 +17,7 @@ var sprite_position = Vector2(67,0)
 var damage_stone_sword = 10
 var JUMP_POWER = 500
 var stun = false
-
+var EXTRA = false
 
 onready var collision_of_jumping_area = get_node("Area_Of_Jumping/CollisionShape2D")
 onready var timer_of_stone = get_node("Timer_Stone")
@@ -43,7 +43,8 @@ var moving_state
 var number_of_moving
 
 func _ready():
-	pass
+	if get_parent().has_method("Fight_Scene"):
+		$AudioStreamPlayer2D.stream = load("res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3")
 
 
 func enemy():
@@ -68,6 +69,19 @@ func mana_using(manacost):
 
 #test_move()
 func _physics_process(delta):
+	
+	
+	if $HP_Enemy_1.value <= 50 && !EXTRA:
+		EXTRA = true
+		stun = true
+		$HP_Enemy_1.value += 100
+		$Timer_Of_Stun.start()
+		$CollisionPolygon2D.set_scale(Vector2(0.353, 0.6))
+		$AnimationPlayer.play("EXTRA")
+		$Sprite.position.y = $Sprite.position.y - 7
+		$Stone_Sword.position.y = $Sprite.position.y - 7
+		$AudioStreamPlayer2D.stream = load("res://Jamie_Christopherson_-_Collective_Consciousness_OST_Metal_Gear_Rising_63269381.mp3")
+		$AudioStreamPlayer2D.play()
 	velocity.x = 0
 
 	if is_on_floor():
@@ -97,7 +111,6 @@ func _physics_process(delta):
 		var heroe = get_parent().get_node("Heroe")
 		var ally = get_parent().get_node("Ally")
 		if trigger_of_ally && !get_parent().has_method("Fight_Scene"):
-			
 			if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_3.get_collider()) && speed != 0:
 				start_jump_enemy()
 			if $RayCastVertical.get_collider() && speed != 0:
@@ -134,9 +147,18 @@ func _physics_process(delta):
 			
 				
 		if get_parent().has_method("Fight_Scene"):
-			if get_parent().in_area_for_artifical_intelligance_controlling && get_parent().mass_of_points.size() != 0:
+			#print(get_parent().in_area_for_artifical_intelligance_controlling)
+			#print(get_parent().mass_of_points)
+			#print(get_parent().in_area_for_artifical_intelligance_controlling)
+			if get_parent().in_area_for_artifical_intelligance_controlling && get_parent().mass_of_points != []:
 				speed = 2
-				if $RayCastHorizontal_For_Heroe.get_collider():
+				#print(false)
+				#print(c)
+				#print(self.global_position)
+				if c == get_parent().mass_of_points.size() or get_parent().mass_of_points == []:
+					get_parent().in_area_for_artifical_intelligance_controlling = false
+					c = 0
+				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 					if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
 						if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_3.get_collider()) && speed != 0:
 							start_jump_enemy()
@@ -151,7 +173,7 @@ func _physics_process(delta):
 					$Stone_Sword.set_position(Vector2(-25,-6))
 					$Stone_Position.set_position(Vector2(-34,-2))
 					translate(Vector2(-1,0) * speed)
-					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+					#get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 					animate("run")
 					$Sprite.flip_h = true
 				if (self.global_position.x - get_parent().mass_of_points[c]) < 0:
@@ -163,16 +185,14 @@ func _physics_process(delta):
 					$Stone_Sword.set_position(Vector2(25,-6))
 					$Stone_Position.set_position(Vector2(34,-2))
 					translate(Vector2(1,0) * speed)
-					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+					#get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 					animate("run")
 					$Sprite.flip_h = false
 				if ((self.global_position.x - get_parent().mass_of_points[c]) < 3 && (self.global_position.x - get_parent().mass_of_points[c]) > -3) && c + 1 != get_parent().mass_of_points.size():
 					c += 1
-				if c + 1 == get_parent().mass_of_points.size():
-					get_parent().in_area_for_artifical_intelligance_controlling = false
-					c = 0
 				
 			else:
+				#print(true)
 				if $RayCastHorizontal_For_Heroe.get_collider():
 					if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
 						if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_3.get_collider()) && speed != 0:
@@ -212,50 +232,56 @@ func _physics_process(delta):
 					else:
 						get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 						$Sprite.flip_h = false
+					if EXTRA:
+						$Sprite.set_speed_scale(3)
 					speed = 2
 					animate("run")
 				
-				if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20)):
+				if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 30) && (self.get_position().y - heroe.get_position().y > -30)): 
 					if((self.global_position.x) - heroe.global_position.x) > 0:
 						$Sprite.flip_h = true
 					else:
 						$Sprite.flip_h = false
 					speed = 0
+					if EXTRA:
+						timer_of_stone_sword.set_wait_time(0.3)
 					timer_of_stone_sword.start()
 					stone_sword_ready = false
 					animate("stoneSword")
 				if stone_sword_finished:
 					collision_of_stone_sword.set_disabled(false)
 					stone_sword_finished = false
-					
-				if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && stone_ready && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20)):
-					if $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
-						if((self.global_position.x) - heroe.global_position.x) > 0:
-							$Sprite.flip_h = true
-						else:
-							$Sprite.flip_h = false
-						timer_of_stone.start()
-						speed = 0
-						stone_ready = false
-						animate("stone")
-						var stone_1 = stone.instance()
-						stone_1.position = $Stone_Position.global_position
-						get_node("..").add_child(stone_1)
-						stone_finished = true
+				
+				if $RayCastHorizontal_For_Heroe.get_collider() && get_parent().get_node("Heroe/RayCastForFloor").get_collider():
+					if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && stone_ready && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 20) && (self.get_position().y - heroe.get_position().y > -20)) && $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
+						if $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
+							if((self.global_position.x) - heroe.global_position.x) > 0:
+								$Sprite.flip_h = true
+							else:
+								$Sprite.flip_h = false
+							timer_of_stone.start()
+							speed = 0
+							stone_ready = false
+							animate("stone")
+							var stone_1 = stone.instance()
+							stone_1.position = $Stone_Position.global_position
+							get_node("..").add_child(stone_1)
+							stone_finished = true
 							
-				if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && hedgehod_ready && is_on_floor():
-					if $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "stone":
-						if((self.global_position.x) - heroe.global_position.x) > 0:
-							$Sprite.flip_h = true
-						else:
-							$Sprite.flip_h = false
-						timer_of_hedgehod.start()
-						speed = 0
-						hedgehod_ready = false
-						animate("hedgehod")
-						var hedgehod_1 = hedgehod.instance()
-						hedgehod_1.position = heroe.global_position - Vector2(0, -25)
-						get_node("..").add_child(hedgehod_1)
+			if $RayCastHorizontal_For_Heroe.get_collider() && get_parent().get_node("Heroe/RayCastForFloor").get_collider():
+					if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && hedgehod_ready && is_on_floor() && $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
+						if $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "stone":
+							if((self.global_position.x) - heroe.global_position.x) > 0:
+								$Sprite.flip_h = true
+							else:
+								$Sprite.flip_h = false
+							timer_of_hedgehod.start()
+							speed = 0
+							hedgehod_ready = false
+							animate("hedgehod")
+							var hedgehod_1 = hedgehod.instance()
+							hedgehod_1.position = heroe.global_position - Vector2(0, -25)
+							get_node("..").add_child(hedgehod_1)
 				
 		else:
 			pass
