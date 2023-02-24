@@ -45,7 +45,7 @@ var number_of_moving
 func _ready():
 	if get_parent().has_method("Fight_Scene"):
 		$AudioStreamPlayer2D.stream = load("res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3")
-
+		$AudioStreamPlayer2D.play()
 
 func enemy():
 	pass
