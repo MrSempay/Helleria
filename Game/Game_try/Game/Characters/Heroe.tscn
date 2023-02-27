@@ -281,7 +281,6 @@ shape = SubResource( 21 )
 disabled = true
 
 [node name="HP_Heroe" type="TextureProgress" parent="."]
-visible = false
 margin_left = -20.0
 margin_top = -27.0
 margin_right = 125.0
@@ -297,7 +296,6 @@ nine_patch_stretch = true
 autostart = true
 
 [node name="Mana_Heroe" type="TextureProgress" parent="."]
-visible = false
 margin_left = -20.0
 margin_top = -22.0
 margin_right = 125.0

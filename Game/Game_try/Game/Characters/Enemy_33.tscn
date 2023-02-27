@@ -226,7 +226,6 @@ animation = "run"
 frame = 3
 
 [node name="HP_Enemy_1" type="TextureProgress" parent="."]
-visible = false
 margin_left = -30.0
 margin_top = -35.0
 margin_right = 200.0
@@ -242,7 +241,6 @@ nine_patch_stretch = true
 autostart = true
 
 [node name="Mana_Enemy_1" type="TextureProgress" parent="."]
-visible = false
 margin_left = -30.0
 margin_top = -30.0
 margin_right = 200.0
@@ -291,7 +289,6 @@ one_way_collision_margin = 0.0
 position = Vector2( 34, -2 )
 
 [node name="Stone_Sword" type="Area2D" parent="."]
-visible = false
 position = Vector2( 25, -6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stone_Sword"]
