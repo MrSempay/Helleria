@@ -281,6 +281,7 @@ shape = SubResource( 21 )
 disabled = true
 
 [node name="HP_Heroe" type="TextureProgress" parent="."]
+visible = false
 margin_left = -20.0
 margin_top = -27.0
 margin_right = 125.0
@@ -296,6 +297,7 @@ nine_patch_stretch = true
 autostart = true
 
 [node name="Mana_Heroe" type="TextureProgress" parent="."]
+visible = false
 margin_left = -20.0
 margin_top = -22.0
 margin_right = 125.0
@@ -456,6 +458,7 @@ cast_to = Vector2( 246, 0 )
 collision_mask = 2097152
 
 [node name="RayCastForFloor" type="RayCast2D" parent="."]
+visible = false
 enabled = true
 cast_to = Vector2( 0, 26 )
 collision_mask = 2097152
