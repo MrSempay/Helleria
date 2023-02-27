@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Jamie_Christopherson_-_Collective_Consciousness_OST_Metal_Gear_Rising_63269381.mp3-17b6f2f3e1689cc4247c0747aa24db1e.mp3str"
+
+[deps]
+
+source_file="res://Jamie_Christopherson_-_Collective_Consciousness_OST_Metal_Gear_Rising_63269381.mp3"
+dest_files=[ "res://.import/Jamie_Christopherson_-_Collective_Consciousness_OST_Metal_Gear_Rising_63269381.mp3-17b6f2f3e1689cc4247c0747aa24db1e.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

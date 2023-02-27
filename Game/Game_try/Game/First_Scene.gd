@@ -53,7 +53,7 @@ func _ready():
 	if GLOBAL.first_cat_scene:
 		$Position_Belotur.set_global_position(Vector2(3535, 1528))
 	else:
-		$Position_Belotur.set_global_position(Vector2(1182, 1400))
+		$Position_Belotur.set_global_position(Vector2(1600, 1340))
 		
 	if GLOBAL.first_cat_scene:
 		$Position_Adalard.set_global_position(Vector2(3535, 1528))
@@ -85,10 +85,11 @@ func _ready():
 	
 func _physics_process(delta):
 	
+	
 	if !GLOBAL.first_cat_scene && GLOBAL.life_Belotur == true:
-		if (($Belotur.global_position.x) - $Heroe.global_position.x < 25) && (($Belotur.global_position.x) - $Heroe.global_position.x > -26):
+		if (($Belotur.global_position.x) - $Heroe.global_position.x < 25) && (($Belotur.global_position.x) - $Heroe.global_position.x > -26) && (($Belotur.global_position.y) - $Heroe.global_position.y < 15) && (($Belotur.global_position.y) - $Heroe.global_position.y > -15):
 			GLOBAL.position_heroe_before_fight = $Heroe.global_position
-			GLOBAL.scene("Max_level_Fight_Scene")
+			#GLOBAL.scene("Max_level_Fight_Scene")
 	
 	if !self.has_node("Heroe") && !stop_Aglea_1M && GLOBAL.first_cat_scene:
 		$Aglea.number_of_moving = 1
