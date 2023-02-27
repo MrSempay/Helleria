@@ -16,7 +16,7 @@ script = ExtResource( 2 )
 position = Vector2( 2602, 1527 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 2160, 976 )
+position = Vector2( 1948, 1508 )
 
 [node name="Position_Aglea" type="Position2D" parent="."]
 position = Vector2( 2674, 1528 )
