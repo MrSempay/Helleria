@@ -289,6 +289,7 @@ one_way_collision_margin = 0.0
 position = Vector2( 34, -2 )
 
 [node name="Stone_Sword" type="Area2D" parent="."]
+visible = false
 position = Vector2( 25, -6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Stone_Sword"]

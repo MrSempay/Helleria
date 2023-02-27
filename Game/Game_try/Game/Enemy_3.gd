@@ -72,7 +72,7 @@ func mana_using(manacost):
 	$value_of_Mana.text = str($Mana_Enemy_1.value)
 
 #test_move()
-func _process(delta):
+func _physics_process(delta):
 	
 	if get_parent().has_node("NavigationPolygonInstance") && get_parent().has_node("Heroe"):
 		$NavigationAgent2D.set_target_location(get_parent().get_node("Heroe").global_position)
@@ -376,6 +376,7 @@ func _on_Sprite_animation_finished():
 
 
 func _on_Stone_Sword_body_entered(body: Node2D):
+	print(true)
 	if body.has_method("handle_hit") && body.has_method("start_jump_heroe"):
 		body.handle_hit(damage_stone_sword)
 

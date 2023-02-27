@@ -231,9 +231,6 @@ particles_anim_loop = false
 position = Vector2( 444, 370 )
 z_index = 3
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_horizontal_guides_": [ 395.0 ]
-}
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -1, 1.49786 )
