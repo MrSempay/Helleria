@@ -366,11 +366,16 @@ anims/EXTRA = SubResource( 8 )
 anims/RESET = SubResource( 9 )
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 0.3
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+path_max_distance = 25.0
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
 width = 5.0
+
+[node name="Timer_Stop_Machine" type="Timer" parent="."]
+wait_time = 0.3
 
 [connection signal="timeout" from="Timer_Stone" to="." method="_on_Timer_Stone_timeout"]
 [connection signal="timeout" from="Timer_Stone_Sword" to="." method="_on_Timer_Stone_Sword_timeout"]
@@ -383,3 +388,4 @@ width = 5.0
 [connection signal="body_entered" from="Area_Of_Jumping" to="." method="_on_Area_Of_Jumping_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="Timer_Of_Stun" to="." method="_on_Timer_Of_Stun_timeout"]
+[connection signal="timeout" from="Timer_Stop_Machine" to="." method="_on_Timer_Stop_Machine_timeout"]

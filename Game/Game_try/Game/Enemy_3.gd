@@ -26,7 +26,7 @@ onready var timer_of_hedgehod = get_node("Timer_Hedgehod")
 onready var collision_of_stone_sword = get_node("Stone_Sword/CollisionShape2D")
 onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
-
+var stop_machine = false
 var stop_distance_to_point = 1
 var dialoge_window = preload("res://Game/Dialoge_Window.tscn")
 var array_dialoge_flags = []
@@ -81,7 +81,7 @@ func _physics_process(delta):
 		#$Line2D.points = $NavigationAgent2D.get_nav_path()
 		#$Line2D.points = [self.global_position,get_parent().get_node("Heroe").global_position]
 		#print(get_parent().get_node("Heroe").global_position)
-	
+		#print($NavigationAgent2D.get_next_location())
 		
 		
 	if $HP_Enemy_1.value <= 50 && !EXTRA:
@@ -123,7 +123,8 @@ func _physics_process(delta):
 	if get_parent().has_node("Heroe") && !stun:
 		var heroe = get_parent().get_node("Heroe")
 		var ally = get_parent().get_node("Ally")
-		if trigger_of_ally && !get_parent().has_method("Fight_Scene"):       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
+		#print(stop_machine)
+		if trigger_of_ally && !get_parent().has_method("Fight_Scene") && !stop_machine:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
 			#print(speed)
 			if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 				if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
@@ -145,16 +146,17 @@ func _physics_process(delta):
 			#print(get_parent().get_node("Line2D").points[j].x)
 						
 			#print(get_parent().get_node("Heroe").global_position.x)
-			print(get_parent().get_node("Line2D").points.size())
+			#print(get_parent().get_node("Line2D").points.size())
 			print(get_parent().get_node("Line2D").points)
 			if get_parent().get_node("Line2D").points.size() == 2:
-				stop_distance_to_point = 20
+				stop_distance_to_point = 2
 			else:
-				stop_distance_to_point = 1
+				stop_distance_to_point = 2
 			
 			if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) > stop_distance_to_point:
 					#print(get_parent().get_node("Line2D").points[j].x)
 					speed = 2
+					print(true)
 					$RayCastHorizontal_1.set_cast_to(Vector2(-16,0))
 					$RayCastHorizontal_2.set_cast_to(Vector2(-16,0))
 					$RayCastHorizontal_3.set_cast_to(Vector2(-16,0))
@@ -170,6 +172,7 @@ func _physics_process(delta):
 			if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) < -stop_distance_to_point:
 					#print(get_parent().get_node("Line2D").points[j].x)
 					speed = 2
+					print(false)
 					$RayCastHorizontal_1.set_cast_to(Vector2(16,0))
 					$RayCastHorizontal_2.set_cast_to(Vector2(16,0))
 					$RayCastHorizontal_3.set_cast_to(Vector2(16,0))
@@ -182,9 +185,9 @@ func _physics_process(delta):
 					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 					animate("run")
 					$Sprite.flip_h = false
-			if (self.global_position.x - get_parent().get_node("Heroe").global_position.x) > -stop_distance_to_point && (self.global_position.x - get_parent().get_node("Heroe").global_position.x) < stop_distance_to_point:
-				speed = 0
-				animate("idle")
+			#if (self.global_position.x - get_parent().get_node("Heroe").global_position.x) > -stop_distance_to_point && (self.global_position.x - get_parent().get_node("Heroe").global_position.x) < stop_distance_to_point:
+			#	speed = 0
+			#	animate("idle")
 			if ((self.global_position.x - get_parent().get_node("Line2D").points[j].x) < stop_distance_to_point && (self.global_position.x - get_parent().get_node("Line2D").points[j].x) > -stop_distance_to_point) && j != get_parent().get_node("Line2D").points.size():
 				if get_parent().get_node("Line2D").points.size() != 2:
 					j += 1
@@ -465,3 +468,8 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_Timer_Of_Stun_timeout():
 	stun = false
 
+
+
+func _on_Timer_Stop_Machine_timeout():
+	stop_machine = false
+	get_parent().get_node("Stop_Machine/CollisionShape2D").set_disabled(false)
