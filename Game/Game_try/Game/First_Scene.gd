@@ -41,6 +41,7 @@ func First_Scene():
 
 
 func _ready():
+	$NavigationPolygonInstance2.set_enter_cost(2)
 	if GLOBAL.first_cat_scene:
 		$Position_Heroe.set_global_position(Vector2(2535, 1528))
 	elif GLOBAL.position_heroe_before_fight != Vector2(0, 0):
@@ -85,7 +86,25 @@ func _ready():
 	
 func _physics_process(delta):
 	
-	
+	if self.has_node("Heroe"):
+		if $Heroe.global_position.y > get_node("Areas_For_Jumping/JA10/CollisionShape2D").global_position.y:
+			get_node("Areas_For_Jumping/JA10/CollisionShape2D").set_disabled(true)
+		else:
+			get_node("Areas_For_Jumping/JA10/CollisionShape2D").set_disabled(false)
+		if $Heroe.global_position.y > get_node("Areas_For_Jumping/JA18/CollisionShape2D").global_position.y:
+			get_node("Areas_For_Jumping/JA18/CollisionShape2D").set_disabled(true)
+		else:
+			get_node("Areas_For_Jumping/JA18/CollisionShape2D").set_disabled(false)
+		if $Heroe.global_position.y > get_node("Areas_For_Jumping/JA19/CollisionShape2D").global_position.y:
+			get_node("Areas_For_Jumping/JA19/CollisionShape2D").set_disabled(true)
+		else:
+			get_node("Areas_For_Jumping/JA19/CollisionShape2D").set_disabled(false)
+		if $Heroe.global_position.y > get_node("Areas_For_Jumping/JA20/CollisionShape2D").global_position.y:
+			get_node("Areas_For_Jumping/JA20/CollisionShape2D").set_disabled(true)
+		else:
+			get_node("Areas_For_Jumping/JA20/CollisionShape2D").set_disabled(false)
+		
+		
 	if !GLOBAL.first_cat_scene && GLOBAL.life_Belotur == true:
 		if (($Belotur.global_position.x) - $Heroe.global_position.x < 25) && (($Belotur.global_position.x) - $Heroe.global_position.x > -26) && (($Belotur.global_position.y) - $Heroe.global_position.y < 15) && (($Belotur.global_position.y) - $Heroe.global_position.y > -15):
 			GLOBAL.position_heroe_before_fight = $Heroe.global_position
@@ -156,3 +175,10 @@ func _physics_process(delta):
 	
 	
 	
+
+
+func _on_Stop_Machine_body_entered(body):
+	if body.has_method("enemy"):
+		get_node("Stop_Machine/CollisionShape2D").set_disabled(true)
+		body.stop_machine = true
+		body.get_node("Timer_Stop_Machine").start()
