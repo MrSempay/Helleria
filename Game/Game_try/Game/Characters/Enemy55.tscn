@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
 [ext_resource path="res://Game/Enemy55.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Anims/Джейсон/animm4.png" type="Texture" id=6]
 [ext_resource path="res://Anims/Джейсон/animm5.png" type="Texture" id=7]
 [ext_resource path="res://Anims/Джейсон/animm6.png" type="Texture" id=8]
+[ext_resource path="res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3" type="AudioStream" id=9]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -57,6 +58,37 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 109, 53.5 )
 
+[sub_resource type="Animation" id=6]
+resource_name = "EXTRA"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
 [node name="Jeison" type="KinematicBody2D"]
 position = Vector2( 332, 164 )
 z_index = 3
@@ -64,11 +96,12 @@ collision_layer = 16
 collision_mask = 16
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 187.0 ]
+"_edit_horizontal_guides_": [ 187.0, 157.0 ],
+"_edit_vertical_guides_": [ 332.0 ]
 }
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( -0.815787, 1 )
+position = Vector2( -0.645767, -6.08 )
 scale = Vector2( 0.789473, 1 )
 polygon = PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 )
 one_way_collision_margin = 12.0
@@ -79,17 +112,17 @@ anims/RESET = SubResource( 4 )
 "anims/щгп" = SubResource( 5 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( -1.25, 6 )
+position = Vector2( -1.07996, -1.08002 )
 scale = Vector2( 0.208, 0.208 )
 frames = SubResource( 1 )
 animation = "run"
 frame = 3
 
 [node name="HP_Enemy_1" type="TextureProgress" parent="."]
-margin_left = -32.0
-margin_top = -27.0
-margin_right = 198.0
-margin_bottom = -5.0
+margin_left = -31.83
+margin_top = -34.08
+margin_right = 198.17
+margin_bottom = -12.08
 rect_scale = Vector2( 0.25, 0.25 )
 max_value = 500.0
 value = 500.0
@@ -101,9 +134,10 @@ nine_patch_stretch = true
 autostart = true
 
 [node name="Mana_Enemy_1" type="TextureProgress" parent="."]
-margin_left = -32.0
-margin_top = -22.0
-margin_right = 198.0
+margin_left = -31.83
+margin_top = -29.08
+margin_right = 198.17
+margin_bottom = -7.08002
 rect_scale = Vector2( 0.25, 0.25 )
 max_value = 250.0
 value = 250.0
@@ -115,26 +149,27 @@ nine_patch_stretch = true
 autostart = true
 
 [node name="value_of_HP" type="Label" parent="."]
-margin_left = -9.0
-margin_top = -28.0
-margin_right = 19.0
-margin_bottom = 20.0
+margin_left = -8.82999
+margin_top = -35.08
+margin_right = 19.17
+margin_bottom = 12.92
 rect_scale = Vector2( 0.5, 0.5 )
 text = "500
 
 "
 
 [node name="value_of_Mana" type="Label" parent="."]
-margin_left = -9.0
-margin_top = -22.0
-margin_right = 31.0
-margin_bottom = 26.0
+margin_left = -8.82999
+margin_top = -29.08
+margin_right = 31.17
+margin_bottom = 18.92
 rect_scale = Vector2( 0.5, 0.5 )
 text = "250
 
 "
 
 [node name="Trigger_Area" type="Area2D" parent="."]
+position = Vector2( 0.170013, -7.08 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Area"]
 position = Vector2( 1, -21.5 )
@@ -142,8 +177,76 @@ shape = SubResource( 3 )
 one_way_collision_margin = 0.0
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0.170013, -7.08 )
+
+[node name="Timer_Of_Stun" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
+position = Vector2( 0.170013, -42.08 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_2" type="RayCast2D" parent="."]
+position = Vector2( 0.170013, -13.08 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
+position = Vector2( 0.170013, -0.0800018 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_4" type="RayCast2D" parent="."]
+position = Vector2( 0.170013, -31.08 )
+enabled = true
+cast_to = Vector2( 16, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_For_Heroe" type="RayCast2D" parent="."]
+position = Vector2( 0.170013, -7.08 )
+enabled = true
+cast_to = Vector2( 192, 0 )
+
+[node name="RayCastVertical" type="RayCast2D" parent="."]
+position = Vector2( 11, 1 )
+enabled = true
+cast_to = Vector2( 0, 22 )
+collision_mask = 4194304
+
+[node name="RayCastVertical_2" type="RayCast2D" parent="."]
+position = Vector2( 0.170013, -13.08 )
+enabled = true
+cast_to = Vector2( 0, -26 )
+collision_mask = 2097152
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource( 9 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/EXTRA = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+target_desired_distance = 5.0
+path_max_distance = 10.0
+navigation_layers = 2
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 0.170013, -7.08 )
+width = 5.0
+
+[node name="Timer_Stop_Machine" type="Timer" parent="."]
+wait_time = 0.3
 
 [connection signal="timeout" from="HP_Enemy_1/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
 [connection signal="timeout" from="Mana_Enemy_1/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
 [connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_path_changed"]

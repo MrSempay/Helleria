@@ -78,12 +78,8 @@ func _physics_process(delta):
 		$NavigationAgent2D.set_target_location(get_parent().get_node("Heroe").global_position)
 		$NavigationAgent2D.get_final_location()
 		get_parent().get_node("Line2D").points = $NavigationAgent2D.get_nav_path()
-		#$Line2D.points = $NavigationAgent2D.get_nav_path()
-		#$Line2D.points = [self.global_position,get_parent().get_node("Heroe").global_position]
-		#print(get_parent().get_node("Heroe").global_position)
-		#print($NavigationAgent2D.get_next_location())
-		
-		
+	
+			
 	if $HP_Enemy_1.value <= 50 && !EXTRA:
 		EXTRA = true
 		stun = true
@@ -147,7 +143,7 @@ func _physics_process(delta):
 						
 			#print(get_parent().get_node("Heroe").global_position.x)
 			#print(get_parent().get_node("Line2D").points.size())
-			print(get_parent().get_node("Line2D").points)
+			#print(get_parent().get_node("Line2D").points)
 			if get_parent().get_node("Line2D").points.size() == 2:
 				stop_distance_to_point = 2
 			else:
@@ -156,7 +152,7 @@ func _physics_process(delta):
 			if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) > stop_distance_to_point:
 					#print(get_parent().get_node("Line2D").points[j].x)
 					speed = 2
-					print(true)
+					#print(true)
 					$RayCastHorizontal_1.set_cast_to(Vector2(-16,0))
 					$RayCastHorizontal_2.set_cast_to(Vector2(-16,0))
 					$RayCastHorizontal_3.set_cast_to(Vector2(-16,0))
@@ -172,7 +168,7 @@ func _physics_process(delta):
 			if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) < -stop_distance_to_point:
 					#print(get_parent().get_node("Line2D").points[j].x)
 					speed = 2
-					print(false)
+					#print(false)
 					$RayCastHorizontal_1.set_cast_to(Vector2(16,0))
 					$RayCastHorizontal_2.set_cast_to(Vector2(16,0))
 					$RayCastHorizontal_3.set_cast_to(Vector2(16,0))
