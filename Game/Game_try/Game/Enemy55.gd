@@ -11,14 +11,22 @@ var point_of_position_string_x
 var point_of_position_string_x_saved = -10000
 var point_of_position_string_y
 var point_of_position_string_y_saved
+var JUMP_POWER = 500
+var stun = false
+
 
 onready var heroe = get_parent().get_node("Heroe")
 onready var ally = get_parent().get_node("Ally")
 onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
+var stop_machine = false
+var stop_distance_to_point = 1
 var dialoge_window = preload("res://Game/Dialoge_Window.tscn")
 var array_dialoge_flags = []
 var i = 0
+var c = 0
+var j = 0
+var saved_size_array = 0
 var number_of_dialoge
 var scale_gravity = 2
 
@@ -46,13 +54,20 @@ func mana_using(manacost):
 func _ready():
 	pass
 
-
+var dfg = 1
 
 func _physics_process(delta):
-	
+
 	velocity.x = 0
 
-		
+	if get_parent().has_node("NavigationPolygonInstance") && get_parent().has_node("Heroe") && dfg == 1:
+		$NavigationAgent2D.set_target_location(get_parent().get_node("Heroe").global_position)
+		$NavigationAgent2D.get_final_location()
+		#$NavigationAgent2D.set_final_location()
+		$NavigationAgent2D.get_nav_path()
+		dfg = 2
+		get_parent().get_node("Line2D2").points = $NavigationAgent2D.get_nav_path()
+
 	if moving_state:
 		navigation(number_of_moving)
 	
@@ -70,33 +85,78 @@ func _physics_process(delta):
 	if get_parent().has_node("Heroe"):
 		var heroe = get_parent().get_node("Heroe")
 		var ally = get_parent().get_node("Ally")
-		if trigger_of_ally:
-			
-			if ((self.global_position.x) - heroe.global_position.x < 0) && $Sprite.get_animation() == "run":
-				translate(Vector2(1,0) * speed)
-			if ((self.global_position.x) - heroe.global_position.x > 0) && $Sprite.get_animation() == "run":
-				translate(Vector2(-1,0) * speed)
-			
-			if((self.global_position.x) - heroe.global_position.x) > 0:
-				$Sprite.flip_h = true
+		
+	if get_parent().has_node("Heroe") && !stun:
+
+		if trigger_of_ally && !get_parent().has_method("Fight_Scene") && !stop_machine:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
+			if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
+				if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
+					if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_3.get_collider() or $RayCastHorizontal_4.get_collider()) && speed != 0:
+						start_jump_enemy()
+			elif ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_3.get_collider() or $RayCastHorizontal_4.get_collider()) && speed != 0 && !$RayCastVertical_2.get_collider():
+						start_jump_enemy()
+			if $RayCastVertical.get_collider() && speed != 0:
+				start_jump_enemy()
+			if get_parent().get_node("Line2D").points.size() <= j:
+					j = 0
+			print($NavigationAgent2D.get_nav_path())
+		#	print($NavigationAgent2D.get_nav_path()[0].x)
+			print($NavigationAgent2D.get_next_location().x)
+			if get_parent().get_node("Line2D").points.size() == 2:
+				stop_distance_to_point = 0
 			else:
-				$Sprite.flip_h = false
-			if abs((self.global_position.x - 0) - ally.global_position.x) < abs((self.global_position.x) - heroe.global_position.x):
-				$Sprite.flip_h = true
-				
-			if ((self.global_position.x) - heroe.global_position.x < 35) && ((self.global_position.x) - heroe.global_position.x > -35):
-				speed = 0
-				animate("idle")
-			else:
-				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-				speed = 2
-				animate("run")
+				stop_distance_to_point = 0
+			#print(get_parent().get_node("Line2D").points)
+			#if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) > 0:
+			if ($NavigationAgent2D.get_nav_path()[0].x - $NavigationAgent2D.get_next_location().x) >= 0:
+					speed = 2
+					print(true)
+					#print("e1")
+					$RayCastHorizontal_1.set_cast_to(Vector2(-16,0))
+					$RayCastHorizontal_2.set_cast_to(Vector2(-16,0))
+					$RayCastHorizontal_3.set_cast_to(Vector2(-16,0))
+					$RayCastHorizontal_4.set_cast_to(Vector2(-16,0))
+					$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
+					$RayCastVertical.set_position(Vector2(-11,1))
+					translate(Vector2(-1,0) * speed)
+					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+					animate("run")
+					$Sprite.flip_h = true
+			#if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) < -0:
+			if ($NavigationAgent2D.get_nav_path()[0].x - $NavigationAgent2D.get_next_location().x) <= -0:
+					speed = 2
+					print(false)
+					#print("e1")
+					$RayCastHorizontal_1.set_cast_to(Vector2(16,0))
+					$RayCastHorizontal_2.set_cast_to(Vector2(16,0))
+					$RayCastHorizontal_3.set_cast_to(Vector2(16,0))
+					$RayCastHorizontal_4.set_cast_to(Vector2(16,0))
+					$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
+					$RayCastVertical.set_position(Vector2(11,1))
+					translate(Vector2(1,0) * speed)
+					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+					animate("run")
+					$Sprite.flip_h = false
+			print($NavigationAgent2D.get_nav_path_index())
+			#if (self.global_position.x - get_parent().get_node("Heroe").global_position.x) > -stop_distance_to_point && (self.global_position.x - get_parent().get_node("Heroe").global_position.x) < stop_distance_to_point:
+			#	speed = 0
+			#	animate("idle")
+			#if ((self.global_position.x - get_parent().get_node("Line2D").points[j].x) < 5 && (self.global_position.x - get_parent().get_node("Line2D").points[j].x) > -5) && j != get_parent().get_node("Line2D").points.size():
+				#if get_parent().get_node("Line2D").points.size() != 2:
+				#	j += 1
+				#if get_parent().get_node("Line2D").points.size() == 2 && j != 1:
+					#j += 1
+			saved_size_array = get_parent().get_node("Line2D").points.size()
+		
 				
 
 	velocity.y += delta * 970 * scale_gravity
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 
-
+func start_jump_enemy():
+	if is_on_floor():
+		velocity.y = -JUMP_POWER 
+		#collision_of_jumping_area.set_disabled(true)
 
 func _on_Timer_Of_HP_timeout():
 	$value_of_HP.text = str($HP_Enemy_1.value)
@@ -171,3 +231,10 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 func _on_VisibilityNotifier2D_screen_exited():
 	if get_parent().has_method("First_Scene") && GLOBAL.first_cat_scene:
 		queue_free()
+
+
+func _on_NavigationAgent2D_path_changed():
+	#$NavigationAgent2D.set_target_location(get_parent().get_node("Heroe").global_position)
+	#$NavigationAgent2D.get_final_location()
+	pass
+	dfg = 1
