@@ -29,6 +29,7 @@ var j = 0
 var saved_size_array = 0
 var number_of_dialoge
 var scale_gravity = 2
+var dfg = 1
 
 var moving_state
 var number_of_moving
@@ -51,22 +52,27 @@ func mana_using(manacost):
 	$value_of_Mana.text = str($Mana_Enemy_1.value)
 
 
+func enemy():
+	pass
+
+
 func _ready():
 	pass
 
-var dfg = 1
 
 func _physics_process(delta):
 
 	velocity.x = 0
 
-	if get_parent().has_node("NavigationPolygonInstance") && get_parent().has_node("Heroe") && dfg == 1:
-		$NavigationAgent2D.set_target_location(get_parent().get_node("Heroe").global_position)
-		$NavigationAgent2D.get_final_location()
-		#$NavigationAgent2D.set_final_location()
-		$NavigationAgent2D.get_nav_path()
-		dfg = 2
-		get_parent().get_node("Line2D2").points = $NavigationAgent2D.get_nav_path()
+	if get_parent().has_node("Heroe"):
+		if get_parent().has_node("NavigationPolygonInstance") && GLOBAL.move_vector_1 != Vector2(0, 0) && dfg == 1:
+			$NavigationAgent2D.set_target_location(get_parent().get_node("Heroe").global_position)
+			$NavigationAgent2D.get_final_location()
+			#$NavigationAgent2D.set_final_location()
+			$NavigationAgent2D.get_nav_path()
+			dfg = 2
+			get_parent().get_node("Line2D2").points = $NavigationAgent2D.get_nav_path()
+			j = 0
 
 	if moving_state:
 		navigation(number_of_moving)
@@ -88,65 +94,78 @@ func _physics_process(delta):
 		
 	if get_parent().has_node("Heroe") && !stun:
 
-		if trigger_of_ally && !get_parent().has_method("Fight_Scene") && !stop_machine:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
-			if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
-				if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
-					if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_3.get_collider() or $RayCastHorizontal_4.get_collider()) && speed != 0:
-						start_jump_enemy()
-			elif ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_3.get_collider() or $RayCastHorizontal_4.get_collider()) && speed != 0 && !$RayCastVertical_2.get_collider():
-						start_jump_enemy()
-			if $RayCastVertical.get_collider() && speed != 0:
-				start_jump_enemy()
-			if get_parent().get_node("Line2D").points.size() <= j:
-					j = 0
-			print($NavigationAgent2D.get_nav_path())
+		if trigger_of_ally && !get_parent().has_method("Fight_Scene"):       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
+			if j < get_parent().get_node("Line2D2").points.size() - 1:
+				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
+					if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
+						if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_3.get_collider() or $RayCastHorizontal_4.get_collider()) && speed != 0 && get_parent().get_node("Line2D2").points[j].y > get_parent().get_node("Line2D2").points[j+1].y:
+							start_jump_enemy()
+				elif ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_3.get_collider() or $RayCastHorizontal_4.get_collider()) && !$RayCastVertical_2.get_collider() && get_parent().get_node("Line2D2").points[j].y > get_parent().get_node("Line2D2").points[j+1].y:
+							start_jump_enemy()
+				if $RayCastVertical.get_collider() && speed != 0:
+					start_jump_enemy()
+			#if get_parent().get_node("Line2D").points.size() <= j:
+			#		j = 0
+			#print($NavigationAgent2D.get_nav_path())
 		#	print($NavigationAgent2D.get_nav_path()[0].x)
-			print($NavigationAgent2D.get_next_location().x)
-			if get_parent().get_node("Line2D").points.size() == 2:
-				stop_distance_to_point = 0
+			#print($NavigationAgent2D.get_next_location().x)
+			#print(get_parent().get_node("Line2D2").points.size())
+			#print(get_parent().get_node("Line2D2").points[j].x)
+			#print(get_parent().get_node("Line2D2").points[j].x)
+			#print(get_parent().get_node("Line2D2").points[j+1].x)
+			#print(j)
+			#print(get_parent().get_node("Line2D2").points)
+			if get_parent().get_node("Line2D2").points.size() == 2:
+				stop_distance_to_point = 1.5
 			else:
-				stop_distance_to_point = 0
+				stop_distance_to_point = 1.5
 			#print(get_parent().get_node("Line2D").points)
-			#if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) > 0:
-			if ($NavigationAgent2D.get_nav_path()[0].x - $NavigationAgent2D.get_next_location().x) >= 0:
-					speed = 2
-					print(true)
-					#print("e1")
-					$RayCastHorizontal_1.set_cast_to(Vector2(-16,0))
-					$RayCastHorizontal_2.set_cast_to(Vector2(-16,0))
-					$RayCastHorizontal_3.set_cast_to(Vector2(-16,0))
-					$RayCastHorizontal_4.set_cast_to(Vector2(-16,0))
-					$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
-					$RayCastVertical.set_position(Vector2(-11,1))
-					translate(Vector2(-1,0) * speed)
-					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-					animate("run")
-					$Sprite.flip_h = true
-			#if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) < -0:
-			if ($NavigationAgent2D.get_nav_path()[0].x - $NavigationAgent2D.get_next_location().x) <= -0:
-					speed = 2
-					print(false)
-					#print("e1")
-					$RayCastHorizontal_1.set_cast_to(Vector2(16,0))
-					$RayCastHorizontal_2.set_cast_to(Vector2(16,0))
-					$RayCastHorizontal_3.set_cast_to(Vector2(16,0))
-					$RayCastHorizontal_4.set_cast_to(Vector2(16,0))
-					$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
-					$RayCastVertical.set_position(Vector2(11,1))
-					translate(Vector2(1,0) * speed)
-					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-					animate("run")
-					$Sprite.flip_h = false
-			print($NavigationAgent2D.get_nav_path_index())
+			if j < get_parent().get_node("Line2D2").points.size() - 1 && !stop_machine:
+				#if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) > 0:
+				#if ($NavigationAgent2D.get_nav_path()[0].x - $NavigationAgent2D.get_next_location().x) >= 0:
+				if (get_parent().get_node("Line2D2").points[j].x - get_parent().get_node("Line2D2").points[j+1].x) >= 0:
+						speed = 2
+						#print(true)
+						#print("e1")
+						$RayCastHorizontal_1.set_cast_to(Vector2(-16,0))
+						$RayCastHorizontal_2.set_cast_to(Vector2(-16,0))
+						$RayCastHorizontal_3.set_cast_to(Vector2(-16,0))
+						$RayCastHorizontal_4.set_cast_to(Vector2(-16,0))
+						$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
+						$RayCastVertical.set_position(Vector2(-11,1))
+						translate(Vector2(-1,0) * speed)
+						get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+						animate("run")
+						$Sprite.flip_h = true
+				#if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) < -0:
+				#print(global_position.distance_to($NavigationAgent2D.get_next_location()))
+				if (get_parent().get_node("Line2D2").points[j].x - get_parent().get_node("Line2D2").points[j+1].x) <= -0:
+						speed = 2
+						#print(false)
+						#print("e1")
+						$RayCastHorizontal_1.set_cast_to(Vector2(16,0))
+						$RayCastHorizontal_2.set_cast_to(Vector2(16,0))
+						$RayCastHorizontal_3.set_cast_to(Vector2(16,0))
+						$RayCastHorizontal_4.set_cast_to(Vector2(16,0))
+						$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
+						$RayCastVertical.set_position(Vector2(11,1))
+						translate(Vector2(1,0) * speed)
+						get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+						animate("run")
+						$Sprite.flip_h = false
+			#(get_parent().get_node("Line2D2").points.size())
+			#print(j)
+			if j < get_parent().get_node("Line2D2").points.size() - 1:
+				if ((self.global_position.x - get_parent().get_node("Line2D2").points[j+1].x) < stop_distance_to_point && (self.global_position.x - get_parent().get_node("Line2D2").points[j+1].x) > -stop_distance_to_point) && j < get_parent().get_node("Line2D2").points.size() - 1:
+						#if get_parent().get_node("Line2D").points.size() != 2:
+							j += 1
+			#print($NavigationAgent2D.get_nav_path_index())
 			#if (self.global_position.x - get_parent().get_node("Heroe").global_position.x) > -stop_distance_to_point && (self.global_position.x - get_parent().get_node("Heroe").global_position.x) < stop_distance_to_point:
 			#	speed = 0
 			#	animate("idle")
-			#if ((self.global_position.x - get_parent().get_node("Line2D").points[j].x) < 5 && (self.global_position.x - get_parent().get_node("Line2D").points[j].x) > -5) && j != get_parent().get_node("Line2D").points.size():
-				#if get_parent().get_node("Line2D").points.size() != 2:
-				#	j += 1
-				#if get_parent().get_node("Line2D").points.size() == 2 && j != 1:
-					#j += 1
-			saved_size_array = get_parent().get_node("Line2D").points.size()
+					#if get_parent().get_node("Line2D").points.size() == 2 && j != 1:
+					#	j += 1
+			saved_size_array = get_parent().get_node("Line2D2").points.size()
 		
 				
 
@@ -237,4 +256,13 @@ func _on_NavigationAgent2D_path_changed():
 	#$NavigationAgent2D.set_target_location(get_parent().get_node("Heroe").global_position)
 	#$NavigationAgent2D.get_final_location()
 	pass
-	dfg = 1
+	j = 0
+
+
+func _on_Timer_For_Updaiting_Way_timeout():
+#	if get_parent().get_node("Heroe").velocity.y != 0:
+		$NavigationAgent2D.set_target_location(get_parent().get_node("Heroe").global_position)
+		$NavigationAgent2D.get_final_location()
+		$NavigationAgent2D.get_nav_path()
+		get_parent().get_node("Line2D2").points = $NavigationAgent2D.get_nav_path()
+		dfg = 1

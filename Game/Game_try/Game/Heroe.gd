@@ -170,7 +170,7 @@ func _physics_process(delta):
 			$Icon.flip_h = false
 			if get_parent().has_node("Door"):
 				if !get_parent().get_node("Door").get_animation() == "idle_heroe":
-					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп_п")
+					#get_node("CollisionPolygon2D/AnimationPlayer").play("щгп_п")
 					pass
 		elif GLOBAL.move_vector_1.x < 0:
 			$Stone_Sword.set_position(Vector2(-26, 3))
@@ -180,7 +180,7 @@ func _physics_process(delta):
 			$Icon.flip_h = true
 			if get_parent().has_node("Door"):
 				if !get_parent().get_node("Door").get_animation() == "idle_heroe":
-					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+					#get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 					pass
 
 

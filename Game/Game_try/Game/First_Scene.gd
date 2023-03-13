@@ -3,6 +3,12 @@ extends Node2D
 onready var area_of_dialoge_camera = get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
 
+var in_area_for_artifical_intelligance_controlling
+var point_1
+var point_2
+var point_3
+var mass_of_points = []
+
 var ally = preload("res://Game/Characters/Ally.tscn")
 var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
 var enemy_2 = preload("res://Game/Characters/Enemy_2.tscn")
@@ -180,5 +186,25 @@ func _physics_process(delta):
 func _on_Stop_Machine_body_entered(body):
 	if body.has_method("enemy"):
 		get_node("Stop_Machine/CollisionShape2D").set_disabled(true)
-		body.stop_machine = true
+		#body.stop_machine = true
 		body.get_node("Timer_Stop_Machine").start()
+
+
+func _on_NoSpeed_Area_body_entered(body):
+	if body.has_method("enemy"):
+		if $Heroe.global_position.y < get_node("Areas_For_Specifical_Controlling/No-Speed_Area").global_position.y:
+			body.speed = 0
+			body.stop_machine = true
+
+
+func _on_NoSpeed_Area_body_exited(body):
+	if body.has_method("enemy"):
+		#body.speed = 2
+		#body.stop_machine = false
+		pass
+
+
+func _on_Speed_Area_body_entered(body):
+	if body.has_method("enemy"):
+		body.speed = 2
+		body.stop_machine = false

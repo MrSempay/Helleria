@@ -96,13 +96,12 @@ collision_layer = 16
 collision_mask = 16
 script = ExtResource( 2 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 187.0, 157.0 ],
-"_edit_vertical_guides_": [ 332.0 ]
+"_edit_horizontal_guides_": [ 187.0 ]
 }
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -0.645767, -6.08 )
-scale = Vector2( 0.789473, 1 )
+scale = Vector2( 0.5, 1 )
 polygon = PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 )
 one_way_collision_margin = 12.0
 
@@ -184,41 +183,48 @@ wait_time = 3.0
 one_shot = true
 
 [node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0.170013, -42.08 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_2" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0.170013, -13.08 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
-position = Vector2( 0.170013, -0.0800018 )
+visible = false
+position = Vector2( -4.32134e-07, 11 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_4" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0.170013, -31.08 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_For_Heroe" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0.170013, -7.08 )
 enabled = true
 cast_to = Vector2( 192, 0 )
 
 [node name="RayCastVertical" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 11, 1 )
 enabled = true
 cast_to = Vector2( 0, 22 )
 collision_mask = 4194304
 
 [node name="RayCastVertical_2" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0.170013, -13.08 )
 enabled = true
 cast_to = Vector2( 0, -26 )
@@ -233,8 +239,6 @@ anims/EXTRA = SubResource( 6 )
 anims/RESET = SubResource( 7 )
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 10.0
-target_desired_distance = 5.0
 path_max_distance = 10.0
 navigation_layers = 2
 
@@ -245,8 +249,13 @@ width = 5.0
 [node name="Timer_Stop_Machine" type="Timer" parent="."]
 wait_time = 0.3
 
+[node name="Timer_For_Updaiting_Way" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
 [connection signal="timeout" from="HP_Enemy_1/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
 [connection signal="timeout" from="Mana_Enemy_1/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
 [connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_path_changed"]
+[connection signal="timeout" from="Timer_For_Updaiting_Way" to="." method="_on_Timer_For_Updaiting_Way_timeout"]

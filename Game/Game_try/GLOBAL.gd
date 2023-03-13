@@ -64,7 +64,7 @@ var jeison_dialoge_finished = false
 var first_cat_scene = false
 var first_starting_temple_lvl = true
 
-
+var heroe_pos_changed = false
 
 func scene(name):
 	get_tree().change_scene("res://Game/LocationsLevels/"+name+".tscn")

@@ -45,6 +45,8 @@ var point_of_position_string_y
 var point_of_position_string_y_saved
 var moving_state
 var number_of_moving
+var dat = 1
+
 
 func _ready():
 	if get_parent().has_method("Fight_Scene"):
@@ -78,7 +80,7 @@ func _physics_process(delta):
 		$NavigationAgent2D.set_target_location(get_parent().get_node("Heroe").global_position)
 		$NavigationAgent2D.get_final_location()
 		get_parent().get_node("Line2D").points = $NavigationAgent2D.get_nav_path()
-	
+		dat = 2
 			
 	if $HP_Enemy_1.value <= 50 && !EXTRA:
 		EXTRA = true
@@ -120,7 +122,7 @@ func _physics_process(delta):
 		var heroe = get_parent().get_node("Heroe")
 		var ally = get_parent().get_node("Ally")
 		#print(stop_machine)
-		if trigger_of_ally && !get_parent().has_method("Fight_Scene") && !stop_machine:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
+		if trigger_of_ally && !get_parent().has_method("Fight_Scene") && !stop_machine && get_parent().get_node("Line2D").points.size() != 0:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
 			#print(speed)
 			if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 				if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
@@ -132,14 +134,19 @@ func _physics_process(delta):
 				start_jump_enemy()
 			#print(self.global_position.x - get_parent().get_node("Heroe").global_position.x)
 			#print(saved_size_array)
-			#print(get_parent().get_node("Line2D").points.size())
-			#print(get_parent().get_node("Line2D").points[0].x)
 			if get_parent().get_node("Line2D").points.size() <= j:
 				#if ((self.global_position.x - get_parent().get_node("Line2D").points[j].x) < 3 && (self.global_position.x - get_parent().get_node("Line2D").points[j].x) > -3) && j == get_parent().get_node("Line2D").points.size() :
 					j = 0
 			#if saved_size_array == get_parent().get_node("Line2D").points.size():
-			#print(j)
+			#print(get_parent().get_node("Line2D").points.size())
+			#print(get_parent().get_node("Line2D").points[0].x)
 			#print(get_parent().get_node("Line2D").points[j].x)
+			#print(get_parent().get_node("Line2D").points[1].x)
+			#print(j)
+			if j != get_parent().get_node("Line2D").points.size() - 1:
+				if get_parent().get_node("Line2D").points[j].x - get_parent().get_node("Line2D").points[j + 1].x < 3 && get_parent().get_node("Line2D").points[j].x - get_parent().get_node("Line2D").points[j + 1].x > -3:
+					j += 1
+			#print(j)
 						
 			#print(get_parent().get_node("Heroe").global_position.x)
 			#print(get_parent().get_node("Line2D").points.size())
@@ -150,6 +157,7 @@ func _physics_process(delta):
 				stop_distance_to_point = 2
 			
 			if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) > stop_distance_to_point:
+			#if (get_parent().get_node("Line2D").points[j].x - get_parent().get_node("Line2D").points[j + 1].x) > stop_distance_to_point:
 					#print(get_parent().get_node("Line2D").points[j].x)
 					speed = 2
 					#print(true)
@@ -166,6 +174,7 @@ func _physics_process(delta):
 					animate("run")
 					$Sprite.flip_h = true
 			if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) < -stop_distance_to_point:
+			#if (get_parent().get_node("Line2D").points[j].x - get_parent().get_node("Line2D").points[j + 1].x) < -stop_distance_to_point:
 					#print(get_parent().get_node("Line2D").points[j].x)
 					speed = 2
 					#print(false)
@@ -185,10 +194,10 @@ func _physics_process(delta):
 			#	speed = 0
 			#	animate("idle")
 			if ((self.global_position.x - get_parent().get_node("Line2D").points[j].x) < stop_distance_to_point && (self.global_position.x - get_parent().get_node("Line2D").points[j].x) > -stop_distance_to_point) && j != get_parent().get_node("Line2D").points.size():
-				if get_parent().get_node("Line2D").points.size() != 2:
+				#if get_parent().get_node("Line2D").points.size() != 2:
 					j += 1
-				if get_parent().get_node("Line2D").points.size() == 2 && j != 1:
-					j += 1
+				#if get_parent().get_node("Line2D").points.size() == 2 && j != 1:
+				#	j += 1
 			saved_size_array = get_parent().get_node("Line2D").points.size()
 		
 			
@@ -469,3 +478,9 @@ func _on_Timer_Of_Stun_timeout():
 func _on_Timer_Stop_Machine_timeout():
 	stop_machine = false
 	get_parent().get_node("Stop_Machine/CollisionShape2D").set_disabled(false)
+
+
+
+
+func _on_NavigationAgent2D_path_changed():
+	dat = 1
