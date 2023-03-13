@@ -36,7 +36,7 @@ extents = Vector2( 10, 1 )
 extents = Vector2( 10, 1 )
 
 [sub_resource type="RectangleShape2D" id=33]
-extents = Vector2( 38.5, 1 )
+extents = Vector2( 38.5, 5 )
 
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 5, 1 )
@@ -640,7 +640,7 @@ extents = Vector2( 3.25, 0.5 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 33 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 40.9058, 14.0812 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 40.4058, 10.0812 )
 } ]
 13/z_index = 0
 14/name = "Sprite14"
