@@ -235,6 +235,8 @@ script = ExtResource( 5 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -1, 1.49786 )
 scale = Vector2( 0.6, 1.088 )
+z_index = -1
+z_as_relative = false
 polygon = PoolVector2Array( 0, -8, -11, -8, -11.0001, 21.9433, -1.50012, 21.9433, -1.50012, 12.8867, 0.399902, 12.8867, 0.399902, 21.9433, 7.99988, 21.9433, 8, -8 )
 one_way_collision_margin = 12.0
 
@@ -263,7 +265,6 @@ shape = SubResource( 4 )
 [node name="Icon" type="AnimatedSprite" parent="."]
 position = Vector2( -2, 9 )
 scale = Vector2( 2, 2 )
-z_index = 1
 frames = SubResource( 16 )
 animation = "idle"
 

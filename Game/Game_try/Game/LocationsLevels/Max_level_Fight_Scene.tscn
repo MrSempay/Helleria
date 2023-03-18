@@ -1,9 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Tile_Set_For_Fight_Scene.tres" type="TileSet" id=1]
 [ext_resource path="res://Game/LocationsLevels/Max_level_Fight_Scene.gd" type="Script" id=2]
 [ext_resource path="res://Game/Jumping_Platform.gd" type="Script" id=3]
 [ext_resource path="res://maxresdefault.jpg" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 6.5, 12.5 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 48.875, 21.5 )
@@ -17,9 +20,23 @@ extents = Vector2( 78, 10 )
 [sub_resource type="RectangleShape2D" id=4]
 
 [sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 9.5, 11 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 658.5, 92 )
+
+[sub_resource type="NavigationPolygon" id=7]
+vertices = PoolVector2Array( 285, -47, 270, -47, 282, -71, 356, -68, 177, -80, 142, -83, 112, -89, 110, -116, 215, -107, 226, -85, 3, -2, 0, -46, 55, -45, 97, 0, 99, -50, 55, -83, 143, -49, 233, -77, 226, -56, 233, -48, 207, -47, 196, -47, 966, -36, 969, -1, 869, -1, 903, -36, 866, -47, 902, -79, 846, -79, 817, -47, 815, -79, 843, -112, 754, -116, 783, -79, 741, -72, 782, -66, 737, -59, 731, -63, 731, -56, 757, -47, 766, -57, 770, -47, 782, -56, 782, 0, 770, -29, 758, -17, 591, -1, 691, -17, 196, -29, 207, -29, 207, -17, 276, -17, 276, -30, 286, -30, 369, 0, 661, -28, 691, -28, 631, -27, 629, -61, 588, -42, 608, -61, 587, -44, 565, -41, 393, -47, 356, -90, 356, -97, 414, -100, 450, -47, 560, -101, 585, -72, 516, -47, 369, -47, 176, 1, 176.577, -45.7083 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7, 8, 9 ), PoolIntArray( 10, 11, 12, 13 ), PoolIntArray( 14, 13, 12, 15 ), PoolIntArray( 16, 14, 15, 6, 5 ), PoolIntArray( 9, 8, 17 ), PoolIntArray( 18, 9, 17, 19 ), PoolIntArray( 18, 19, 20, 21 ), PoolIntArray( 22, 23, 24, 25 ), PoolIntArray( 25, 24, 26, 27 ), PoolIntArray( 28, 27, 26, 29 ), PoolIntArray( 28, 29, 30, 31 ), PoolIntArray( 32, 31, 30, 33 ), PoolIntArray( 34, 32, 33, 35 ), PoolIntArray( 34, 35, 36, 37 ), PoolIntArray( 38, 37, 36 ), PoolIntArray( 39, 38, 36, 40, 41 ), PoolIntArray( 41, 40, 42 ), PoolIntArray( 41, 42, 43, 44 ), PoolIntArray( 45, 44, 43 ), PoolIntArray( 45, 43, 46, 47 ), PoolIntArray( 48, 49, 50 ), PoolIntArray( 51, 52, 53, 54 ), PoolIntArray( 55, 56, 47, 46, 57 ), PoolIntArray( 58, 57, 46, 59, 60 ), PoolIntArray( 61, 60, 59 ), PoolIntArray( 61, 59, 62 ), PoolIntArray( 63, 3, 64, 65, 66, 67 ), PoolIntArray( 68, 69, 61, 62, 70, 66 ), PoolIntArray( 53, 0, 3, 71, 54 ), PoolIntArray( 66, 70, 67 ), PoolIntArray( 3, 63, 71 ), PoolIntArray( 51, 54, 72, 50 ), PoolIntArray( 50, 72, 73, 48 ), PoolIntArray( 21, 48, 73 ), PoolIntArray( 21, 73, 18 ) ]
+outlines = [ PoolVector2Array( 3, -2, 97, 0, 99, -50, 143, -49, 142, -83, 177, -80, 226, -85, 226, -56, 176.577, -45.7083, 176, 1, 369, 0, 369, -47, 393, -47, 450, -47, 516, -47, 565, -41, 588, -42, 591, -1, 782, 0, 782, -56, 766, -57, 737, -59, 782, -66, 783, -79, 815, -79, 817, -47, 866, -47, 869, -1, 969, -1, 966, -36, 903, -36, 902, -79, 846, -79, 843, -112, 754, -116, 741, -72, 731, -63, 731, -56, 757, -47, 770, -47, 770, -29, 758, -17, 691, -17, 691, -28, 661, -28, 631, -27, 629, -61, 608, -61, 587, -44, 585, -72, 560, -101, 414, -100, 356, -97, 356, -90, 356, -68, 282, -71, 270, -47, 285, -47, 286, -30, 276, -30, 276, -17, 207, -17, 207, -29, 196, -29, 196, -47, 207, -47, 233, -48, 233, -77, 215, -107, 110, -116, 112, -89, 55, -83, 55, -45, 0, -46 ) ]
+
+[sub_resource type="NavigationPolygon" id=8]
+vertices = PoolVector2Array( 676, -28, 661, -28, 706, -78, 691, -47, 330, -124, 339, -95, 261, -95, 302, -122, 706, -95, 626, -93, 626, -122, 651, -115, 712, -67, 731, -67, 731, -47, 711, -114, 635, -122, 651, -169, 635, -144, 573, -170, 626, -144, 557, -145, 261, -77, 282, -77, 282, -71, 270, -47, 233, -48, 233, -77, 240, -78, 239, -123, 305, -174, 330, -149, 403, -147, 404, -175, 431, -147, 432, -176, 414, -215, 571, -206, 540, -175, 537, -156 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7 ), PoolIntArray( 8, 9, 10, 11 ), PoolIntArray( 12, 13, 14, 3 ), PoolIntArray( 12, 3, 2 ), PoolIntArray( 15, 12, 2, 8 ), PoolIntArray( 11, 15, 8 ), PoolIntArray( 11, 10, 16 ), PoolIntArray( 17, 11, 16, 18 ), PoolIntArray( 19, 17, 18, 20, 21 ), PoolIntArray( 22, 23, 24, 25, 26 ), PoolIntArray( 22, 26, 27, 28 ), PoolIntArray( 6, 22, 28, 29 ), PoolIntArray( 6, 29, 7 ), PoolIntArray( 4, 7, 30, 31 ), PoolIntArray( 32, 31, 30, 33, 34 ), PoolIntArray( 35, 34, 33, 36 ), PoolIntArray( 35, 36, 37, 38 ), PoolIntArray( 38, 37, 19, 21, 39 ) ]
+outlines = [ PoolVector2Array( 233, -48, 270, -47, 282, -71, 282, -77, 261, -77, 261, -95, 339, -95, 330, -124, 330, -149, 403, -147, 431, -147, 432, -176, 540, -175, 537, -156, 557, -145, 626, -144, 635, -144, 635, -122, 626, -122, 626, -93, 706, -95, 706, -78, 661, -28, 676, -28, 691, -47, 731, -47, 731, -67, 712, -67, 711, -114, 651, -115, 651, -169, 573, -170, 571, -206, 414, -215, 404, -175, 305, -174, 302, -122, 239, -123, 240, -78, 233, -77 ) ]
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 0.25, 27.5 )
 
 [node name="Max_Level_Fight_Scene" type="Node2D"]
 script = ExtResource( 2 )
@@ -32,22 +49,29 @@ collision_mask = 2097215
 format = 1
 tile_data = PoolIntArray( -720869, 3, 0, -589803, 4, 0, -589789, 4, 0, -393199, 4, 0, -393177, 4, 0, -327671, 7, 0, -327631, 7, 0, -196602, 8, 0, -196595, 4, 0, -196585, 2, 0, -196580, 4, 0, -196573, 5, 0, -196565, 4, 0, -196557, 8, 0, 65535, 0, 0, 7, 0, 0, 15, 0, 0, 35, 0, 0, 43, 0, 0, 51, 0, 0 )
 
-[node name="Position_Belotur" type="Position2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="TileMap"]
+position = Vector2( -2, -1 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/StaticBody2D"]
+position = Vector2( 394, -36 )
+shape = SubResource( 10 )
+
+[node name="Position_Enemy" type="Position2D" parent="."]
 position = Vector2( 946, -28 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 48, -25 )
+position = Vector2( 25, -22 )
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
-position = Vector2( 485, -195 )
+position = Vector2( 500, 335 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 1 )
 
 [node name="Area2DT13" type="Area2D" parent="."]
-visible = false
-position = Vector2( 500, -187 )
+position = Vector2( 515, 343 )
 scale = Vector2( 6.5, 4 )
 collision_layer = 63
 collision_mask = 63
@@ -56,8 +80,7 @@ collision_mask = 63
 shape = SubResource( 2 )
 
 [node name="Area2DT14" type="Area2D" parent="."]
-visible = false
-position = Vector2( 312, -35 )
+position = Vector2( 327, 495 )
 scale = Vector2( 3, 3 )
 collision_layer = 63
 collision_mask = 63
@@ -66,8 +89,7 @@ collision_mask = 63
 shape = SubResource( 2 )
 
 [node name="Area2DT15" type="Area2D" parent="."]
-visible = false
-position = Vector2( 667, -35 )
+position = Vector2( 682, 495 )
 scale = Vector2( 3, 3 )
 collision_layer = 63
 collision_mask = 63
@@ -76,26 +98,24 @@ collision_mask = 63
 shape = SubResource( 2 )
 
 [node name="Area2D8" type="Area2D" parent="."]
-visible = false
-position = Vector2( 87, -8 )
+position = Vector2( 102, 522 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D8"]
 shape = SubResource( 3 )
 
 [node name="Area2DT" type="Area2D" parent="."]
 visible = false
-position = Vector2( 305, -20 )
+position = Vector2( 258, -27 )
 collision_layer = 63
 collision_mask = 63
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2DT"]
 position = Vector2( -11, 6 )
 build_mode = 1
-polygon = PoolVector2Array( 0, 0, 0, -13, 36, -13, 36, -40, 85, -40, 85, 20, -70, 22, -71, -17, -34, -17, -34, -12, -1, -13, 0, -13 )
+polygon = PoolVector2Array( 0, 0, 0, -13, 36, -13, 36, -40, 119, -39, 120, 23, -70, 22, -71, -17, -34, -17, -34, -12, -1, -13, 0, -13 )
 
 [node name="Area2DT1" type="Area2D" parent="."]
-visible = false
-position = Vector2( 678, -8 )
+position = Vector2( 693, 522 )
 scale = Vector2( 1.05, 1 )
 collision_layer = 63
 collision_mask = 63
@@ -107,8 +127,7 @@ build_mode = 1
 polygon = PoolVector2Array( 6.10352e-05, -13, 0, -13, 81.9048, -14, 81.9048, -40, 92.381, -40, 93.3334, 8.99998, -71.4285, 11, -71.4285, -36, 6.10352e-05, -36, 6.10352e-05, -13, 6.10352e-05, -13, 0, -13 )
 
 [node name="Area2DT2" type="Area2D" parent="."]
-visible = false
-position = Vector2( 292, -61 )
+position = Vector2( 307, 469 )
 scale = Vector2( 0.8, 1 )
 collision_layer = 63
 collision_mask = 63
@@ -118,8 +137,7 @@ scale = Vector2( 0.8, 1 )
 shape = SubResource( 2 )
 
 [node name="Area2DT3" type="Area2D" parent="."]
-visible = false
-position = Vector2( 167, -57 )
+position = Vector2( 182, 473 )
 collision_layer = 63
 collision_mask = 63
 
@@ -127,8 +145,7 @@ collision_mask = 63
 shape = SubResource( 4 )
 
 [node name="Area2DT4" type="Area2D" parent="."]
-visible = false
-position = Vector2( 708, -61 )
+position = Vector2( 723, 469 )
 scale = Vector2( 0.8, 1 )
 collision_layer = 63
 collision_mask = 63
@@ -137,8 +154,7 @@ collision_mask = 63
 shape = SubResource( 2 )
 
 [node name="Area2DT5" type="Area2D" parent="."]
-visible = false
-position = Vector2( 573, -69 )
+position = Vector2( 588, 461 )
 scale = Vector2( 0.3, 1 )
 collision_layer = 63
 collision_mask = 63
@@ -148,8 +164,7 @@ scale = Vector2( 1, 2 )
 shape = SubResource( 2 )
 
 [node name="Area2DT6" type="Area2D" parent="."]
-visible = false
-position = Vector2( 776, -82 )
+position = Vector2( 791, 448 )
 scale = Vector2( 0.8, 1 )
 collision_layer = 63
 collision_mask = 63
@@ -159,8 +174,7 @@ position = Vector2( 2.5, 3 )
 shape = SubResource( 4 )
 
 [node name="Area2DT7" type="Area2D" parent="."]
-visible = false
-position = Vector2( 398, -76 )
+position = Vector2( 413, 454 )
 scale = Vector2( 0.3, 1 )
 collision_layer = 63
 collision_mask = 63
@@ -170,8 +184,7 @@ scale = Vector2( 1, 2 )
 shape = SubResource( 2 )
 
 [node name="Area2DT8" type="Area2D" parent="."]
-visible = false
-position = Vector2( 212, -99 )
+position = Vector2( 227, 431 )
 collision_layer = 63
 collision_mask = 63
 
@@ -180,8 +193,7 @@ scale = Vector2( 0.7, 1 )
 shape = SubResource( 4 )
 
 [node name="Area2DT9" type="Area2D" parent="."]
-visible = false
-position = Vector2( 794, -14 )
+position = Vector2( 809, 516 )
 scale = Vector2( 0.2, 1 )
 collision_layer = 63
 collision_mask = 63
@@ -190,8 +202,7 @@ collision_mask = 63
 shape = SubResource( 2 )
 
 [node name="Area2DT10" type="Area2D" parent="."]
-visible = false
-position = Vector2( 815, -68 )
+position = Vector2( 830, 462 )
 collision_layer = 63
 collision_mask = 63
 
@@ -199,18 +210,17 @@ collision_mask = 63
 shape = SubResource( 4 )
 
 [node name="Area2DT11" type="Area2D" parent="."]
-visible = false
-position = Vector2( 907, -8 )
+position = Vector2( 698, -14 )
 collision_layer = 63
 collision_mask = 63
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT11"]
-position = Vector2( 0.25, 0 )
+position = Vector2( -12, 5 )
+scale = Vector2( 1.5, 1 )
 shape = SubResource( 3 )
 
 [node name="Area2DT12" type="Area2D" parent="."]
-visible = false
-position = Vector2( 198, -11 )
+position = Vector2( 213, 519 )
 scale = Vector2( 0.7, 1 )
 collision_layer = 63
 collision_mask = 63
@@ -219,8 +229,7 @@ collision_mask = 63
 shape = SubResource( 4 )
 
 [node name="Area2D3" type="Area2D" parent="."]
-visible = false
-position = Vector2( 308, -125 )
+position = Vector2( 323, 405 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
 shape = SubResource( 2 )
@@ -229,7 +238,7 @@ shape = SubResource( 2 )
 visible = false
 
 [node name="Jumping_Area" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 647, -100 )
+position = Vector2( 684, 114 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -247,7 +256,7 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area4" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 432, -132 )
+position = Vector2( 424, -163 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -256,7 +265,7 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area5" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 352, -100 )
+position = Vector2( 416, -132 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -265,7 +274,7 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area1" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 197, -35 )
+position = Vector2( 200, -35 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -274,17 +283,17 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area6" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 236, -79 )
+position = Vector2( 527, -38 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area6"]
-position = Vector2( 0, 1 )
+position = Vector2( 1, 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area8" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 757, -75 )
+position = Vector2( 762, -35 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -293,7 +302,7 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area9" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 736, -100 )
+position = Vector2( 547, -162 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -302,7 +311,7 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area10" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 793, -47 )
+position = Vector2( 554, -31 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -311,7 +320,7 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area7" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 263, -99 )
+position = Vector2( 416, 119 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -320,7 +329,7 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area11" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 196, -78 )
+position = Vector2( 186, -67 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -329,7 +338,7 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area12" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 246, -35 )
+position = Vector2( 440, -35 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -338,7 +347,7 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area13" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 640, -132 )
+position = Vector2( 642, 88 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -347,7 +356,7 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area3" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 752, -36 )
+position = Vector2( 783, -65 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -356,7 +365,7 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area14" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 664, -36 )
+position = Vector2( 663, 69 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -365,7 +374,7 @@ script = ExtResource( 3 )
 shape = SubResource( 5 )
 
 [node name="Jumping_Area15" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 336, -36 )
+position = Vector2( 406, -35 )
 collision_layer = 4194304
 collision_mask = 4194304
 script = ExtResource( 3 )
@@ -387,6 +396,94 @@ shape = SubResource( 6 )
 visible = false
 position = Vector2( 523, 314 )
 texture = ExtResource( 4 )
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+visible = false
+navpoly = SubResource( 7 )
+navigation_layers = 63
+
+[node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="."]
+visible = false
+navpoly = SubResource( 8 )
+navigation_layers = 63
+
+[node name="Line2D2" type="Line2D" parent="."]
+points = PoolVector2Array( 668, -28 )
+width = 3.0
+
+[node name="Areas_For_Specifical_Controlling" type="Area2D" parent="."]
+visible = false
+
+[node name="No-Speed_Area" type="Area2D" parent="Areas_For_Specifical_Controlling"]
+position = Vector2( 563, 35 )
+scale = Vector2( 5, 0.2 )
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/No-Speed_Area"]
+position = Vector2( 0.199997, -465 )
+scale = Vector2( 2, 3 )
+shape = SubResource( 9 )
+
+[node name="No-Speed_Area2" type="Area2D" parent="Areas_For_Specifical_Controlling"]
+position = Vector2( 391, 29 )
+scale = Vector2( 5, 0.1 )
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/No-Speed_Area2"]
+position = Vector2( 0.800003, -860 )
+shape = SubResource( 9 )
+
+[node name="Speed_Area" type="Area2D" parent="Areas_For_Specifical_Controlling"]
+position = Vector2( 559, -106 )
+scale = Vector2( 30, 0.3 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/Speed_Area"]
+position = Vector2( 0, 17 )
+shape = SubResource( 9 )
+
+[node name="Speed_Area2" type="Area2D" parent="Areas_For_Specifical_Controlling"]
+position = Vector2( 514, 109 )
+scale = Vector2( 3, 0.5 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/Speed_Area2"]
+position = Vector2( 0, 17 )
+shape = SubResource( 9 )
+
+[node name="Speed_Area4" type="Area2D" parent="Areas_For_Specifical_Controlling"]
+position = Vector2( 566, -46 )
+scale = Vector2( 10, 0.1 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/Speed_Area4"]
+position = Vector2( 0, 17 )
+shape = SubResource( 9 )
+
+[node name="Speed_Area5" type="Area2D" parent="Areas_For_Specifical_Controlling"]
+position = Vector2( 393, -51 )
+scale = Vector2( 10, 0.1 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/Speed_Area5"]
+position = Vector2( 3.8147e-06, 0 )
+shape = SubResource( 9 )
+
+[node name="Speed_Area3" type="Area2D" parent="Areas_For_Specifical_Controlling"]
+position = Vector2( 391, -117 )
+scale = Vector2( 30, 0.3 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/Speed_Area3"]
+position = Vector2( 0, 17 )
+shape = SubResource( 9 )
 
 [connection signal="body_entered" from="Area2DT13" to="." method="_on_Area2DT13_body_entered"]
 [connection signal="body_entered" from="Area2DT14" to="." method="_on_Area2DT14_body_entered"]
@@ -410,5 +507,15 @@ texture = ExtResource( 4 )
 [connection signal="body_entered" from="Area2DT9" to="." method="_on_Area2DT9_body_entered"]
 [connection signal="body_entered" from="Area2DT10" to="." method="_on_Area2DT10_body_entered"]
 [connection signal="body_entered" from="Area2DT11" to="." method="_on_Area2DT11_body_entered"]
+[connection signal="body_exited" from="Area2DT11" to="." method="_on_Area2DT11_body_exited"]
 [connection signal="body_entered" from="Area2DT12" to="." method="_on_Area2DT12_body_entered"]
 [connection signal="body_entered" from="Area_For_Falling" to="." method="_on_Area_For_Falling_body_entered"]
+[connection signal="area_entered" from="Areas_For_Specifical_Controlling/No-Speed_Area" to="." method="_on_NoSpeed_Area_area_entered"]
+[connection signal="body_entered" from="Areas_For_Specifical_Controlling/No-Speed_Area" to="." method="_on_NoSpeed_Area_body_entered"]
+[connection signal="area_entered" from="Areas_For_Specifical_Controlling/No-Speed_Area2" to="." method="_on_NoSpeed_Area_area_entered"]
+[connection signal="body_entered" from="Areas_For_Specifical_Controlling/No-Speed_Area2" to="." method="_on_NoSpeed_Area_body_entered"]
+[connection signal="body_entered" from="Areas_For_Specifical_Controlling/Speed_Area" to="." method="_on_Speed_Area_body_entered"]
+[connection signal="area_entered" from="Areas_For_Specifical_Controlling/Speed_Area4" to="." method="_on_Speed_Area4_area_entered"]
+[connection signal="body_entered" from="Areas_For_Specifical_Controlling/Speed_Area4" to="." method="_on_Speed_Area_body_entered"]
+[connection signal="body_entered" from="Areas_For_Specifical_Controlling/Speed_Area5" to="." method="_on_Speed_Area_body_entered"]
+[connection signal="body_entered" from="Areas_For_Specifical_Controlling/Speed_Area3" to="." method="_on_Speed_Area_body_entered"]

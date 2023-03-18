@@ -8,6 +8,7 @@ var point_1
 var point_2
 var point_3
 var mass_of_points = []
+var current_target
 
 var ally = preload("res://Game/Characters/Ally.tscn")
 var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
@@ -73,17 +74,21 @@ func _ready():
 		$Position_Jeison.set_global_position(Vector2(2189, 1151))
 	ally_1.position = $Ally.global_position
 	self.add_child(ally_1)
-	enemy_1_1.position = $Position_Aglea.global_position
-	self.add_child(enemy_1_1)
-	enemy_1_2.position = $Position_Adalard.global_position
-	self.add_child(enemy_1_2)
+	if GLOBAL.life_Aglea == true:
+		enemy_1_1.position = $Position_Aglea.global_position
+		self.add_child(enemy_1_1)
+	if GLOBAL.life_Adalard == true:
+		enemy_1_2.position = $Position_Adalard.global_position
+		self.add_child(enemy_1_2)
 	if GLOBAL.life_Belotur == true:
 		enemy_1_3.position = $Position_Belotur.global_position
 		self.add_child(enemy_1_3)
-	enemy_1_4.position = $Position_Akira.global_position
-	self.add_child(enemy_1_4)
-	enemy_1_5.position = $Position_Jeison.global_position
-	self.add_child(enemy_1_5)
+	if GLOBAL.life_Akira == true:
+		enemy_1_4.position = $Position_Akira.global_position
+		self.add_child(enemy_1_4)
+	if GLOBAL.life_Jeison == true:
+		enemy_1_5.position = $Position_Jeison.global_position
+		self.add_child(enemy_1_5)
 	heroe_1.position = $Position_Heroe.global_position
 	self.add_child(heroe_1)
 	door_1.position = $Position_Door.global_position
@@ -91,6 +96,18 @@ func _ready():
 	GLOBAL.heroe_uploaded = true
 	
 func _physics_process(delta):
+	
+	if self.has_node("Heroe"):
+		if $Heroe.in_invisibility && self.get_node("Bush").global_position.x - $Heroe.global_position.x < 66 && (self.get_node("Bush").global_position.x - $Heroe.global_position.x > -66):
+			current_target = Vector2(2525, 1533)
+		if $Heroe.in_invisibility && self.get_node("Bush2").global_position.x - $Heroe.global_position.x < 66 && (self.get_node("Bush2").global_position.x - $Heroe.global_position.x > -66):
+			current_target = Vector2(2231, 1400)
+		if $Heroe.in_invisibility && self.get_node("Bush3").global_position.x - $Heroe.global_position.x < 66 && (self.get_node("Bush3").global_position.x - $Heroe.global_position.x > -66):
+			current_target = Vector2(1347, 1111)
+		if !$Heroe.in_invisibility:
+			current_target = $Heroe.global_position
+	
+	
 	
 	if self.has_node("Heroe"):
 		if $Heroe.global_position.y > get_node("Areas_For_Jumping/JA10/CollisionShape2D").global_position.y:
@@ -111,9 +128,9 @@ func _physics_process(delta):
 			get_node("Areas_For_Jumping/JA20/CollisionShape2D").set_disabled(false)
 		
 		
-	if !GLOBAL.first_cat_scene && GLOBAL.life_Belotur == true:
-		if (($Belotur.global_position.x) - $Heroe.global_position.x < 25) && (($Belotur.global_position.x) - $Heroe.global_position.x > -26) && (($Belotur.global_position.y) - $Heroe.global_position.y < 15) && (($Belotur.global_position.y) - $Heroe.global_position.y > -15):
-			GLOBAL.position_heroe_before_fight = $Heroe.global_position
+	#if !GLOBAL.first_cat_scene && GLOBAL.life_Belotur == true:
+		#if (($Belotur.global_position.x) - $Heroe.global_position.x < 25) && (($Belotur.global_position.x) - $Heroe.global_position.x > -26) && (($Belotur.global_position.y) - $Heroe.global_position.y < 15) && (($Belotur.global_position.y) - $Heroe.global_position.y > -15):
+			#GLOBAL.position_heroe_before_fight = $Heroe.global_position
 			#GLOBAL.scene("Max_level_Fight_Scene")
 	
 	if !self.has_node("Heroe") && !stop_Aglea_1M && GLOBAL.first_cat_scene:
@@ -193,18 +210,17 @@ func _on_Stop_Machine_body_entered(body):
 func _on_NoSpeed_Area_body_entered(body):
 	if body.has_method("enemy"):
 		if $Heroe.global_position.y < get_node("Areas_For_Specifical_Controlling/No-Speed_Area").global_position.y:
-			body.speed = 0
-			body.stop_machine = true
+			if body.get_node("RayCastHorizontal_For_Heroe").get_collider():
+				if !body.get_node("RayCastHorizontal_For_Heroe").get_collider().has_method("Heroe"):
+					body.speed = 0
+					body.stop_machine = true
 
-
-func _on_NoSpeed_Area_body_exited(body):
-	if body.has_method("enemy"):
-		#body.speed = 2
-		#body.stop_machine = false
-		pass
+			if !body.get_node("RayCastHorizontal_For_Heroe").get_collider():
+				body.speed = 0
+				body.stop_machine = true
 
 
 func _on_Speed_Area_body_entered(body):
 	if body.has_method("enemy"):
-		body.speed = 2
+		body.speed = 2.5
 		body.stop_machine = false

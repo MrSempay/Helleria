@@ -9,6 +9,10 @@ var variable_1
 var variable_2 
 
 var life_Belotur = true
+var life_Aglea = true
+var life_Akira = true
+var life_Adalard = true
+var life_Jeison = true
 var stop = false
 var stop_ghost = false
 var continue_jump = false
@@ -65,6 +69,7 @@ var first_cat_scene = false
 var first_starting_temple_lvl = true
 
 var heroe_pos_changed = false
+var enemy_for_fight = ""
 
 func scene(name):
 	get_tree().change_scene("res://Game/LocationsLevels/"+name+".tscn")

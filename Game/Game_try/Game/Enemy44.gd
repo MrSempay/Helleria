@@ -35,6 +35,7 @@ func handle_hit(damage):
 	else:
 		print(name_character + " was destroyed")
 		GLOBAL.life_first_enemy = false
+		get_parent().life_enemy = false
 		queue_free()
 
 

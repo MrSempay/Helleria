@@ -40,7 +40,7 @@ var armor = 1
 var defense = 1
 var counter_of_stone_sword = 0
 var saving_current_animation_of_stone_sword
-
+var in_invisibility = false
 
 var file = File.new()
 var mass_of_positions = []
@@ -98,7 +98,7 @@ func _ready():
 func _physics_process(delta):
 
 	
-	if Input.is_action_pressed("jump") && !get_parent().has_node("Ghost"):
+	if Input.is_action_pressed("jump") && !get_parent().has_node("Ghost") && !in_invisibility:
 		start_jump_heroe()
 	
 	
@@ -153,7 +153,7 @@ func _physics_process(delta):
 	
 	velocity.x = 0
 	velocity.y += delta * 970 * 2
-	if ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run"):
+	if ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run") && !in_invisibility:
 		speed = 2.5
 		translate(GLOBAL.move_vector_1 * speed)
 		velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
