@@ -2,7 +2,8 @@ extends Area2D
 
 
 
-
+func area_for_fight():
+	pass
 
 
 

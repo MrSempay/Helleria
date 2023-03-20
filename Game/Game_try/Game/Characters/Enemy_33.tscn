@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=108 format=2]
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
 [ext_resource path="res://Game/Enemy_3.gd" type="Script" id=2]
@@ -18,6 +18,8 @@
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++16.png" type="Texture" id=16]
 [ext_resource path="res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3" type="AudioStream" id=17]
 [ext_resource path="res://Game/Characters/Area_For_Starting_Fight.gd" type="Script" id=18]
+[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel5.png" type="Texture" id=19]
+[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel4.png" type="Texture" id=20]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч12.png" type="Texture" id=21]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч9.png" type="Texture" id=22]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++3.png" type="Texture" id=23]
@@ -83,12 +85,19 @@
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч32.png" type="Texture" id=83]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч33.png" type="Texture" id=84]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч34.png" type="Texture" id=85]
+[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel1.png" type="Texture" id=86]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++9.png" type="Texture" id=87]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++10.png" type="Texture" id=88]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++14.png" type="Texture" id=89]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++11.png" type="Texture" id=90]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++13.png" type="Texture" id=91]
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++12.png" type="Texture" id=92]
+[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel2.png" type="Texture" id=93]
+[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel3.png" type="Texture" id=94]
+[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel9.png" type="Texture" id=95]
+[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel6.png" type="Texture" id=96]
+[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel7.png" type="Texture" id=97]
+[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel8.png" type="Texture" id=98]
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 3, 11.5 )
@@ -136,6 +145,11 @@ animations = [ {
 "loop": false,
 "name": "idle",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 86 ), ExtResource( 93 ), ExtResource( 94 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 96 ), ExtResource( 97 ), ExtResource( 98 ), ExtResource( 95 ) ],
+"loop": false,
+"name": "jump",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 58 ), ExtResource( 47 ), ExtResource( 49 ), ExtResource( 52 ), ExtResource( 48 ), ExtResource( 46 ), ExtResource( 51 ) ],
 "loop": true,
@@ -210,7 +224,7 @@ shape = SubResource( 10 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -6 )
-scale = Vector2( 0.559, 1 )
+scale = Vector2( 0.3, 1 )
 polygon = PoolVector2Array( 0, 0, -8, 0, -8, 22, -1, 22, -1, 14, 0, 14, 0, 22, 6, 22, 6, 0 )
 one_way_collision_margin = 12.0
 
@@ -234,8 +248,8 @@ one_shot = true
 [node name="Sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
-animation = "run"
-frame = 3
+animation = "idle"
+playing = true
 
 [node name="HP_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -30.0
@@ -310,6 +324,8 @@ disabled = true
 [node name="Area_For_Starting_Fight" type="Area2D" parent="."]
 position = Vector2( 0, 1 )
 scale = Vector2( 0.7, 1 )
+collision_layer = 5
+collision_mask = 5
 script = ExtResource( 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Starting_Fight"]
@@ -323,47 +339,40 @@ wait_time = 3.0
 one_shot = true
 
 [node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 0, -35 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_2" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 0, -6 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 0, 7 )
 enabled = true
-cast_to = Vector2( 16, 0 )
+cast_to = Vector2( 3, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_4" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 0, -24 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_For_Heroe" type="RayCast2D" parent="."]
-visible = false
 enabled = true
 cast_to = Vector2( 192, 0 )
 
 [node name="RayCastVertical" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 11, 1 )
 enabled = true
 cast_to = Vector2( 0, 22 )
 collision_mask = 4194304
 
 [node name="RayCastVertical_2" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 0, -6 )
 enabled = true
 cast_to = Vector2( 0, -26 )

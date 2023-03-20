@@ -78,7 +78,6 @@ func mana_using(manacost):
 #test_move()
 func _physics_process(delta):
 	
-
 	if $HP_Enemy_1.value <= 50 && !EXTRA:
 		EXTRA = true
 		stun = true
@@ -284,7 +283,7 @@ func _physics_process(delta):
 					if ($NavigationAgent2D.get_nav_path()[j].x - $NavigationAgent2D.get_nav_path()[j+1].x) >= 0:
 							$RayCastHorizontal_1.set_cast_to(Vector2(-16,0))
 							$RayCastHorizontal_2.set_cast_to(Vector2(-16,0))
-							$RayCastHorizontal_3.set_cast_to(Vector2(-16,0))
+							$RayCastHorizontal_3.set_cast_to(Vector2(-3,0))
 							$RayCastHorizontal_4.set_cast_to(Vector2(-16,0))
 							$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
 							$RayCastVertical.set_position(Vector2(-11,1))
@@ -297,7 +296,7 @@ func _physics_process(delta):
 					if ($NavigationAgent2D.get_nav_path()[j].x - $NavigationAgent2D.get_nav_path()[j+1].x) <= -0:
 							$RayCastHorizontal_1.set_cast_to(Vector2(16,0))
 							$RayCastHorizontal_2.set_cast_to(Vector2(16,0))
-							$RayCastHorizontal_3.set_cast_to(Vector2(16,0))
+							$RayCastHorizontal_3.set_cast_to(Vector2(3,0))
 							$RayCastHorizontal_4.set_cast_to(Vector2(16,0))
 							$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
 							$RayCastVertical.set_position(Vector2(11,1))

@@ -9,6 +9,8 @@ var point_2
 var point_3
 var mass_of_points = []
 var current_target
+var position_enemy = ""
+
 
 var ally = preload("res://Game/Characters/Ally.tscn")
 var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
@@ -71,7 +73,8 @@ func _ready():
 	if GLOBAL.first_cat_scene:
 		$Position_Jeison.set_global_position(Vector2(3535, 1528))
 	else:
-		$Position_Jeison.set_global_position(Vector2(2189, 1151))
+		pass
+		#$Position_Jeison.set_global_position(Vector2(2189, 1151))
 	ally_1.position = $Ally.global_position
 	self.add_child(ally_1)
 	if GLOBAL.life_Aglea == true:
@@ -97,12 +100,20 @@ func _ready():
 	
 func _physics_process(delta):
 	
+	print($NPIUlt.get_navigation_layers())
+	match position_enemy:
+		"":
+			$NPIUlt.set_enabled(false)
+			$NPIUlt2.set_enabled(false)
+			$NPIUlt3.set_enabled(false)
+		
+	
 	if self.has_node("Heroe"):
-		if $Heroe.in_invisibility && self.get_node("Bush").global_position.x - $Heroe.global_position.x < 66 && (self.get_node("Bush").global_position.x - $Heroe.global_position.x > -66):
+		if $Heroe.in_invisibility && self.get_node("Bush").global_position.x - $Heroe.global_position.x < 33 && (self.get_node("Bush").global_position.x - $Heroe.global_position.x > -33):
 			current_target = Vector2(2525, 1533)
-		if $Heroe.in_invisibility && self.get_node("Bush2").global_position.x - $Heroe.global_position.x < 66 && (self.get_node("Bush2").global_position.x - $Heroe.global_position.x > -66):
+		if $Heroe.in_invisibility && self.get_node("Bush2").global_position.x - $Heroe.global_position.x < 33 && (self.get_node("Bush2").global_position.x - $Heroe.global_position.x > -33):
 			current_target = Vector2(2231, 1400)
-		if $Heroe.in_invisibility && self.get_node("Bush3").global_position.x - $Heroe.global_position.x < 66 && (self.get_node("Bush3").global_position.x - $Heroe.global_position.x > -66):
+		if $Heroe.in_invisibility && self.get_node("Bush3").global_position.x - $Heroe.global_position.x < 33 && (self.get_node("Bush3").global_position.x - $Heroe.global_position.x > -33):
 			current_target = Vector2(1347, 1111)
 		if !$Heroe.in_invisibility:
 			current_target = $Heroe.global_position
@@ -224,3 +235,40 @@ func _on_Speed_Area_body_entered(body):
 	if body.has_method("enemy"):
 		body.speed = 2.5
 		body.stop_machine = false
+
+
+
+func _on_Area1_area_entered(area):
+	if area.has_method("area_for_fight"):
+		$NPIUlt.set_navigation_layers(area.get_collision_layer())
+		#$NPIUlt.set_collision_mask_bit(area.get_collision_mask(),true)
+
+
+func _on_Area1_area_exited(area):
+	if area.has_method("area_for_fight"):
+		$NPIUlt.set_navigation_layers(area.get_collision_layer())
+		#$NPIUlt.set_collision_mask_bit(area.get_collision_mask(),false)
+
+
+func _on_Area2_area_entered(area):
+	if area.has_method("area_for_fight"):
+		$NPIUlt2.set_navigation_layers(area.get_collision_layer())
+		#$NPIUlt2.set_collision_mask_bit(area.get_collision_mask(),true)
+
+
+func _on_Area2_area_exited(area):
+	if area.has_method("area_for_fight"):
+		$NPIUlt2.set_navigation_layers(area.get_collision_layer())
+		#$NPIUlt2.set_collision_mask_bit(area.get_collision_mask(),false)
+
+
+func _on_Area3_area_entered(area):
+	if area.has_method("area_for_fight"):
+		$NPIUlt3.set_navigation_layers(area.get_collision_layer())
+		#$NPIUlt3.set_collision_mask_bit(area.get_collision_mask(),true)
+
+
+func _on_Area3_area_exited(area):
+	if area.has_method("area_for_fight"):
+		$NPIUlt3.set_navigation_layers(area.get_collision_layer())
+		#$NPIUlt3.set_collision_mask_bit(area.get_collision_mask(),false)

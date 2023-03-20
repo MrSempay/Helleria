@@ -96,8 +96,6 @@ func _physics_process(delta):
 	if get_parent().has_node("Heroe") && !stun:
 
 		if trigger_of_ally:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
-			print(speed)
-			print(stop_machine)
 			if j < $NavigationAgent2D.get_nav_path().size() - 1:
 				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 					if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):

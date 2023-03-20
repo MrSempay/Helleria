@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Game/Area_Of_Dialoge_Camera.gd" type="Script" id=1]
 [ext_resource path="res://Game/First_Scene.gd" type="Script" id=2]
@@ -16,15 +16,51 @@ vertices = PoolVector2Array( 4, 31, -8, 36, -7, 9, 38, -5, -295, 150, -299, 132,
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7 ), PoolIntArray( 8, 9, 10, 11 ), PoolIntArray( 0, 3, 12, 13, 14 ), PoolIntArray( 10, 15, 11 ), PoolIntArray( 8, 11, 3, 2 ), PoolIntArray( 16, 14, 13, 17, 18 ), PoolIntArray( 18, 19, 20, 21, 16 ), PoolIntArray( 7, 22, 4 ), PoolIntArray( 7, 6, 23 ), PoolIntArray( 7, 23, 24 ), PoolIntArray( 24, 25, 26, 27, 7 ), PoolIntArray( 7, 27, 18, 17 ) ]
 outlines = [ PoolVector2Array( -50, -20, -36, -20, -36, -5, 38, -5, 58, -5, 55, 114, -28, 114, -74, 175, -294, 174, -295, 150, -299, 132, -288, 132, -279, 132, -190, 132, -203, 112, -196, 94, -166, 98, -81, 98, -106, 76, -106, 57, -98, 57, -64, 61, 4, 65, 4, 31, -8, 36, -7, 9, -26, 13, -54, 14 ) ]
 
+[sub_resource type="NavigationPolygon" id=11]
+vertices = PoolVector2Array( -119, -12, -106, -29, -105, -16, -111, 26, -37, -35, -37, -50, -22, -50, 8, 47, -29, 3, -41, 27, -68, 5 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7, 8 ), PoolIntArray( 8, 7, 9, 10 ), PoolIntArray( 10, 9, 3, 2 ) ]
+outlines = [ PoolVector2Array( -119, -12, -106, -29, -105, -16, -68, 5, -29, 3, -37, -35, -37, -50, -22, -50, 8, 47, -41, 27, -111, 26 ) ]
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 220.5, 88.75 )
+
+[sub_resource type="NavigationPolygon" id=12]
+vertices = PoolVector2Array( -175, -68, -167, -78, -149, -53, -159, 17, -54, 27, -84, -53, -57, -52, -70, -71, -70, -95, -62, -95, -52, -81, -58, -71, 42, -69, 42, -70, 49, -70, 168, -47, 176, -47, 176, -27, -8, 76, 29, -51, 48, 31, 98, 29, 42, -51, 78, -47, 78, -62 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2, 5, 6 ), PoolIntArray( 7, 8, 9, 10, 11 ), PoolIntArray( 12, 13, 14 ), PoolIntArray( 15, 16, 17 ), PoolIntArray( 7, 11, 6, 5 ), PoolIntArray( 18, 4, 6, 19, 20 ), PoolIntArray( 17, 21, 20, 19, 22, 23 ), PoolIntArray( 22, 12, 14, 24, 23 ), PoolIntArray( 17, 23, 15 ) ]
+outlines = [ PoolVector2Array( -175, -68, -167, -78, -149, -53, -84, -53, -70, -71, -70, -95, -62, -95, -52, -81, -58, -71, -57, -52, 29, -51, 42, -51, 42, -69, 42, -70, 49, -70, 78, -62, 78, -47, 168, -47, 176, -47, 176, -27, 98, 29, 48, 31, -8, 76, -54, 27, -159, 17 ) ]
+
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 372.761, 125.915 )
+
 [sub_resource type="NavigationPolygon" id=5]
 vertices = PoolVector2Array( 1476.35, 1299.35, 1458, 1289, 1463, 1289, 1497, 1305, 1501, 1341, 1514, 1315, 1512, 1341, 1529, 1341 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5, 6 ), PoolIntArray( 5, 7, 6 ) ]
 outlines = [ PoolVector2Array( 1514, 1315, 1497, 1305, 1463, 1289, 1458, 1289, 1476.35, 1299.35, 1501, 1341, 1512, 1341, 1529, 1341 ) ]
 
 [sub_resource type="NavigationPolygon" id=2]
-vertices = PoolVector2Array( -108, -658, -196, -658, -159, -670, -1041, -790, -1121, -825, -963, -821, -970, -790, -320, -128, -310, -157, -287, -142, -321, -111, 521, -106, 537, -106, 520, -79, 459, -72, 48.8321, -177.067, 316, -176, 302, -140, 68, -140, -472, -157, -601, -129, -487, -158, -490, -158, -512, -171, -558, -170, -951, -754, -971, -771, -826, -764, -873, -753, -661, -97, -674, -70, -734, -69, -732, -96, -662, -118, -545, -539, -699, -539, -696, -576, -537, -574, -500, -512, -545, -522, -351, -624, -154, -625, -156, -597, -244, -598, -604, -724, -654, -724, -656, -758, -321.069, -760.767, -314, -728, -126, -703, -314, -704, 878, -674, 1026, -681, 1026, -643, 873, -643, 451.562, -663.2, 448, -719, 595, -724, 525, -693, -2, -2, 571, -1, 572, 50, -327, 41, -95, 9, 247.78, -117.175, 265, -117, 267, -78, 121, -74, 68, -119, 43, -69, 25, -114, 716, -229, 716, -178, 653, -179, 655, -204, 708, -249, 873, -626, 1013, -627, 1013, -578, 815, -578, 37, -262, 300, -259, 299, -205, 34, -203, -89, -224, 100, -465, 100, -423, -106, -424, -99, -465, -167.586, -465.586, -165, -429, -756, -427, -756, -460, -711, -463, -447, -464, -440, -464, -216, -463, 445, -562, -63, -563, -63, -602, 426, -601, 521, -582, 464, -560, 532, -550, 626, -573, 617, -551.997, 670.031, -523, 617, -523, -327, 9, -39, -2, -95, -11, -118, -28, -322, -12, -124, -56, -322, -54, -148, -56, -133, -78, -148, -76, -171, -93, -176, -76, -185, -77, -166, -367, -742, -368, -742, -409, -165, -409, -139, -369, -244, -581, -252, -581, -434, -526, -434, -506, -453, -506, -452, -556, -88, -643, -108, -643, -78, -664, 607, -502, 607, -466, 543, -466, 488, -482, 499, -435, 467, -431, 276, -431, 276, -462, 443, -466, 488, -466, 523, -441, 603, -404, 688, -370, 688, -342, 618, -342, 603, -369, 206, -415, -133, -369, -38, -402, -106, -403, -155, -327, -155, -284, -242, -284, -238, -349, -210, -161, -192, -161, -192, -141, -255, -120, -252, -562, -341, -560, -342, -544, -349, -526, -490, -479, -711, -478, -706, -521, -174, -524, 696, -342, 694, -287, -121, -285, -123, -328, -115, -349, 701, -523, 700, -502, 20, -117, 18, -142, 34, -183, -72, -143, -90, -179, -237, -227, -192, -202, -188, -108, -202, -108, -214, -104, -221, -78, -351, -78, -603, -118, -652, -157, -516, -205, -519, -189, -545, -189, -526, -215, -864, -718, -873, -735, -777, -719, -656, -704, -760, -685, -777, -700, -686, -684, -657, -668, 776, -570, 815, -562, 779, -552, 722, -553, 823, -700, 854, -662, 303, -70, 287, -76, 287, -119, 566, -200, 521, -129, -371, -20, -440, -20, -460, -34, -457, -68, 454, -621, -77, -618, 480, -640, 616, -694, 666, -714, 725, -669, 634, -669, 755, -661, 772, -662, 854, -647, 854, -626, 727, -569, 721, -535, 255, -523, 281, -483, 228, -495, -331, -111, -498, -87, -498, -34, -534, -47, -539, -94, -582, -47, -602, -58, -657, -58, -563, -217, -558, -189, -515, -209, -334, -260, -403, -237, -480, -214, -510, -209, -499, -245, -287, -276, -334, -245, -348, -238, -403, -224, -422, -214, 632, -159, 610, -130, 632, -179, 740, -249, 732, -229, 804, -228, 708, -287, -172, -180, -264, -202, -274, -261, -277, -270, -287, -271, -139, -352, -133, -352, -88, -524, 158, -495, 96, -486, -89, -483, -109, -478, -168, -479 )
-polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 3, 4, 5, 6 ), PoolIntArray( 7, 8, 9, 10 ), PoolIntArray( 11, 12, 13, 14 ), PoolIntArray( 15, 16, 17, 18 ), PoolIntArray( 19, 8, 7, 20 ), PoolIntArray( 21, 19, 20, 22 ), PoolIntArray( 23, 22, 20, 24 ), PoolIntArray( 25, 26, 6, 5, 27, 28 ), PoolIntArray( 29, 30, 31, 32, 33 ), PoolIntArray( 34, 35, 36, 37 ), PoolIntArray( 34, 37, 38, 39 ), PoolIntArray( 40, 41, 42, 43 ), PoolIntArray( 44, 45, 46, 47, 48 ), PoolIntArray( 48, 47, 49 ), PoolIntArray( 50, 48, 49, 2 ), PoolIntArray( 51, 52, 53, 54 ), PoolIntArray( 55, 56, 57, 58 ), PoolIntArray( 59, 60, 61, 62, 63 ), PoolIntArray( 64, 65, 66, 67, 68 ), PoolIntArray( 68, 67, 69, 70 ), PoolIntArray( 71, 72, 73, 74, 75 ), PoolIntArray( 76, 77, 78, 79 ), PoolIntArray( 80, 81, 82, 83, 84 ), PoolIntArray( 85, 86, 87, 88 ), PoolIntArray( 89, 88, 87 ), PoolIntArray( 90, 91, 92, 93, 94, 95, 96 ), PoolIntArray( 97, 98, 99, 100, 101 ), PoolIntArray( 102, 97, 101 ), PoolIntArray( 103, 102, 101, 104, 105 ), PoolIntArray( 105, 104, 106, 107 ), PoolIntArray( 62, 108, 63 ), PoolIntArray( 109, 59, 63 ), PoolIntArray( 109, 63, 110 ), PoolIntArray( 111, 109, 110 ), PoolIntArray( 111, 110, 112 ), PoolIntArray( 113, 111, 112, 114, 115 ), PoolIntArray( 116, 113, 115, 117 ), PoolIntArray( 118, 116, 117, 119, 120 ), PoolIntArray( 121, 122, 123, 124, 125 ), PoolIntArray( 43, 126, 127, 40 ), PoolIntArray( 128, 129, 130, 38, 131 ), PoolIntArray( 132, 133, 0, 134 ), PoolIntArray( 135, 136, 137, 138 ), PoolIntArray( 139, 140, 141, 142, 143, 144, 145 ), PoolIntArray( 146, 147, 148, 149, 150 ), PoolIntArray( 151, 146, 150, 152, 153 ), PoolIntArray( 154, 153, 152 ), PoolIntArray( 155, 156, 157, 158 ), PoolIntArray( 159, 160, 161, 162 ), PoolIntArray( 127, 163, 164, 40 ), PoolIntArray( 131, 40, 164, 165, 166, 128 ), PoolIntArray( 38, 130, 167, 168 ), PoolIntArray( 39, 38, 168, 169 ), PoolIntArray( 92, 169, 168 ), PoolIntArray( 92, 168, 93 ), PoolIntArray( 90, 96, 170, 89 ), PoolIntArray( 171, 172, 173, 174, 175 ), PoolIntArray( 176, 177, 135, 106 ), PoolIntArray( 137, 145, 144, 138 ), PoolIntArray( 15, 18, 68, 70, 178, 179, 180 ), PoolIntArray( 84, 83, 180, 179, 181, 182 ), PoolIntArray( 183, 84, 182, 184 ), PoolIntArray( 118, 120, 185 ), PoolIntArray( 161, 118, 185 ), PoolIntArray( 162, 161, 185, 186 ), PoolIntArray( 162, 186, 187 ), PoolIntArray( 162, 187, 188, 189 ), PoolIntArray( 9, 162, 189, 10 ), PoolIntArray( 20, 190, 33, 191 ), PoolIntArray( 192, 193, 194, 195 ), PoolIntArray( 196, 197, 28, 27, 198 ), PoolIntArray( 198, 27, 199 ), PoolIntArray( 200, 201, 198, 199, 202 ), PoolIntArray( 2, 203, 202, 199, 50 ), PoolIntArray( 0, 2, 49, 134 ), PoolIntArray( 204, 79, 205, 206, 207 ), PoolIntArray( 208, 51, 54, 209 ), PoolIntArray( 14, 210, 211, 212, 213, 214 ), PoolIntArray( 189, 215, 216, 217, 218 ), PoolIntArray( 219, 220, 132, 134, 55, 221 ), PoolIntArray( 58, 221, 55 ), PoolIntArray( 222, 58, 57, 223 ), PoolIntArray( 224, 225, 222, 223, 208 ), PoolIntArray( 226, 224, 208, 227 ), PoolIntArray( 209, 227, 208 ), PoolIntArray( 228, 209, 54 ), PoolIntArray( 229, 228, 54, 76 ), PoolIntArray( 229, 76, 79, 204 ), PoolIntArray( 230, 204, 207 ), PoolIntArray( 106, 230, 207 ), PoolIntArray( 106, 207, 231, 176 ), PoolIntArray( 107, 106, 135 ), PoolIntArray( 232, 107, 135, 138, 233, 234 ), PoolIntArray( 235, 10, 189, 218 ), PoolIntArray( 236, 218, 217, 237, 238, 239 ), PoolIntArray( 29, 239, 238, 240, 241 ), PoolIntArray( 29, 241, 242, 30 ), PoolIntArray( 33, 32, 191 ), PoolIntArray( 24, 20, 191, 243, 244 ), PoolIntArray( 244, 243, 195, 194 ), PoolIntArray( 245, 192, 195 ), PoolIntArray( 246, 247, 248, 249, 245, 195, 250, 158, 251 ), PoolIntArray( 246, 252, 253, 247 ), PoolIntArray( 247, 254, 255, 248 ), PoolIntArray( 214, 11, 14 ), PoolIntArray( 256, 257, 214, 213, 258 ), PoolIntArray( 258, 213, 74, 73 ), PoolIntArray( 71, 75, 259, 260 ), PoolIntArray( 261, 260, 259 ), PoolIntArray( 171, 261, 259, 262 ), PoolIntArray( 171, 262, 172 ), PoolIntArray( 89, 87, 154, 152 ), PoolIntArray( 182, 263, 184 ), PoolIntArray( 183, 184, 264 ), PoolIntArray( 183, 264, 265 ), PoolIntArray( 266, 183, 265 ), PoolIntArray( 266, 265, 246, 267 ), PoolIntArray( 251, 267, 246 ), PoolIntArray( 157, 251, 158 ), PoolIntArray( 174, 155, 158, 268, 269, 175 ), PoolIntArray( 270, 232, 234, 271 ), PoolIntArray( 270, 271, 272, 273, 170 ), PoolIntArray( 170, 273, 274, 275 ), PoolIntArray( 125, 124, 90 ), PoolIntArray( 89, 152, 269, 125 ), PoolIntArray( 170, 275, 89 ), PoolIntArray( 125, 90, 89 ), PoolIntArray( 268, 125, 269 ) ]
-outlines = [ PoolVector2Array( -2, -2, -39, -2, -118, -28, -124, -56, -133, -78, -171, -93, -192, -141, -192, -161, -210, -161, -255, -120, -287, -142, -320, -128, -321, -111, -331, -111, -457, -68, -498, -87, -539, -94, -661, -97, -662, -118, -603, -118, -601, -129, -320, -128, -287, -142, -310, -157, -472, -157, -487, -158, -490, -158, -512, -171, -558, -170, -558, -189, -545, -189, -519, -189, -516, -205, -515, -209, -510, -209, -480, -214, -422, -214, -403, -224, -403, -237, -348, -238, -334, -245, -334, -260, -274, -261, -264, -202, -192, -202, -172, -180, -90, -179, -72, -143, 18, -142, 20, -117, 25, -114, 43, -69, 121, -74, 267, -78, 265, -117, 247.78, -117.175, 68, -119, 68, -140, 302, -140, 316, -176, 48.8321, -177.067, 34, -183, 34, -203, 299, -205, 300, -259, 37, -262, -89, -224, -237, -227, -277, -270, -287, -271, -287, -276, -242, -284, -155, -284, -155, -327, -123, -328, -121, -285, 694, -287, 708, -287, 740, -249, 708, -249, 655, -204, 566, -200, 287, -119, 287, -76, 303, -70, 459, -72, 520, -79, 537, -106, 521, -106, 521, -129, 610, -130, 632, -159, 632, -179, 653, -179, 716, -178, 716, -229, 732, -229, 804, -228, 696, -342, -115, -349, -133, -352, -133, -369, 603, -369, 618, -342, 688, -342, 688, -370, 603, -404, 206, -415, -38, -402, -106, -403, -106, -424, 100, -423, 100, -465, -99, -465, -167.586, -465.586, -168, -479, -109, -478, -89, -483, 96, -486, 158, -495, 228, -495, 281, -483, 488, -482, 488, -466, 443, -466, 276, -462, 276, -431, 467, -431, 499, -435, 523, -441, 543, -466, 607, -466, 607, -502, 700, -502, 701, -523, 721, -535, 722, -553, 779, -552, 815, -562, 815, -578, 1013, -578, 1013, -627, 873, -626, 873, -643, 1026, -643, 1026, -681, 878, -674, 823, -700, 666, -714, 595, -724, 448, -719, 451.562, -663.2, -78, -664, -126, -703, -321.069, -760.767, -656, -758, -654, -724, -604, -724, -314, -728, -314, -704, -656, -704, -826, -764, -963, -821, -1121, -825, -1041, -790, -970, -790, -971, -771, -951, -754, -873, -753, -873, -735, -864, -718, -777, -719, -777, -700, -760, -685, -686, -684, -657, -668, -159, -670, -196, -658, -108, -658, -108, -643, -88, -643, -77, -618, 454, -621, 480, -640, 525, -693, 616, -694, 634, -669, 725, -669, 755, -661, 772, -662, 854, -662, 854, -647, 854, -626, 776, -570, 727, -569, 670.031, -523, 626, -573, 521, -582, 426, -601, -63, -602, -63, -563, 445, -562, 464, -560, 532, -550, 617, -551.997, 617, -523, 255, -523, -88, -524, -174, -524, -216, -463, -440, -464, -447, -464, -711, -463, -711, -478, -490, -479, -453, -506, -434, -506, -434, -526, -349, -526, -342, -544, -341, -560, -252, -562, -252, -581, -244, -581, -244, -598, -156, -597, -154, -625, -351, -624, -452, -556, -500, -512, -537, -574, -696, -576, -699, -539, -545, -539, -545, -522, -706, -521, -756, -460, -756, -427, -165, -429, -165, -409, -742, -409, -742, -368, -166, -367, -139, -369, -139, -352, -238, -349, -499, -245, -526, -215, -563, -217, -652, -157, -732, -96, -734, -69, -674, -70, -657, -58, -602, -58, -582, -47, -534, -47, -498, -34, -460, -34, -440, -20, -371, -20, -351, -78, -221, -78, -214, -104, -202, -108, -188, -108, -185, -77, -176, -76, -148, -76, -148, -56, -322, -54, -322, -12, -95, -11, -95, 9, -327, 9, -327, 41, 572, 50, 571, -1 ) ]
+vertices = PoolVector2Array( -108, -658, -196, -658, -159, -670, -970, -790, -1041, -790, -1121, -825, -963, -821, -753, -795, -320, -128, -310, -157, -287, -142, -321, -111, 521, -106, 537, -106, 520, -79, 459, -72, 48.8321, -177.067, 316, -176, 302, -140, 68, -140, -472, -157, -601, -129, -487, -158, -490, -158, -512, -171, -558, -170, -604, -724, -633, -724, -627, -758, -321.069, -760.767, -314, -728, -126, -703, -314, -704, -674, -70, -734, -69, -732, -96, -684, -97, -545, -539, -699, -539, -696, -576, -537, -574, -500, -512, -545, -522, -351, -624, -154, -625, -156, -597, -244, -598, 878, -674, 1026, -681, 1026, -643, 873, -643, 451.562, -663.2, 448, -719, 595, -724, 525, -693, -2, -2, 571, -1, 572, 50, -327, 41, -95, 9, 247.78, -117.175, 265, -117, 267, -78, 121, -74, 68, -119, 43, -69, 25, -114, 716, -229, 716, -178, 653, -179, 655, -204, 708, -249, 873, -626, 1013, -627, 1013, -578, 815, -578, 37, -262, 300, -259, 299, -205, 34, -203, -89, -224, 100, -465, 100, -423, -106, -424, -99, -465, -167.586, -465.586, -165, -429, -756, -427, -756, -460, -711, -463, -447, -464, -440, -464, -216, -463, 445, -562, -63, -563, -63, -602, 426, -601, 521, -582, 464, -560, 532, -550, 626, -573, 617, -551.997, 670.031, -523, 617, -523, -327, 9, -39, -2, -95, -11, -118, -28, -322, -12, -124, -56, -322, -54, -148, -56, -133, -78, -148, -76, -171, -93, -176, -76, -185, -77, -166, -367, -742, -368, -742, -409, -165, -409, -139, -369, -244, -581, -252, -581, -434, -526, -434, -506, -453, -506, -452, -556, -88, -643, -108, -643, -78, -664, 607, -502, 607, -466, 543, -466, 488, -482, 499, -435, 467, -431, 276, -431, 276, -462, 443, -466, 488, -466, 523, -441, 603, -404, 688, -370, 688, -342, 618, -342, 603, -369, -133, -369, 533, -405, 206, -415, -38, -402, -106, -403, -155, -327, -155, -284, -242, -284, -238, -349, -210, -161, -192, -161, -192, -141, -255, -120, -252, -562, -341, -560, -342, -544, -349, -526, -490, -479, -711, -478, -706, -521, -174, -524, 696, -342, 694, -287, -121, -285, -123, -328, -115, -349, 701, -523, 700, -502, -951, -754, -971, -771, -873, -753, 20, -117, 18, -142, 34, -183, -72, -143, -90, -179, -237, -227, -192, -202, -188, -108, -202, -108, -214, -104, -221, -78, -351, -78, -603, -118, -662, -118, -652, -157, -516, -205, -519, -189, -545, -189, -526, -215, 776, -570, 815, -562, 779, -552, 722, -553, 823, -700, 854, -662, 303, -70, 287, -76, 287, -119, 566, -200, 521, -129, -371, -20, -440, -20, -460, -34, -457, -68, -864, -718, -873, -735, -777, -719, -760, -685, -777, -700, -656, -704, -686, -684, -657, -668, 454, -621, -77, -618, 480, -640, 616, -694, 666, -714, 725, -669, 634, -669, 755, -661, 772, -662, 854, -647, 854, -626, 727, -569, 721, -535, 255, -523, 281, -483, 228, -495, -331, -111, -498, -87, -498, -34, -534, -47, -539, -94, -582, -47, -602, -58, -657, -58, -563, -217, -558, -189, -515, -209, -334, -260, -403, -237, -480, -214, -510, -209, -499, -245, -287, -276, -334, -245, -348, -238, -403, -224, -422, -214, 632, -159, 610, -130, 632, -179, 740, -249, 732, -229, 804, -228, 708, -287, -172, -180, -264, -202, -274, -261, -277, -270, -287, -271, -139, -352, -133, -352, -88, -524, 158, -495, 96, -486, -89, -483, -109, -478, -168, -479 )
+polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 3, 4, 5, 6, 7 ), PoolIntArray( 8, 9, 10, 11 ), PoolIntArray( 12, 13, 14, 15 ), PoolIntArray( 16, 17, 18, 19 ), PoolIntArray( 20, 9, 8, 21 ), PoolIntArray( 22, 20, 21, 23 ), PoolIntArray( 24, 23, 21, 25 ), PoolIntArray( 26, 27, 28, 29, 30 ), PoolIntArray( 30, 29, 31 ), PoolIntArray( 32, 30, 31, 2 ), PoolIntArray( 33, 34, 35, 36 ), PoolIntArray( 37, 38, 39, 40 ), PoolIntArray( 37, 40, 41, 42 ), PoolIntArray( 43, 44, 45, 46 ), PoolIntArray( 47, 48, 49, 50 ), PoolIntArray( 51, 52, 53, 54 ), PoolIntArray( 55, 56, 57, 58, 59 ), PoolIntArray( 60, 61, 62, 63, 64 ), PoolIntArray( 64, 63, 65, 66 ), PoolIntArray( 67, 68, 69, 70, 71 ), PoolIntArray( 72, 73, 74, 75 ), PoolIntArray( 76, 77, 78, 79, 80 ), PoolIntArray( 81, 82, 83, 84 ), PoolIntArray( 85, 84, 83 ), PoolIntArray( 86, 87, 88, 89, 90, 91, 92 ), PoolIntArray( 93, 94, 95, 96, 97 ), PoolIntArray( 98, 93, 97 ), PoolIntArray( 99, 98, 97, 100, 101 ), PoolIntArray( 101, 100, 102, 103 ), PoolIntArray( 58, 104, 59 ), PoolIntArray( 105, 55, 59 ), PoolIntArray( 105, 59, 106 ), PoolIntArray( 107, 105, 106 ), PoolIntArray( 107, 106, 108 ), PoolIntArray( 109, 107, 108, 110, 111 ), PoolIntArray( 112, 109, 111, 113 ), PoolIntArray( 114, 112, 113, 115, 116 ), PoolIntArray( 117, 118, 119, 120, 121 ), PoolIntArray( 46, 122, 123, 43 ), PoolIntArray( 124, 125, 126, 41, 127 ), PoolIntArray( 128, 129, 0, 130 ), PoolIntArray( 131, 132, 133, 134 ), PoolIntArray( 135, 136, 137, 138, 139, 140, 141 ), PoolIntArray( 142, 143, 144, 145, 146 ), PoolIntArray( 142, 146, 147, 148 ), PoolIntArray( 149, 148, 147, 150 ), PoolIntArray( 151, 150, 147 ), PoolIntArray( 152, 153, 154, 155 ), PoolIntArray( 156, 157, 158, 159 ), PoolIntArray( 123, 160, 161, 43 ), PoolIntArray( 127, 43, 161, 162, 163, 124 ), PoolIntArray( 41, 126, 164, 165 ), PoolIntArray( 42, 41, 165, 166 ), PoolIntArray( 88, 166, 165 ), PoolIntArray( 88, 165, 89 ), PoolIntArray( 86, 92, 167, 85 ), PoolIntArray( 168, 169, 170, 171, 172 ), PoolIntArray( 173, 174, 131, 102 ), PoolIntArray( 133, 141, 140, 134 ), PoolIntArray( 175, 176, 3, 7, 177 ), PoolIntArray( 16, 19, 64, 66, 178, 179, 180 ), PoolIntArray( 80, 79, 180, 179, 181, 182 ), PoolIntArray( 183, 80, 182, 184 ), PoolIntArray( 114, 116, 185 ), PoolIntArray( 158, 114, 185 ), PoolIntArray( 159, 158, 185, 186 ), PoolIntArray( 159, 186, 187 ), PoolIntArray( 159, 187, 188, 189 ), PoolIntArray( 10, 159, 189, 11 ), PoolIntArray( 21, 190, 191, 192 ), PoolIntArray( 193, 194, 195, 196 ), PoolIntArray( 197, 75, 198, 199, 200 ), PoolIntArray( 201, 47, 50, 202 ), PoolIntArray( 15, 203, 204, 205, 206, 207 ), PoolIntArray( 189, 208, 209, 210, 211 ), PoolIntArray( 212, 213, 177, 7, 214 ), PoolIntArray( 215, 216, 214, 7, 217, 218 ), PoolIntArray( 2, 219, 218, 217, 32 ), PoolIntArray( 0, 2, 31, 130 ), PoolIntArray( 220, 221, 128, 130, 51, 222 ), PoolIntArray( 54, 222, 51 ), PoolIntArray( 223, 54, 53, 224 ), PoolIntArray( 225, 226, 223, 224, 201 ), PoolIntArray( 227, 225, 201, 228 ), PoolIntArray( 202, 228, 201 ), PoolIntArray( 229, 202, 50 ), PoolIntArray( 230, 229, 50, 72 ), PoolIntArray( 230, 72, 75, 197 ), PoolIntArray( 231, 197, 200 ), PoolIntArray( 102, 231, 200 ), PoolIntArray( 102, 200, 232, 173 ), PoolIntArray( 103, 102, 131 ), PoolIntArray( 233, 103, 131, 134, 234, 235 ), PoolIntArray( 236, 11, 189, 211 ), PoolIntArray( 237, 211, 210, 238, 239, 240 ), PoolIntArray( 240, 239, 241, 242 ), PoolIntArray( 36, 240, 242, 243, 33 ), PoolIntArray( 36, 35, 192, 191 ), PoolIntArray( 25, 21, 192, 244, 245 ), PoolIntArray( 245, 244, 196, 195 ), PoolIntArray( 246, 193, 196 ), PoolIntArray( 247, 248, 249, 250, 246, 196, 251, 155, 252 ), PoolIntArray( 247, 253, 254, 248 ), PoolIntArray( 248, 255, 256, 249 ), PoolIntArray( 207, 12, 15 ), PoolIntArray( 257, 258, 207, 206, 259 ), PoolIntArray( 259, 206, 70, 69 ), PoolIntArray( 67, 71, 260, 261 ), PoolIntArray( 262, 261, 260 ), PoolIntArray( 168, 262, 260, 263 ), PoolIntArray( 168, 263, 169 ), PoolIntArray( 85, 83, 151, 147 ), PoolIntArray( 182, 264, 184 ), PoolIntArray( 183, 184, 265 ), PoolIntArray( 183, 265, 266 ), PoolIntArray( 267, 183, 266 ), PoolIntArray( 267, 266, 247, 268 ), PoolIntArray( 252, 268, 247 ), PoolIntArray( 154, 252, 155 ), PoolIntArray( 171, 152, 155, 269, 270, 172 ), PoolIntArray( 271, 233, 235, 272 ), PoolIntArray( 271, 272, 273, 274, 167 ), PoolIntArray( 167, 274, 275, 276 ), PoolIntArray( 121, 120, 86 ), PoolIntArray( 85, 147, 270, 121 ), PoolIntArray( 167, 276, 85 ), PoolIntArray( 121, 86, 85 ), PoolIntArray( 269, 121, 270 ) ]
+outlines = [ PoolVector2Array( -2, -2, -39, -2, -118, -28, -124, -56, -133, -78, -171, -93, -192, -141, -192, -161, -210, -161, -255, -120, -287, -142, -320, -128, -321, -111, -331, -111, -457, -68, -498, -87, -539, -94, -684, -97, -662, -118, -603, -118, -601, -129, -320, -128, -287, -142, -310, -157, -472, -157, -487, -158, -490, -158, -512, -171, -558, -170, -558, -189, -545, -189, -519, -189, -516, -205, -515, -209, -510, -209, -480, -214, -422, -214, -403, -224, -403, -237, -348, -238, -334, -245, -334, -260, -274, -261, -264, -202, -192, -202, -172, -180, -90, -179, -72, -143, 18, -142, 20, -117, 25, -114, 43, -69, 121, -74, 267, -78, 265, -117, 247.78, -117.175, 68, -119, 68, -140, 302, -140, 316, -176, 48.8321, -177.067, 34, -183, 34, -203, 299, -205, 300, -259, 37, -262, -89, -224, -237, -227, -277, -270, -287, -271, -287, -276, -242, -284, -155, -284, -155, -327, -123, -328, -121, -285, 694, -287, 708, -287, 740, -249, 708, -249, 655, -204, 566, -200, 287, -119, 287, -76, 303, -70, 459, -72, 520, -79, 537, -106, 521, -106, 521, -129, 610, -130, 632, -159, 632, -179, 653, -179, 716, -178, 716, -229, 732, -229, 804, -228, 696, -342, -115, -349, -133, -352, -133, -369, 603, -369, 618, -342, 688, -342, 688, -370, 603, -404, 533, -405, 206, -415, -38, -402, -106, -403, -106, -424, 100, -423, 100, -465, -99, -465, -167.586, -465.586, -168, -479, -109, -478, -89, -483, 96, -486, 158, -495, 228, -495, 281, -483, 488, -482, 488, -466, 443, -466, 276, -462, 276, -431, 467, -431, 499, -435, 523, -441, 543, -466, 607, -466, 607, -502, 700, -502, 701, -523, 721, -535, 722, -553, 779, -552, 815, -562, 815, -578, 1013, -578, 1013, -627, 873, -626, 873, -643, 1026, -643, 1026, -681, 878, -674, 823, -700, 666, -714, 595, -724, 448, -719, 451.562, -663.2, -78, -664, -126, -703, -321.069, -760.767, -627, -758, -633, -724, -604, -724, -314, -728, -314, -704, -656, -704, -753, -795, -963, -821, -1121, -825, -1041, -790, -970, -790, -971, -771, -951, -754, -873, -753, -873, -735, -864, -718, -777, -719, -777, -700, -760, -685, -686, -684, -657, -668, -159, -670, -196, -658, -108, -658, -108, -643, -88, -643, -77, -618, 454, -621, 480, -640, 525, -693, 616, -694, 634, -669, 725, -669, 755, -661, 772, -662, 854, -662, 854, -647, 854, -626, 776, -570, 727, -569, 670.031, -523, 626, -573, 521, -582, 426, -601, -63, -602, -63, -563, 445, -562, 464, -560, 532, -550, 617, -551.997, 617, -523, 255, -523, -88, -524, -174, -524, -216, -463, -440, -464, -447, -464, -711, -463, -711, -478, -490, -479, -453, -506, -434, -506, -434, -526, -349, -526, -342, -544, -341, -560, -252, -562, -252, -581, -244, -581, -244, -598, -156, -597, -154, -625, -351, -624, -452, -556, -500, -512, -537, -574, -696, -576, -699, -539, -545, -539, -545, -522, -706, -521, -756, -460, -756, -427, -165, -429, -165, -409, -742, -409, -742, -368, -166, -367, -139, -369, -139, -352, -238, -349, -499, -245, -526, -215, -563, -217, -652, -157, -732, -96, -734, -69, -674, -70, -657, -58, -602, -58, -582, -47, -534, -47, -498, -34, -460, -34, -440, -20, -371, -20, -351, -78, -221, -78, -214, -104, -202, -108, -188, -108, -185, -77, -176, -76, -148, -76, -148, -56, -322, -54, -322, -12, -95, -11, -95, 9, -327, 9, -327, 41, 572, 50, 571, -1 ) ]
+
+[sub_resource type="NavigationPolygon" id=13]
+vertices = PoolVector2Array( -11, -8, 15, -8, 15, 12, -13, 12 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( -11, -8, 15, -8, 15, 12, -13, 12 ) ]
+
+[sub_resource type="NavigationPolygon" id=14]
+vertices = PoolVector2Array( 15, 3, 15, 21, -9, 20, 30, -28, 30, 3 )
+polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 0, 2, 3 ), PoolIntArray( 0, 3, 4 ) ]
+outlines = [ PoolVector2Array( 30, -28, 30, 3, 15, 3, 15, 21, -9, 20 ) ]
+
+[sub_resource type="NavigationPolygon" id=15]
+vertices = PoolVector2Array( 2493, 1419, 2510, 1392, 2512, 1497, 2482, 1497 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 2493, 1419, 2510, 1392, 2512, 1497, 2482, 1497 ) ]
+
+[sub_resource type="NavigationPolygon" id=18]
+vertices = PoolVector2Array( 1777, 840, 1794, 840, 1787, 874, 1771, 874 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 1777, 840, 1794, 840, 1787, 874, 1771, 874 ) ]
 
 [sub_resource type="RectangleShape2D" id=3]
 
@@ -46,10 +82,10 @@ extents = Vector2( 288.5, 21 )
 script = ExtResource( 2 )
 
 [node name="Position_Jeison" type="Position2D" parent="."]
-position = Vector2( 2602, 1527 )
+position = Vector2( 1727, 1026 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 2144, 1181 )
+position = Vector2( 1671, 1027 )
 
 [node name="Position_Aglea" type="Position2D" parent="."]
 position = Vector2( 2674, 1528 )
@@ -102,11 +138,45 @@ collision_mask = 2097215
 format = 1
 tile_data = PoolIntArray( 1507356, 1, 0, 3866701, 3, 0, 4063317, 3, 0, 4259933, 3, 0, 4391120, 3, 0, 4456549, 3, 0, 4522122, 3, 0, 4522201, 3, 0, 4587670, 4, 0, 4653305, 1, 0, 4784286, 1, 0, 4915345, 3, 0, 5111945, 3, 0, 5177552, 3, 0, 5177569, 4, 0, 5308545, 3, 0, 5439704, 3, 0, 5505197, 1, 0, 5570711, 4, 0, 5636306, 4, 0, 5832805, 6, 0, 6422680, 2, 0, 6619352, 3, 0, 6684862, 1, 0, 6750345, 4, 0, 6881411, 4, 0, 6947041, 3, 0, 7012477, 4, 0, 7078030, 3, 0, 7143543, 4, 0, 7209110, 3, 0, 7209178, 3, 0, 7405727, 3, 0, 7405755, 1, 0, 7471313, 3, 0, 7536750, 4, 0, 7602323, 2, 0, 7733384, 1, 0, 7864422, 3, 0, 7929972, 4, 0, 7995514, 4, 0, 8061064, 1, 0, 8192110, 4, 0, 12517594, 1, 0 )
 
-[node name="NavigationPolygonInstance3" type="NavigationPolygonInstance" parent="."]
+[node name="NPIUlt" type="NavigationPolygonInstance" parent="."]
 visible = false
 position = Vector2( 1827, 860 )
 navpoly = SubResource( 10 )
-navigation_layers = 63
+
+[node name="Area1" type="Area2D" parent="NPIUlt"]
+position = Vector2( -122, 30 )
+monitoring = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="NPIUlt/Area1"]
+polygon = PoolVector2Array( -420, 136, -228, 137, -160, 139, 2, 137, 116, 53, 186, 24, 187, -15, 416, -23, 416, -197, -787, -197 )
+
+[node name="NPIUlt2" type="NavigationPolygonInstance" parent="."]
+visible = false
+position = Vector2( 2617, 1067 )
+navpoly = SubResource( 11 )
+
+[node name="Area2" type="Area2D" parent="NPIUlt2"]
+position = Vector2( -121, -29 )
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPIUlt2/Area2"]
+position = Vector2( -30.5, -46.25 )
+shape = SubResource( 17 )
+
+[node name="NPIUlt3" type="NavigationPolygonInstance" parent="."]
+visible = false
+position = Vector2( 2651, 899 )
+navpoly = SubResource( 12 )
+
+[node name="Area3" type="Area2D" parent="NPIUlt3"]
+position = Vector2( 5, -149 )
+rotation = -0.18067
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPIUlt3/Area3"]
+position = Vector2( -48.4929, -10.2251 )
+rotation = 0.135144
+shape = SubResource( 16 )
 
 [node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="."]
 visible = false
@@ -120,6 +190,27 @@ z_index = 1
 navpoly = SubResource( 2 )
 navigation_layers = 63
 
+[node name="NavigationPolygonInstance4" type="NavigationPolygonInstance" parent="."]
+visible = false
+position = Vector2( 1351, 782 )
+navpoly = SubResource( 13 )
+navigation_layers = 63
+
+[node name="NavigationPolygonInstance6" type="NavigationPolygonInstance" parent="."]
+visible = false
+position = Vector2( 2219, 1064 )
+navpoly = SubResource( 14 )
+navigation_layers = 63
+
+[node name="NavigationPolygonInstance7" type="NavigationPolygonInstance" parent="."]
+visible = false
+navpoly = SubResource( 15 )
+navigation_layers = 63
+
+[node name="NavigationPolygonInstance3" type="NavigationPolygonInstance" parent="."]
+visible = false
+navpoly = SubResource( 18 )
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -130,7 +221,7 @@ visible = false
 
 [node name="JA" type="StaticBody2D" parent="Areas_For_Jumping"]
 position = Vector2( 1519, 1488 )
-collision_layer = 0
+collision_layer = 4194304
 collision_mask = 4194304
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA"]
@@ -145,7 +236,7 @@ collision_mask = 4194304
 shape = SubResource( 3 )
 
 [node name="JA3" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 1382, 1463 )
+position = Vector2( 1470, 1583 )
 collision_layer = 4194304
 collision_mask = 4194304
 
@@ -170,7 +261,7 @@ collision_mask = 4194304
 shape = SubResource( 3 )
 
 [node name="JA6" type="StaticBody2D" parent="Areas_For_Jumping"]
-position = Vector2( 1382, 1451 )
+position = Vector2( 1411, 1593 )
 collision_layer = 4194304
 collision_mask = 4194304
 constant_linear_velocity = Vector2( -0.007, 0 )
@@ -189,7 +280,7 @@ shape = SubResource( 3 )
 [node name="JA9" type="StaticBody2D" parent="Areas_For_Jumping"]
 position = Vector2( 1520, 1475 )
 scale = Vector2( 0.3, 1 )
-collision_layer = 0
+collision_layer = 4194304
 collision_mask = 4194304
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA9"]
@@ -545,6 +636,26 @@ script = ExtResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt25"]
 shape = SubResource( 9 )
 
+[node name="JAUlt26" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1311, 1451 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt26"]
+position = Vector2( 1, 0 )
+shape = SubResource( 9 )
+
+[node name="JAUlt27" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2431, 960 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt27"]
+position = Vector2( -1, -11 )
+shape = SubResource( 9 )
+
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2( 1793, 1432 )
 collision_layer = 2097215
@@ -584,7 +695,6 @@ shape = SubResource( 4 )
 width = 2.0
 
 [node name="Areas_For_Specifical_Controlling" type="Area2D" parent="."]
-visible = false
 
 [node name="No-Speed_Area2" type="Area2D" parent="Areas_For_Specifical_Controlling"]
 position = Vector2( 1836, 1133 )
@@ -603,7 +713,7 @@ collision_layer = 63
 collision_mask = 63
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/No-Speed_Area"]
-position = Vector2( 2.25, 160 )
+position = Vector2( 3, 160 )
 shape = SubResource( 7 )
 
 [node name="Area2D" type="Area2D" parent="Areas_For_Specifical_Controlling"]
@@ -674,6 +784,12 @@ position = Vector2( 1280, 1112 )
 
 [connection signal="mouse_entered" from="Camera_For_Speaking/Area_Of_Dialoge_Camera" to="Camera_For_Speaking/Area_Of_Dialoge_Camera" method="_on_Area_Of_Dialoge_Camera_mouse_entered"]
 [connection signal="mouse_exited" from="Camera_For_Speaking/Area_Of_Dialoge_Camera" to="Camera_For_Speaking/Area_Of_Dialoge_Camera" method="_on_Area_Of_Dialoge_Camera_mouse_exited"]
+[connection signal="area_entered" from="NPIUlt/Area1" to="." method="_on_Area1_area_entered"]
+[connection signal="area_exited" from="NPIUlt/Area1" to="." method="_on_Area1_area_exited"]
+[connection signal="area_entered" from="NPIUlt2/Area2" to="." method="_on_Area2_area_entered"]
+[connection signal="area_exited" from="NPIUlt2/Area2" to="." method="_on_Area2_area_exited"]
+[connection signal="area_entered" from="NPIUlt3/Area3" to="." method="_on_Area3_area_entered"]
+[connection signal="area_exited" from="NPIUlt3/Area3" to="." method="_on_Area3_area_exited"]
 [connection signal="body_entered" from="Stop_Machine" to="." method="_on_Stop_Machine_body_entered"]
 [connection signal="body_entered" from="Areas_For_Specifical_Controlling/No-Speed_Area2" to="." method="_on_NoSpeed_Area_body_entered"]
 [connection signal="body_exited" from="Areas_For_Specifical_Controlling/No-Speed_Area2" to="." method="_on_NoSpeed_Area_body_exited"]
