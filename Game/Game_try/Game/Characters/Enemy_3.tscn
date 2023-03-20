@@ -1,13 +1,13 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
-[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim3.png" type="Texture" id=2]
-[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim2.png" type="Texture" id=3]
-[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim1.png" type="Texture" id=4]
-[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim4.png" type="Texture" id=5]
-[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim5.png" type="Texture" id=6]
-[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim6.png" type="Texture" id=7]
-[ext_resource path="res://Anims/Belotur/Belotur_Moving/anim7.png" type="Texture" id=8]
+[ext_resource path="res://Anims/Adalar/Движ/anim3.png" type="Texture" id=2]
+[ext_resource path="res://Anims/Adalar/Движ/anim2.png" type="Texture" id=3]
+[ext_resource path="res://Anims/Aglea/Ядро изменений/Тело уплотнение/anim1.png" type="Texture" id=4]
+[ext_resource path="res://Anims/Adalar/Движ/anim4.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Adalar/Движ/anim5.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Adalar/Движ/anim6.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Adalar/Движ/anim7.png" type="Texture" id=8]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
