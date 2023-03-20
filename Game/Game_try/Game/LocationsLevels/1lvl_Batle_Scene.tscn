@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Tile_Set_Temple.tres" type="TileSet" id=1]
+[ext_resource path="res://Tile_Set_For_Fight_Scene.tres" type="TileSet" id=1]
 [ext_resource path="res://Tile_Set_Ground_Extended+.tres" type="TileSet" id=2]
 
 [node name="Node2D" type="Node2D"]
@@ -13,4 +13,4 @@ tile_data = PoolIntArray( 589829, 13, 0, 589830, 13, 0, 589831, 13, 0, 589832, 1
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 format = 1
-tile_data = PoolIntArray( 393221, 3, 0, 393227, 3, 0, 458757, 3, 0, 458763, 3, 0, 524293, 3, 0, 524299, 3, 0 )
+tile_data = PoolIntArray( 393221, 1, 0, 393227, 6, 0, 458757, 1, 0, 458763, 6, 0, 524293, 1, 0, 524299, 6, 0 )
