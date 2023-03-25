@@ -82,10 +82,10 @@ extents = Vector2( 288.5, 21 )
 script = ExtResource( 2 )
 
 [node name="Position_Jeison" type="Position2D" parent="."]
-position = Vector2( 1727, 1026 )
+position = Vector2( 1956, 1117 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 1671, 1027 )
+position = Vector2( 1934, 1119 )
 
 [node name="Position_Aglea" type="Position2D" parent="."]
 position = Vector2( 2674, 1528 )
@@ -124,7 +124,7 @@ script = ExtResource( 3 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera_For_Speaking/Area_Of_Dialoge_Camera"]
-position = Vector2( 1, -1 )
+position = Vector2( 0, -1 )
 shape = SubResource( 1 )
 disabled = true
 
@@ -210,6 +210,7 @@ navigation_layers = 63
 [node name="NavigationPolygonInstance3" type="NavigationPolygonInstance" parent="."]
 visible = false
 navpoly = SubResource( 18 )
+navigation_layers = 63
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 
