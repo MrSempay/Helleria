@@ -71,6 +71,8 @@ var first_starting_temple_lvl = true
 var heroe_pos_changed = false
 var enemy_for_fight = ""
 
+var heroe_is_observe = false
+
 func scene(name):
 	get_tree().change_scene("res://Game/LocationsLevels/"+name+".tscn")
 	

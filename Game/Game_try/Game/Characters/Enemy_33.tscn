@@ -339,43 +339,56 @@ wait_time = 3.0
 one_shot = true
 
 [node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -35 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_2" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -6 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, 7 )
 enabled = true
 cast_to = Vector2( 3, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_4" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -24 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_For_Heroe" type="RayCast2D" parent="."]
+visible = false
 enabled = true
 cast_to = Vector2( 192, 0 )
 
 [node name="RayCastVertical" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 11, 1 )
 enabled = true
 cast_to = Vector2( 0, 22 )
 collision_mask = 4194304
 
 [node name="RayCastVertical_2" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -6 )
 enabled = true
 cast_to = Vector2( 0, -26 )
+collision_mask = 2097152
+
+[node name="RayCastVertical_3" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+cast_to = Vector2( 0, 17 )
 collision_mask = 2097152
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -389,6 +402,7 @@ anims/RESET = SubResource( 9 )
 path_desired_distance = 3.0
 target_desired_distance = 3.0
 path_max_distance = 25.0
+navigation_layers = 4
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
@@ -400,6 +414,10 @@ wait_time = 0.3
 [node name="Timer_For_Updaiting_Way" type="Timer" parent="."]
 wait_time = 0.3
 autostart = true
+
+[node name="Timer_For_Going_Back" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="timeout" from="Timer_Stone" to="." method="_on_Timer_Stone_timeout"]
 [connection signal="timeout" from="Timer_Stone_Sword" to="." method="_on_Timer_Stone_Sword_timeout"]
@@ -415,3 +433,4 @@ autostart = true
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_path_changed"]
 [connection signal="timeout" from="Timer_Stop_Machine" to="." method="_on_Timer_Stop_Machine_timeout"]
 [connection signal="timeout" from="Timer_For_Updaiting_Way" to="." method="_on_Timer_For_Updaiting_Way_timeout"]
+[connection signal="timeout" from="Timer_For_Going_Back" to="." method="_on_Timer_For_Going_Back_timeout"]

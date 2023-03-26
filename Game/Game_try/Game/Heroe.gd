@@ -97,7 +97,6 @@ func _ready():
 
 func _physics_process(delta):
 
-	
 	if Input.is_action_pressed("jump") && !get_parent().has_node("Ghost") && !in_invisibility:
 		start_jump_heroe()
 	
@@ -154,7 +153,6 @@ func _physics_process(delta):
 	velocity.x = 0
 	velocity.y += delta * 970 * 2
 	if ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run") && !in_invisibility:
-		speed = 2.5
 		translate(GLOBAL.move_vector_1 * speed)
 		velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 	if !file.is_open() && !GLOBAL.first_cat_scene && ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run"):
@@ -170,7 +168,7 @@ func _physics_process(delta):
 			$Icon.flip_h = false
 			if get_parent().has_node("Door"):
 				if !get_parent().get_node("Door").get_animation() == "idle_heroe":
-					#get_node("CollisionPolygon2D/AnimationPlayer").play("щгп_п")
+					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп_п")
 					pass
 		elif GLOBAL.move_vector_1.x < 0:
 			$Stone_Sword.set_position(Vector2(-26, 3))
@@ -180,7 +178,7 @@ func _physics_process(delta):
 			$Icon.flip_h = true
 			if get_parent().has_node("Door"):
 				if !get_parent().get_node("Door").get_animation() == "idle_heroe":
-					#get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+					get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 					pass
 
 
@@ -323,17 +321,22 @@ func _on_Icon_animation_finished():
 			get_node("Buttons_Of_Heroe/Button_First").set_disabled(false)
 			$Icon.play("idle")
 			get_node("Buttons_Of_Heroe/Button_First/Timer_Of_First_Animation_Sword").start()
+			speed = 2.5
 		"stone_sword_1":
 			get_node("Buttons_Of_Heroe/Button_First").set_disabled(false)
 			$Icon.play("idle")
+			speed = 2.5
 		"stone_sword_2":
 			get_node("Buttons_Of_Heroe/Button_First").set_disabled(false)
 			$Icon.play("idle")
+			speed = 2.5
 		"bow":
 			get_node("Buttons_Of_Heroe/Button_First").set_disabled(false)
 			$Icon.play("idle")
+			speed = 2.5
 		"column":
 			get_node("Buttons_Of_Heroe/Button_First").set_disabled(false)
+			speed = 2.5
 
 
 func _on_Button_First_pressed():

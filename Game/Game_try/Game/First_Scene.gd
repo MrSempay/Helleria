@@ -2,13 +2,20 @@ extends Node2D
 
 onready var area_of_dialoge_camera = get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
-
-var in_area_for_artifical_intelligance_controlling
+var in_area_for_artifical_intelligance_controlling_1 = [0,0,0,0,0,0,0,0]
+var in_area_for_artifical_intelligance_controlling_2 = [0,0,0,0,0,0,0,0]
+var in_area_for_artifical_intelligance_controlling_3 = [0,0,0,0,0,0,0,0]
+var in_area_for_artifical_intelligance_controlling_4 = [0,0,0,0,0,0,0,0]
 var point_1
 var point_2
 var point_3
 var mass_of_points = []
-var current_target
+var current_target = Vector2(0,0)
+var current_target_Adalard = Vector2(0,0)
+var current_target_Aglea = Vector2(0,0)
+var current_target_Akira = Vector2(0,0)
+var current_target_Belotur = Vector2(0,0)
+var current_target_Jeison = Vector2(0,0)
 var position_enemy = ""
 
 
@@ -41,8 +48,14 @@ var stop_Aglea_1D = false
 var stop_Akira_1D = false
 var stop_Heroe_1M = false
 
-var fight_scene_for_Belotur = "Max_level_Fight_Scene"
 
+var first_position_Adalard = Vector2(2478, 1400)
+var first_position_Aglea 
+var first_position_Akira
+var first_position_Belotur = Vector2(1600, 1340)
+var first_position_Jeison = Vector2(2000, 1190)
+
+var fight_scene_for_Belotur = "Max_level_Fight_Scene"
 
 
 func First_Scene():
@@ -63,18 +76,19 @@ func _ready():
 	if GLOBAL.first_cat_scene:
 		$Position_Belotur.set_global_position(Vector2(3535, 1528))
 	else:
-		$Position_Belotur.set_global_position(Vector2(1600, 1340))
+		pass
+		#$Position_Belotur.set_global_position(first_position_Belotur)
 		
 	if GLOBAL.first_cat_scene:
 		$Position_Adalard.set_global_position(Vector2(3535, 1528))
 	else:
-		$Position_Adalard.set_global_position(Vector2(2478, 1400))
+		$Position_Adalard.set_global_position(first_position_Adalard)
 		
 	if GLOBAL.first_cat_scene:
-		$Position_Jeison.set_global_position(Vector2(3535, 1528))
+		$Position_Jeison.set_global_position(Vector2(3530, 1528))
 	else:
 		pass
-		#$Position_Jeison.set_global_position(Vector2(2189, 1151))
+		#$Position_Jeison.set_global_position(first_position_Jeison)
 	ally_1.position = $Ally.global_position
 	self.add_child(ally_1)
 	if GLOBAL.life_Aglea == true:
@@ -100,24 +114,28 @@ func _ready():
 	
 func _physics_process(delta):
 	
-	print($NPIUlt.get_navigation_layers())
-	match position_enemy:
-		"":
-			$NPIUlt.set_enabled(false)
-			$NPIUlt2.set_enabled(false)
-			$NPIUlt3.set_enabled(false)
-		
 	
 	if self.has_node("Heroe"):
 		if $Heroe.in_invisibility && self.get_node("Bush").global_position.x - $Heroe.global_position.x < 33 && (self.get_node("Bush").global_position.x - $Heroe.global_position.x > -33):
-			current_target = Vector2(2525, 1533)
+			$Jeison.manual_navigation = true
+			$Belotur.manual_navigation = true
+			$Jeison.nav_path = [$Jeison.global_position, Vector2(2525, 1533), Vector2(2505, 1533), Vector2(1400, 1347), first_position_Jeison]
+			$Belotur.nav_path = [$Belotur.global_position, Vector2(2325, 1533), Vector2(2505, 1533), first_position_Belotur]
 		if $Heroe.in_invisibility && self.get_node("Bush2").global_position.x - $Heroe.global_position.x < 33 && (self.get_node("Bush2").global_position.x - $Heroe.global_position.x > -33):
-			current_target = Vector2(2231, 1400)
+				current_target_Adalard = Vector2(2231, 1400)
+				current_target_Aglea = Vector2(2231, 1400)
+				current_target_Akira = Vector2(2231, 1400)
+				current_target_Belotur = Vector2(2231, 1400)
+				current_target_Jeison = Vector2(2231, 1400)
 		if $Heroe.in_invisibility && self.get_node("Bush3").global_position.x - $Heroe.global_position.x < 33 && (self.get_node("Bush3").global_position.x - $Heroe.global_position.x > -33):
-			current_target = Vector2(1347, 1111)
+				current_target_Adalard = Vector2(1347, 1111)
+				current_target_Aglea = Vector2(1347, 1111)
+				current_target_Akira = Vector2(1347, 1111)
+				current_target_Belotur = Vector2(1347, 1111)
+				current_target_Jeison = Vector2(1347, 1111)
 		if !$Heroe.in_invisibility:
 			current_target = $Heroe.global_position
-	
+		# Target to heroe determine in script for enemy in "trigger_area_enetering"
 	
 	
 	if self.has_node("Heroe"):
@@ -240,35 +258,76 @@ func _on_Speed_Area_body_entered(body):
 
 func _on_Area1_area_entered(area):
 	if area.has_method("area_for_fight"):
-		$NPIUlt.set_navigation_layers(area.get_collision_layer())
-		#$NPIUlt.set_collision_mask_bit(area.get_collision_mask(),true)
+		for m in range (7):
+			if area.get_collision_layer_bit(m):
+				in_area_for_artifical_intelligance_controlling_1[m] = 1
+			$NPIUlt.set_navigation_layers(from_dex_to_bin(in_area_for_artifical_intelligance_controlling_1)) 
+
 
 
 func _on_Area1_area_exited(area):
 	if area.has_method("area_for_fight"):
-		$NPIUlt.set_navigation_layers(area.get_collision_layer())
-		#$NPIUlt.set_collision_mask_bit(area.get_collision_mask(),false)
+		for m in range (7):
+			if area.get_collision_layer_bit(m):
+				in_area_for_artifical_intelligance_controlling_1[m] = 0
+			$NPIUlt.set_navigation_layers(from_dex_to_bin(in_area_for_artifical_intelligance_controlling_1)) 
 
 
 func _on_Area2_area_entered(area):
 	if area.has_method("area_for_fight"):
-		$NPIUlt2.set_navigation_layers(area.get_collision_layer())
-		#$NPIUlt2.set_collision_mask_bit(area.get_collision_mask(),true)
+		for m in range (7):
+			if area.get_collision_layer_bit(m):
+				in_area_for_artifical_intelligance_controlling_2[m] = 1
+			$NPIUlt2.set_navigation_layers(from_dex_to_bin(in_area_for_artifical_intelligance_controlling_2)) 
+			$NPIUlt3.set_navigation_layers(from_dex_to_bin(in_area_for_artifical_intelligance_controlling_3)) 
 
 
 func _on_Area2_area_exited(area):
 	if area.has_method("area_for_fight"):
-		$NPIUlt2.set_navigation_layers(area.get_collision_layer())
-		#$NPIUlt2.set_collision_mask_bit(area.get_collision_mask(),false)
+		for m in range (7):
+			if area.get_collision_layer_bit(m):
+				in_area_for_artifical_intelligance_controlling_2[m] = 0
+			$NPIUlt2.set_navigation_layers(from_dex_to_bin(in_area_for_artifical_intelligance_controlling_2)) 
+			$NPIUlt3.set_navigation_layers(from_dex_to_bin(in_area_for_artifical_intelligance_controlling_3)) 
 
 
 func _on_Area3_area_entered(area):
 	if area.has_method("area_for_fight"):
-		$NPIUlt3.set_navigation_layers(area.get_collision_layer())
-		#$NPIUlt3.set_collision_mask_bit(area.get_collision_mask(),true)
+		for m in range (7):
+			if area.get_collision_layer_bit(m):
+				in_area_for_artifical_intelligance_controlling_3[m] = 1
+			$NPIUlt4.set_navigation_layers(from_dex_to_bin(in_area_for_artifical_intelligance_controlling_3)) 
 
 
 func _on_Area3_area_exited(area):
 	if area.has_method("area_for_fight"):
-		$NPIUlt3.set_navigation_layers(area.get_collision_layer())
-		#$NPIUlt3.set_collision_mask_bit(area.get_collision_mask(),false)
+		for m in range (7):
+			if area.get_collision_layer_bit(m):
+				in_area_for_artifical_intelligance_controlling_3[m] = 0
+			$NPIUlt4.set_navigation_layers(from_dex_to_bin(in_area_for_artifical_intelligance_controlling_3)) 
+
+
+func _on_Area4_area_entered(area):
+	if area.has_method("area_for_fight"):
+		for m in range (7):
+			if area.get_collision_layer_bit(m):
+				in_area_for_artifical_intelligance_controlling_4[m] = 1
+			$NPIUlt4.set_navigation_layers(from_dex_to_bin(in_area_for_artifical_intelligance_controlling_4)) 
+
+
+func _on_Area4_area_exited(area):
+	if area.has_method("area_for_fight"):
+		for m in range (7):
+			if area.get_collision_layer_bit(m):
+				in_area_for_artifical_intelligance_controlling_4[m] = 0
+			$NPIUlt4.set_navigation_layers(from_dex_to_bin(in_area_for_artifical_intelligance_controlling_4)) 
+
+func from_dex_to_bin(array):
+	var bin = 0
+	for p in range(array.size() - 1):
+		if array[p] == 1:
+			bin = bin + pow(2,p)
+	return(bin)
+
+
+
