@@ -49,6 +49,11 @@ tracks/0/keys = {
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "idle",
@@ -127,8 +132,7 @@ anims/RESET = SubResource( 4 )
 position = Vector2( -1.07996, -1.08002 )
 scale = Vector2( 0.208, 0.208 )
 frames = SubResource( 1 )
-animation = "run"
-frame = 3
+animation = "idle"
 
 [node name="HP_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -31.83

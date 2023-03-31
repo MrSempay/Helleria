@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=2]
+[gd_scene load_steps=127 format=2]
 
 [ext_resource path="res://Game/Button_attack.gd" type="Script" id=1]
 [ext_resource path="res://Game/Button_Second.gd" type="Script" id=2]
@@ -109,6 +109,12 @@
 [ext_resource path="res://Anims/гл. гр/Способности/Меч/anim3Mech9.png" type="Texture" id=107]
 [ext_resource path="res://Anims/гл. гр/Способности/Меч/anim2Mech8.png" type="Texture" id=108]
 [ext_resource path="res://Anims/гл. гр/Способности/Меч/anim3Mech3.png" type="Texture" id=109]
+[ext_resource path="res://Anims/гл. гр/jump/animjump1.png" type="Texture" id=110]
+[ext_resource path="res://Anims/гл. гр/jump/animjump2.png" type="Texture" id=111]
+[ext_resource path="res://Anims/гл. гр/jump/animjump3.png" type="Texture" id=112]
+[ext_resource path="res://Anims/гл. гр/jump/animjump5.png" type="Texture" id=113]
+[ext_resource path="res://Anims/гл. гр/jump/animjump4.png" type="Texture" id=114]
+[ext_resource path="res://Anims/гл. гр/jump/animjump6.png" type="Texture" id=115]
 
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 6, 11 )
@@ -185,7 +191,12 @@ animations = [ {
 "frames": [ ExtResource( 29 ), ExtResource( 28 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "injured",
-"speed": 10.0
+"speed": 20.0
+}, {
+"frames": [ ExtResource( 110 ), ExtResource( 111 ), ExtResource( 112 ), ExtResource( 114 ), ExtResource( 113 ), ExtResource( 115 ) ],
+"loop": false,
+"name": "jump",
+"speed": 50.0
 }, {
 "frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 25 ) ],
 "loop": true,

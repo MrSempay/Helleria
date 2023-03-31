@@ -13,6 +13,7 @@ var stone_sword_ready = true
 var stone_finished = false
 var stone_sword_finished = false
 var hedgehod_finished = false
+var jump_finished = false
 var sprite_position = Vector2(67,0)
 var damage_stone_sword = 10
 var JUMP_POWER = 500
@@ -38,7 +39,7 @@ var saved_size_array = 0
 var number_of_dialoge
 var scale_gravity = 2
 var manual_navigation = false
-var nav_path = Vector2()
+var nav_path = [Vector2()]
 
 var file = File.new()
 var point_of_position_string
@@ -82,7 +83,12 @@ func mana_using(manacost):
 
 #test_move()
 func _physics_process(delta):
-	
+
+
+	if $Sprite.get_animation() == "jump":
+		if $RayCastVertical_3.get_collider() && jump_finished:
+			animate("idle")
+			jump_finished = false
 	
 	if !$RayCastVertical_3.get_collider():
 		$Timer_For_Updaiting_Way.set_wait_time(0.1)
@@ -306,9 +312,11 @@ func _physics_process(delta):
 							$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
 							$RayCastVertical.set_position(Vector2(-11,1))
 							if !stop_machine:
+								speed = 2.5
 								translate(Vector2(-1,0) * speed)
 								get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-								animate("run")
+								if $Sprite.get_animation() != "jump":
+									animate("run")
 							$Sprite.flip_h = true
 
 					if (nav_path[j].x - nav_path[j+1].x) <= -0:
@@ -319,9 +327,11 @@ func _physics_process(delta):
 							$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
 							$RayCastVertical.set_position(Vector2(11,1))
 							if !stop_machine:
+								speed = 2.5
 								translate(Vector2(1,0) * speed)
 								get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-								animate("run")
+								if $Sprite.get_animation() != "jump":
+									animate("run")
 							$Sprite.flip_h = false
 				else:
 					animate("idle")
@@ -338,6 +348,7 @@ func _physics_process(delta):
 func start_jump_enemy():
 	if is_on_floor():
 		velocity.y = -JUMP_POWER 
+		animate("jump")
 		
 
 func _on_Timer_Of_HP_timeout():
@@ -368,6 +379,11 @@ func _on_Sprite_animation_finished():
 	if $Sprite.get_animation() == "hedgehod":
 		hedgehod_finished = true
 		animate("idle")
+	if $Sprite.get_animation() == "jump":
+		jump_finished = true
+		if $RayCastVertical_3.get_collider():
+			animate("idle")
+	
 
 
 func _on_Stone_Sword_body_entered(body: Node2D):
@@ -440,7 +456,6 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 			$Dialoge_Window.queue_free()
 			if i == (array_dialoge_flags.size() - 1):
 				pass
-
 
 
 
