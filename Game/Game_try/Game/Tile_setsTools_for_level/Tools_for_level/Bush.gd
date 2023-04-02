@@ -31,10 +31,13 @@ func _on_Area2D_mouse_exited():
 func _input(event):
 	if event is InputEventScreenTouch and event.is_pressed() && mouse_in_area:
 		if !already_in_bush:
+			get_parent().get_node("Heroe").speed = 0
 			get_parent().get_node("Heroe").set_z_index(0)
-			get_parent().get_node("Heroe").in_invisibility = true
+			if !GLOBAL.heroe_is_observe:
+				get_parent().get_node("Heroe").in_invisibility = true
 			already_in_bush = true
 		else:
+			get_parent().get_node("Heroe").speed = 2.5
 			get_parent().get_node("Heroe").set_z_index(3)
 			get_parent().get_node("Heroe").in_invisibility = false
 			already_in_bush = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
 [ext_resource path="res://Game/Enemy_3.gd" type="Script" id=2]
@@ -94,10 +94,7 @@
 [ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++12.png" type="Texture" id=92]
 [ext_resource path="res://Anims/Belotur+/Jump/animJumpBel2.png" type="Texture" id=93]
 [ext_resource path="res://Anims/Belotur+/Jump/animJumpBel3.png" type="Texture" id=94]
-[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel9.png" type="Texture" id=95]
 [ext_resource path="res://Anims/Belotur+/Jump/animJumpBel6.png" type="Texture" id=96]
-[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel7.png" type="Texture" id=97]
-[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel8.png" type="Texture" id=98]
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 3, 11.5 )
@@ -146,10 +143,10 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 86 ), ExtResource( 93 ), ExtResource( 94 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 96 ), ExtResource( 97 ), ExtResource( 98 ), ExtResource( 95 ) ],
+"frames": [ ExtResource( 86 ), ExtResource( 93 ), ExtResource( 94 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 96 ) ],
 "loop": false,
 "name": "jump",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [ ExtResource( 58 ), ExtResource( 47 ), ExtResource( 49 ), ExtResource( 52 ), ExtResource( 48 ), ExtResource( 46 ), ExtResource( 51 ) ],
 "loop": true,
@@ -249,7 +246,6 @@ one_shot = true
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "idle"
-playing = true
 
 [node name="HP_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -30.0
@@ -339,43 +335,56 @@ wait_time = 3.0
 one_shot = true
 
 [node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -35 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_2" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -6 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, 7 )
 enabled = true
 cast_to = Vector2( 3, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_4" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -24 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_For_Heroe" type="RayCast2D" parent="."]
+visible = false
 enabled = true
 cast_to = Vector2( 192, 0 )
 
 [node name="RayCastVertical" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 11, 1 )
 enabled = true
 cast_to = Vector2( 0, 22 )
 collision_mask = 4194304
 
 [node name="RayCastVertical_2" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -6 )
 enabled = true
 cast_to = Vector2( 0, -26 )
+collision_mask = 2097152
+
+[node name="RayCastVertical_3" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+cast_to = Vector2( 0, 17 )
 collision_mask = 2097152
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -389,6 +398,7 @@ anims/RESET = SubResource( 9 )
 path_desired_distance = 3.0
 target_desired_distance = 3.0
 path_max_distance = 25.0
+navigation_layers = 4
 
 [node name="Line2D" type="Line2D" parent="."]
 visible = false
@@ -400,6 +410,10 @@ wait_time = 0.3
 [node name="Timer_For_Updaiting_Way" type="Timer" parent="."]
 wait_time = 0.3
 autostart = true
+
+[node name="Timer_For_Going_Back" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="timeout" from="Timer_Stone" to="." method="_on_Timer_Stone_timeout"]
 [connection signal="timeout" from="Timer_Stone_Sword" to="." method="_on_Timer_Stone_Sword_timeout"]
@@ -415,3 +429,4 @@ autostart = true
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_path_changed"]
 [connection signal="timeout" from="Timer_Stop_Machine" to="." method="_on_Timer_Stop_Machine_timeout"]
 [connection signal="timeout" from="Timer_For_Updaiting_Way" to="." method="_on_Timer_For_Updaiting_Way_timeout"]
+[connection signal="timeout" from="Timer_For_Going_Back" to="." method="_on_Timer_For_Going_Back_timeout"]

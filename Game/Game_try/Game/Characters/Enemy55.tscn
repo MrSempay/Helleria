@@ -49,6 +49,11 @@ tracks/0/keys = {
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "idle",
@@ -127,8 +132,7 @@ anims/RESET = SubResource( 4 )
 position = Vector2( -1.07996, -1.08002 )
 scale = Vector2( 0.208, 0.208 )
 frames = SubResource( 1 )
-animation = "run"
-frame = 3
+animation = "idle"
 
 [node name="HP_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -31.83
@@ -197,7 +201,7 @@ one_shot = true
 
 [node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
 visible = false
-position = Vector2( 0.170013, -42.08 )
+position = Vector2( 0, -35 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
@@ -218,14 +222,14 @@ collision_mask = 2097152
 
 [node name="RayCastHorizontal_4" type="RayCast2D" parent="."]
 visible = false
-position = Vector2( 0.170013, -31.08 )
+position = Vector2( -4.32134e-07, -23 )
 enabled = true
 cast_to = Vector2( 16, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_For_Heroe" type="RayCast2D" parent="."]
 visible = false
-position = Vector2( 0.170013, -7.08 )
+position = Vector2( -4.32134e-07, 2 )
 enabled = true
 cast_to = Vector2( 192, 0 )
 
@@ -243,6 +247,12 @@ enabled = true
 cast_to = Vector2( 0, -26 )
 collision_mask = 2097152
 
+[node name="RayCastVertical_3" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+cast_to = Vector2( 0, 17 )
+collision_mask = 2097152
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 visible = false
 stream = ExtResource( 9 )
@@ -253,18 +263,11 @@ anims/RESET = SubResource( 7 )
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_max_distance = 10.0
-navigation_layers = 2
+navigation_layers = 16
 
 [node name="Line2D" type="Line2D" parent="."]
 position = Vector2( 0.170013, -7.08 )
 width = 5.0
-
-[node name="Timer_Stop_Machine" type="Timer" parent="."]
-wait_time = 0.3
-
-[node name="Timer_For_Updaiting_Way" type="Timer" parent="."]
-wait_time = 0.3
-autostart = true
 
 [node name="Area_For_Starting_Fight" type="Area2D" parent="."]
 scale = Vector2( 0.7, 1 )
@@ -275,10 +278,22 @@ script = ExtResource( 10 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Starting_Fight"]
 shape = SubResource( 9 )
 
+[node name="Timer_Stop_Machine" type="Timer" parent="."]
+wait_time = 0.3
+
+[node name="Timer_For_Updaiting_Way" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[node name="Timer_For_Going_Back" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="timeout" from="HP_Enemy_1/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
 [connection signal="timeout" from="Mana_Enemy_1/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
 [connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_path_changed"]
-[connection signal="timeout" from="Timer_For_Updaiting_Way" to="." method="_on_Timer_For_Updaiting_Way_timeout"]
 [connection signal="body_entered" from="Area_For_Starting_Fight" to="." method="_on_Area_For_Starting_Fight_body_entered"]
+[connection signal="timeout" from="Timer_For_Updaiting_Way" to="." method="_on_Timer_For_Updaiting_Way_timeout"]
+[connection signal="timeout" from="Timer_For_Going_Back" to="." method="_on_Timer_For_Going_Back_timeout"]

@@ -13,11 +13,13 @@ var stone_sword_ready = true
 var stone_finished = false
 var stone_sword_finished = false
 var hedgehod_finished = false
+var jump_finished = false
 var sprite_position = Vector2(67,0)
 var damage_stone_sword = 10
 var JUMP_POWER = 500
 var stun = false
 var EXTRA = false
+
 
 onready var collision_of_jumping_area = get_node("Area_Of_Jumping/CollisionShape2D")
 onready var timer_of_stone = get_node("Timer_Stone")
@@ -36,6 +38,8 @@ var j = 0
 var saved_size_array = 0
 var number_of_dialoge
 var scale_gravity = 2
+var manual_navigation = false
+var nav_path = [Vector2()]
 
 var file = File.new()
 var point_of_position_string
@@ -48,7 +52,9 @@ var number_of_moving
 var dat = 1
 
 
+
 func _ready():
+	self.connect("start_timer_going_back", self, "_on_start_timer_going_back")
 	if get_parent().has_method("Fight_Scene"):
 		$AudioStreamPlayer2D.stream = load("res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3")
 		$AudioStreamPlayer2D.play()
@@ -77,6 +83,25 @@ func mana_using(manacost):
 
 #test_move()
 func _physics_process(delta):
+
+
+	if $Sprite.get_animation() == "jump":
+		if $RayCastVertical_3.get_collider() && jump_finished:
+			animate("idle")
+			jump_finished = false
+	
+	if !$RayCastVertical_3.get_collider():
+		$Timer_For_Updaiting_Way.set_wait_time(0.1)
+	else:
+		$Timer_For_Updaiting_Way.set_wait_time(0.3)
+		
+	
+	#if $RayCastHorizontal_For_Heroe.get_collider():
+	#	if $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
+	#		GLOBAL.heroe_is_observe = true
+	#	else:
+	#		GLOBAL.heroe_is_observe = false
+	
 	
 	if $HP_Enemy_1.value <= 50 && !EXTRA:
 		EXTRA = true
@@ -113,11 +138,15 @@ func _physics_process(delta):
 	if get_parent().has_node("Heroe") && !stun:
 		var heroe = get_parent().get_node("Heroe")
 		var ally = get_parent().get_node("Ally")
-
-		if trigger_of_ally or get_parent().has_method("Fight_Scene"):       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
+		
+		#if get_parent().get_node("Heroe").in_invisibility:
+		#	trigger_of_ally = false
+			
+		
+		if trigger_of_ally or get_parent().has_method("Fight_Scene") or get_parent().get_node("Heroe").in_invisibility:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
 		
 			
-				
+			
 			if get_parent().has_method("Fight_Scene"):
 				"""
 				#print(get_parent().in_area_for_artifical_intelligance_controlling)
@@ -261,63 +290,65 @@ func _physics_process(delta):
 								get_node("..").add_child(hedgehod_1)
 					
 			if $Sprite.get_animation() != "stone" && $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
-				if j < $NavigationAgent2D.get_nav_path().size() - 1:
+				if j < nav_path.size() - 1:
 					if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 						if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
-							if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && $NavigationAgent2D.get_nav_path()[j].y > $NavigationAgent2D.get_nav_path()[j+1].y:
+							if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && nav_path[j].y > nav_path[j+1].y:
 								start_jump_enemy()
-					elif ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && !$RayCastVertical_2.get_collider() && $NavigationAgent2D.get_nav_path()[j].y > $NavigationAgent2D.get_nav_path()[j+1].y:
+					elif ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && !$RayCastVertical_2.get_collider() && nav_path[j].y > nav_path[j+1].y:
 								start_jump_enemy()
 					if $RayCastVertical.get_collider():
 						start_jump_enemy()
 					if $RayCastHorizontal_3.get_collider():
 						start_jump_enemy()
 
-				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
-					if $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
-						#stop_machine = false
-						pass
 						
-				if j < $NavigationAgent2D.get_nav_path().size() - 1:
-					speed = 2.5
-					if ($NavigationAgent2D.get_nav_path()[j].x - $NavigationAgent2D.get_nav_path()[j+1].x) >= 0:
-							$RayCastHorizontal_1.set_cast_to(Vector2(-16,0))
-							$RayCastHorizontal_2.set_cast_to(Vector2(-16,0))
+				if j < nav_path.size() - 1:
+					if (nav_path[j].x - nav_path[j+1].x) >= 0:
+							$RayCastHorizontal_1.set_cast_to(Vector2(-19,0))
+							$RayCastHorizontal_2.set_cast_to(Vector2(-19,0))
 							$RayCastHorizontal_3.set_cast_to(Vector2(-3,0))
-							$RayCastHorizontal_4.set_cast_to(Vector2(-16,0))
+							$RayCastHorizontal_4.set_cast_to(Vector2(-19,0))
 							$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
 							$RayCastVertical.set_position(Vector2(-11,1))
 							if !stop_machine:
+								speed = 2.5
 								translate(Vector2(-1,0) * speed)
 								get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-								animate("run")
+								if $Sprite.get_animation() != "jump":
+									animate("run")
 							$Sprite.flip_h = true
 
-					if ($NavigationAgent2D.get_nav_path()[j].x - $NavigationAgent2D.get_nav_path()[j+1].x) <= -0:
-							$RayCastHorizontal_1.set_cast_to(Vector2(16,0))
-							$RayCastHorizontal_2.set_cast_to(Vector2(16,0))
+					if (nav_path[j].x - nav_path[j+1].x) <= -0:
+							$RayCastHorizontal_1.set_cast_to(Vector2(19,0))
+							$RayCastHorizontal_2.set_cast_to(Vector2(19,0))
 							$RayCastHorizontal_3.set_cast_to(Vector2(3,0))
-							$RayCastHorizontal_4.set_cast_to(Vector2(16,0))
+							$RayCastHorizontal_4.set_cast_to(Vector2(19,0))
 							$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
 							$RayCastVertical.set_position(Vector2(11,1))
 							if !stop_machine:
+								speed = 2.5
 								translate(Vector2(1,0) * speed)
 								get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-								animate("run")
+								if $Sprite.get_animation() != "jump":
+									animate("run")
 							$Sprite.flip_h = false
-				#print(stop_machine)
-				if j < $NavigationAgent2D.get_nav_path().size() - 1:
-					if ((self.global_position.x - $NavigationAgent2D.get_nav_path()[j+1].x) < stop_distance_to_point && (self.global_position.x - $NavigationAgent2D.get_nav_path()[j+1].x) > -stop_distance_to_point) && j < $NavigationAgent2D.get_nav_path().size() - 1:
+				else:
+					animate("idle")
+				
+				if j < nav_path.size() - 1:
+					if ((self.global_position.x - nav_path[j+1].x) < stop_distance_to_point && (self.global_position.x - nav_path[j+1].x) > -stop_distance_to_point) && j < nav_path.size() - 1:
 						j += 1
 
-				saved_size_array = $NavigationAgent2D.get_nav_path().size()
-		else:
-			pass
+				saved_size_array = nav_path.size()
+		#else:
+		#	pass
 
 
 func start_jump_enemy():
 	if is_on_floor():
 		velocity.y = -JUMP_POWER 
+		animate("jump")
 		
 
 func _on_Timer_Of_HP_timeout():
@@ -348,10 +379,14 @@ func _on_Sprite_animation_finished():
 	if $Sprite.get_animation() == "hedgehod":
 		hedgehod_finished = true
 		animate("idle")
+	if $Sprite.get_animation() == "jump":
+		jump_finished = true
+		if $RayCastVertical_3.get_collider():
+			animate("idle")
+	
 
 
 func _on_Stone_Sword_body_entered(body: Node2D):
-	print(true)
 	if body.has_method("handle_hit") && body.has_method("start_jump_heroe"):
 		body.handle_hit(damage_stone_sword)
 
@@ -426,7 +461,6 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 
 
 
-
 func _on_VisibilityNotifier2D_screen_exited():
 	if get_parent().has_method("First_Scene") && GLOBAL.first_cat_scene:
 		queue_free()
@@ -453,14 +487,19 @@ func _on_Area_For_Starting_Fight_body_entered(body):
 		if !body.in_invisibility:
 			GLOBAL.enemy_for_fight = name_character
 			GLOBAL.position_heroe_before_fight = get_parent().get_node("Heroe").global_position
-			GLOBAL.scene("Max_level_Fight_Scene")
+			#GLOBAL.scene("Max_level_Fight_Scene")
 
 
 func _on_Timer_For_Updaiting_Way_timeout():
 	if get_parent().get_node("Heroe"):
-		$NavigationAgent2D.set_target_location(get_parent().current_target)
-		$NavigationAgent2D.get_final_location()
-		$NavigationAgent2D.get_nav_path()
-		get_parent().get_node("Line2D2").points = $NavigationAgent2D.get_nav_path()
-		j = 0
+		#if get_parent().current_target != Vector2(0,0):
+		if !manual_navigation:
+			$NavigationAgent2D.set_target_location(get_parent().current_target)
+			$NavigationAgent2D.get_final_location()
+			nav_path = $NavigationAgent2D.get_nav_path()
+			get_parent().get_node("Line2D2").points = $NavigationAgent2D.get_nav_path()
+			j = 0
 		
+func _on_start_timer_going_back():
+	$Timer_For_Going_Back.start()
+
