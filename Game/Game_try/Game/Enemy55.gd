@@ -157,7 +157,6 @@ func _physics_process(delta):
 						$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
 						$RayCastVertical.set_position(Vector2(-11,1))
 						if !stop_machine:
-							speed = 2.5
 							translate(Vector2(-1,0) * speed)
 							get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 							animate("run")
@@ -175,7 +174,6 @@ func _physics_process(delta):
 						$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
 						$RayCastVertical.set_position(Vector2(11,1))
 						if !stop_machine:
-							speed = 2.5
 							translate(Vector2(1,0) * speed)
 							get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 							animate("run")

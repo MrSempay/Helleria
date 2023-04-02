@@ -41,8 +41,6 @@ var defense = 1
 var counter_of_stone_sword = 0
 var saving_current_animation_of_stone_sword
 var in_invisibility = false
-var jump_finished = false
-
 
 var file = File.new()
 var mass_of_positions = []
@@ -99,14 +97,6 @@ func _ready():
 
 func _physics_process(delta):
 
-
-	if $Icon.get_animation() == "jump":
-		if $RayCastForFloor.get_collider() && jump_finished:
-			animate("idle")
-			jump_finished = false
-
-
-
 	if Input.is_action_pressed("jump") && !get_parent().has_node("Ghost") && !in_invisibility:
 		start_jump_heroe()
 	
@@ -162,16 +152,14 @@ func _physics_process(delta):
 	
 	velocity.x = 0
 	velocity.y += delta * 970 * 2
-	if ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run" or $Icon.get_animation() == "jump") && !in_invisibility:
+	if ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run") && !in_invisibility:
 		translate(GLOBAL.move_vector_1 * speed)
 		velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-	if !file.is_open() && !GLOBAL.first_cat_scene && ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run" or $Icon.get_animation() == "jump"):
+	if !file.is_open() && !GLOBAL.first_cat_scene && ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run"):
 		if GLOBAL.move_vector_1.x != 0:
-			if $Icon.get_animation() != "jump":
-				animate("run")
+			animate("run")
 		if GLOBAL.move_vector_1.x == 0:
-			if $Icon.get_animation() != "jump":
-				animate("idle")
+			animate("idle")
 		if GLOBAL.move_vector_1.x > 0:
 			$Stone_Sword.set_position(Vector2(26, 3))
 			$Position_Arrow.set_position(Vector2(22, 4))
@@ -202,7 +190,6 @@ func _physics_process(delta):
 func start_jump_heroe():
 	if is_on_floor():
 		velocity.y = -JUMP_POWER 
-		animate("jump")
 
 
 
@@ -350,10 +337,6 @@ func _on_Icon_animation_finished():
 		"column":
 			get_node("Buttons_Of_Heroe/Button_First").set_disabled(false)
 			speed = 2.5
-		"jump":
-			jump_finished = true
-			if $RayCastForFloor.get_collider():
-				animate("idle")
 
 
 func _on_Button_First_pressed():

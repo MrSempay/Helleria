@@ -31,7 +31,7 @@ func _ready():
 	heroe_1.position = $Position_Heroe.global_position
 	self.add_child(heroe_1)
 	
-	GLOBAL.enemy_for_fight = "Belotur"
+	
 	match GLOBAL.enemy_for_fight:
 		"Aglea":
 			var enemy_1_1 = enemy_1.instance()
@@ -57,14 +57,14 @@ func _ready():
 func _physics_process(delta):
 	
 	
+	current_target = $Heroe.global_position
 	
 	if !life_enemy:
 		GLOBAL.scene("First_Scene")
 
 	if !self.has_node("Heroe"):
 		$Sprite.set_visible(true)
-	else:
-		current_target = $Heroe.global_position
+		
 	
 	if current_position_heroe == "Area2DT" or current_position_heroe == "Area2DT2":
 		get_node("Areas_For_Jumping/Jumping_Area1/CollisionShape2D").set_disabled(true)
