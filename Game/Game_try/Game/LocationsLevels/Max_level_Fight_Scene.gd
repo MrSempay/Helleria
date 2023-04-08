@@ -27,10 +27,14 @@ func Fight_Scene():
 
 func _ready():
 	
+	
 	var heroe_1 = heroe.instance()
 	heroe_1.position = $Position_Heroe.global_position
 	self.add_child(heroe_1)
 	
+	var enemy_1_3 = enemy_3.instance()
+	enemy_1_3.position = $Position_Enemy.global_position
+	self.add_child(enemy_1_3)
 	
 	match GLOBAL.enemy_for_fight:
 		"Aglea":
@@ -42,7 +46,7 @@ func _ready():
 			enemy_1_2.position = $Position_Enemy.global_position
 			self.add_child(enemy_1_2)
 		"Belotur":
-			var enemy_1_3 = enemy_3.instance()
+			#var enemy_1_3 = enemy_3.instance()
 			enemy_1_3.position = $Position_Enemy.global_position
 			self.add_child(enemy_1_3)
 		"Akira":
@@ -57,6 +61,7 @@ func _ready():
 func _physics_process(delta):
 	
 	
+	
 	current_target = $Heroe.global_position
 	
 	if !life_enemy:
@@ -67,25 +72,7 @@ func _physics_process(delta):
 		
 	
 	if current_position_heroe == "Area2DT" or current_position_heroe == "Area2DT2":
-		get_node("Areas_For_Jumping/Jumping_Area1/CollisionShape2D").set_disabled(true)
-		get_node("Areas_For_Jumping/Jumping_Area11/CollisionShape2D").set_disabled(true)
-	else:
-		get_node("Areas_For_Jumping/Jumping_Area1/CollisionShape2D").set_disabled(false)
-		get_node("Areas_For_Jumping/Jumping_Area11/CollisionShape2D").set_disabled(false)
-		
-	if current_position_heroe == "Area2DT11":
-		get_node("Areas_For_Jumping/Jumping_Area8/CollisionShape2D").set_disabled(true)
-	else:
-		get_node("Areas_For_Jumping/Jumping_Area8/CollisionShape2D").set_disabled(false)
-		
-	if current_position_heroe == "Area2DT5":
-		get_node("Areas_For_Jumping/Jumping_Area14/CollisionShape2D").set_disabled(true)
-	else:
-		get_node("Areas_For_Jumping/Jumping_Area14/CollisionShape2D").set_disabled(false)
-	if current_position_heroe == "Area2DT1":
-		get_node("Areas_For_Jumping/Jumping_Area3/CollisionShape2D").set_disabled(true)
-	else:
-		get_node("Areas_For_Jumping/Jumping_Area3/CollisionShape2D").set_disabled(false)
+		pass
 	
 	if self.has_node("Belotur") && in_area_for_artifical_intelligance_controlling:
 		if self.get_node("Belotur/RayCastHorizontal_For_Heroe").get_collider():

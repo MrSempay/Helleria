@@ -14,18 +14,19 @@ onready var collision_of_stone = get_node("CollisionShape2D")
 
 func _ready():
 	$Sprite.play("stone_lifting")
+	if get_node("../Belotur/RayCastStone").get_collider():
+		vector = get_node("../Heroe").global_position - self.global_position + Vector2(0,7)
 	if enemy.is_flipped_h():
 		$Sprite.flip_h = 1
-		vector = -1
 	else:
 		$Sprite.flip_h = -1
-		vector = 1
 
 
 func _physics_process(delta):
 	if $Sprite.get_animation() == "stone_flying":
+		print(vector)
 		collision_of_stone.set_disabled(false)
-		velocity.x = SPEED * delta * vector
+		velocity = SPEED * delta * vector.normalized()
 		translate(velocity)
 
 
