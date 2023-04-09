@@ -102,7 +102,7 @@ func _physics_process(delta):
 				animate("run")
 				$Sprite.flip_h = false
 	
-	
+	print(manual_navigation)
 	
 	if get_parent().has_node("Heroe"):
 		var heroe = get_parent().get_node("Heroe")
@@ -110,7 +110,7 @@ func _physics_process(delta):
 		
 	if get_parent().has_node("Heroe") && !stun:
 
-		if trigger_of_ally or get_parent().get_node("Heroe").in_invisibility:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
+		if trigger_of_ally or get_parent().get_node("Heroe").in_invisibility && get_parent().Jeison_was_triggered:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
 			if j < nav_path.size() - 1:
 				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 					if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
@@ -122,34 +122,13 @@ func _physics_process(delta):
 					start_jump_enemy()
 				if $RayCastHorizontal_3.get_collider():
 					start_jump_enemy()
-			#if get_parent().get_node("Line2D").points.size() <= j:
-			#		j = 0
-			#print(nav_path)
-		#	print(nav_path[0].x)
-			#print($NavigationAgent2D.get_next_location().x)
-			#print(get_parent().get_node("Line2D2").points.size())
-			#print(get_parent().get_node("Line2D2").points[j].x)
-			#print(get_parent().get_node("Line2D2").points[j].x)
-			#print(get_parent().get_node("Line2D2").points[j+1].x)
-			#print(j)
-			#print(get_parent().get_node("Line2D2").points)
+			
 			if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 				if $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
 					stop_machine = false
 			
-			
-			#if get_parent().get_node("Line2D2").points.size() == 2:
-			#	stop_distance_to_point = 1.5
-			#else:
-			#	stop_distance_to_point = 1.5
-			#print(get_parent().get_node("Line2D").points)
 			if j < nav_path.size() - 1:
-				#if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) > 0:
-				#if (nav_path[0].x - $NavigationAgent2D.get_next_location().x) >= 0:
 				if (nav_path[j].x - nav_path[j+1].x) >= 0:
-						#speed = 2
-						#print(true)
-						#print("e1")
 						$RayCastHorizontal_1.set_cast_to(Vector2(-19,0))
 						$RayCastHorizontal_2.set_cast_to(Vector2(-19,0))
 						$RayCastHorizontal_3.set_cast_to(Vector2(-3,0))
@@ -161,12 +140,7 @@ func _physics_process(delta):
 							get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 							animate("run")
 						$Sprite.flip_h = true
-				#if (self.global_position.x - get_parent().get_node("Line2D").points[j].x) < -0:
-				#print(global_position.distance_to($NavigationAgent2D.get_next_location()))
 				if (nav_path[j].x - nav_path[j+1].x) <= -0:
-						#speed = 2
-						#print(false)
-						#print("e1")
 						$RayCastHorizontal_1.set_cast_to(Vector2(19,0))
 						$RayCastHorizontal_2.set_cast_to(Vector2(19,0))
 						$RayCastHorizontal_3.set_cast_to(Vector2(3,0))
@@ -178,9 +152,7 @@ func _physics_process(delta):
 							get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 							animate("run")
 						$Sprite.flip_h = false
-			#(get_parent().get_node("Line2D2").points.size())
-			#print(j)
-			
+
 			else:
 				animate("idle")
 			
@@ -204,7 +176,7 @@ func _physics_process(delta):
 func start_jump_enemy():
 	if is_on_floor():
 		velocity.y = -JUMP_POWER 
-		#collision_of_jumping_area.set_disabled(true)
+
 
 func _on_Timer_Of_HP_timeout():
 	$value_of_HP.text = str($HP_Enemy_1.value)
@@ -220,6 +192,7 @@ func _on_Trigger_Area_body_entered(body):
 	if body.has_method("ally"):
 		trigger_of_ally = true
 		manual_navigation = false
+		get_parent().Jeison_was_triggered = true
 		
 		
 func animate(art):

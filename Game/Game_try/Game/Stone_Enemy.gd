@@ -3,9 +3,7 @@ extends Area2D
 
 var manacost = 100
 var stown = 20
-var SPEED = 200
 var velocity = Vector2()
-var damage_stone = 10
 var vector = 1
 
 onready var heroe = get_node("../Heroe")
@@ -23,22 +21,30 @@ func _ready():
 
 
 func _physics_process(delta):
+	
+	match $Sprite.get_animation():
+		"stone_lifting":
+			$Sprite.set_speed_scale(SPELLS_PARAMETERS.scale_animation_speed_stone_Belotur)
+		"stone_flying":
+			$Sprite.set_speed_scale(1)
+		
+	
 	if $Sprite.get_animation() == "stone_flying":
-		print(vector)
 		collision_of_stone.set_disabled(false)
-		velocity = SPEED * delta * vector.normalized()
+		velocity = SPELLS_PARAMETERS.speed_stone_Belotur * delta * vector.normalized()
 		translate(velocity)
 
 
 func _on_VisibilityNotifier2D_screen_exited():
-	if heroe.is_on_floor():
-		queue_free()
+	if get_parent().has_node("Heroe"):
+		if heroe.is_on_floor():
+			queue_free()
 	pass
 		
 
 func _on_Stone_body_entered(body):
 	if body.has_method("handle_hit") && body.has_method("start_jump_heroe"):
-		body.handle_hit(damage_stone)
+		body.handle_hit(SPELLS_PARAMETERS.damage_stone_Belotur)
 		queue_free()
 	if !body.has_method("handle_hit"):
 		queue_free()

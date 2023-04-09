@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=2]
+[gd_scene load_steps=127 format=2]
 
 [ext_resource path="res://Game/Button_attack.gd" type="Script" id=1]
 [ext_resource path="res://Game/Button_Second.gd" type="Script" id=2]
@@ -109,6 +109,12 @@
 [ext_resource path="res://Anims/гл. гр/Способности/Меч/anim3Mech9.png" type="Texture" id=107]
 [ext_resource path="res://Anims/гл. гр/Способности/Меч/anim2Mech8.png" type="Texture" id=108]
 [ext_resource path="res://Anims/гл. гр/Способности/Меч/anim3Mech3.png" type="Texture" id=109]
+[ext_resource path="res://Anims/гл. гр/jump/animjump3.png" type="Texture" id=110]
+[ext_resource path="res://Anims/гл. гр/jump/animjump5.png" type="Texture" id=111]
+[ext_resource path="res://Anims/гл. гр/jump/animjump2.png" type="Texture" id=112]
+[ext_resource path="res://Anims/гл. гр/jump/animjump4.png" type="Texture" id=113]
+[ext_resource path="res://Anims/гл. гр/jump/animjump6.png" type="Texture" id=114]
+[ext_resource path="res://Anims/гл. гр/jump/animjump1.png" type="Texture" id=115]
 
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 6, 11 )
@@ -186,6 +192,11 @@ animations = [ {
 "loop": true,
 "name": "injured",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 115 ), ExtResource( 112 ), ExtResource( 110 ), ExtResource( 113 ), ExtResource( 111 ), ExtResource( 114 ) ],
+"loop": false,
+"name": "jump",
+"speed": 40.0
 }, {
 "frames": [ ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 25 ) ],
 "loop": true,
@@ -339,7 +350,7 @@ text = "250
 [node name="Camera_Of_Heroe" type="Camera2D" parent="."]
 position = Vector2( 18, -85 )
 scale = Vector2( 0.496, 0.497 )
-zoom = Vector2( 0.5, 0.5 )
+zoom = Vector2( 0.8, 0.8 )
 drag_margin_left = 0.36
 drag_margin_top = 0.37
 drag_margin_right = 0.4
@@ -462,10 +473,11 @@ cast_to = Vector2( 246, 0 )
 collision_mask = 2097152
 
 [node name="RayCastForFloor" type="RayCast2D" parent="."]
-visible = false
 enabled = true
-cast_to = Vector2( 0, 26 )
+cast_to = Vector2( 0, 27 )
 collision_mask = 2097152
+
+[node name="Timer_Of_Stun" type="Timer" parent="."]
 
 [connection signal="use_move_vector" from="CanvasLayer" to="." method="_on_CanvasLayer_use_move_vector"]
 [connection signal="released" from="CanvasLayer/TouchScreenButton" to="CanvasLayer" method="_on_TouchScreenButton_released"]
@@ -484,3 +496,4 @@ collision_mask = 2097152
 [connection signal="timeout" from="Buttons_Of_Heroe/Button_Third/Timer_Of_Column" to="." method="_on_Timer_Of_Column_timeout"]
 [connection signal="pressed" from="Buttons_Of_Heroe/Control/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Buttons_Of_Heroe/Control/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="timeout" from="Timer_Of_Stun" to="." method="_on_Timer_Of_Stune_timeout"]

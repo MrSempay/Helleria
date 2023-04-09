@@ -11,7 +11,7 @@ var point_2
 var point_3
 var mass_of_points = []
 var current_target
-
+var Belotur_was_triggered = false
 
 var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
 var enemy_2 = preload("res://Game/Characters/Enemy_2.tscn")
@@ -61,8 +61,8 @@ func _ready():
 func _physics_process(delta):
 	
 	
-	
-	current_target = $Heroe.global_position
+	if has_node("Heroe"):
+		current_target = $Heroe.global_position
 	
 	if !life_enemy:
 		GLOBAL.scene("First_Scene")

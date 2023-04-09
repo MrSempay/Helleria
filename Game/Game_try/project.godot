@@ -17,6 +17,7 @@ run/main_scene="res://Game/LocationsLevels/Main_Menu_Scene.tscn"
 
 GLOBAL="*res://GLOBAL.gd"
 FOR_ANY_UNITES="*res://For_Any_Unites.gd"
+SPELLS_PARAMETERS="*res://SPELLS_PARAMETERS.gd"
 
 [input]
 

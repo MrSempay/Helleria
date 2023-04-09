@@ -2,7 +2,6 @@ extends Area2D
 
 
 var velocity = Vector2()
-var damage_column = 25
 var first = true
 
 
@@ -24,11 +23,13 @@ func _on_Timer_timeout():
 func _on_Column_body_entered(body):
 	if first:
 		if body.has_method("handle_hit") && body.has_method("enemy"):
-			body.handle_hit(damage_column)
+			body.handle_hit(SPELLS_PARAMETERS.damage_column_Heroe)
 			body.stun = true
+			body.get_node("Timer_Of_Stun").set_wait_time(SPELLS_PARAMETERS.stun_duration_column_Heroe)
 			body.get_node("Timer_Of_Stun").start()
 			body.get_node("Sprite").play("idle")
-	first = false
+			
+			first = false
 
 
 

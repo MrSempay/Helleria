@@ -21,7 +21,7 @@ onready var count_of_arrow = get_node("Weapon/value_of_HP/Arrow_Amount")
 onready var stone_position = get_node("Weapon/Position2D/")
 onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
-
+var stun = false
 var manacost_stone_sword = 10
 var manacost_arrow = 10
 var manacost_column = 35
@@ -97,6 +97,36 @@ func _ready():
 
 func _physics_process(delta):
 
+	#print($Icon.get_animation())
+	#print($Icon.get_frame())
+
+	match $Icon.get_animation():
+		"idle":
+			$Icon.set_speed_scale(1)
+		"run":
+			$Icon.set_speed_scale(1)
+		"bow":
+			$Icon.set_speed_scale(SPELLS_PARAMETERS.scale_animation_speed_bow_Heroe)
+		"stone_sword":
+			$Icon.set_speed_scale(SPELLS_PARAMETERS.scale_animation_speed_swrod_Heroe)
+		"stone_sword_1":
+			$Icon.set_speed_scale(SPELLS_PARAMETERS.scale_animation_speed_swrod_Heroe)
+		"stone_sword_2":
+			$Icon.set_speed_scale(SPELLS_PARAMETERS.scale_animation_speed_swrod_Heroe)
+		"column":
+			$Icon.set_speed_scale(SPELLS_PARAMETERS.scale_animation_speed_column_Heroe)
+		"jump":
+			$Icon.set_speed_scale(1)
+		"injured":
+			$Icon.set_speed_scale(1)
+		"door_opening":
+			$Icon.set_speed_scale(1)
+			
+			
+	if $RayCastForFloor.get_collider() && $Icon.get_animation() == "jump" or stun:
+		$Icon.play("idle")
+
+
 	if $Icon.get_animation() == "idle":
 		speed = 2.5
 
@@ -156,13 +186,15 @@ func _physics_process(delta):
 	velocity.x = 0
 	velocity.y += delta * 970 * 2
 	#if ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run") && !in_invisibility:
-	if !file.is_open() && !GLOBAL.first_cat_scene && ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run") && !in_invisibility:
+	if !file.is_open() && !GLOBAL.first_cat_scene && ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run" or $Icon.get_animation() == "jump") && !in_invisibility && !stun:
 		translate(GLOBAL.move_vector_1 * speed)
 		velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 		if GLOBAL.move_vector_1.x != 0:
-			animate("run")
+			if $Icon.get_animation() != "jump":
+				animate("run")
 		if GLOBAL.move_vector_1.x == 0:
-			animate("idle")
+			if $Icon.get_animation() != "jump":
+				animate("idle")
 		if GLOBAL.move_vector_1.x > 0:
 			$Stone_Sword.set_position(Vector2(26, 3))
 			$Position_Arrow.set_position(Vector2(22, 4))
@@ -193,6 +225,8 @@ func _physics_process(delta):
 func start_jump_heroe():
 	if is_on_floor():
 		velocity.y = -JUMP_POWER 
+		$Icon.play("jump")
+		print(true)
 
 
 
@@ -236,7 +270,7 @@ func animate(art):
 	
 	
 	
-func navigation(number_of_moving):	
+func navigation(number_of_moving):
 	
 	if !file.is_open() && moving_state:
 		file.open("res://Navigations/" + name_character + "/navigation" + str(number_of_moving) + ".txt", File.READ)
@@ -342,69 +376,74 @@ func _on_Icon_animation_finished():
 			speed = 2.5
 
 
+
 func _on_Button_First_pressed():
-	if $RayCastForFloor.get_collider() && $Mana_Heroe.value > manacost_stone_sword:
-		counter_of_stone_sword += 1
-		if !$Icon.get_animation() == "stone_sword" && !$Icon.get_animation() == "stone_sword_1" && !$Icon.get_animation() == "stone_sword_2":
-			mana_using(manacost_stone_sword)
-			match counter_of_stone_sword:
-				1:
-					animate("stone_sword")
-					get_node("Buttons_Of_Heroe/Button_First").set_disabled(true)
-					saving_current_animation_of_stone_sword = 1
-				2:
-					animate("stone_sword_1")
-					get_node("Buttons_Of_Heroe/Button_First").set_disabled(true)
-					saving_current_animation_of_stone_sword = 2
-				3:
-					get_node("Buttons_Of_Heroe/Button_First").set_disabled(true)
-					counter_of_stone_sword = 0
-					animate("stone_sword_2")
+	if !stun:
+		if $RayCastForFloor.get_collider() && $Mana_Heroe.value > SPELLS_PARAMETERS.manacost_stone_sword_Heroe:
+			counter_of_stone_sword += 1
+			if !$Icon.get_animation() == "stone_sword" && !$Icon.get_animation() == "stone_sword_1" && !$Icon.get_animation() == "stone_sword_2":
+				mana_using(SPELLS_PARAMETERS.manacost_stone_sword_Heroe)
+				match counter_of_stone_sword:
+					1:
+						animate("stone_sword")
+						get_node("Buttons_Of_Heroe/Button_First").set_disabled(true)
+						saving_current_animation_of_stone_sword = 1
+					2:
+						animate("stone_sword_1")
+						get_node("Buttons_Of_Heroe/Button_First").set_disabled(true)
+						saving_current_animation_of_stone_sword = 2
+					3:
+						get_node("Buttons_Of_Heroe/Button_First").set_disabled(true)
+						counter_of_stone_sword = 0
+						animate("stone_sword_2")
 
 
 func _on_Button_Second_pressed():
-	if $RayCastForFloor.get_collider() && $Mana_Heroe.value > manacost_arrow:
-		if !$Icon.get_animation() == "bow":
-			animate("bow")
-			if amount_arrows == 5:
-				mana_using(manacost_arrow)
-			amount_arrows -= 1
-			get_node("Buttons_Of_Heroe/Button_Second/RichTextLabel").set_text(str(amount_arrows))
-			if amount_arrows == 0:
-				get_node("Buttons_Of_Heroe/Button_Second").set_disabled(true)
-				get_node("Buttons_Of_Heroe/Button_Second/Timer_Of_Bow").start()
+	if !stun:
+		if $RayCastForFloor.get_collider() && $Mana_Heroe.value > SPELLS_PARAMETERS.manacost_bow_Heroe:
+			if !$Icon.get_animation() == "bow":
+				animate("bow")
+				if SPELLS_PARAMETERS.amount_arrow_Heroe == 5:
+					mana_using(SPELLS_PARAMETERS.manacost_bow_Heroe)
+				SPELLS_PARAMETERS.amount_arrow_Heroe -= 1
+				get_node("Buttons_Of_Heroe/Button_Second/RichTextLabel").set_text(str(SPELLS_PARAMETERS.amount_arrow_Heroe))
+				if SPELLS_PARAMETERS.amount_arrow_Heroe == 0:
+					get_node("Buttons_Of_Heroe/Button_Second").set_disabled(true)
+					get_node("Buttons_Of_Heroe/Button_Second/Timer_Of_Bow").start()
 
 
 func _on_Button_Third_pressed():
 	get_node("Buttons_Of_Heroe/Button_First").set_disabled(false)
-	if $RayCastForFloor.get_collider() && $Mana_Heroe.value > manacost_column:
-		if $Ray_Cast_Column.get_collider():
-			if $Ray_Cast_Column.get_collider().has_method("enemy"):
-				$Icon.play("сolumn")
-				mana_using(manacost_column)
-				var column_1 = column.instance()
-				column_1.global_position = $Ray_Cast_Column.get_collider().global_position - Vector2(0, -16)
-				get_parent().add_child(column_1)
-				get_node("Buttons_Of_Heroe/Button_Third").set_disabled(true)
-				get_node("Buttons_Of_Heroe/Button_Third/Timer_Of_Column").start()
-		if $Ray_Cast_Random_Spell.get_collider() && !get_parent().has_node("Column"):
-				$Icon.play("сolumn")
-				mana_using(manacost_column)
-				var column_1 = column.instance()
-				column_1.position = $Ray_Cast_Random_Spell.get_collision_point()
-				get_parent().add_child(column_1)
-				get_node("Buttons_Of_Heroe/Button_Third").set_disabled(true)
-				get_node("Buttons_Of_Heroe/Button_Third/Timer_Of_Column").start()
+	if !stun:
+		if $RayCastForFloor.get_collider() && $Mana_Heroe.value > SPELLS_PARAMETERS.manacost_column_Heroe:
+			if $Ray_Cast_Column.get_collider():
+				if $Ray_Cast_Column.get_collider().has_method("enemy"):
+					$Icon.play("сolumn")
+					mana_using(SPELLS_PARAMETERS.manacost_column_Heroe)
+					var column_1 = column.instance()
+					column_1.global_position = $Ray_Cast_Column.get_collider().global_position - Vector2(0, -16)
+					get_parent().add_child(column_1)
+					get_node("Buttons_Of_Heroe/Button_Third").set_disabled(true)
+					get_node("Buttons_Of_Heroe/Button_Third/Timer_Of_Column").set_wait_time(SPELLS_PARAMETERS.calldown_column_Heroe)
+					get_node("Buttons_Of_Heroe/Button_Third/Timer_Of_Column").start()
+			if $Ray_Cast_Random_Spell.get_collider() && !get_parent().has_node("Column"):
+					$Icon.play("сolumn")
+					mana_using(SPELLS_PARAMETERS.manacost_column_Heroe)
+					var column_1 = column.instance()
+					column_1.position = $Ray_Cast_Random_Spell.get_collision_point()
+					get_parent().add_child(column_1)
+					get_node("Buttons_Of_Heroe/Button_Third").set_disabled(true)
+					get_node("Buttons_Of_Heroe/Button_Third/Timer_Of_Column").start()
 	
 			
 func _on_Stone_Sword_body_entered(body: Node2D):
 	if body.has_method("handle_hit") && body.has_method("enemy"):
-		body.handle_hit(damage_stone_sword)
+		body.handle_hit(SPELLS_PARAMETERS.damage_stone_sword_Heroe)
 
 
 func _on_Timer_Of_Bow_timeout():
 	get_node("Buttons_Of_Heroe/Button_Second").set_disabled(false)
-	amount_arrows = 5
+	SPELLS_PARAMETERS.amount_arrow_Heroe = 5
 
 
 func _on_Timer_Of_Column_timeout():
@@ -415,3 +454,7 @@ func _on_Timer_Of_First_Animation_Sword_timeout():
 	if saving_current_animation_of_stone_sword == counter_of_stone_sword:
 		counter_of_stone_sword = 0
 
+
+
+func _on_Timer_Of_Stune_timeout():
+	stun = false

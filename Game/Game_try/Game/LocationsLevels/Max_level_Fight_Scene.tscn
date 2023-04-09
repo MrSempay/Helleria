@@ -226,7 +226,6 @@ position = Vector2( 323, 405 )
 shape = SubResource( 2 )
 
 [node name="Areas_For_Jumping" type="Area2D" parent="."]
-visible = false
 
 [node name="JAUlt" type="StaticBody2D" parent="Areas_For_Jumping"]
 position = Vector2( 208, -36 )
@@ -293,6 +292,16 @@ script = ExtResource( 3 )
 position = Vector2( 0, -11 )
 shape = SubResource( 11 )
 
+[node name="JAUlt5" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 384, -94 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt5"]
+position = Vector2( 0, -38 )
+shape = SubResource( 11 )
+
 [node name="Area_For_Falling" type="Area2D" parent="."]
 visible = false
 position = Vector2( 519, 994 )
@@ -309,12 +318,10 @@ position = Vector2( 523, 314 )
 texture = ExtResource( 4 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
-visible = false
 navpoly = SubResource( 7 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="."]
-visible = false
 navpoly = SubResource( 8 )
 navigation_layers = 63
 

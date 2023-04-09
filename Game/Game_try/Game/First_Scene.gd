@@ -17,7 +17,8 @@ var current_target_Akira = Vector2(0,0)
 var current_target_Belotur = Vector2(0,0)
 var current_target_Jeison = Vector2(0,0)
 var position_enemy = ""
-
+var Belotur_was_triggered = false
+var Jeison_was_triggered = false
 
 var ally = preload("res://Game/Characters/Ally.tscn")
 var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
@@ -68,7 +69,7 @@ func _ready():
 		$Position_Heroe.set_global_position(Vector2(2535, 1528))
 	elif GLOBAL.position_heroe_before_fight != Vector2(0, 0):
 		$Position_Heroe.set_global_position(GLOBAL.position_heroe_before_fight)
-		GLOBAL.position_heroe_before_fight = 0
+		GLOBAL.position_heroe_before_fight = Vector2(0, 0)
 	else:
 		#$Position_Heroe.set_global_position(Vector2(2218, 1528))
 		pass
@@ -114,12 +115,19 @@ func _ready():
 	
 func _physics_process(delta):
 	
+	if GLOBAL.life_Belotur:
+		if $Belotur.global_position == first_position_Belotur:
+			Belotur_was_triggered = false
+		if $Jeison.global_position == first_position_Jeison:
+			Jeison_was_triggered = false
+	
 	
 	if self.has_node("Heroe"):
 		if $Heroe.in_invisibility && self.get_node("Bush").global_position.x - $Heroe.global_position.x < 33 && (self.get_node("Bush").global_position.x - $Heroe.global_position.x > -33):
 			$Jeison.manual_navigation = true
 			$Belotur.manual_navigation = true
 			$Jeison.nav_path = [$Jeison.global_position, Vector2(2525, 1533), Vector2(2505, 1533), Vector2(1400, 1347), first_position_Jeison]
+			print("sjit")
 			$Belotur.nav_path = [$Belotur.global_position, Vector2(2325, 1533), Vector2(2505, 1533), first_position_Belotur]
 		if $Heroe.in_invisibility && self.get_node("Bush2").global_position.x - $Heroe.global_position.x < 33 && (self.get_node("Bush2").global_position.x - $Heroe.global_position.x > -33):
 				current_target_Adalard = Vector2(2231, 1400)
