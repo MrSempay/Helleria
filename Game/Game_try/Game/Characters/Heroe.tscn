@@ -475,6 +475,7 @@ cast_to = Vector2( 246, 0 )
 collision_mask = 2097152
 
 [node name="RayCastForFloor" type="RayCast2D" parent="."]
+visible = false
 enabled = true
 cast_to = Vector2( 0, 27 )
 collision_mask = 2097152
