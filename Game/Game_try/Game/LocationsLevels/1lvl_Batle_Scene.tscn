@@ -1,16 +1,99 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Tile_Set_For_Fight_Scene.tres" type="TileSet" id=1]
 [ext_resource path="res://Tile_Set_Ground_Extended+.tres" type="TileSet" id=2]
+[ext_resource path="res://Game/LocationsLevels/1lvl_Batle_Scene.gd" type="Script" id=3]
+[ext_resource path="res://32131.png" type="Texture" id=4]
+[ext_resource path="res://Anims/background/FOn1.png" type="Texture" id=5]
+[ext_resource path="res://Game/Tile_setsTools_for_level/Tools_for_level/Torches/Torch.tscn" type="PackedScene" id=6]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="OccluderPolygon2D" id=2]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 706, 397, 708, 575, 338, 574, 337, 396 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 337, 396, 338, 574, 708, 575, 706, 397 ) ]
+
+[node name="1lvl_Batle_Scene" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.0313726, 0.00392157, 0.00392157, 1 )
+
+[node name="Fon1" type="Sprite" parent="."]
+position = Vector2( 426, 486 )
+texture = ExtResource( 5 )
+
+[node name="Fon2" type="Sprite" parent="."]
+position = Vector2( 425, 666 )
+texture = ExtResource( 5 )
+
+[node name="Fon3" type="Sprite" parent="."]
+position = Vector2( 603, 489 )
+texture = ExtResource( 5 )
+
+[node name="Fon4" type="Sprite" parent="."]
+position = Vector2( 601, 668 )
+texture = ExtResource( 5 )
+
+[node name="Fon5" type="Sprite" parent="."]
+position = Vector2( 779, 488 )
+texture = ExtResource( 5 )
+
+[node name="Fon6" type="Sprite" parent="."]
+position = Vector2( 776, 664 )
+texture = ExtResource( 5 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2( 532, 521 )
+occluder = SubResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
+collision_layer = 2097215
+collision_mask = 2097215
 format = 1
 tile_data = PoolIntArray( 589829, 13, 0, 589830, 13, 0, 589831, 13, 0, 589832, 13, 0, 589833, 13, 0, 589834, 13, 0 )
 
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
+collision_layer = 2097215
+collision_mask = 2097215
 format = 1
 tile_data = PoolIntArray( 393221, 1, 0, 393227, 6, 0, 458757, 1, 0, 458763, 6, 0, 524293, 1, 0, 524299, 6, 0 )
+
+[node name="Position_Heroe" type="Position2D" parent="."]
+position = Vector2( 368, 538 )
+
+[node name="Position_Enemy" type="Position2D" parent="."]
+position = Vector2( 792, 523 )
+
+[node name="Line2D2" type="Line2D" parent="."]
+width = 3.0
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+navpoly = SubResource( 1 )
+navigation_layers = 63
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 560, 673 )
+texture = ExtResource( 4 )
+texture_scale = 0.25
+color = Color( 1, 0.847059, 0.309804, 1 )
+energy = 1.25
+shadow_enabled = true
+
+[node name="NTorch" parent="." instance=ExtResource( 6 )]
+position = Vector2( 524, 520 )
+
+[node name="LTorch2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 394, 522 )
+
+[node name="ZTorch3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 661, 526 )
+
+[node name="Fon7" type="Sprite" parent="."]
+position = Vector2( 490, 523.5 )
+scale = Vector2( 6.2, 3.48333 )
+z_index = -2
+texture = ExtResource( 5 )

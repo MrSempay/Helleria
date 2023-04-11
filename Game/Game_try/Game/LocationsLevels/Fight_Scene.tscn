@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Node2D.gd" type="Script" id=1]
 [ext_resource path="res://13831_big.jpg" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Game/Jumping_Platform.gd" type="Script" id=8]
 [ext_resource path="res://Game/Camera_For_Speaking.gd" type="Script" id=9]
 [ext_resource path="res://Game/Area_Of_Dialoge_Camera.gd" type="Script" id=10]
+[ext_resource path="res://Anims/background/FOn1.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 500.832, 213.268 )
@@ -143,10 +144,12 @@ position = Vector2( 1645, 1803 )
 position = Vector2( 2359, 1803 )
 
 [node name="TileMap" type="TileMap" parent="."]
+z_index = 1
 tile_set = ExtResource( 4 )
 collision_layer = 2097183
 collision_mask = 2097183
 format = 1
+tile_data = PoolIntArray( 3145753, 5, 0, 3145754, 5, 0, 3145755, 4, 0 )
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
 position = Vector2( 1212, 1808 )
@@ -496,3 +499,19 @@ script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/Jumping_Area3"]
 shape = SubResource( 7 )
+
+[node name="Fon1" type="Sprite" parent="."]
+position = Vector2( 1669, 3002 )
+texture = ExtResource( 11 )
+
+[node name="Fon2" type="Sprite" parent="."]
+position = Vector2( 1848, 3001 )
+texture = ExtResource( 11 )
+
+[node name="Fon3" type="Sprite" parent="."]
+position = Vector2( 1669, 3174 )
+texture = ExtResource( 11 )
+
+[node name="Fon4" type="Sprite" parent="."]
+position = Vector2( 1848, 3174 )
+texture = ExtResource( 11 )

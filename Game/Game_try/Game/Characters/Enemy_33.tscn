@@ -335,46 +335,54 @@ wait_time = 3.0
 one_shot = true
 
 [node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -35 )
 enabled = true
-cast_to = Vector2( 16, 0 )
+cast_to = Vector2( 19, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_2" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -6 )
 enabled = true
-cast_to = Vector2( 16, 0 )
+cast_to = Vector2( 19, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, 7 )
 enabled = true
 cast_to = Vector2( 3, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_4" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -24 )
 enabled = true
-cast_to = Vector2( 16, 0 )
+cast_to = Vector2( 19, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_For_Heroe" type="RayCast2D" parent="."]
+visible = false
 enabled = true
 cast_to = Vector2( 192, 0 )
 
 [node name="RayCastVertical" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 11, 1 )
 enabled = true
 cast_to = Vector2( 0, 22 )
 collision_mask = 4194304
 
 [node name="RayCastVertical_2" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( 0, -6 )
 enabled = true
 cast_to = Vector2( 0, -26 )
 collision_mask = 2097152
 
 [node name="RayCastVertical_3" type="RayCast2D" parent="."]
+visible = false
 enabled = true
 cast_to = Vector2( 0, 17 )
 collision_mask = 2097152
