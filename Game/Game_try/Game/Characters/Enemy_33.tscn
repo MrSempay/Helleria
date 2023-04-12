@@ -154,7 +154,7 @@ animations = [ {
 "speed": 15.0
 }, {
 "frames": [ ExtResource( 50 ), ExtResource( 53 ), ExtResource( 63 ), ExtResource( 62 ), ExtResource( 60 ), ExtResource( 59 ), ExtResource( 61 ), ExtResource( 64 ), ExtResource( 88 ), ExtResource( 87 ), ExtResource( 90 ), ExtResource( 92 ), ExtResource( 91 ), ExtResource( 89 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 55 ), ExtResource( 54 ), ExtResource( 74 ), ExtResource( 73 ), ExtResource( 66 ), ExtResource( 65 ), ExtResource( 67 ), ExtResource( 69 ), ExtResource( 68 ), ExtResource( 70 ), ExtResource( 72 ), ExtResource( 71 ) ],
-"loop": false,
+"loop": true,
 "name": "stone",
 "speed": 16.0
 }, {
@@ -231,7 +231,7 @@ anims/RESET = SubResource( 5 )
 "anims/щгп" = SubResource( 6 )
 
 [node name="Timer_Stone" type="Timer" parent="."]
-wait_time = 7.0
+wait_time = 0.3
 one_shot = true
 
 [node name="Timer_Stone_Sword" type="Timer" parent="."]
@@ -300,6 +300,7 @@ text = "250
 "
 
 [node name="Trigger_Area" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Area"]
 position = Vector2( 0, -21.5 )
@@ -318,6 +319,7 @@ shape = SubResource( 4 )
 disabled = true
 
 [node name="Area_For_Starting_Fight" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, 1 )
 scale = Vector2( 0.7, 1 )
 collision_layer = 5
@@ -390,6 +392,18 @@ collision_mask = 2097152
 [node name="RayCastStone" type="RayCast2D" parent="."]
 visible = false
 position = Vector2( 34, -2 )
+enabled = true
+cast_to = Vector2( 0, 0 )
+
+[node name="RayCastStone2" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 34, -3 )
+enabled = true
+cast_to = Vector2( 0, 0 )
+
+[node name="RayCastStone3" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 34, -1 )
 enabled = true
 cast_to = Vector2( 0, 0 )
 

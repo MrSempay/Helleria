@@ -1,7 +1,6 @@
 extends StaticBody2D
 
-
-
+# Активируется, когда ГГ во II четверти
 
 
 func _physics_process(delta):

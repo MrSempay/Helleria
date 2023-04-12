@@ -57,7 +57,7 @@ var amount_arrow_Heroe = 5
 
 var manacost_stone_sword_Belotur = 0
 var damage_stone_sword_Belotur = 10
-var scale_animation_speed_swrod_Belotur = 5
+var scale_animation_speed_swrod_Belotur = 2
 #var calldown_stone_sword_Belotur // Нужно ли?
 
 """Hedgehod"""
@@ -70,11 +70,11 @@ var stun_duration_hedgehod = 2.5
 
 """Stone"""
 
-var manacost_stone_Belotur = 10
+var manacost_stone_Belotur = 1
 var damage_stone_Belotur = 10
 var scale_animation_speed_stone_Belotur = 1
 var speed_stone_Belotur = 250
-var calldown_stone_Belotur = 5
+var calldown_stone_Belotur = 0.5
 
 
 #_________Adalard_________#
