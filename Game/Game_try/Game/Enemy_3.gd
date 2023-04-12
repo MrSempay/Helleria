@@ -114,6 +114,7 @@ func _physics_process(delta):
 	if get_parent().has_node("Heroe"):
 		if((self.global_position.x) - heroe.global_position.x) > 0:
 			$Stone_Position.set_position(Vector2(-34,-2))
+			$Stone_Sword.set_position(Vector2(-25,-6))
 			$RayCastStone.set_position(Vector2(-34,-2))
 			$RayCastStone2.set_position(Vector2(-34,-1))
 			$RayCastStone3.set_position(Vector2(-34,-3))
@@ -122,6 +123,7 @@ func _physics_process(delta):
 			$RayCastStone3.set_cast_to(get_parent().get_node("Heroe").global_position - self.global_position - Vector2(-34,-4))
 		else:
 			$Stone_Position.set_position(Vector2(34,-2))
+			$Stone_Sword.set_position(Vector2(25,-6))
 			$RayCastStone.set_position(Vector2(34,-2))
 			$RayCastStone2.set_position(Vector2(34,-1))
 			$RayCastStone3.set_position(Vector2(34,-3))
@@ -272,13 +274,30 @@ func _physics_process(delta):
 				
 				
 				#$RayCastStone.set_cast_to(get_parent().get_node("Heroe").global_position - self.global_position)
-				print($Stone_Position.get_position())
+				#print($Stone_Position.get_position())
 				if $RayCastStone.get_collider():
 					if $RayCastStone.get_collider().has_method("start_jump_heroe"):
 						pass
 				
 				
 				if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 30) && (self.get_position().y - heroe.get_position().y > -30)) && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_stone_sword_Belotur: 
+					if $Sprite.get_animation() == "stone":
+						 if $Sprite.get_frame() >= 20:
+								if((self.global_position.x) - heroe.global_position.x) > 0:
+									$Sprite.flip_h = true
+								else:
+									$Sprite.flip_h = false
+								mana_using(SPELLS_PARAMETERS.manacost_stone_sword_Belotur)
+								speed = 0
+								if EXTRA:
+									timer_of_stone_sword.set_wait_time(0.3)
+								timer_of_stone_sword.start()
+								stone_sword_ready = false
+								animate("stoneSword")
+								if stone_sword_finished:
+									collision_of_stone_sword.set_disabled(false)
+									stone_sword_finished = false
+					else:
 						if((self.global_position.x) - heroe.global_position.x) > 0:
 							$Sprite.flip_h = true
 						else:
@@ -308,18 +327,20 @@ func _physics_process(delta):
 								timer_of_stone.start()
 								speed = 0
 								stone_ready = false
+								$Sprite.set_frame(0)
 								animate("stone")
 								var stone_1 = stone.instance()
 								stone_1.position = $Stone_Position.global_position
 								get_node("..").add_child(stone_1)
-								stone_finished = true
-					elif $Sprite.get_animation() != "run":
+								stone_finished = false
+					elif $Sprite.get_frame() == 27:
 						animate("idle")
 						speed = 2.5
-				elif $Sprite.get_animation() != "run":
+						print(false)
+				elif $Sprite.get_frame() == 27:
+					print(true)
 					animate("idle")
 					speed = 2.5
-					
 				if $RayCastHorizontal_For_Heroe.get_collider() && get_parent().get_node("Heroe/RayCastForFloor").get_collider() && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_hedgehod:
 						if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && hedgehod_ready && is_on_floor() && $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
 							if $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "stone":
@@ -350,6 +371,7 @@ func _physics_process(delta):
 						if $RayCastHorizontal_3.get_collider():
 							start_jump_enemy()
 
+			#print($Sprite.get_frame())
 			#print($Sprite.get_animation())
 			#print(speed)
 			if j < nav_path.size() - 1 && $Sprite.get_animation() != "stone" && $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
@@ -360,7 +382,7 @@ func _physics_process(delta):
 							$RayCastHorizontal_4.set_cast_to(Vector2(-19,0))
 							$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
 							$RayCastVertical.set_position(Vector2(-11,1))
-							$Stone_Sword.set_position(Vector2(-25,-6))
+							#$Stone_Sword.set_position(Vector2(-25,-6))
 							#$Stone_Position.set_position(Vector2(-34,-2))
 							if !stop_machine:
 								translate(Vector2(-1,0) * speed)
@@ -376,7 +398,7 @@ func _physics_process(delta):
 							$RayCastHorizontal_4.set_cast_to(Vector2(19,0))
 							$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
 							$RayCastVertical.set_position(Vector2(11,1))
-							$Stone_Sword.set_position(Vector2(25,-6))
+							#$Stone_Sword.set_position(Vector2(25,-6))
 							#$Stone_Position.set_position(Vector2(34,-2))
 							if !stop_machine:
 								translate(Vector2(1,0) * speed)
@@ -425,8 +447,16 @@ func animate(art):
 
 func _on_Sprite_animation_finished():
 	if $Sprite.get_animation() == "stone":
-		#animate("idle")
-		speed = 2.5
+		if $RayCastStone.get_collider() && $RayCastStone2.get_collider() && $RayCastStone3.get_collider():
+			if $RayCastStone.get_collider().has_method("start_jump_heroe") && $RayCastStone2.get_collider().has_method("start_jump_heroe") && $RayCastStone3.get_collider().has_method("start_jump_heroe") == false:
+				animate("idle")
+				speed = 2.5
+				stone_finished = true
+				print(true)
+		else:
+			animate("idle")
+			speed = 2.5
+		
 	if $Sprite.get_animation() == "stoneSword":
 		stone_sword_finished = true
 		animate("idle")

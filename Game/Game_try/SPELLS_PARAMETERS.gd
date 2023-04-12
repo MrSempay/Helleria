@@ -73,8 +73,8 @@ var stun_duration_hedgehod = 2.5
 var manacost_stone_Belotur = 1
 var damage_stone_Belotur = 10
 var scale_animation_speed_stone_Belotur = 1
-var speed_stone_Belotur = 250
-var calldown_stone_Belotur = 0.5
+var speed_stone_Belotur = 300
+var calldown_stone_Belotur = 2
 
 
 #_________Adalard_________#

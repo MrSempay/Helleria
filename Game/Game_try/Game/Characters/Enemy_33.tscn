@@ -154,7 +154,7 @@ animations = [ {
 "speed": 15.0
 }, {
 "frames": [ ExtResource( 50 ), ExtResource( 53 ), ExtResource( 63 ), ExtResource( 62 ), ExtResource( 60 ), ExtResource( 59 ), ExtResource( 61 ), ExtResource( 64 ), ExtResource( 88 ), ExtResource( 87 ), ExtResource( 90 ), ExtResource( 92 ), ExtResource( 91 ), ExtResource( 89 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 55 ), ExtResource( 54 ), ExtResource( 74 ), ExtResource( 73 ), ExtResource( 66 ), ExtResource( 65 ), ExtResource( 67 ), ExtResource( 69 ), ExtResource( 68 ), ExtResource( 70 ), ExtResource( 72 ), ExtResource( 71 ) ],
-"loop": true,
+"loop": false,
 "name": "stone",
 "speed": 16.0
 }, {
