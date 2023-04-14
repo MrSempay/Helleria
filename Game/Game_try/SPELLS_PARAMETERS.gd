@@ -24,6 +24,9 @@ extends Node
 #_________Heroe_________#
 
 
+var HP_Heroe = 150
+var mana_Heroe = 250
+
 """Stone sword"""
 
 
@@ -53,6 +56,9 @@ var amount_arrow_Heroe = 5
 #_________Belotur_________#
 
 
+var HP_Belotur = 300
+var mana_Belotur = 250
+
 """Stone sword"""
 
 var manacost_stone_sword_Belotur = 10
@@ -80,18 +86,21 @@ var calldown_stone_Belotur = 2
 #_________Adalard_________#
 
 
+var HP_Adalard = 2750
+var mana_Adalard = 1500
+
 """Sword"""
 
 var manacost_sword_Adalard = 0
-var damage_sword_Adalard = 10
+var damage_sword_Adalard = 15
 var scale_animation_speed_sword_Adalard = 1
 
 """Armor"""
 
-var manacost_armor_Adalard = 10
-var fraction_absorbed_damage_armor_Adalard = 0.7
+var manacost_armor_Adalard = 50
+var fraction_absorbed_damage_armor_Adalard = 0.15
 var scale_animation_speed_armor_Adalard = 1
-var duration_armor_Adalard = 7
+var duration_armor_Adalard = 5
 var calldown_armor_Adalard = 12
 
 """Push"""
@@ -99,9 +108,9 @@ var calldown_armor_Adalard = 12
 var manacost_push_Adalard = 10
 var damage_push_Adalard = 10
 var scale_animation_speed_push_Adalard = 1
-var speed_persenage_push_Adalard = 3.5
-var calldown_push_Adalard = 10
-var stun_duration_push_Adalard = 2.5
+var speed_persenage_push_Adalard = 2.5
+var calldown_push_Adalard = 8
+var stun_duration_push_Adalard = 1
 
 
 

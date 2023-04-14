@@ -54,6 +54,14 @@ var dat = 1
 
 
 func _ready():
+	$HP_Enemy_1.max_value = SPELLS_PARAMETERS.HP_Belotur
+	$HP_Enemy_1.value = SPELLS_PARAMETERS.HP_Belotur
+	$value_of_HP.text = str($HP_Enemy_1.value)
+	
+	$Mana_Enemy_1.max_value = SPELLS_PARAMETERS.mana_Belotur
+	$Mana_Enemy_1.value = SPELLS_PARAMETERS.mana_Belotur
+	$value_of_Mana.text = str($Mana_Enemy_1.value)
+	
 	self.connect("start_timer_going_back", self, "_on_start_timer_going_back")
 	if get_parent().has_method("Fight_Scene"):
 		$AudioStreamPlayer2D.stream = load("res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3")

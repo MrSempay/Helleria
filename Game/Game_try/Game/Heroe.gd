@@ -83,6 +83,15 @@ func mana_using(manacost):
 	
 
 func _ready():
+	$HP_Heroe.max_value = SPELLS_PARAMETERS.HP_Heroe
+	$HP_Heroe.value = SPELLS_PARAMETERS.HP_Heroe
+	$value_of_HP.text = str($HP_Heroe.value)
+	
+	$Mana_Heroe.max_value = SPELLS_PARAMETERS.mana_Heroe
+	$Mana_Heroe.value = SPELLS_PARAMETERS.mana_Heroe
+	$value_of_Mana.text = str($Mana_Heroe.value)
+	
+	
 	get_node("Buttons_Of_Heroe/Button_Second/RichTextLabel").set_text(str(amount_arrows))
 	GLOBAL.move_vector_1 = Vector2(0, 0)
 	if get_parent().has_method("Temple_lvl") && get_parent().has_node("Ghost"):

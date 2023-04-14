@@ -54,10 +54,20 @@ var dat = 1
 
 
 func _ready():
+	print($HP_Enemy_1.value)
+	print(SPELLS_PARAMETERS.HP_Adalard)
+	
 	self.connect("start_timer_going_back", self, "_on_start_timer_going_back")
 	if get_parent().has_method("Fight_Scene"):
 		$AudioStreamPlayer2D.stream = load("res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3")
 		$AudioStreamPlayer2D.play()
+	$HP_Enemy_1.max_value = SPELLS_PARAMETERS.HP_Adalard
+	$HP_Enemy_1.value = SPELLS_PARAMETERS.HP_Adalard
+	$value_of_HP.text = str($HP_Enemy_1.value)
+	
+	$Mana_Enemy_1.max_value = SPELLS_PARAMETERS.mana_Adalard
+	$Mana_Enemy_1.value = SPELLS_PARAMETERS.mana_Adalard
+	$value_of_Mana.text = str($Mana_Enemy_1.value)
 	
 	
 func enemy():
@@ -84,7 +94,7 @@ func mana_using(manacost):
 func _physics_process(delta):
 	#print($Sprite.get_animation())
 	#print($Sprite.get_frame())
-	print(armor)
+	#print(armor)
 	if stun:
 		stop_pushing = true
 		$Area_Pushing.set_monitoring(false)
@@ -118,20 +128,6 @@ func _physics_process(delta):
 	else:
 		$Timer_For_Updaiting_Way.set_wait_time(0.3)
 		
-	
-
-	
-	if $HP_Enemy_1.value <= 50 && !EXTRA:
-		EXTRA = true
-		stun = true
-		$HP_Enemy_1.value += 100
-		$Timer_Of_Stun.start()
-		$CollisionPolygon2D.set_scale(Vector2(0.353, 0.6))
-		$AnimationPlayer.play("EXTRA")
-		$Sprite.position.y = $Sprite.position.y - 7
-		$Stone_Sword.position.y = $Sprite.position.y - 7
-		$AudioStreamPlayer2D.stream = load("res://Jamie_Christopherson_-_Collective_Consciousness_OST_Metal_Gear_Rising_63269381.mp3")
-		$AudioStreamPlayer2D.play()
 	velocity.x = 0
 
 	
