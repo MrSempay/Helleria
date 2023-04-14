@@ -112,7 +112,7 @@ func _physics_process(delta):
 	else:
 		$Timer_For_Updaiting_Way.set_wait_time(0.3)
 	if get_parent().has_node("Heroe"):
-		if((self.global_position.x) - heroe.global_position.x) > 0:
+		if((self.global_position.x) - get_parent().get_node("Heroe").global_position.x) > 0:
 			$Stone_Position.set_position(Vector2(-34,-2))
 			$Stone_Sword.set_position(Vector2(-25,-6))
 			$RayCastStone.set_position(Vector2(-34,-2))
@@ -287,7 +287,6 @@ func _physics_process(delta):
 									$Sprite.flip_h = true
 								else:
 									$Sprite.flip_h = false
-								mana_using(SPELLS_PARAMETERS.manacost_stone_sword_Belotur)
 								speed = 0
 								if EXTRA:
 									timer_of_stone_sword.set_wait_time(0.3)
@@ -295,6 +294,7 @@ func _physics_process(delta):
 								stone_sword_ready = false
 								animate("stoneSword")
 								if stone_sword_finished:
+									mana_using(SPELLS_PARAMETERS.manacost_stone_sword_Belotur)
 									collision_of_stone_sword.set_disabled(false)
 									stone_sword_finished = false
 					else:
@@ -302,7 +302,6 @@ func _physics_process(delta):
 							$Sprite.flip_h = true
 						else:
 							$Sprite.flip_h = false
-						mana_using(SPELLS_PARAMETERS.manacost_stone_sword_Belotur)
 						speed = 0
 						if EXTRA:
 							timer_of_stone_sword.set_wait_time(0.3)
@@ -310,6 +309,7 @@ func _physics_process(delta):
 						stone_sword_ready = false
 						animate("stoneSword")
 						if stone_sword_finished:
+							mana_using(SPELLS_PARAMETERS.manacost_stone_sword_Belotur)
 							collision_of_stone_sword.set_disabled(false)
 							stone_sword_finished = false
 				#&& $RayCastStone2.get_collider() && $RayCastStone3.get_collider()
@@ -447,16 +447,7 @@ func animate(art):
 
 func _on_Sprite_animation_finished():
 	if $Sprite.get_animation() == "stone":
-		if $RayCastStone.get_collider() && $RayCastStone2.get_collider() && $RayCastStone3.get_collider():
-			if $RayCastStone.get_collider().has_method("start_jump_heroe") && $RayCastStone2.get_collider().has_method("start_jump_heroe") && $RayCastStone3.get_collider().has_method("start_jump_heroe") == false:
-				animate("idle")
-				speed = 2.5
-				stone_finished = true
-				print(true)
-		else:
-			animate("idle")
-			speed = 2.5
-		
+		speed = 2.5
 	if $Sprite.get_animation() == "stoneSword":
 		stone_sword_finished = true
 		animate("idle")
@@ -551,7 +542,11 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_Timer_Of_Stun_timeout():
 	stun = false
 
-
+func stun(duration):
+	stun = true
+	$Timer_Of_Stun.start()
+	$Timer_Of_Stun.set_wait_time(duration)
+	
 
 func _on_Timer_Stop_Machine_timeout():
 	stop_machine = false

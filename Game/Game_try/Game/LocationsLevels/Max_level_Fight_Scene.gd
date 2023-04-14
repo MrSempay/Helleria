@@ -27,7 +27,7 @@ func Fight_Scene():
 
 func _ready():
 	
-	
+
 	var heroe_1 = heroe.instance()
 	heroe_1.position = $Position_Heroe.global_position
 	self.add_child(heroe_1)

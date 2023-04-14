@@ -1,4 +1,4 @@
-[gd_scene load_steps=128 format=2]
+[gd_scene load_steps=127 format=2]
 
 [ext_resource path="res://Game/Button_attack.gd" type="Script" id=1]
 [ext_resource path="res://Game/Button_Second.gd" type="Script" id=2]
@@ -115,6 +115,7 @@
 [ext_resource path="res://Anims/гл. гр/jump/animjump4.png" type="Texture" id=113]
 [ext_resource path="res://Anims/гл. гр/jump/animjump6.png" type="Texture" id=114]
 [ext_resource path="res://Anims/гл. гр/jump/animjump1.png" type="Texture" id=115]
+[ext_resource path="res://32131.png" type="Texture" id=116]
 
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 6, 11 )
@@ -227,17 +228,8 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 19, 21.5 )
 
-[sub_resource type="SpatialMaterial" id=20]
-render_priority = 1
-
-[sub_resource type="CanvasItemMaterial" id=11]
-next_pass = SubResource( 20 )
-particles_animation = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Theme" id=12]
+[sub_resource type="CanvasItemMaterial" id=24]
+render_priority = 3
 
 [sub_resource type="ShaderMaterial" id=13]
 
@@ -367,15 +359,14 @@ script = ExtResource( 12 )
 
 [node name="Button_First" type="Button" parent="Buttons_Of_Heroe"]
 modulate = Color( 0.101961, 0.839216, 0.372549, 1 )
-self_modulate = Color( 0.741176, 1, 0.0980392, 1 )
-material = SubResource( 11 )
+self_modulate = Color( 0.713726, 1, 0, 1 )
+material = SubResource( 24 )
 margin_left = -153.226
 margin_top = -56.338
 margin_right = -46.2258
 margin_bottom = -20.338
 rect_scale = Vector2( 2, 2 )
 rect_pivot_offset = Vector2( 0, 40 )
-theme = SubResource( 12 )
 text = "First Spell"
 script = ExtResource( 1 )
 
@@ -448,6 +439,13 @@ margin_bottom = -2.0
 disabled = true
 text = "No, let's fight!"
 
+[node name="Light2D" type="Light2D" parent="Buttons_Of_Heroe"]
+position = Vector2( -45, -0.000610352 )
+scale = Vector2( 5, 5 )
+texture = ExtResource( 116 )
+texture_scale = 0.11
+energy = 3.0
+
 [node name="Dialoge_Window_Position" type="Position2D" parent="."]
 position = Vector2( 8, -38 )
 
@@ -503,4 +501,4 @@ occluder = SubResource( 23 )
 [connection signal="timeout" from="Buttons_Of_Heroe/Button_Third/Timer_Of_Column" to="." method="_on_Timer_Of_Column_timeout"]
 [connection signal="pressed" from="Buttons_Of_Heroe/Control/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Buttons_Of_Heroe/Control/Button2" to="." method="_on_Button2_pressed"]
-[connection signal="timeout" from="Timer_Of_Stun" to="." method="_on_Timer_Of_Stune_timeout"]
+[connection signal="timeout" from="Timer_Of_Stun" to="." method="_on_Timer_Of_Stun_timeout"]

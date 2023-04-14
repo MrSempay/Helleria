@@ -55,7 +55,7 @@ var amount_arrow_Heroe = 5
 
 """Stone sword"""
 
-var manacost_stone_sword_Belotur = 0
+var manacost_stone_sword_Belotur = 10
 var damage_stone_sword_Belotur = 10
 var scale_animation_speed_swrod_Belotur = 2
 #var calldown_stone_sword_Belotur // Нужно ли?
@@ -82,26 +82,26 @@ var calldown_stone_Belotur = 2
 
 """Sword"""
 
-var manacost_sword_Adalard = 10
+var manacost_sword_Adalard = 0
 var damage_sword_Adalard = 10
-var scale_animation_speed_swrod_Adalard = 1
+var scale_animation_speed_sword_Adalard = 1
 
 """Armor"""
 
 var manacost_armor_Adalard = 10
 var fraction_absorbed_damage_armor_Adalard = 0.7
 var scale_animation_speed_armor_Adalard = 1
-var duration_armor_Adalard = 10
-var calldown_armor_Adalard = 25
+var duration_armor_Adalard = 7
+var calldown_armor_Adalard = 12
 
 """Push"""
 
 var manacost_push_Adalard = 10
 var damage_push_Adalard = 10
 var scale_animation_speed_push_Adalard = 1
-var duration_preparation_push_Adalard = 2.5
 var speed_persenage_push_Adalard = 3.5
-
+var calldown_push_Adalard = 10
+var stun_duration_push_Adalard = 2.5
 
 
 

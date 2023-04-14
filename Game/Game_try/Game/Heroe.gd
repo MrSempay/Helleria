@@ -130,7 +130,7 @@ func _physics_process(delta):
 	if $Icon.get_animation() == "idle":
 		speed = 2.5
 
-	if Input.is_action_pressed("jump") && !get_parent().has_node("Ghost") && !in_invisibility:
+	if Input.is_action_pressed("jump") && !get_parent().has_node("Ghost") && !in_invisibility && !stun:
 		start_jump_heroe()
 	
 	
@@ -185,10 +185,10 @@ func _physics_process(delta):
 	
 	velocity.x = 0
 	velocity.y += delta * 970 * 2
+	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 	#if ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run") && !in_invisibility:
 	if !file.is_open() && !GLOBAL.first_cat_scene && ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run" or $Icon.get_animation() == "jump") && !in_invisibility && !stun:
 		translate(GLOBAL.move_vector_1 * speed)
-		velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 		if GLOBAL.move_vector_1.x != 0:
 			if $Icon.get_animation() != "jump":
 				animate("run")
@@ -454,7 +454,11 @@ func _on_Timer_Of_First_Animation_Sword_timeout():
 	if saving_current_animation_of_stone_sword == counter_of_stone_sword:
 		counter_of_stone_sword = 0
 
+func stun(duration):
+	stun = true
+	$Timer_Of_Stun.start()
+	$Timer_Of_Stun.set_wait_time(duration)
 
 
-func _on_Timer_Of_Stune_timeout():
+func _on_Timer_Of_Stun_timeout():
 	stun = false

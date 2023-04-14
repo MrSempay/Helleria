@@ -34,8 +34,8 @@ func _physics_process(delta):
 	if !life_enemy:
 		GLOBAL.scene("First_Scene")
 
-	if !self.has_node("Heroe"):
-		$Sprite.set_visible(true)
+	#if !self.has_node("Heroe"):
+	#	$Sprite.set_visible(true)
 		
 		
 		

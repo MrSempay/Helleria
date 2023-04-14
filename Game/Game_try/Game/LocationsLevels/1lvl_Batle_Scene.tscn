@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Tile_Set_For_Fight_Scene.tres" type="TileSet" id=1]
 [ext_resource path="res://Tile_Set_Ground_Extended+.tres" type="TileSet" id=2]
 [ext_resource path="res://Game/LocationsLevels/1lvl_Batle_Scene.gd" type="Script" id=3]
-[ext_resource path="res://32131.png" type="Texture" id=4]
 [ext_resource path="res://Anims/background/FOn1.png" type="Texture" id=5]
 [ext_resource path="res://Game/Tile_setsTools_for_level/Tools_for_level/Torches/Torch.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Game/Tile_setsTools_for_level/Tools_for_level/Torches/Сhandelier.tscn" type="PackedScene" id=7]
@@ -64,25 +63,18 @@ format = 1
 tile_data = PoolIntArray( 393221, 1, 0, 393227, 6, 0, 458757, 1, 0, 458763, 6, 0, 524293, 1, 0, 524299, 6, 0 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 368, 538 )
+position = Vector2( 563, 540 )
 
 [node name="Position_Enemy" type="Position2D" parent="."]
-position = Vector2( 792, 523 )
+position = Vector2( 677, 543 )
 
 [node name="Line2D2" type="Line2D" parent="."]
 width = 3.0
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+visible = false
 navpoly = SubResource( 1 )
 navigation_layers = 63
-
-[node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 560, 673 )
-texture = ExtResource( 4 )
-texture_scale = 0.25
-color = Color( 1, 0.847059, 0.309804, 1 )
-energy = 1.25
-shadow_enabled = true
 
 [node name="NTorch" parent="." instance=ExtResource( 6 )]
 position = Vector2( 524, 520 )
@@ -94,7 +86,7 @@ position = Vector2( 394, 522 )
 position = Vector2( 661, 526 )
 
 [node name="Fon7" type="Sprite" parent="."]
-position = Vector2( 490, 523.5 )
+position = Vector2( 525, 469 )
 scale = Vector2( 6.2, 3.48333 )
 z_index = -2
 texture = ExtResource( 5 )

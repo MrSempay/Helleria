@@ -5,21 +5,21 @@ var speed = 2.5
 var velocity = Vector2()
 var name_character = "Adalard"
 var trigger_of_ally = false
-var stone = preload("res://Game/Spells/Stone_Enemy.tscn")
-var hedgehod = preload("res://Game/Spells/Hedgehod+.tscn")
-var stone_ready = true
-var hedgehod_ready = true
 var sword_ready = true
-var stone_finished = false
 var sword_finished = false
-var hedgehod_finished = false
 var sprite_position = Vector2(67,0)
 var JUMP_POWER = 500
 var stun = false
 var EXTRA = false
-
+var preparing_for_pushing_finished = false
+var stop_pushing = false
+var push_ready = true
+var vector_push
+var armor_ready = true
+var armor = 1
 
 onready var collision_of_jumping_area = get_node("Area_Of_Jumping/CollisionShape2D")
+onready var collision_of_push_area = get_node("Area_Pushing/CollisionShape2D")
 onready var timer_of_stone = get_node("Timer_Stone")
 onready var timer_of_stone_sword = get_node("Timer_Stone_Sword")
 onready var timer_of_hedgehod = get_node("Timer_Hedgehod")
@@ -65,8 +65,7 @@ func enemy():
 
 
 func handle_hit(damage):
-	#health -= damage
-	$HP_Enemy_1.value -= damage
+	$HP_Enemy_1.value -= damage * (1 - armor)
 	$value_of_HP.text = str($HP_Enemy_1.value)
 	if $HP_Enemy_1.value > 0:
 		print(name_character + " was hit! Health of enemy: ", $HP_Enemy_1.value)
@@ -81,10 +80,16 @@ func mana_using(manacost):
 	$Mana_Enemy_1.value -= manacost
 	$value_of_Mana.text = str($Mana_Enemy_1.value)
 
-#test_move()
-func _physics_process(delta):
 
-	print($Sprite.get_animation())
+func _physics_process(delta):
+	#print($Sprite.get_animation())
+	#print($Sprite.get_frame())
+	print(armor)
+	if stun:
+		stop_pushing = true
+		$Area_Pushing.set_monitoring(false)
+	
+	
 	if $RayCastVertical_3.get_collider() && $Sprite.get_animation() == "jump":
 		animate("idle")
 		
@@ -98,11 +103,11 @@ func _physics_process(delta):
 		"run":
 			$Sprite.set_speed_scale(1)
 		"armor":
-			$Sprite.set_speed_scale(SPELLS_PARAMETERS.scale_animation_speed_stone_Adalard)
+			$Sprite.set_speed_scale(SPELLS_PARAMETERS.scale_animation_speed_armor_Adalard)
 		"sword":
-			$Sprite.set_speed_scale(SPELLS_PARAMETERS.scale_animation_speed_swrod_Adalard)
+			$Sprite.set_speed_scale(SPELLS_PARAMETERS.scale_animation_speed_sword_Adalard)
 		"push":
-			$Sprite.set_speed_scale(SPELLS_PARAMETERS.scale_animation_speed_hedgehod_Adalard)
+			$Sprite.set_speed_scale(SPELLS_PARAMETERS.scale_animation_speed_push_Adalard)
 		"jump":
 			$Sprite.set_speed_scale(1)
 			
@@ -153,19 +158,34 @@ func _physics_process(delta):
 		if trigger_of_ally or get_parent().has_method("Fight_Scene") or get_parent().get_node("Heroe").in_invisibility && get_parent().Adalard_was_triggered:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
 		
 			if get_parent().has_method("Fight_Scene"):
-				if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 30) && (self.get_position().y - heroe.get_position().y > -30)) && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_sword_Adalard && $Sprite.get_animation() != "armor" && $Sprite.get_animation() != "push" && sword_ready: 
+				
+				if $Sprite.get_animation() != "push" && $Sprite.get_animation() != "sword" && $Sprite.get_animation() != "push_preparing" && armor_ready:
+					#armor_ready = false
+					#$Timer_Armor.set_wait_time(SPELLS_PARAMETERS.calldown_armor_Adalard)
+					#$Timer_Armor.start()
+					#armor = SPELLS_PARAMETERS.fraction_absorbed_damage_armor_Adalard					
+					#animate("armor")
+					pass
+				if ((self.global_position.x) - heroe.global_position.x < 400) && (self.global_position.x - heroe.global_position.x > -400) && is_on_floor() && $Sprite.get_animation() != "sword" && push_ready: 
+					push()
+				
+				if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_sword_Adalard && $Sprite.get_animation() != "armor" && $Sprite.get_animation() != "push" && $Sprite.get_animation() != "push_preparing": 
 					$Sprite.flip_h = ((self.global_position.x) - heroe.global_position.x) > 0
-					mana_using(SPELLS_PARAMETERS.manacost_sword_Adalard)
+					if ((self.global_position.x) - heroe.global_position.x) > 0:
+						$Sword.set_position(Vector2(-25,-6))
+					else:
+						$Sword.set_position(Vector2(25,-6))
 					speed = 0
 					sword_ready = false
+					$Timer_Sword.start()
 					animate("sword")
-					print(true)
 					if sword_finished:
+						mana_using(SPELLS_PARAMETERS.manacost_sword_Adalard)
 						collision_of_sword.set_disabled(false)
 						sword_finished = false
 							
 				
-			if $Sprite.get_animation() != "sword" && $Sprite.get_animation() != "armor" && $Sprite.get_animation() != "push":
+			if $Sprite.get_animation() != "sword" && $Sprite.get_animation() != "armor" && $Sprite.get_animation() != "push" && $Sprite.get_animation() != "push_preparing":
 				if j < nav_path.size() - 1:
 					if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 						if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && nav_path[j].y > nav_path[j+1].y:
@@ -178,7 +198,7 @@ func _physics_process(delta):
 						start_jump_enemy()
 
 						
-			if j < nav_path.size() - 1 && $Sprite.get_animation() != "sword" && $Sprite.get_animation() != "armor" && $Sprite.get_animation() != "push":
+			if j < nav_path.size() - 1 && $Sprite.get_animation() != "sword" && $Sprite.get_animation() != "armor" && $Sprite.get_animation() != "push" && $Sprite.get_animation() != "push_preparing":
 				if (nav_path[j].x - nav_path[j+1].x) >= 0:
 					$RayCastHorizontal_1.set_cast_to(Vector2(-19,0))
 					$RayCastHorizontal_2.set_cast_to(Vector2(-19,0))
@@ -251,33 +271,48 @@ func animate(art):
 
 
 func _on_Sprite_animation_finished():
-	if $Sprite.get_animation() == "armor":
-		animate("idle")
-		speed = 2.5
 	if $Sprite.get_animation() == "sword":
 		sword_finished = true
-		sword_ready = true
+		mana_using(SPELLS_PARAMETERS.manacost_sword_Adalard)
 		animate("idle")
 		speed = 2.5
+	if $Sprite.get_animation() == "push_preparing":
+		preparing_for_pushing_finished = true
+		stop_pushing = false
+		get_node("Area_Pushing").set_monitoring(true)
+		mana_using(SPELLS_PARAMETERS.manacost_push_Adalard)
+		$Timer_Push.set_wait_time(SPELLS_PARAMETERS.calldown_push_Adalard)
+		$Timer_Push.start()
+		match self.global_position < get_parent().get_node("Heroe").global_position:
+			true: vector_push = Vector2(1,0)
+			false: vector_push = Vector2(-1,0)
 	if $Sprite.get_animation() == "push":
-		hedgehod_finished = true
-		animate("idle")
 		speed = 2.5
+	if $Sprite.get_animation() == "armor":
+		armor = SPELLS_PARAMETERS.fraction_absorbed_damage_armor_Adalard
+		mana_using(SPELLS_PARAMETERS.manacost_armor_Adalard)
+		animate("push_preparing")
+		speed = 2.5
+		$Timer_Armor_Duration.set_wait_time(SPELLS_PARAMETERS.duration_armor_Adalard)
+		$Timer_Armor_Duration.start()
+		
 
-
-func _on_Stone_Sword_body_entered(body: Node2D):
+func _on_Sword_body_entered(body):
 	if body.has_method("handle_hit") && body.has_method("start_jump_heroe"):
 		body.handle_hit(SPELLS_PARAMETERS.damage_sword_Adalard)
 
-func _on_Timer_Stone_timeout():
-	stone_ready = true
+
+func _on_Timer_Sword_timeout():
+	sword_ready = true
+	sword_finished = false
 
 
+func _on_Timer_Push_timeout():
+	push_ready = true
 
-func _on_Timer_Hedgehod_timeout():
-	hedgehod_ready = true
 
-
+func _on_Timer_Armor_timeout():
+	armor_ready = true
 
 
 func navigation(number_of_moving):
@@ -345,7 +380,10 @@ func _on_VisibilityNotifier2D_screen_exited():
 func _on_Timer_Of_Stun_timeout():
 	stun = false
 
-
+func stun(duration):
+	stun = true
+	$Timer_Of_Stun.start()
+	$Timer_Of_Stun.set_wait_time(duration)
 
 func _on_Timer_Stop_Machine_timeout():
 	stop_machine = false
@@ -379,3 +417,33 @@ func _on_Timer_For_Updaiting_Way_timeout():
 func _on_start_timer_going_back():
 	$Timer_For_Going_Back.start()
 
+
+func push():
+	if $Mana_Enemy_1.value >= (SPELLS_PARAMETERS.manacost_push_Adalard + SPELLS_PARAMETERS.manacost_armor_Adalard) && $Sprite.get_animation() != "push" && $Sprite.get_animation() != "push_preparing" && armor == 1:
+		$Sprite.flip_h = self.global_position > get_parent().get_node("Heroe").global_position
+		animate("armor")
+	if $Sprite.get_animation() != "push" && $Sprite.get_animation() != "armor" && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_push_Adalard:
+		animate("push_preparing")
+		$Sprite.flip_h = self.global_position > get_parent().get_node("Heroe").global_position
+	if preparing_for_pushing_finished:
+		animate("push")
+		if !stop_pushing:
+			translate(vector_push * SPELLS_PARAMETERS.speed_persenage_push_Adalard) 
+		else:
+			get_node("Area_Pushing").set_monitoring(false)
+			preparing_for_pushing_finished = false
+			animate("idle")
+			push_ready = false
+		
+	
+	
+func _on_Area_Pushing_body_entered(body):
+	stop_pushing = true
+	if body.has_method("start_jump_heroe"):
+		body.handle_hit(SPELLS_PARAMETERS.damage_push_Adalard)
+		body.stun(SPELLS_PARAMETERS.stun_duration_push_Adalard)
+	
+
+
+func _on_Timer_Armor_Duration_timeout():
+	armor = 1
