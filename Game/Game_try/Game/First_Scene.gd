@@ -21,21 +21,21 @@ var Belotur_was_triggered = false
 var Jeison_was_triggered = false
 var Adalard_was_triggered = false
 
-var ally = preload("res://Game/Characters/Ally.tscn")
-var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
+#var ally = preload("res://Game/Characters/Ally.tscn")
+#var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
 var enemy_2 = preload("res://Game/Characters/Adalard.tscn")
 var enemy_3 = preload("res://Game/Characters/Enemy_33.tscn")
-var enemy_4 = preload("res://Game/Characters/Enemy44.tscn")
+#var enemy_4 = preload("res://Game/Characters/Enemy44.tscn")
 var enemy_5 = preload("res://Game/Characters/Enemy55.tscn")
 var heroe = preload("res://Game/Characters/Heroe.tscn")
 var door = preload("res://Game/Tile_setsTools_for_level/Tools_for_level/Doors/Door.tscn")
 
 
-var ally_1 = ally.instance()
-var enemy_1_1 = enemy_1.instance()
+#var ally_1 = ally.instance()
+#var enemy_1_1 = enemy_1.instance()
 var enemy_1_2 = enemy_2.instance()
 var enemy_1_3 = enemy_3.instance()
-var enemy_1_4 = enemy_4.instance()
+#var enemy_1_4 = enemy_4.instance()
 var enemy_1_5 = enemy_5.instance()
 var heroe_1 = heroe.instance()
 var door_1 = door.instance()
@@ -65,6 +65,7 @@ func First_Scene():
 
 
 func _ready():
+	
 	$NavigationPolygonInstance2.set_enter_cost(2)
 	if GLOBAL.first_cat_scene:
 		$Position_Heroe.set_global_position(Vector2(2535, 1528))
@@ -91,20 +92,20 @@ func _ready():
 	else:
 		pass
 		#$Position_Jeison.set_global_position(first_position_Jeison)
-	ally_1.position = $Ally.global_position
-	self.add_child(ally_1)
-	if GLOBAL.life_Aglea == true:
-		enemy_1_1.position = $Position_Aglea.global_position
-		self.add_child(enemy_1_1)
+	#ally_1.position = $Ally.global_position
+	#self.add_child(ally_1)
+	#if GLOBAL.life_Aglea == true:
+	#	enemy_1_1.position = $Position_Aglea.global_position
+	#	self.add_child(enemy_1_1)
 	if GLOBAL.life_Adalard == true:
 		enemy_1_2.position = $Position_Adalard.global_position
 		self.add_child(enemy_1_2)
 	if GLOBAL.life_Belotur == true:
 		enemy_1_3.position = $Position_Belotur.global_position
 		self.add_child(enemy_1_3)
-	if GLOBAL.life_Akira == true:
-		enemy_1_4.position = $Position_Akira.global_position
-		self.add_child(enemy_1_4)
+	#if GLOBAL.life_Akira == true:
+	#	enemy_1_4.position = $Position_Akira.global_position
+	#	self.add_child(enemy_1_4)
 	if GLOBAL.life_Jeison == true:
 		enemy_1_5.position = $Position_Jeison.global_position
 		self.add_child(enemy_1_5)
@@ -148,25 +149,6 @@ func _physics_process(delta):
 			current_target = $Heroe.global_position
 		# Target to heroe determine in script for enemy in "trigger_area_enetering"
 	
-	
-	if self.has_node("Heroe"):
-		if $Heroe.global_position.y > get_node("Areas_For_Jumping/JA10/CollisionShape2D").global_position.y:
-			get_node("Areas_For_Jumping/JA10/CollisionShape2D").set_disabled(true)
-		else:
-			get_node("Areas_For_Jumping/JA10/CollisionShape2D").set_disabled(false)
-		if $Heroe.global_position.y > get_node("Areas_For_Jumping/JA18/CollisionShape2D").global_position.y:
-			get_node("Areas_For_Jumping/JA18/CollisionShape2D").set_disabled(true)
-		else:
-			get_node("Areas_For_Jumping/JA18/CollisionShape2D").set_disabled(false)
-		if $Heroe.global_position.y > get_node("Areas_For_Jumping/JA19/CollisionShape2D").global_position.y:
-			get_node("Areas_For_Jumping/JA19/CollisionShape2D").set_disabled(true)
-		else:
-			get_node("Areas_For_Jumping/JA19/CollisionShape2D").set_disabled(false)
-		if $Heroe.global_position.y > get_node("Areas_For_Jumping/JA20/CollisionShape2D").global_position.y:
-			get_node("Areas_For_Jumping/JA20/CollisionShape2D").set_disabled(true)
-		else:
-			get_node("Areas_For_Jumping/JA20/CollisionShape2D").set_disabled(false)
-		
 		
 	#if !GLOBAL.first_cat_scene && GLOBAL.life_Belotur == true:
 		#if (($Belotur.global_position.x) - $Heroe.global_position.x < 25) && (($Belotur.global_position.x) - $Heroe.global_position.x > -26) && (($Belotur.global_position.y) - $Heroe.global_position.y < 15) && (($Belotur.global_position.y) - $Heroe.global_position.y > -15):

@@ -72,8 +72,9 @@ var heroe_pos_changed = false
 var enemy_for_fight = ""
 
 var heroe_is_observe = false
-
+var ibo = true
 func scene(name):
+	get_tree().get_current_scene().queue_free()
 	get_tree().change_scene("res://Game/LocationsLevels/"+name+".tscn")
 	
 

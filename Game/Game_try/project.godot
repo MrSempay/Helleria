@@ -19,6 +19,15 @@ GLOBAL="*res://GLOBAL.gd"
 FOR_ANY_UNITES="*res://For_Any_Unites.gd"
 SPELLS_PARAMETERS="*res://SPELLS_PARAMETERS.gd"
 
+[display]
+
+window/vsync/use_vsync=false
+
+[global]
+
+Godot=false
+Vsync=false
+
 [input]
 
 ui_accept={

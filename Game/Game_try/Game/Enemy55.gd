@@ -16,7 +16,7 @@ var stun = false
 var nav_path = Vector2()
 var manual_navigation = false
 
-onready var heroe = get_parent().get_node("Heroe")
+
 onready var ally = get_parent().get_node("Ally")
 onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
@@ -102,14 +102,13 @@ func _physics_process(delta):
 				animate("run")
 				$Sprite.flip_h = false
 	
-	print(manual_navigation)
 	
 	if get_parent().has_node("Heroe"):
 		var heroe = get_parent().get_node("Heroe")
 		var ally = get_parent().get_node("Ally")
 		
 	if get_parent().has_node("Heroe") && !stun:
-
+		var heroe = get_parent().get_node("Heroe")
 		if trigger_of_ally or get_parent().get_node("Heroe").in_invisibility && get_parent().Jeison_was_triggered:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
 			if j < nav_path.size() - 1:
 				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
@@ -263,7 +262,7 @@ func _on_NavigationAgent2D_path_changed():
 
 
 func _on_Timer_For_Updaiting_Way_timeout():
-	if get_parent().get_node("Heroe"):
+	if get_parent().has_node("Heroe"):
 		#if get_parent().current_target != Vector2(0,0):
 		if !manual_navigation:
 			$NavigationAgent2D.set_target_location(get_parent().current_target)

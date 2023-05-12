@@ -3,23 +3,8 @@ extends KinematicBody2D
 var name_character = "Heroe"
 
 onready var anim_1 = get_node("CollisionPolygon2D/AnimationPlayer")
-onready var weapon = $Weapon
 onready var joystick_new = $CanvasLayer
-onready var dialoge = $Control2
-onready var next = get_node("Sprite/Next")
-onready var dialoge_phrase = get_node("Control2/TextureRect/RichTextLabel")
-onready var variable = get_node("Sprite/Control")
-onready var variable_1 = get_node("Sprite/Control/Button")
-onready var variable_2 = get_node("Sprite/Control/Button2")
-onready var enemy = get_node("../Enemy_Main")
-onready var button_first = get_node("../Sprite/Button_First")
-onready var button_second = get_node("../Sprite/Button_Second")
-onready var button_third = get_node("../Sprite/Button_Third")
-onready var timer_of_spell = $Timer_Of_Spell
-onready var picture_weapon = get_node("Weapon/Sword")
-onready var count_of_arrow = get_node("Weapon/value_of_HP/Arrow_Amount")
-onready var stone_position = get_node("Weapon/Position2D/")
-onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
+#onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
 var stun = false
 var manacost_stone_sword = 10
@@ -106,13 +91,13 @@ func _ready():
 
 func _physics_process(delta):
 
-	#print($Icon.get_animation())
-	#print($Icon.get_frame())
-
 	match $Icon.get_animation():
 		"idle":
+			#$RayCastForFloor.set_enabled(true)
+			speed = 2.5
 			$Icon.set_speed_scale(1)
 		"run":
+			#$RayCastForFloor.set_enabled(true)
 			$Icon.set_speed_scale(1)
 		"bow":
 			$Icon.set_speed_scale(SPELLS_PARAMETERS.scale_animation_speed_bow_Heroe)
@@ -131,15 +116,12 @@ func _physics_process(delta):
 		"door_opening":
 			$Icon.set_speed_scale(1)
 			
-			
+
 	if $RayCastForFloor.get_collider() && $Icon.get_animation() == "jump" or stun:
 		$Icon.play("idle")
 
 
-	if $Icon.get_animation() == "idle":
-		speed = 2.5
-
-	if Input.is_action_pressed("jump") && !get_parent().has_node("Ghost") && !in_invisibility && !stun:
+	if Input.is_action_pressed("jump") && !get_parent().has_node("Ghost") && !in_invisibility && !stun or $Jumping_Button.jumping == true:
 		start_jump_heroe()
 	
 	
@@ -235,23 +217,7 @@ func start_jump_heroe():
 	if is_on_floor():
 		velocity.y = -JUMP_POWER 
 		$Icon.play("jump")
-		print(true)
 
-
-
-func _on_Button_pressed():
-	dialoge_phrase.set_text("I will give you money... :(")
-	next.set_disabled(false)
-	GLOBAL.variable_1 = true
-	variable.queue_free()
-
-
-func _on_Button2_pressed():
-	dialoge_phrase.set_text("You are so weak... Right now I will just break your face.")
-	next.set_disabled(false)
-	GLOBAL.variable_2 = true
-	variable.queue_free()
-	
 
 
 func _on_CanvasLayer_use_move_vector(move_vector):
@@ -313,6 +279,7 @@ func navigation(number_of_moving):
 				
 
 func dialoge(array_dialoge_flags, number_of_dialoge):
+	var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 	#print(array_dialoge_flags[i])
 	#print(area_of_dialoge_camera.input_touch)
 	if array_dialoge_flags.size() != 0:
@@ -471,3 +438,4 @@ func stun(duration):
 
 func _on_Timer_Of_Stun_timeout():
 	stun = false
+

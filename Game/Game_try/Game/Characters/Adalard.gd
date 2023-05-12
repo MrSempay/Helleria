@@ -18,11 +18,7 @@ var vector_push
 var armor_ready = true
 var armor = 1
 
-onready var collision_of_jumping_area = get_node("Area_Of_Jumping/CollisionShape2D")
 onready var collision_of_push_area = get_node("Area_Pushing/CollisionShape2D")
-onready var timer_of_stone = get_node("Timer_Stone")
-onready var timer_of_stone_sword = get_node("Timer_Stone_Sword")
-onready var timer_of_hedgehod = get_node("Timer_Hedgehod")
 onready var collision_of_sword = get_node("Sword/CollisionShape2D")
 onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
@@ -54,10 +50,7 @@ var dat = 1
 
 
 func _ready():
-	print($HP_Enemy_1.value)
-	print(SPELLS_PARAMETERS.HP_Adalard)
 	
-	self.connect("start_timer_going_back", self, "_on_start_timer_going_back")
 	if get_parent().has_method("Fight_Scene"):
 		$AudioStreamPlayer2D.stream = load("res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3")
 		$AudioStreamPlayer2D.play()
@@ -401,7 +394,7 @@ func _on_Area_For_Starting_Fight_body_entered(body):
 
 
 func _on_Timer_For_Updaiting_Way_timeout():
-	if get_parent().get_node("Heroe"):
+	if get_parent().has_node("Heroe"):
 		#if get_parent().current_target != Vector2(0,0):
 		if !manual_navigation:
 			$NavigationAgent2D.set_target_location(get_parent().current_target)

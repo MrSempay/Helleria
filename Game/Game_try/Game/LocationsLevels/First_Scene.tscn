@@ -75,10 +75,6 @@ vertices = PoolVector2Array( 2350, 1376, 2310, 1380, 2310, 1368, 2349, 1330, 235
 polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 3, 2 ) ]
 outlines = [ PoolVector2Array( 2290, 1331, 2349, 1330, 2358, 1365, 2350, 1376, 2310, 1380, 2310, 1368, 2290, 1367 ) ]
 
-[sub_resource type="RectangleShape2D" id=3]
-
-[sub_resource type="RectangleShape2D" id=9]
-
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 7.875, 5.5 )
 
@@ -138,6 +134,10 @@ func _input(event):
 		
 "
 
+[sub_resource type="RectangleShape2D" id=3]
+
+[sub_resource type="RectangleShape2D" id=9]
+
 [node name="First_Scene" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -170,7 +170,7 @@ tile_data = PoolIntArray( 1507356, 1, 0, 3866701, 3, 0, 4063317, 3, 0, 4259933, 
 position = Vector2( 1705, 1526 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 2277, 1522 )
+position = Vector2( 2351, 1524 )
 
 [node name="Position_Aglea" type="Position2D" parent="."]
 position = Vector2( 2674, 1528 )
@@ -299,6 +299,144 @@ navigation_layers = 63
 
 [node name="Line2D" type="Line2D" parent="."]
 width = 2.0
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( 1648, 1426 )
+collision_layer = 2097215
+collision_mask = 2097215
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( -10.875, 1 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2( 1628, 1377 )
+collision_layer = 2097215
+collision_mask = 2097215
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2( -1, 0 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="StaticBody2D3"]
+position = Vector2( 229, 121 )
+collision_layer = 2097215
+collision_mask = 2097215
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3/StaticBody2D3"]
+position = Vector2( -1, 0 )
+shape = SubResource( 4 )
+
+[node name="Stop_Machine" type="Area2D" parent="."]
+position = Vector2( 1851, 1244 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stop_Machine"]
+shape = SubResource( 6 )
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2( 1849, 1497 )
+collision_layer = 2097215
+collision_mask = 2097215
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2( -2, 1 )
+shape = SubResource( 4 )
+
+[node name="Line2D2" type="Line2D" parent="."]
+width = 2.0
+
+[node name="Areas_For_Specifical_Controlling" type="Area2D" parent="."]
+
+[node name="No-Speed_Area2" type="Area2D" parent="Areas_For_Specifical_Controlling"]
+position = Vector2( 1836, 1133 )
+scale = Vector2( 1, 0.2 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/No-Speed_Area2"]
+position = Vector2( 0, 160 )
+shape = SubResource( 7 )
+
+[node name="No-Speed_Area" type="Area2D" parent="Areas_For_Specifical_Controlling"]
+position = Vector2( 1807, 1093 )
+scale = Vector2( 1, 0.2 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/No-Speed_Area"]
+position = Vector2( 4, 160 )
+shape = SubResource( 7 )
+
+[node name="Area2D" type="Area2D" parent="Areas_For_Specifical_Controlling"]
+position = Vector2( 1519, 1094 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/Area2D"]
+position = Vector2( 1, 16 )
+shape = SubResource( 8 )
+
+[node name="Speed_Area" type="Area2D" parent="Areas_For_Specifical_Controlling"]
+position = Vector2( 1807, 1070 )
+scale = Vector2( 1, 0.1 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/Speed_Area"]
+position = Vector2( 0, 17 )
+shape = SubResource( 7 )
+
+[node name="Speed_Area2" type="Area2D" parent="Areas_For_Specifical_Controlling"]
+position = Vector2( 1817, 1160 )
+scale = Vector2( 3, 0.5 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/Speed_Area2"]
+position = Vector2( -0.666687, 76 )
+scale = Vector2( 10, 1 )
+shape = SubResource( 7 )
+
+[node name="Speed_Area3" type="Area2D" parent="Areas_For_Specifical_Controlling"]
+position = Vector2( 1837, 1130 )
+scale = Vector2( 20, 0.1 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/Speed_Area3"]
+position = Vector2( 0, 17 )
+shape = SubResource( 7 )
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2( 1901, 1084 )
+collision_layer = 2097215
+collision_mask = 2097215
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2( -2, 1 )
+shape = SubResource( 4 )
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2( 1831, 1202 )
+rotation = 1.5708
+collision_layer = 2097215
+collision_mask = 2097215
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
+position = Vector2( -2, 1 )
+shape = SubResource( 4 )
+
+[node name="Bush" parent="." instance=ExtResource( 10 )]
+position = Vector2( 2116, 1528 )
+script = SubResource( 22 )
+
+[node name="Bush2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1277, 1112 )
+script = SubResource( 22 )
+
+[node name="Bush3" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1843, 1300 )
+script = SubResource( 22 )
 
 [node name="Areas_For_Jumping" type="StaticBody2D" parent="."]
 
@@ -768,144 +906,6 @@ script = ExtResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt30"]
 position = Vector2( 4, -108 )
 shape = SubResource( 9 )
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2( 1648, 1426 )
-collision_layer = 2097215
-collision_mask = 2097215
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2( -10.875, 1 )
-shape = SubResource( 4 )
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2( 1628, 1377 )
-collision_layer = 2097215
-collision_mask = 2097215
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2( -1, 0 )
-shape = SubResource( 4 )
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="StaticBody2D3"]
-position = Vector2( 229, 121 )
-collision_layer = 2097215
-collision_mask = 2097215
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3/StaticBody2D3"]
-position = Vector2( -1, 0 )
-shape = SubResource( 4 )
-
-[node name="Stop_Machine" type="Area2D" parent="."]
-position = Vector2( 1851, 1244 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stop_Machine"]
-shape = SubResource( 6 )
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2( 1849, 1497 )
-collision_layer = 2097215
-collision_mask = 2097215
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2( -2, 1 )
-shape = SubResource( 4 )
-
-[node name="Line2D2" type="Line2D" parent="."]
-width = 2.0
-
-[node name="Areas_For_Specifical_Controlling" type="Area2D" parent="."]
-
-[node name="No-Speed_Area2" type="Area2D" parent="Areas_For_Specifical_Controlling"]
-position = Vector2( 1836, 1133 )
-scale = Vector2( 1, 0.2 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/No-Speed_Area2"]
-position = Vector2( 0, 160 )
-shape = SubResource( 7 )
-
-[node name="No-Speed_Area" type="Area2D" parent="Areas_For_Specifical_Controlling"]
-position = Vector2( 1807, 1093 )
-scale = Vector2( 1, 0.2 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/No-Speed_Area"]
-position = Vector2( 4, 160 )
-shape = SubResource( 7 )
-
-[node name="Area2D" type="Area2D" parent="Areas_For_Specifical_Controlling"]
-position = Vector2( 1519, 1094 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/Area2D"]
-position = Vector2( 1, 16 )
-shape = SubResource( 8 )
-
-[node name="Speed_Area" type="Area2D" parent="Areas_For_Specifical_Controlling"]
-position = Vector2( 1807, 1070 )
-scale = Vector2( 1, 0.1 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/Speed_Area"]
-position = Vector2( 0, 17 )
-shape = SubResource( 7 )
-
-[node name="Speed_Area2" type="Area2D" parent="Areas_For_Specifical_Controlling"]
-position = Vector2( 1817, 1160 )
-scale = Vector2( 3, 0.5 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/Speed_Area2"]
-position = Vector2( -0.666687, 76 )
-scale = Vector2( 10, 1 )
-shape = SubResource( 7 )
-
-[node name="Speed_Area3" type="Area2D" parent="Areas_For_Specifical_Controlling"]
-position = Vector2( 1837, 1130 )
-scale = Vector2( 20, 0.1 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Specifical_Controlling/Speed_Area3"]
-position = Vector2( 0, 17 )
-shape = SubResource( 7 )
-
-[node name="StaticBody2D5" type="StaticBody2D" parent="."]
-position = Vector2( 1901, 1084 )
-collision_layer = 2097215
-collision_mask = 2097215
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
-position = Vector2( -2, 1 )
-shape = SubResource( 4 )
-
-[node name="StaticBody2D6" type="StaticBody2D" parent="."]
-position = Vector2( 1831, 1202 )
-rotation = 1.5708
-collision_layer = 2097215
-collision_mask = 2097215
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D6"]
-position = Vector2( -2, 1 )
-shape = SubResource( 4 )
-
-[node name="Bush" parent="." instance=ExtResource( 10 )]
-position = Vector2( 2116, 1528 )
-script = SubResource( 22 )
-
-[node name="Bush2" parent="." instance=ExtResource( 10 )]
-position = Vector2( 1277, 1112 )
-script = SubResource( 22 )
-
-[node name="Bush3" parent="." instance=ExtResource( 10 )]
-position = Vector2( 1843, 1300 )
-script = SubResource( 22 )
 
 [connection signal="mouse_entered" from="Camera_For_Speaking/Area_Of_Dialoge_Camera" to="Camera_For_Speaking/Area_Of_Dialoge_Camera" method="_on_Area_Of_Dialoge_Camera_mouse_entered"]
 [connection signal="mouse_exited" from="Camera_For_Speaking/Area_Of_Dialoge_Camera" to="Camera_For_Speaking/Area_Of_Dialoge_Camera" method="_on_Area_Of_Dialoge_Camera_mouse_exited"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Tile_Set_Temple.tres" type="TileSet" id=1]
 [ext_resource path="res://Game/Temple_lvl.gd" type="Script" id=2]
+[ext_resource path="res://Game/LocationsLevels/JAUlt.gd" type="Script" id=3]
 [ext_resource path="res://Game/Area_Of_Dialoge_Camera.gd" type="Script" id=16]
 [ext_resource path="res://Game/Camera_For_Speaking.gd" type="Script" id=17]
 
@@ -25,6 +26,10 @@ extents = Vector2( 77.5, 13.625 )
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 256, 150 )
+
+[sub_resource type="RectangleShape2D" id=9]
+
+[sub_resource type="RectangleShape2D" id=10]
 
 [node name="Temple_lvl" type="Node2D"]
 script = ExtResource( 2 )
@@ -102,6 +107,475 @@ script = ExtResource( 16 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera_For_Speaking/Area_Of_Dialoge_Camera"]
 shape = SubResource( 8 )
 disabled = true
+
+[node name="Areas_For_Jumping" type="StaticBody2D" parent="."]
+
+[node name="JA" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1519, 1488 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA"]
+shape = SubResource( 9 )
+
+[node name="JA2" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1454, 1475 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA2"]
+shape = SubResource( 9 )
+
+[node name="JA3" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1470, 1583 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA3"]
+shape = SubResource( 9 )
+
+[node name="JA4" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1309, 1512 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA4"]
+shape = SubResource( 9 )
+
+[node name="JA5" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1380, 1510 )
+scale = Vector2( 0.7, 1 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA5"]
+shape = SubResource( 9 )
+
+[node name="JA6" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1411, 1593 )
+collision_layer = 4194304
+collision_mask = 4194304
+constant_linear_velocity = Vector2( -0.007, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA6"]
+shape = SubResource( 9 )
+
+[node name="JA7" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1454, 1463 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA7"]
+shape = SubResource( 9 )
+
+[node name="JA9" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1520, 1475 )
+scale = Vector2( 0.3, 1 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA9"]
+shape = SubResource( 9 )
+
+[node name="JA8" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1619, 1490 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA8"]
+shape = SubResource( 9 )
+
+[node name="JA10" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1491, 1319 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA10"]
+shape = SubResource( 9 )
+
+[node name="JA11" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1563, 1295 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA11"]
+shape = SubResource( 9 )
+
+[node name="JA12" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1635, 1271 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA12"]
+shape = SubResource( 9 )
+
+[node name="JA13" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1899, 1368 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA13"]
+shape = SubResource( 9 )
+
+[node name="JA14" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1791, 1332 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA14"]
+shape = SubResource( 9 )
+
+[node name="JA15" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1695, 1308 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA15"]
+shape = SubResource( 9 )
+
+[node name="JA16" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1997, 1368 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA16"]
+shape = SubResource( 9 )
+
+[node name="JA17" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2584, 1227 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA17"]
+shape = SubResource( 9 )
+
+[node name="JA18" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1707, 1247 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA18"]
+shape = SubResource( 9 )
+
+[node name="JA19" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1820, 1185 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA19"]
+shape = SubResource( 9 )
+
+[node name="JA20" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1855, 1185 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA20"]
+shape = SubResource( 9 )
+
+[node name="JA21" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1727, 1227 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA21"]
+scale = Vector2( 0.2, 1 )
+shape = SubResource( 9 )
+
+[node name="JAUlt" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1636, 983 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt"]
+shape = SubResource( 10 )
+
+[node name="JAUlt2" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1732, 947 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt2"]
+shape = SubResource( 10 )
+
+[node name="JAUlt3" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1828, 911 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt3"]
+shape = SubResource( 10 )
+
+[node name="JAUlt4" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1883, 892 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt4"]
+shape = SubResource( 10 )
+
+[node name="JAUlt5" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2494, 1432 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt5"]
+shape = SubResource( 10 )
+
+[node name="JAUlt6" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2602, 1379 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt6"]
+shape = SubResource( 10 )
+
+[node name="JAUlt7" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2684, 1283 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt7"]
+shape = SubResource( 10 )
+
+[node name="JAUlt8" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2509, 1070 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt8"]
+shape = SubResource( 10 )
+
+[node name="JAUlt9" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2583, 1042 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt9"]
+shape = SubResource( 10 )
+
+[node name="JAUlt10" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2682, 1008 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt10"]
+shape = SubResource( 10 )
+
+[node name="JAUlt11" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2763, 958 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt11"]
+shape = SubResource( 10 )
+
+[node name="JA22" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2778, 931 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA22"]
+shape = SubResource( 9 )
+
+[node name="JAUlt12" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2847, 865 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt12"]
+shape = SubResource( 10 )
+
+[node name="JAUlt13" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2730, 847 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt13"]
+shape = SubResource( 10 )
+
+[node name="JA23" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2830, 846 )
+collision_layer = 4194304
+collision_mask = 4194304
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JA23"]
+shape = SubResource( 9 )
+
+[node name="JAUlt14" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2690, 869 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt14"]
+position = Vector2( 2, -30 )
+shape = SubResource( 10 )
+
+[node name="JAUlt15" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2582, 869 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt15"]
+position = Vector2( 2, -53 )
+shape = SubResource( 10 )
+
+[node name="JAUlt16" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2595, 869 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt16"]
+position = Vector2( 0, -29 )
+shape = SubResource( 10 )
+
+[node name="JAUlt17" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2475, 868 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt17"]
+shape = SubResource( 10 )
+
+[node name="JAUlt18" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1535, 1027 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt18"]
+position = Vector2( 0, -18 )
+shape = SubResource( 10 )
+
+[node name="JAUlt19" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1862, 892 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt19"]
+position = Vector2( 1, -41 )
+shape = SubResource( 10 )
+
+[node name="JAUlt20" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1782, 850 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt20"]
+shape = SubResource( 10 )
+
+[node name="JAUlt21" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1653, 841 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt21"]
+shape = SubResource( 10 )
+
+[node name="JAUlt22" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1303, 842 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt22"]
+shape = SubResource( 10 )
+
+[node name="JAUlt23" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1202, 827 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt23"]
+shape = SubResource( 10 )
+
+[node name="JAUlt24" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1107, 792 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt24"]
+shape = SubResource( 10 )
+
+[node name="JAUlt25" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1010, 755 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt25"]
+shape = SubResource( 10 )
+
+[node name="JAUlt26" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1311, 1451 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt26"]
+position = Vector2( 1, 0 )
+shape = SubResource( 10 )
+
+[node name="JAUlt27" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2431, 960 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt27"]
+position = Vector2( -1, -11 )
+shape = SubResource( 10 )
+
+[node name="JAUlt28" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1741, 875 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt28"]
+position = Vector2( 2, -36 )
+shape = SubResource( 10 )
+
+[node name="JAUlt29" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 2583, 1007 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt29"]
+shape = SubResource( 10 )
+
+[node name="JAUlt30" type="StaticBody2D" parent="Areas_For_Jumping"]
+position = Vector2( 1885, 1440 )
+collision_layer = 4194304
+collision_mask = 4194304
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt30"]
+position = Vector2( 4, -108 )
+shape = SubResource( 10 )
 
 [connection signal="mouse_entered" from="Camera_For_Speaking/Area_Of_Dialoge_Camera" to="Camera_For_Speaking/Area_Of_Dialoge_Camera" method="_on_Area_Of_Dialoge_Camera_mouse_entered"]
 [connection signal="mouse_exited" from="Camera_For_Speaking/Area_Of_Dialoge_Camera" to="Camera_For_Speaking/Area_Of_Dialoge_Camera" method="_on_Area_Of_Dialoge_Camera_mouse_exited"]

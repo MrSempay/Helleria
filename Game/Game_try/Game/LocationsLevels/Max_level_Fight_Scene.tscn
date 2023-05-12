@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Tile_Set_For_Fight_Scene.tres" type="TileSet" id=1]
 [ext_resource path="res://Game/LocationsLevels/Max_level_Fight_Scene.gd" type="Script" id=2]
@@ -9,17 +9,6 @@
 [ext_resource path="res://Game/Tile_setsTools_for_level/Tools_for_level/Torches/Сhandelier.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Game/Tile_setsTools_for_level/Tools_for_level/Torches/Torch.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Anims/background/FOn2-scale-2.png" type="Texture" id=9]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 48.875, 21.5 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 33.5, 14.5 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 78, 10 )
-
-[sub_resource type="RectangleShape2D" id=4]
 
 [sub_resource type="RectangleShape2D" id=11]
 
@@ -57,177 +46,6 @@ position = Vector2( 914, -27 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
 position = Vector2( -74, -27 )
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2( 507, 1189 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 1 )
-
-[node name="Area2DT13" type="Area2D" parent="."]
-position = Vector2( 522, 1197 )
-scale = Vector2( 6.5, 4 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT13"]
-shape = SubResource( 2 )
-
-[node name="Area2DT14" type="Area2D" parent="."]
-position = Vector2( 334, 1349 )
-scale = Vector2( 3, 3 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT14"]
-shape = SubResource( 2 )
-
-[node name="Area2DT15" type="Area2D" parent="."]
-position = Vector2( 689, 1349 )
-scale = Vector2( 3, 3 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT15"]
-shape = SubResource( 2 )
-
-[node name="Area2D8" type="Area2D" parent="."]
-position = Vector2( 109, 1376 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D8"]
-shape = SubResource( 3 )
-
-[node name="Area2DT" type="Area2D" parent="."]
-visible = false
-position = Vector2( 258, -27 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2DT"]
-position = Vector2( -11, 6 )
-build_mode = 1
-polygon = PoolVector2Array( 0, 0, 0, -13, 36, -13, 36, -40, 119, -39, 120, 23, -70, 22, -71, -17, -34, -17, -34, -12, -1, -13, 0, -13 )
-
-[node name="Area2DT1" type="Area2D" parent="."]
-position = Vector2( 700, 1376 )
-scale = Vector2( 1.05, 1 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2DT1"]
-position = Vector2( -9.52386, -6 )
-rotation = 6.28319
-build_mode = 1
-polygon = PoolVector2Array( 6.10352e-05, -13, 0, -13, 81.9048, -14, 81.9048, -40, 92.381, -40, 93.3334, 8.99998, -71.4285, 11, -71.4285, -36, 6.10352e-05, -36, 6.10352e-05, -13, 6.10352e-05, -13, 0, -13 )
-
-[node name="Area2DT2" type="Area2D" parent="."]
-position = Vector2( 314, 1323 )
-scale = Vector2( 0.8, 1 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT2"]
-scale = Vector2( 0.8, 1 )
-shape = SubResource( 2 )
-
-[node name="Area2DT3" type="Area2D" parent="."]
-position = Vector2( 189, 1327 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT3"]
-shape = SubResource( 4 )
-
-[node name="Area2DT4" type="Area2D" parent="."]
-position = Vector2( 730, 1323 )
-scale = Vector2( 0.8, 1 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT4"]
-shape = SubResource( 2 )
-
-[node name="Area2DT5" type="Area2D" parent="."]
-position = Vector2( 595, 1315 )
-scale = Vector2( 0.3, 1 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT5"]
-scale = Vector2( 1, 2 )
-shape = SubResource( 2 )
-
-[node name="Area2DT6" type="Area2D" parent="."]
-position = Vector2( 798, 1302 )
-scale = Vector2( 0.8, 1 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT6"]
-position = Vector2( 2.5, 3 )
-shape = SubResource( 4 )
-
-[node name="Area2DT7" type="Area2D" parent="."]
-position = Vector2( 420, 1308 )
-scale = Vector2( 0.3, 1 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT7"]
-scale = Vector2( 1, 2 )
-shape = SubResource( 2 )
-
-[node name="Area2DT8" type="Area2D" parent="."]
-position = Vector2( 234, 1285 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT8"]
-scale = Vector2( 0.7, 1 )
-shape = SubResource( 4 )
-
-[node name="Area2DT9" type="Area2D" parent="."]
-position = Vector2( 816, 1370 )
-scale = Vector2( 0.2, 1 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT9"]
-shape = SubResource( 2 )
-
-[node name="Area2DT10" type="Area2D" parent="."]
-position = Vector2( 837, 1316 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT10"]
-shape = SubResource( 4 )
-
-[node name="Area2DT11" type="Area2D" parent="."]
-visible = false
-position = Vector2( 698, -14 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT11"]
-position = Vector2( -12, 5 )
-scale = Vector2( 1.5, 1 )
-shape = SubResource( 3 )
-
-[node name="Area2DT12" type="Area2D" parent="."]
-position = Vector2( 220, 1373 )
-scale = Vector2( 0.7, 1 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DT12"]
-shape = SubResource( 4 )
-
-[node name="Area2D3" type="Area2D" parent="."]
-position = Vector2( 47, 1214 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
-shape = SubResource( 2 )
 
 [node name="Areas_For_Jumping" type="Area2D" parent="."]
 visible = false
@@ -509,30 +327,6 @@ position = Vector2( 611, -72 )
 
 [node name="Torches" type="StaticBody2D" parent="."]
 
-[connection signal="body_entered" from="Area2DT13" to="." method="_on_Area2DT13_body_entered"]
-[connection signal="body_entered" from="Area2DT14" to="." method="_on_Area2DT14_body_entered"]
-[connection signal="body_exited" from="Area2DT14" to="." method="_on_Area2DT14_body_exited"]
-[connection signal="body_entered" from="Area2DT15" to="." method="_on_Area2DT15_body_entered"]
-[connection signal="body_exited" from="Area2DT15" to="." method="_on_Area2DT15_body_exited"]
-[connection signal="body_entered" from="Area2DT" to="." method="_on_Area2DT_body_entered"]
-[connection signal="body_exited" from="Area2DT" to="." method="_on_Area2DT_body_exited"]
-[connection signal="body_entered" from="Area2DT1" to="." method="_on_Area2DT1_body_entered"]
-[connection signal="body_exited" from="Area2DT1" to="." method="_on_Area2DT1_body_exited"]
-[connection signal="body_entered" from="Area2DT2" to="." method="_on_Area2DT2_body_entered"]
-[connection signal="body_exited" from="Area2DT2" to="." method="_on_Area2DT2_body_exited"]
-[connection signal="body_entered" from="Area2DT3" to="." method="_on_Area2DT3_body_entered"]
-[connection signal="body_entered" from="Area2DT4" to="." method="_on_Area2DT4_body_entered"]
-[connection signal="body_exited" from="Area2DT4" to="." method="_on_Area2DT4_body_exited"]
-[connection signal="body_entered" from="Area2DT5" to="." method="_on_Area2DT5_body_entered"]
-[connection signal="body_exited" from="Area2DT5" to="." method="_on_Area2DT5_body_exited"]
-[connection signal="body_entered" from="Area2DT6" to="." method="_on_Area2DT6_body_entered"]
-[connection signal="body_entered" from="Area2DT7" to="." method="_on_Area2DT7_body_entered"]
-[connection signal="body_entered" from="Area2DT8" to="." method="_on_Area2DT8_body_entered"]
-[connection signal="body_entered" from="Area2DT9" to="." method="_on_Area2DT9_body_entered"]
-[connection signal="body_entered" from="Area2DT10" to="." method="_on_Area2DT10_body_entered"]
-[connection signal="body_entered" from="Area2DT11" to="." method="_on_Area2DT11_body_entered"]
-[connection signal="body_exited" from="Area2DT11" to="." method="_on_Area2DT11_body_exited"]
-[connection signal="body_entered" from="Area2DT12" to="." method="_on_Area2DT12_body_entered"]
 [connection signal="body_entered" from="Area_For_Falling" to="." method="_on_Area_For_Falling_body_entered"]
 [connection signal="area_entered" from="Areas_For_Specifical_Controlling/No-Speed_Area" to="." method="_on_NoSpeed_Area_area_entered"]
 [connection signal="body_entered" from="Areas_For_Specifical_Controlling/No-Speed_Area" to="." method="_on_NoSpeed_Area_body_entered"]
