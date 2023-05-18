@@ -17,6 +17,8 @@ var push_ready = true
 var vector_push
 var armor_ready = true
 var armor = 1
+var random_sword
+var rand_sword = RandomNumberGenerator.new()
 
 onready var collision_of_push_area = get_node("Area_Pushing/CollisionShape2D")
 onready var collision_of_sword = get_node("Sword/CollisionShape2D")
@@ -115,7 +117,6 @@ func _physics_process(delta):
 			$Sprite.set_speed_scale(1)
 			
 			
-			
 	if !$RayCastVertical_3.get_collider():
 		$Timer_For_Updaiting_Way.set_wait_time(0.1)
 	else:
@@ -149,15 +150,11 @@ func _physics_process(delta):
 			if get_parent().has_method("Fight_Scene"):
 				
 				if $Sprite.get_animation() != "push" && $Sprite.get_animation() != "sword" && $Sprite.get_animation() != "push_preparing" && armor_ready:
-					#armor_ready = false
-					#$Timer_Armor.set_wait_time(SPELLS_PARAMETERS.calldown_armor_Adalard)
-					#$Timer_Armor.start()
-					#armor = SPELLS_PARAMETERS.fraction_absorbed_damage_armor_Adalard					
-					#animate("armor")
 					pass
+					
 				if ((self.global_position.x) - heroe.global_position.x < 400) && (self.global_position.x - heroe.global_position.x > -400) && is_on_floor() && $Sprite.get_animation() != "sword" && push_ready: 
 					push()
-				
+					
 				if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_sword_Adalard && $Sprite.get_animation() != "armor" && $Sprite.get_animation() != "push" && $Sprite.get_animation() != "push_preparing": 
 					$Sprite.flip_h = ((self.global_position.x) - heroe.global_position.x) > 0
 					if ((self.global_position.x) - heroe.global_position.x) > 0:
@@ -167,14 +164,14 @@ func _physics_process(delta):
 					speed = 0
 					sword_ready = false
 					$Timer_Sword.start()
-					animate("sword")
+					animate("sword_" + str(random_sword))
 					if sword_finished:
 						mana_using(SPELLS_PARAMETERS.manacost_sword_Adalard)
 						collision_of_sword.set_disabled(false)
 						sword_finished = false
 							
 				
-			if $Sprite.get_animation() != "sword" && $Sprite.get_animation() != "armor" && $Sprite.get_animation() != "push" && $Sprite.get_animation() != "push_preparing":
+			if $Sprite.get_animation() != "sword_1" && $Sprite.get_animation() != "sword_2" && $Sprite.get_animation() != "sword_3" && $Sprite.get_animation() != "armor" && $Sprite.get_animation() != "push" && $Sprite.get_animation() != "push_preparing":
 				if j < nav_path.size() - 1:
 					if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 						if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && nav_path[j].y > nav_path[j+1].y:
@@ -187,7 +184,7 @@ func _physics_process(delta):
 						start_jump_enemy()
 
 						
-			if j < nav_path.size() - 1 && $Sprite.get_animation() != "sword" && $Sprite.get_animation() != "armor" && $Sprite.get_animation() != "push" && $Sprite.get_animation() != "push_preparing":
+			if j < nav_path.size() - 1 && $Sprite.get_animation() != "sword_1" && $Sprite.get_animation() != "sword_2" && $Sprite.get_animation() != "sword_3" && $Sprite.get_animation() != "armor" && $Sprite.get_animation() != "push" && $Sprite.get_animation() != "push_preparing":
 				if (nav_path[j].x - nav_path[j+1].x) >= 0:
 					$RayCastHorizontal_1.set_cast_to(Vector2(-19,0))
 					$RayCastHorizontal_2.set_cast_to(Vector2(-19,0))
@@ -260,7 +257,11 @@ func animate(art):
 
 
 func _on_Sprite_animation_finished():
-	if $Sprite.get_animation() == "sword":
+	
+	rand_sword.randomize()
+	random_sword = rand_sword.randi_range(1, 3)
+	
+	if $Sprite.get_animation() == "sword_1" or $Sprite.get_animation() == "sword_2" or $Sprite.get_animation() == "sword_3":
 		sword_finished = true
 		mana_using(SPELLS_PARAMETERS.manacost_sword_Adalard)
 		animate("idle")

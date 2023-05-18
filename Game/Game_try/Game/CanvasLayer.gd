@@ -10,6 +10,8 @@ func _input(event):
 	if !get_parent().get_parent().has_node("Ghost"):
 		if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed()):
 			if $TouchScreenButton.is_pressed() or event.get_index() == ongoing_drag:
+				print(event.position)
+				print(event.position * (1024/get_viewport().size.x))
 				var move_vector = calculate_move_vector(event.position - Vector2(108,0) / (1024/get_viewport().size.x))
 				emit_signal("use_move_vector", move_vector)
 				ongoing_drag = event.get_index()
@@ -26,13 +28,15 @@ func _input(event):
 			
 	
 func calculate_move_vector(event_position):
-	var texture_center = $TouchScreenButton.position + Vector2(32, 32) / (1024/get_viewport().size.x)
-	return (event_position / (1024/get_viewport().size.x) - texture_center).normalized()
+	var texture_center = $TouchScreenButton.position + Vector2(32, 32)
+	#print(texture_center)
+	return (event_position - texture_center).normalized()
 	
-
+func _physics_process(delta):
+	pass
 func return_move_vector(move_vector):
 	return(move_vector)
-
+#/ (1024/get_viewport().size.x)
 
 func _on_Area2D_mouse_entered():
 	if $TouchScreenButton.is_pressed():

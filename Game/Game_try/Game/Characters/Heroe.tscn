@@ -378,7 +378,7 @@ drag_margin_bottom = 0.39
 script = ExtResource( 23 )
 
 [node name="Jumping_Button" type="TouchScreenButton" parent="."]
-position = Vector2( 88.9999, -16 )
+position = Vector2( 54, 20 )
 scale = Vector2( 0.05, 0.05 )
 normal = ExtResource( 117 )
 pressed = ExtResource( 118 )

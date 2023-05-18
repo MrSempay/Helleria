@@ -33,10 +33,11 @@ func _ready():
 func _physics_process(delta):
 	#if get_viewport().size.x/get_viewport().size.y > 1.76:
 	#	get_parent().get_node("CanvasLayer").set_position(Vector2(-108, -15 * (1 + (get_viewport().size.x/get_viewport().size.y - 1.76) * 2)))
-	print(get_viewport().size)
+	#print(get_viewport().size)
 	#print(get_parent().get_node("CanvasLayer").get_position())
-	print(get_viewport())
+	#print(get_viewport())
 	#print(get_tree().get_root())
+	pass
 """
 	#get_viewport().connect("size_changed",self,"resize")
 	#resolution_x = get_viewport().size.x
