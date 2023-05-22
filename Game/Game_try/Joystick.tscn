@@ -6,6 +6,7 @@
 [ext_resource path="res://1.png" type="Texture" id=4]
 [ext_resource path="res://2.png" type="Texture" id=5]
 
+
 [sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 33, 25.5 )
 

@@ -82,26 +82,26 @@ scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "run"
 
-[node name="HP_Enemy_1" type="TextureProgress" parent="."]
-margin_left = -30.0
+[node name="HP_Enemy_2" type="TextureProgress" parent="."]
+margin_left = -19.0
 margin_top = -29.0
-margin_right = 200.0
-margin_bottom = -7.0
+margin_right = 126.0
+margin_bottom = -8.0
 rect_scale = Vector2( 0.25, 0.25 )
-max_value = 500.0
-value = 500.0
+max_value = 150.0
+value = 150.0
 texture_progress = ExtResource( 1 )
 tint_progress = Color( 1, 0, 0, 1 )
 nine_patch_stretch = true
 
-[node name="Timer_Of_HP" type="Timer" parent="HP_Enemy_1"]
+[node name="Timer_Of_HP" type="Timer" parent="HP_Enemy_2"]
 autostart = true
 
-[node name="Mana_Enemy_1" type="TextureProgress" parent="."]
-margin_left = -30.0
+[node name="Mana_Enemy_2" type="TextureProgress" parent="."]
+margin_left = -19.0
 margin_top = -24.0
-margin_right = 200.0
-margin_bottom = -2.0
+margin_right = 126.0
+margin_bottom = -3.0
 rect_scale = Vector2( 0.25, 0.25 )
 max_value = 250.0
 value = 250.0
@@ -109,7 +109,7 @@ texture_progress = ExtResource( 1 )
 tint_progress = Color( 0, 0.133333, 1, 1 )
 nine_patch_stretch = true
 
-[node name="Timer_Of_Mana" type="Timer" parent="Mana_Enemy_1"]
+[node name="Timer_Of_Mana" type="Timer" parent="Mana_Enemy_2"]
 autostart = true
 
 [node name="value_of_HP" type="Label" parent="."]
@@ -142,7 +142,5 @@ one_way_collision_margin = 0.0
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( -1, 1 )
 
-[connection signal="timeout" from="HP_Enemy_1/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
-[connection signal="timeout" from="Mana_Enemy_1/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
 [connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

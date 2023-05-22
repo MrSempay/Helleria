@@ -26,6 +26,7 @@ var defense = 1
 var counter_of_stone_sword = 0
 var saving_current_animation_of_stone_sword
 var in_invisibility = false
+var amount_status_bars = []
 
 var file = File.new()
 var mass_of_positions = []

@@ -131,13 +131,13 @@ animation = "run"
 frame = 3
 
 [node name="HP_Enemy_1" type="TextureProgress" parent="."]
-margin_left = -31.83
-margin_top = -34.08
-margin_right = 198.17
-margin_bottom = -12.08
+margin_left = -21.0
+margin_top = -34.0
+margin_right = 124.0
+margin_bottom = -13.0
 rect_scale = Vector2( 0.25, 0.25 )
-max_value = 500.0
-value = 500.0
+max_value = 150.0
+value = 150.0
 texture_progress = ExtResource( 1 )
 tint_progress = Color( 1, 0, 0, 1 )
 nine_patch_stretch = true
@@ -146,10 +146,10 @@ nine_patch_stretch = true
 autostart = true
 
 [node name="Mana_Enemy_1" type="TextureProgress" parent="."]
-margin_left = -31.83
-margin_top = -29.08
-margin_right = 198.17
-margin_bottom = -7.08002
+margin_left = -21.0
+margin_top = -29.0
+margin_right = 124.0
+margin_bottom = -8.0
 rect_scale = Vector2( 0.25, 0.25 )
 max_value = 250.0
 value = 250.0
@@ -285,8 +285,6 @@ autostart = true
 wait_time = 5.0
 one_shot = true
 
-[connection signal="timeout" from="HP_Enemy_1/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
-[connection signal="timeout" from="Mana_Enemy_1/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
 [connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_path_changed"]
