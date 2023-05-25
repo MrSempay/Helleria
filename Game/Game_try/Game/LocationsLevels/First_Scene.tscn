@@ -1,10 +1,11 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Game/Area_Of_Dialoge_Camera.gd" type="Script" id=1]
 [ext_resource path="res://Game/First_Scene.gd" type="Script" id=2]
 [ext_resource path="res://Game/Camera_For_Speaking.gd" type="Script" id=3]
 [ext_resource path="res://Tile_Set_Ground_Extended+.tres" type="TileSet" id=4]
 [ext_resource path="res://Tile_Set_For_Fight_Scene.tres" type="TileSet" id=5]
+[ext_resource path="res://CtDnPXDocFwukJcuP8LpYC0crxbOApt_7RXkyjakJmieWOCz1Pjuw138Qrs_pM08jn0XEpqHzSQB0y4HuiMgfonN.jpg" type="Texture" id=6]
 [ext_resource path="res://Game/LocationsLevels/JAUlt.gd" type="Script" id=7]
 [ext_resource path="res://Game/Tile_setsTools_for_level/Tools_for_level/Bushes_Plants/Bush.tscn" type="PackedScene" id=10]
 
@@ -203,8 +204,21 @@ position = Vector2( 1, -1 )
 shape = SubResource( 1 )
 disabled = true
 
+[node name="Sprite" type="Sprite" parent="Camera_For_Speaking"]
+position = Vector2( 342, -21 )
+scale = Vector2( 0.787293, 1 )
+z_index = 5
+texture = ExtResource( 6 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera_For_Speaking/Sprite"]
+margin_left = -86.0
+margin_top = -19.0
+margin_right = 89.0
+margin_bottom = 18.0
+text = "
+wqweeqweqwe"
+
 [node name="NPIUlt" type="NavigationPolygonInstance" parent="."]
-visible = false
 position = Vector2( 1827, 860 )
 navpoly = SubResource( 10 )
 navigation_layers = 0
@@ -216,7 +230,6 @@ position = Vector2( -122, 30 )
 polygon = PoolVector2Array( -420, 136, -228, 137, -160, 139, 2, 137, 116, 53, 186, 24, 187, -15, 416, -23, 416, -197, -787, -197 )
 
 [node name="NPIUlt2" type="NavigationPolygonInstance" parent="."]
-visible = false
 position = Vector2( 2617, 1067 )
 navpoly = SubResource( 11 )
 
@@ -228,7 +241,6 @@ position = Vector2( -30.5, -46.25 )
 shape = SubResource( 17 )
 
 [node name="NPIUlt3" type="NavigationPolygonInstance" parent="."]
-visible = false
 position = Vector2( 2651, 899 )
 navpoly = SubResource( 12 )
 
@@ -242,7 +254,6 @@ rotation = 0.135144
 shape = SubResource( 16 )
 
 [node name="NPIUlt4" type="NavigationPolygonInstance" parent="."]
-visible = false
 position = Vector2( 2622, 1148 )
 navpoly = SubResource( 19 )
 navigation_layers = 0
@@ -255,42 +266,35 @@ position = Vector2( -220.5, 2 )
 shape = SubResource( 20 )
 
 [node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="."]
-visible = false
 navpoly = SubResource( 5 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
-visible = false
 position = Vector2( 1973, 1498 )
 z_index = 1
 navpoly = SubResource( 2 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance4" type="NavigationPolygonInstance" parent="."]
-visible = false
 position = Vector2( 1351, 782 )
 navpoly = SubResource( 13 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance6" type="NavigationPolygonInstance" parent="."]
-visible = false
 position = Vector2( 2219, 1064 )
 navpoly = SubResource( 14 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance7" type="NavigationPolygonInstance" parent="."]
-visible = false
 navpoly = SubResource( 15 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance3" type="NavigationPolygonInstance" parent="."]
-visible = false
 position = Vector2( -481, 67 )
 navpoly = SubResource( 18 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance5" type="NavigationPolygonInstance" parent="."]
-visible = false
 position = Vector2( -32, -9 )
 navpoly = SubResource( 21 )
 navigation_layers = 63

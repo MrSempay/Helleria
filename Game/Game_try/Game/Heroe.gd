@@ -45,8 +45,6 @@ var point_of_position_string_y_saved
 var moving_state
 var number_of_moving
 
-
-
 func ally():
 	pass
 
@@ -440,3 +438,5 @@ func stun(duration):
 func _on_Timer_Of_Stun_timeout():
 	stun = false
 
+
+		

@@ -47,6 +47,8 @@ var life_heroe = true
 var heroe_uploaded = false
 var position_heroe_before_fight = Vector2(0, 0)
 
+var dialoge_heroe_camera = true
+var dialoge_No_heroe_camera = false
 
 var aglea_dialoge_started = false
 var heroe_dialoge_started = false

@@ -40,6 +40,7 @@ extents = Vector2( 3.33333, 3.5 )
 extents = Vector2( 16, 17.6667 )
 
 [node name="Door" type="AnimatedSprite"]
+position = Vector2( 261, 118 )
 scale = Vector2( 1.5, 1.5 )
 z_index = 1
 frames = SubResource( 7 )

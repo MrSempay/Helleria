@@ -58,14 +58,17 @@ var first_position_Belotur = Vector2(1600, 1340)
 var first_position_Jeison = Vector2(2000, 1190)
 
 var fight_scene_for_Belotur = "Max_level_Fight_Scene"
+var file_name = "Scene_1_Dialoge_1_AgleaBelotur"
 
+var file = File.new()
+signal dialoge_started
 
 func First_Scene():
 	pass
 
 
 func _ready():
-	
+
 	$NavigationPolygonInstance2.set_enter_cost(2)
 	if GLOBAL.first_cat_scene:
 		$Position_Heroe.set_global_position(Vector2(2535, 1528))
@@ -117,6 +120,24 @@ func _ready():
 	
 func _physics_process(delta):
 	
+	if GLOBAL.dialoge_No_heroe_camera && !get_node("Heroe/Dialoge_Field").file.is_open():
+		#emit_signal("dialoge_started", file_name, file)
+		get_node("Heroe/Dialoge_Field").set_visible(true)
+		get_node("Heroe/Dialoge_Field").file.open("res://Dialoges/" + file_name + ".txt", File.READ) 
+		var k = str(get_node("Heroe/Dialoge_Field").file.get_line())
+		get_node("Heroe/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+		get_node("Heroe/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
+		get_node("Heroe/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[0])
+			
+	if GLOBAL.dialoge_heroe_camera && !get_node("Heroe/Dialoge_Field").file.is_open():
+		get_node("Heroe/Dialoge_Field").set_visible(true)
+		get_node("Heroe/Dialoge_Field").file.open("res://Dialoges/" + file_name + ".txt", File.READ) 
+		var k = str(get_node("Heroe/Dialoge_Field").file.get_line())
+		get_node("Heroe/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+		get_node("Heroe/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
+		get_node("Heroe/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
+
+		
 	if GLOBAL.life_Belotur:
 		if $Belotur.global_position == first_position_Belotur:
 			Belotur_was_triggered = false

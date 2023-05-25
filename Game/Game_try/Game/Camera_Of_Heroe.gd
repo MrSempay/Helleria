@@ -7,8 +7,8 @@ func _ready():
 	#if get_viewport().size.x/get_viewport().size.y > 1.76:
 	#	get_parent().get_node("CanvasLayer").set_position(Vector2(-108, -15 * 1 + (get_viewport().size.x/get_viewport().size.y - 1.76)))
 	
-	get_parent().get_node("RichTextLabel").set_text(str(get_viewport()))
-	get_parent().get_node("RichTextLabel2").set_text(str(get_viewport().size))
+	#get_parent().get_node("RichTextLabel").set_text(str(get_viewport()))
+	#get_parent().get_node("RichTextLabel2").set_text(str(get_viewport().size))
 	
 	if get_viewport().size.x/get_viewport().size.y > 1.76:
 		get_parent().get_node("CanvasLayer").set_position(Vector2(-108, -15 * (1 + (get_viewport().size.x/get_viewport().size.y - 1.76) * 2)))
