@@ -292,6 +292,37 @@ script = ExtResource( 11 )
 position = Vector2( 44, -142 )
 shape = SubResource( 4 )
 
+[node name="Dialoge_Field" type="TouchScreenButton" parent="CanvasLayer"]
+visible = false
+position = Vector2( 66.6666, 133.333 )
+scale = Vector2( 2.59668, 2.30769 )
+z_index = 5
+normal = ExtResource( 120 )
+pressed = ExtResource( 120 )
+script = ExtResource( 121 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Dialoge_Field"]
+margin_left = 31.0
+margin_top = 3.0
+margin_right = 404.0
+margin_bottom = 88.0
+rect_scale = Vector2( 0.4, 0.4 )
+text = "ulyfilnilnguo;go;go;;'"
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/Dialoge_Field"]
+position = Vector2( 15.3776, 15.8889 )
+scale = Vector2( 0.0895394, 0.190059 )
+texture = ExtResource( 122 )
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Dialoge_Field"]
+margin_left = 1.28375
+margin_top = 31.7778
+margin_right = 72.2838
+margin_bottom = 49.7778
+rect_scale = Vector2( 0.4, 0.4 )
+fit_content_height = true
+scroll_active = false
+
 [node name="Icon" type="AnimatedSprite" parent="."]
 position = Vector2( -2, 10 )
 scale = Vector2( 2, 2 )
@@ -524,41 +555,12 @@ occluder = SubResource( 23 )
 [node name="For_Status_Bars" type="Node2D" parent="."]
 position = Vector2( -2, -35 )
 
-[node name="Dialoge_Field" type="TouchScreenButton" parent="."]
-visible = false
-position = Vector2( -88, 25 )
-scale = Vector2( 0.779005, 0.692308 )
-z_index = 5
-normal = ExtResource( 120 )
-pressed = ExtResource( 120 )
-script = ExtResource( 121 )
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Dialoge_Field"]
-margin_left = 31.0
-margin_top = 3.0
-margin_right = 404.0
-margin_bottom = 88.0
-rect_scale = Vector2( 0.4, 0.4 )
-text = "ulyfilnilnguo;go;go;;'"
-
-[node name="Sprite" type="Sprite" parent="Dialoge_Field"]
-position = Vector2( 15.3776, 15.8889 )
-scale = Vector2( 0.0895394, 0.190059 )
-texture = ExtResource( 122 )
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Dialoge_Field"]
-margin_left = 1.28375
-margin_top = 31.7778
-margin_right = 72.2838
-margin_bottom = 49.7778
-rect_scale = Vector2( 0.4, 0.4 )
-fit_content_height = true
-scroll_active = false
-
 [connection signal="use_move_vector" from="CanvasLayer" to="." method="_on_CanvasLayer_use_move_vector"]
 [connection signal="released" from="CanvasLayer/TouchScreenButton" to="CanvasLayer" method="_on_TouchScreenButton_released"]
 [connection signal="mouse_entered" from="CanvasLayer/Area_For_Jumping" to="CanvasLayer" method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="CanvasLayer/Area_For_Jumping" to="CanvasLayer" method="_on_Area2D_mouse_exited"]
+[connection signal="pressed" from="CanvasLayer/Dialoge_Field" to="CanvasLayer/Dialoge_Field" method="_on_Dialoge_Field_pressed"]
+[connection signal="released" from="CanvasLayer/Dialoge_Field" to="CanvasLayer/Dialoge_Field" method="_on_Dialoge_Field_released"]
 [connection signal="animation_finished" from="Icon" to="." method="_on_Icon_animation_finished"]
 [connection signal="body_entered" from="Stone_Sword" to="." method="_on_Stone_Sword_body_entered"]
 [connection signal="timeout" from="HP_Heroe/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
@@ -575,5 +577,3 @@ scroll_active = false
 [connection signal="pressed" from="Buttons_Of_Heroe/Control/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Buttons_Of_Heroe/Control/Button2" to="." method="_on_Button2_pressed"]
 [connection signal="timeout" from="Timer_Of_Stun" to="." method="_on_Timer_Of_Stun_timeout"]
-[connection signal="pressed" from="Dialoge_Field" to="Dialoge_Field" method="_on_Dialoge_Field_pressed"]
-[connection signal="released" from="Dialoge_Field" to="Dialoge_Field" method="_on_Dialoge_Field_released"]

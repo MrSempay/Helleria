@@ -120,22 +120,22 @@ func _ready():
 	
 func _physics_process(delta):
 	
-	if GLOBAL.dialoge_No_heroe_camera && !get_node("Heroe/Dialoge_Field").file.is_open():
+	if GLOBAL.dialoge_No_heroe_camera && !get_node("Heroe/CanvasLayer/Dialoge_Field").file.is_open():
 		#emit_signal("dialoge_started", file_name, file)
-		get_node("Heroe/Dialoge_Field").set_visible(true)
-		get_node("Heroe/Dialoge_Field").file.open("res://Dialoges/" + file_name + ".txt", File.READ) 
-		var k = str(get_node("Heroe/Dialoge_Field").file.get_line())
-		get_node("Heroe/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
-		get_node("Heroe/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
-		get_node("Heroe/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[0])
+		get_node("Heroe/CanvasLayer/Dialoge_Field").set_visible(true)
+		get_node("Heroe/CanvasLayer/Dialoge_Field").file.open("res://Dialoges/" + file_name + ".txt", File.READ) 
+		var k = str(get_node("Heroe/CanvasLayer/Dialoge_Field").file.get_line())
+		get_node("Heroe/CanvasLayer/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
+		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[0])
 			
-	if GLOBAL.dialoge_heroe_camera && !get_node("Heroe/Dialoge_Field").file.is_open():
-		get_node("Heroe/Dialoge_Field").set_visible(true)
-		get_node("Heroe/Dialoge_Field").file.open("res://Dialoges/" + file_name + ".txt", File.READ) 
-		var k = str(get_node("Heroe/Dialoge_Field").file.get_line())
-		get_node("Heroe/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
-		get_node("Heroe/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
-		get_node("Heroe/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
+	if GLOBAL.dialoge_heroe_camera && !get_node("Heroe/CanvasLayer/Dialoge_Field").file.is_open():
+		get_node("Heroe/CanvasLayer/Dialoge_Field").set_visible(true)
+		get_node("Heroe/CanvasLayer/Dialoge_Field").file.open("res://Dialoges/" + file_name + ".txt", File.READ) 
+		var k = str(get_node("Heroe/CanvasLayer/Dialoge_Field").file.get_line())
+		get_node("Heroe/CanvasLayer/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
+		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
 
 		
 	if GLOBAL.life_Belotur:
