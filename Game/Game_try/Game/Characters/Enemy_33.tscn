@@ -304,7 +304,6 @@ text = "250
 "
 
 [node name="Trigger_Area" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Area"]
 position = Vector2( 0, -21.5 )

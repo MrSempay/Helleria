@@ -300,7 +300,7 @@ func _physics_process(delta):
 				if ((self.global_position.x - nav_path[j+1].x) < stop_distance_to_point && (self.global_position.x - nav_path[j+1].x) > -stop_distance_to_point) && j < nav_path.size() - 1:
 					j += 1
 
-			saved_size_array = nav_path.size()
+			#saved_size_array = nav_path.size()
 		#else:
 		#	pass
 

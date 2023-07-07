@@ -28,10 +28,10 @@ func _physics_process(delta):
 	var heroe = get_parent().get_node("Heroe")
 	var ally = get_parent().get_node("Ally")
 	
-	if get_parent().has_node("NavigationPolygonInstance") && get_parent().has_node("Heroe"):
-		$NavigationAgent2D.set_target_location(get_parent().get_node("Heroe").global_position)
-		$NavigationAgent2D.get_final_location()
-		get_parent().get_node("Line2D").points = $NavigationAgent2D.get_nav_path()	
+	#if get_parent().has_node("NavigationPolygonInstance") && get_parent().has_node("Heroe"):
+	#	$NavigationAgent2D.set_target_location(get_parent().current_target)
+	#	$NavigationAgent2D.get_final_location()
+	#	get_parent().get_node("Line2D").points = $NavigationAgent2D.get_nav_path()	
 	
 	if trigger_of_ally:
 	

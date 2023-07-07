@@ -6,6 +6,8 @@ onready var anim_1 = get_node("CollisionPolygon2D/AnimationPlayer")
 onready var joystick_new = $CanvasLayer
 #onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
+var statusbar = preload("res://Game/Spells/BarDuration.tscn")
+var array_of_slowdowns = []
 var stun = false
 var manacost_stone_sword = 10
 var manacost_arrow = 10
@@ -21,6 +23,7 @@ var Button = load("res://Game/Button_attack.gd")
 var texture = preload("res://Icedeath.jpg")
 var Button1 = Button.new()
 var speed = 2.5
+var scale_speed_moving = 0
 var armor = 1
 var defense = 1
 var counter_of_stone_sword = 0
@@ -131,7 +134,7 @@ func _physics_process(delta):
 		if GLOBAL.first_cat_scene:
 			if self.get_global_position().x > 2228:
 				$Icon.flip_h = true
-				translate(Vector2(-1,0) * speed)
+				translate(Vector2(-1,0) * speed * scale_speed_moving)
 				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 				animate("injured")
 			elif self.get_global_position().x < 2228:
@@ -430,9 +433,36 @@ func _on_Timer_Of_First_Animation_Sword_timeout():
 		counter_of_stone_sword = 0
 
 func stun(duration):
-	stun = true
-	$Timer_Of_Stun.start()
-	$Timer_Of_Stun.set_wait_time(duration)
+	if stun == true:
+		if duration > $Timer_Of_Stun.time_left:
+			$Timer_Of_Stun.start()
+			$Timer_Of_Stun.set_wait_time(duration)
+	else:
+		stun = true
+		$Timer_Of_Stun.start()
+		$Timer_Of_Stun.set_wait_time(duration)
+	
+func slowdown(scale_speed, duration):
+	var statusbar1 = statusbar.instance()
+	get_parent().get_node("For_Status_Bars").add_child(statusbar1)
+	statusbar1.i = duration
+	if scale_speed_moving > scale_speed:
+		scale_speed_moving -= scale_speed
+	else:
+		scale_speed_moving = 0
+	var timer = Timer.new()
+	timer.wait_time = duration
+	timer.connect("timeout", self, "_on_timer_timeout", scale_speed, timer)
+	timer.start
+	
+	
+func _on_timer_timeout(scale_speed, timer):
+	if scale_speed_moving + scale_speed < 1:
+		scale_speed_moving += scale_speed
+	else:
+		scale_speed_moving = 1
+	timer.queue_free()
+	
 
 
 func _on_Timer_Of_Stun_timeout():

@@ -1,11 +1,12 @@
 extends Node2D
 
-var i = 10
+var i
 var c
 var d
 
 func _ready():
 	for_position("nameE")
+	
 
 
 

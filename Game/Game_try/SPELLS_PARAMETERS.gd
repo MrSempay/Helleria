@@ -113,4 +113,17 @@ var calldown_push_Adalard = 8
 var stun_duration_push_Adalard = 1
 
 
+#_________Sed_________#
+
+
+"""chaining"""
+
+var manacost_chaining = 30
+var calldown_chaining = 8
+var chaining_stun_duration = 1
+var chaining_slowdown_duration = 5
+var chaining_slowdown = 0.5
+
+"""Armor"""
+
 

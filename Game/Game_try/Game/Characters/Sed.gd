@@ -3,17 +3,12 @@ extends KinematicBody2D
 
 var speed = 2.5
 var velocity = Vector2()
-var name_character = "Jeison"
+var name_character = "Sed"
 var trigger_of_ally = false
 var file = File.new()
-var point_of_position_string
-var point_of_position_string_x
-var point_of_position_string_x_saved = -10000
-var point_of_position_string_y
-var point_of_position_string_y_saved
 var JUMP_POWER = 500
 var stun = false
-var nav_path = Vector2()
+var nav_path = [Vector2()]
 var manual_navigation = false
 
 
@@ -21,19 +16,18 @@ onready var ally = get_parent().get_node("Ally")
 onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
 var stop_machine = false
-var stop_distance_to_point = 1.5
 var dialoge_window = preload("res://Game/Dialoge_Window.tscn")
-var array_dialoge_flags = []
 var i = 0
 var c = 0
 var j = 0
-var saved_size_array = 0
-var number_of_dialoge
 var scale_gravity = 2
 var dfg = 1
+var stop_distance_to_point = 1.5
 
 var moving_state
 var number_of_moving
+
+var chaining_ready
 
 
 func handle_hit(damage):
@@ -69,38 +63,14 @@ func _physics_process(delta):
 	else:
 		$Timer_For_Updaiting_Way.set_wait_time(0.3)
 	
-	#print(j)
-	
-	#if $RayCastHorizontal_For_Heroe.get_collider():
-	#	if $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
-	#		GLOBAL.heroe_is_observe = true
-	#	else:
-	#		GLOBAL.heroe_is_observe = false
 
 
 	velocity.x = 0
 
 	if get_parent().has_node("Heroe"):
 		if get_parent().has_node("NavigationPolygonInstance") &&  dfg == 1:
-			#$NavigationAgent2D.set_target_location(get_parent().get_node("Heroe").global_position)
-			#$NavigationAgent2D.get_final_location()
-			#$NavigationAgent2D.set_final_location()
-			#nav_path
 			dfg = 2
-			#get_parent().get_node("Line2D2").points = nav_path
-			#j = 0
 
-	if moving_state:
-		navigation(number_of_moving)
-	
-	if GLOBAL.jeison_dialoge_started && !GLOBAL.jeison_dialoge_finished:
-		dialoge(array_dialoge_flags, number_of_dialoge)
-	if GLOBAL.jeison_dialoge_finished && GLOBAL.first_cat_scene:
-		if get_parent().has_method("First_Scene"):
-				translate(Vector2(1,0) * speed)
-				get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-				animate("run")
-				$Sprite.flip_h = false
 	
 	
 	if get_parent().has_node("Heroe"):
@@ -109,7 +79,7 @@ func _physics_process(delta):
 		
 	if get_parent().has_node("Heroe") && !stun:
 		var heroe = get_parent().get_node("Heroe")
-		if trigger_of_ally or get_parent().get_node("Heroe").in_invisibility && get_parent().Jeison_was_triggered:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
+		if trigger_of_ally or get_parent().get_node("Heroe").in_invisibility && get_parent().Sed_was_triggered:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
 			if j < nav_path.size() - 1:
 				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 					if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
@@ -121,13 +91,34 @@ func _physics_process(delta):
 					start_jump_enemy()
 				if $RayCastHorizontal_3.get_collider():
 					start_jump_enemy()
+			#print($Sprite.get_animation())
+			if $RayCastHorizontal_For_Heroe.get_collider() && get_parent().get_node("Heroe/RayCastForFloor").get_collider() && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_chaining:
+				#print(false)
+				if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && chaining_ready && is_on_floor() && $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
+					if $Sprite.get_animation() != "shield_punch":
+						if((self.global_position.x) - heroe.global_position.x) > 0:
+							$Sprite.flip_h = true
+						else:
+							$Sprite.flip_h = false
+						mana_using(SPELLS_PARAMETERS.manacost_chaining)
+						$Timer_Chaining.set_wait_time(SPELLS_PARAMETERS.calldown_chaining)
+						$Timer_Chaining.start()
+						speed = 0
+						chaining_ready = false
+						animate("chaining")
+						get_parent().get_node("Heroe").stun(SPELLS_PARAMETERS.chaining_stun_duration) 
+						get_parent().get_node("Heroe").slowdown(SPELLS_PARAMETERS.chaining_slowdown, SPELLS_PARAMETERS.chaining_slowdown_duration)
+			
 			
 			if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 				if $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
 					stop_machine = false
-			
-			if j < nav_path.size() - 1:
+			#print(j)
+			#print( nav_path.size() - 1)
+			if j < nav_path.size() - 1 && $Sprite.get_animation() != "chaining" && $Sprite.get_animation() != "shield_punch":
+				#print(true)
 				if (nav_path[j].x - nav_path[j+1].x) >= 0:
+						#print(false)
 						$RayCastHorizontal_1.set_cast_to(Vector2(-19,0))
 						$RayCastHorizontal_2.set_cast_to(Vector2(-19,0))
 						$RayCastHorizontal_3.set_cast_to(Vector2(-3,0))
@@ -140,6 +131,7 @@ func _physics_process(delta):
 							animate("run")
 						$Sprite.flip_h = true
 				if (nav_path[j].x - nav_path[j+1].x) <= -0:
+						#print(false)
 						$RayCastHorizontal_1.set_cast_to(Vector2(19,0))
 						$RayCastHorizontal_2.set_cast_to(Vector2(19,0))
 						$RayCastHorizontal_3.set_cast_to(Vector2(3,0))
@@ -152,20 +144,9 @@ func _physics_process(delta):
 							animate("run")
 						$Sprite.flip_h = false
 
-			else:
-				animate("idle")
-			
 			if j < nav_path.size() - 1:
 				if ((self.global_position.x - nav_path[j+1].x) < stop_distance_to_point && (self.global_position.x - nav_path[j+1].x) > -stop_distance_to_point) && j < nav_path.size() - 1:
-						#if get_parent().get_node("Line2D").points.size() != 2:
-							j += 1
-			#print($NavigationAgent2D.get_nav_path_index())
-			#if (self.global_position.x - get_parent().get_node("Heroe").global_position.x) > -stop_distance_to_point && (self.global_position.x - get_parent().get_node("Heroe").global_position.x) < stop_distance_to_point:
-			#	speed = 0
-			#	animate("idle")
-					#if get_parent().get_node("Line2D").points.size() == 2 && j != 1:
-					#	j += 1
-			saved_size_array = nav_path.size()
+					j += 1
 		
 				
 
@@ -191,64 +172,19 @@ func _on_Trigger_Area_body_entered(body):
 	if body.has_method("ally"):
 		trigger_of_ally = true
 		manual_navigation = false
-		get_parent().Jeison_was_triggered = true
+
 		
 		
 func animate(art):
 	$Sprite.play(art)
 
+func _on_Sprite_animation_finished():
+	if $Sprite.get_animation() == "chaining":
+		#chaining_ready = false
+		animate("idle")
+		speed = 2.5
 
-func navigation(number_of_moving):	
-	
-	if !file.is_open() && moving_state:
-		file.open("res://Navigations/" + name_character + "/navigation" + str(number_of_moving) + ".txt", File.READ)
-	
-	if file.is_open():
-		if file.get_position() < file.get_len():
-			point_of_position_string = file.get_line().split(",",true,1)
-			point_of_position_string_x = ((point_of_position_string[0].split("(",false,1)))
-			point_of_position_string_y = ((point_of_position_string[1].split(")",true,1)))
-			scale_gravity = 0
-			if point_of_position_string_x_saved != float(point_of_position_string_x[0]):
-				if point_of_position_string_x_saved < float(point_of_position_string_x[0]):
-					$Sprite.flip_h = false
-				else:
-					$Sprite.flip_h = true
-				animate("run")
-			else:
-				animate("idle")
-				
-			self.set_global_position(Vector2(float(point_of_position_string_x[0]),float(point_of_position_string_y[0]) + 2))
-			point_of_position_string_x_saved = float(point_of_position_string_x[0])
-		elif file.is_open():
-			moving_state = false
-			file.close()
-			animate("idle")
-			scale_gravity = 2
-			match number_of_moving:
-				1: pass
-
-
-func dialoge(array_dialoge_flags, number_of_dialoge):
-	if array_dialoge_flags.size() != 0:
-		if i != (array_dialoge_flags.size() - 1):
-			if area_of_dialoge_camera.input_touch == array_dialoge_flags[i] && area_of_dialoge_camera.was_pressed:
-				var dialoge_window_1 = dialoge_window.instance()
-				dialoge_window_1.position = $Dialoge_Window_Position.position
-				if array_dialoge_flags[i] - array_dialoge_flags[i - 1] == 1 && self.has_node("Dialoge_Window"):
-					$Dialoge_Window.choosing_text(name_character, area_of_dialoge_camera.input_touch, number_of_dialoge)
-					area_of_dialoge_camera.was_pressed = false
-				else:
-					add_child(dialoge_window_1)
-					dialoge_window_1.choosing_text(name_character, area_of_dialoge_camera.input_touch, number_of_dialoge)
-					area_of_dialoge_camera.was_pressed = false
-				if i != (array_dialoge_flags.size() - 1):
-					i += 1
 		
-		if (area_of_dialoge_camera.input_touch != array_dialoge_flags[i]) && area_of_dialoge_camera.was_pressed && self.has_node("Dialoge_Window"):
-			$Dialoge_Window.queue_free()
-
-
 func _on_VisibilityNotifier2D_screen_exited():
 	if get_parent().has_method("First_Scene") && GLOBAL.first_cat_scene:
 		queue_free()
@@ -265,9 +201,12 @@ func _on_Timer_For_Updaiting_Way_timeout():
 	if get_parent().has_node("Heroe"):
 		#if get_parent().current_target != Vector2(0,0):
 		if !manual_navigation:
+			#print(true)
+			#print(get_parent().current_target)
 			$NavigationAgent2D.set_target_location(get_parent().current_target)
 			$NavigationAgent2D.get_final_location()
 			nav_path = $NavigationAgent2D.get_nav_path()
+			#print(nav_path)
 			#get_parent().get_node("Line2D2").points = $NavigationAgent2D.get_nav_path()
 			j = 0
 
@@ -281,3 +220,19 @@ func _on_Area_For_Starting_Fight_body_entered(body):
 
 
 
+
+
+func _on_Timer_Chaining_timeout():
+	chaining_ready = true
+
+
+func _on_Timer_Of_Stun_timeout():
+	pass # Replace with function body.
+
+
+func _on_Timer_Stop_Machine_timeout():
+	pass # Replace with function body.
+
+
+func _on_Timer_For_Going_Back_timeout():
+	pass # Replace with function body.
