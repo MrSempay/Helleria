@@ -1,12 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Tile_Set_For_Fight_Scene.tres" type="TileSet" id=1]
 [ext_resource path="res://Game/LocationsLevels/Scene_Fight_Jsn.gd" type="Script" id=2]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 846, 560, 45, 555, 42, 492, 769, 487, 846, 514.574, 817, 458, 846, 493, 871.716, 457.549, 954, 493, 309, 287, 308, 314, 290, 351, 198, 352, 179, 352, 180, 318, 261, 210, 311, 210, 608, 222, 608, 176, 723, 179, 724, 223, 787, 288, 724, 243, 709, 243, 640, 242, 607, 242, 490, 205, 868.937, 410.969, 179, 412, 179, 371, 290, 371, 1179, 561, 955, 559, 955, 515, 1181, 455, 932, 343, 865, 345, 837.458, 345.39, 369, 315 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 4, 3, 5, 6 ), PoolIntArray( 6, 5, 7, 8 ), PoolIntArray( 9, 10, 11, 12, 13, 14, 15, 16 ), PoolIntArray( 17, 18, 19, 20 ), PoolIntArray( 20, 19, 21 ), PoolIntArray( 22, 20, 21 ), PoolIntArray( 22, 21, 9, 23 ), PoolIntArray( 24, 23, 9, 25 ), PoolIntArray( 26, 25, 9, 16 ), PoolIntArray( 27, 28, 29, 30 ), PoolIntArray( 31, 32, 33, 34 ), PoolIntArray( 34, 33, 8 ), PoolIntArray( 35, 34, 8, 7, 27, 36 ), PoolIntArray( 36, 27, 30, 37 ), PoolIntArray( 10, 38, 37, 30, 11 ) ]
-outlines = [ PoolVector2Array( 769, 487, 817, 458, 871.716, 457.549, 868.937, 410.969, 179, 412, 179, 371, 290, 371, 290, 351, 198, 352, 179, 352, 180, 318, 261, 210, 311, 210, 490, 205, 607, 242, 640, 242, 709, 243, 724, 243, 724, 223, 608, 222, 608, 176, 723, 179, 787, 288, 309, 287, 308, 314, 369, 315, 837.458, 345.39, 865, 345, 932, 343, 1181, 455, 1179, 561, 955, 559, 955, 515, 954, 493, 846, 493, 846, 514.574, 846, 560, 45, 555, 42, 492 ) ]
+vertices = PoolVector2Array( 45, 555, 42, 492, 160.705, 491.184, 846, 560, 846, 514.574, 181, 458, 592, 461, 769, 487, 309, 287, 308, 314, 290, 351, 198, 352, 179, 352, 180, 318, 261, 210, 311, 210, 608, 222, 608, 176, 723, 179, 724, 223, 787, 288, 724, 242, 640, 242, 607, 242, 490, 205, 195, 431, 179, 412, 179, 371, 290, 371, 663, 431, 1179, 561, 955, 559, 955, 515, 1181, 455, 954, 493, 865, 345, 932, 343, 868.937, 410.969, 806, 428, 369, 315, 837.458, 345.39, 871.716, 457.549, 817, 458, 846, 493, 744, 463 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2, 5, 6, 7 ), PoolIntArray( 8, 9, 10, 11, 12, 13, 14, 15 ), PoolIntArray( 16, 17, 18, 19 ), PoolIntArray( 19, 18, 20 ), PoolIntArray( 21, 19, 20 ), PoolIntArray( 21, 20, 8, 22 ), PoolIntArray( 23, 22, 8 ), PoolIntArray( 24, 23, 8, 15 ), PoolIntArray( 25, 26, 27, 28, 29 ), PoolIntArray( 30, 31, 32, 33 ), PoolIntArray( 33, 32, 34 ), PoolIntArray( 35, 36, 33, 34, 37 ), PoolIntArray( 38, 29, 28, 10, 9, 39, 40, 37 ), PoolIntArray( 37, 40, 35 ), PoolIntArray( 41, 37, 34 ), PoolIntArray( 42, 41, 34, 43, 7 ), PoolIntArray( 7, 43, 4 ), PoolIntArray( 44, 7, 6 ) ]
+outlines = [ PoolVector2Array( 769, 487, 817, 458, 871.716, 457.549, 868.937, 410.969, 806, 428, 663, 431, 195, 431, 179, 412, 179, 371, 290, 371, 290, 351, 198, 352, 179, 352, 180, 318, 261, 210, 311, 210, 490, 205, 607, 242, 640, 242, 724, 242, 724, 223, 608, 222, 608, 176, 723, 179, 787, 288, 309, 287, 308, 314, 369, 315, 837.458, 345.39, 865, 345, 932, 343, 1181, 455, 1179, 561, 955, 559, 955, 515, 954, 493, 846, 493, 846, 514.574, 846, 560, 45, 555, 42, 492, 160.705, 491.184, 181, 458, 592, 461, 744, 463 ) ]
 
 [sub_resource type="NavigationPolygon" id=2]
 vertices = PoolVector2Array( 846, 515, 955, 515, 955, 559, 846, 560 )
@@ -18,6 +18,8 @@ vertices = PoolVector2Array( 179, 352, 197, 352, 197, 371, 179, 371 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( 179, 352, 197, 352, 197, 371, 179, 371 ) ]
 
+[sub_resource type="RectangleShape2D" id=4]
+
 [node name="Scene_Fight_Jsn" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -28,24 +30,77 @@ show_collision = true
 collision_layer = 2097215
 collision_mask = 2097215
 format = 1
-tile_data = PoolIntArray( 196682, 1, 0, 262145, 1, 0, 524362, 1, 0, 589825, 1, 0, 655408, 4, 0, 655417, 3, 0, 655423, 3, 0, 655428, 3, 0, 852042, 1, 0, 917505, 1, 0, 917544, 4, 0, 1179668, 3, 0, 1179673, 3, 0, 1179679, 3, 0, 1179685, 3, 0, 1179691, 3, 0, 1179722, 1, 0, 1245185, 1, 0, 1310773, 4, 0, 1441805, 4, 0, 1507402, 1, 0, 1572865, 1, 0, 1703947, 3, 0, 1703953, 3, 0, 1703959, 3, 0, 1703965, 3, 0, 1703971, 3, 0, 1703977, 3, 0, 1703983, 3, 0, 1900545, 1, 0, 1900547, 4, 0, 1900618, 1, 0, 2031670, 4, 0, 2293761, 0, 0, 2293769, 0, 0, 2293777, 0, 0, 2293785, 0, 0, 2293793, 0, 0, 2293801, 0, 0, 2293809, 0, 0, 2293817, 0, 0, 2293825, 0, 0 )
+tile_data = PoolIntArray( 196682, 1, 0, 262145, 1, 0, 524362, 1, 0, 589825, 1, 0, 655408, 4, 0, 655417, 3, 0, 655423, 3, 0, 655428, 3, 0, 852042, 1, 0, 917505, 1, 0, 917544, 4, 0, 1179668, 3, 0, 1179673, 3, 0, 1179679, 3, 0, 1179685, 3, 0, 1179691, 3, 0, 1179722, 1, 0, 1245185, 1, 0, 1310773, 4, 0, 1441805, 4, 0, 1507402, 1, 0, 1572865, 1, 0, 1638405, 3, 0, 1769484, 3, 0, 1769490, 3, 0, 1769496, 3, 0, 1769497, 3, 0, 1769498, 3, 0, 1769499, 3, 0, 1769500, 3, 0, 1769505, 3, 0, 1769511, 3, 0, 1769517, 3, 0, 1900530, 2, 0, 1900531, 2, 0, 1900532, 2, 0, 1900533, 2, 0, 1900534, 2, 0, 1900535, 2, 0, 1900536, 2, 0, 1900537, 2, 0, 1900538, 2, 0, 1900539, 2, 0, 1900540, 2, 0, 1900541, 2, 0, 1966078, 2, 0, 1966079, 2, 0, 1900544, 2, 0, 1900545, 1, 0, 1900547, 4, 0, 1900618, 1, 0, 2031615, 2, 0, 1966080, 2, 0, 2097151, 2, 0, 2031670, 4, 0, 2162678, 2, 0, 2162679, 2, 0, 2162680, 2, 0, 2162681, 2, 0, 2162682, 2, 0, 2162683, 2, 0, 2162684, 2, 0, 2162685, 2, 0, 2162686, 2, 0, 2162687, 2, 0, 2097152, 2, 0, 2228214, 2, 0, 2228223, 2, 0, 2162688, 2, 0, 2293750, 2, 0, 2293751, 2, 0, 2293757, 2, 0, 2293758, 2, 0, 2293759, 2, 0, 2228224, 2, 0, 2359287, 2, 0, 2359288, 2, 0, 2359289, 2, 0, 2359290, 2, 0, 2359291, 2, 0, 2359292, 2, 0, 2359293, 2, 0, 2293760, 2, 0, 2293761, 0, 0, 2293769, 0, 0, 2293777, 0, 0, 2293785, 0, 0, 2293793, 0, 0, 2293801, 0, 0, 2293809, 0, 0, 2293817, 0, 0, 2293825, 0, 0 )
 
 [node name="Position_Jeison" type="Position2D" parent="."]
-position = Vector2( 1110, 114 )
+position = Vector2( 1122, 127 )
 
 [node name="Position_Sed" type="Position2D" parent="."]
 position = Vector2( 611, 524 )
 
+[node name="Position_Her" type="Position2D" parent="."]
+position = Vector2( 641, 525 )
+
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 87, 525 )
+position = Vector2( 158, 525 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
 navpoly = SubResource( 1 )
+navigation_layers = 63
 
 [node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="."]
 navpoly = SubResource( 2 )
+navigation_layers = 63
 
 [node name="NavigationPolygonInstance3" type="NavigationPolygonInstance" parent="."]
 navpoly = SubResource( 3 )
+navigation_layers = 63
 
 [node name="NavigationPolygonInstance4" type="NavigationPolygonInstance" parent="."]
+navigation_layers = 63
+
+[node name="Areas_For_Moving" type="Node2D" parent="."]
+
+[node name="Moving_Guards_Area_1" type="Area2D" parent="Areas_For_Moving"]
+position = Vector2( 900, 461 )
+scale = Vector2( 3, 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Moving/Moving_Guards_Area_1"]
+shape = SubResource( 4 )
+
+[node name="Moving_Guards_Area_2" type="Area2D" parent="Areas_For_Moving"]
+position = Vector2( 242, 315 )
+scale = Vector2( 3, 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Moving/Moving_Guards_Area_2"]
+shape = SubResource( 4 )
+
+[node name="Dialoge_Layer" type="Node2D" parent="."]
+
+[node name="Dialoge_Area_1" type="Area2D" parent="Dialoge_Layer"]
+position = Vector2( 86, 525 )
+scale = Vector2( 3, 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialoge_Layer/Dialoge_Area_1"]
+shape = SubResource( 4 )
+
+[node name="Dialoge_Area_2" type="Area2D" parent="Dialoge_Layer"]
+position = Vector2( 821, 386 )
+scale = Vector2( 3, 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialoge_Layer/Dialoge_Area_2"]
+shape = SubResource( 4 )
+
+[node name="Dialoge_Area_3" type="Area2D" parent="Dialoge_Layer"]
+position = Vector2( 358, 256 )
+scale = Vector2( 3, 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialoge_Layer/Dialoge_Area_3"]
+shape = SubResource( 4 )
+
+[node name="Dialoge_Area_4" type="Area2D" parent="Dialoge_Layer"]
+position = Vector2( 971, 129 )
+scale = Vector2( 3, 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dialoge_Layer/Dialoge_Area_4"]
+shape = SubResource( 4 )

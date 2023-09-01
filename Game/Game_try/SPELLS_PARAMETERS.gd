@@ -31,7 +31,7 @@ var mana_Heroe = 250
 
 
 var manacost_stone_sword_Heroe = 10
-var damage_stone_sword_Heroe = 10
+var damage_stone_sword_Heroe = 100
 var scale_animation_speed_swrod_Heroe = 1
 #var calldown_sword_Heroe // Нужно ли?
 
@@ -118,12 +118,97 @@ var stun_duration_push_Adalard = 1
 
 """chaining"""
 
-var manacost_chaining = 30
-var calldown_chaining = 8
-var chaining_stun_duration = 1
-var chaining_slowdown_duration = 5
-var chaining_slowdown = 0.5
+var manacost_chaining_Sed = 30
+var calldown_chaining_Sed = 5
+var chaining_stun_duration_Sed = 0
+var chaining_slowdown_duration_Sed = 0
+var chaining_slowdown_Sed = 0.5
 
-"""Armor"""
+"""shield_punch"""
 
+var manacost_shield_punch_Sed = 20
+var calldown_shield_punch_Sed = 5
+var damage_shield_punch_Sed = 25
+
+"""idle_shield"""
+
+var fraction_absorbed_damage_armor_Sed = 1
+
+
+#_________Her_________#
+
+
+"""spear_jump"""
+
+var manacost_spear_jump_Her = 30
+var calldown_spear_jump_Her = 8
+
+"""spear_punch"""
+
+var manacost_spear_punch_Her = 20
+var calldown_spear_punch_Her = 2
+var damage_spear_punch_Her = 25
+
+"""spear_squall"""
+
+var manacost_spear_squall_Her = 20
+var calldown_spear_squall_Her = 5
+var damage_spear_squall_Her = 25
+
+var characters = {
+	"Her": {
+		"health": 120,
+		"mana": 150,
+		
+		"handle_attack": {
+			"handle_attack_damage": 15,  #Spear 
+			"handle_attack_calldown": 0.5,
+			"handle_attack_manacost": 10,
+			"handle_attack_thrust": 20			
+		},
+		"squall_attack": {
+			"squall_attack_damage": 5,  #Spear 
+			"squall_attack_calldown": 7,
+			"squall_attack_manacost": 20,
+			"squall_attack_stun": 0.2,
+			"squall_attack_amount_attacks": 5,
+			"squall_attack_thrust": 10
+		},
+		"jumping_to_point": {
+			"jumping_to_point_calldown": 10,
+			"jumping_to_point_manacost": 50
+		}
+	},
+	
+	"Jeison": {
+		"health": 450,
+		"mana": 250,
+		
+		"damage_block_chain": {
+			"damage_block_chain_fraction_absorbed_damage": 0.5, 
+			"damage_block_chain_duration": 10,
+			"damage_block_chain_calldown": 5,
+			"damage_block_chain_health_in_second": 10
+		},
+		"cure_chain": {
+			"cure_chain_regeneration_in_second": 5, 
+			"cure_chain_duration": 10,
+			"cure_chain_calldown": 5,
+			"cure_chain_mana_in_second": 15
+		},
+		"damage_increase_chain": {
+			"damage_increase_chain_increase": 1, 
+			"damage_increase_chain_duration": 10,
+			"damage_increase_chain_calldown": 5,
+			"damage_increase_chain_health_in_second": 15
+		}
+	}
+}
+
+
+	
+	
+	
+	
+	
 

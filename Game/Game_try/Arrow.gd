@@ -21,7 +21,7 @@ func _physics_process(delta):
 
 func _on_Arrow_body_entered(body):
 	if body.has_method("handle_hit") && body.has_method("enemy"):
-		body.handle_hit(SPELLS_PARAMETERS.damage_bow_Heroe)
+		body.handle_hit(SPELLS_PARAMETERS.damage_bow_Heroe, get_parent().get_node("Heroe"))
 		queue_free()
 	if !body.has_method("ally"):
 		queue_free()

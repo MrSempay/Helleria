@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://Anims/Guards/Sed/dwiz/knightSedW5.png" type="Texture" id=1]
 [ext_resource path="res://Anims/Guards/Sed/dwiz/knightSedW1.png" type="Texture" id=2]
@@ -10,17 +10,43 @@
 [ext_resource path="res://Game/Characters/Area_For_Starting_Fight.gd" type="Script" id=8]
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=9]
 [ext_resource path="res://Game/Characters/Sed.gd" type="Script" id=10]
-[ext_resource path="res://Anims/Vendor/Mudzuk/Dwiz/MydzukW5.png" type="Texture" id=11]
-[ext_resource path="res://Anims/Vendor/Mudzuk/Dwiz/MydzukW4.png" type="Texture" id=12]
-[ext_resource path="res://Anims/Vendor/Mudzuk/Dwiz/MydzukW6.png" type="Texture" id=13]
-[ext_resource path="res://Anims/Vendor/Mudzuk/Dwiz/MydzukW2.png" type="Texture" id=14]
-[ext_resource path="res://Anims/Vendor/Mudzuk/Dwiz/MydzukW3.png" type="Texture" id=15]
-[ext_resource path="res://Anims/Vendor/2vendor/dwiz/torgovetsW1.png" type="Texture" id=16]
-[ext_resource path="res://Anims/Vendor/2vendor/dwiz/torgovetsW3.png" type="Texture" id=17]
-[ext_resource path="res://Anims/Vendor/2vendor/dwiz/torgovetsW2.png" type="Texture" id=18]
-[ext_resource path="res://Anims/Vendor/2vendor/dwiz/torgovetsW4.png" type="Texture" id=19]
-[ext_resource path="res://Anims/Vendor/2vendor/dwiz/torgovetsW5.png" type="Texture" id=20]
-[ext_resource path="res://Anims/Vendor/Mudzuk/Dwiz/MydzukW1.png" type="Texture" id=21]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanie5.png" type="Texture" id=11]
+[ext_resource path="res://Anims/Guards/Sed/УдарЩитом/knightSedShitYdar5.png" type="Texture" id=12]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit12.png" type="Texture" id=13]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit16.png" type="Texture" id=14]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit18.png" type="Texture" id=15]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit7.png" type="Texture" id=16]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit1.png" type="Texture" id=17]
+[ext_resource path="res://Anims/Guards/Sed/УдарЩитом/knightSedShitYdar1.png" type="Texture" id=18]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanie2.png" type="Texture" id=19]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit3.png" type="Texture" id=20]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit10.png" type="Texture" id=21]
+[ext_resource path="res://Anims/Guards/Sed/УдарЩитом/knightSedShitYdar3.png" type="Texture" id=22]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanie8.png" type="Texture" id=23]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanie1.png" type="Texture" id=24]
+[ext_resource path="res://Anims/Guards/Sed/УдарЩитом/knightSedShitYdar4.png" type="Texture" id=25]
+[ext_resource path="res://Anims/Guards/Sed/УдарЩитом/knightSedShitYdar2.png" type="Texture" id=26]
+[ext_resource path="res://Anims/Guards/Sed/УдарЩитом/knightSedShitYdar6.png" type="Texture" id=27]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanie3.png" type="Texture" id=28]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit13.png" type="Texture" id=29]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit14.png" type="Texture" id=30]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanie11.png" type="Texture" id=31]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanie10.png" type="Texture" id=32]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanie6.png" type="Texture" id=33]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit9.png" type="Texture" id=34]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit6.png" type="Texture" id=35]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit2.png" type="Texture" id=36]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit4.png" type="Texture" id=37]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanie12.png" type="Texture" id=38]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit8.png" type="Texture" id=39]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit5.png" type="Texture" id=40]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit11.png" type="Texture" id=41]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanie4.png" type="Texture" id=42]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit17.png" type="Texture" id=43]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanie9.png" type="Texture" id=44]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanie13.png" type="Texture" id=45]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanie7.png" type="Texture" id=46]
+[ext_resource path="res://Anims/Guards/Sed/Щит/knightSedShit15.png" type="Texture" id=47]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 11.5 )
@@ -60,8 +86,8 @@ tracks/0/keys = {
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 18 ) ],
-"loop": true,
+"frames": [ ExtResource( 24 ), ExtResource( 19 ), ExtResource( 28 ), ExtResource( 42 ), ExtResource( 11 ), ExtResource( 33 ), ExtResource( 46 ), ExtResource( 23 ), ExtResource( 44 ), ExtResource( 32 ), ExtResource( 31 ), ExtResource( 38 ), ExtResource( 45 ) ],
+"loop": false,
 "name": "chaining",
 "speed": 10.0
 }, {
@@ -70,15 +96,25 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "idle_shield",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 15 ), ExtResource( 14 ), ExtResource( 21 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 12 ) ],
-"loop": true,
+"frames": [ ExtResource( 18 ), ExtResource( 26 ), ExtResource( 22 ), ExtResource( 25 ), ExtResource( 12 ), ExtResource( 27 ), ExtResource( 26 ), ExtResource( 18 ) ],
+"loop": false,
 "name": "shield_punch",
-"speed": 5.0
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 36 ), ExtResource( 20 ), ExtResource( 37 ), ExtResource( 40 ), ExtResource( 35 ), ExtResource( 16 ), ExtResource( 39 ), ExtResource( 34 ), ExtResource( 21 ), ExtResource( 41 ), ExtResource( 13 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 47 ), ExtResource( 14 ), ExtResource( 43 ), ExtResource( 15 ) ],
+"loop": false,
+"name": "stance_shield",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=5]
@@ -118,10 +154,13 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 31, 14 )
 
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 26, 33.75 )
+
 [node name="Sed" type="KinematicBody2D"]
 position = Vector2( 314, 191 )
-collision_layer = 2
-collision_mask = 2
+collision_layer = 514
+collision_mask = 514
 script = ExtResource( 10 )
 
 [node name="Area_For_Stop_Machine" type="Area2D" parent="."]
@@ -204,6 +243,7 @@ position = Vector2( 0.170013, -7.08 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Area"]
 position = Vector2( 1, -21.5 )
+scale = Vector2( 1.3, 1 )
 shape = SubResource( 5 )
 one_way_collision_margin = 0.0
 
@@ -215,55 +255,47 @@ wait_time = 3.0
 one_shot = true
 
 [node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 0, -35 )
 enabled = true
 cast_to = Vector2( 19, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_2" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 0.170013, -13.08 )
 enabled = true
 cast_to = Vector2( 19, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( -4.32134e-07, 7 )
 enabled = true
 cast_to = Vector2( 3, 0 )
-collision_mask = 2097152
+collision_mask = 0
 
 [node name="RayCastHorizontal_4" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( -4.32134e-07, -23 )
 enabled = true
 cast_to = Vector2( 19, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_For_Heroe" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( -4.32134e-07, 2 )
 enabled = true
 cast_to = Vector2( 192, 0 )
 
 [node name="RayCastVertical" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 11, 1 )
 enabled = true
 cast_to = Vector2( 0, 22 )
 collision_mask = 4194304
 
 [node name="RayCastVertical_2" type="RayCast2D" parent="."]
-visible = false
 position = Vector2( 0.170013, -13.08 )
 enabled = true
 cast_to = Vector2( 0, -26 )
 collision_mask = 2097152
 
 [node name="RayCastVertical_3" type="RayCast2D" parent="."]
-visible = false
 enabled = true
 cast_to = Vector2( 0, 17 )
 collision_mask = 2097152
@@ -306,9 +338,28 @@ one_shot = true
 wait_time = 8.0
 one_shot = true
 
+[node name="Timer_Shield_Punch" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [node name="Line2D2" type="Line2D" parent="."]
 position = Vector2( -1.07996, -1.08002 )
 scale = Vector2( 2, 2 )
+
+[node name="Timer_For_Stun" type="Timer" parent="."]
+one_shot = true
+
+[node name="For_Status_Bars" type="Node2D" parent="."]
+position = Vector2( -2, -43 )
+
+[node name="Shield_Punch" type="Area2D" parent="."]
+position = Vector2( 18, -6 )
+scale = Vector2( 0.7, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shield_Punch"]
+position = Vector2( 0, -12.25 )
+shape = SubResource( 9 )
+disabled = true
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
 [connection signal="timeout" from="HP_Enemy_1/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
@@ -320,3 +371,5 @@ scale = Vector2( 2, 2 )
 [connection signal="timeout" from="Timer_For_Updaiting_Way" to="." method="_on_Timer_For_Updaiting_Way_timeout"]
 [connection signal="timeout" from="Timer_For_Going_Back" to="." method="_on_Timer_For_Going_Back_timeout"]
 [connection signal="timeout" from="Timer_Chaining" to="." method="_on_Timer_Chaining_timeout"]
+[connection signal="timeout" from="Timer_Shield_Punch" to="." method="_on_Timer_Shield_Punch_timeout"]
+[connection signal="body_entered" from="Shield_Punch" to="." method="_on_Shield_Punch_body_entered"]

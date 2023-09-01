@@ -3,7 +3,7 @@ extends TouchScreenButton
 
 var jumping = false
 
-var statusbar = preload("res://Game/Spells/BarDuration.tscn")
+#var statusbar = preload("res://Game/Spells/BarDuration.tscn")
 
 func _on_TouchScreenButton_released():
 	jumping = false

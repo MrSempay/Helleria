@@ -5,15 +5,15 @@ var c
 var d
 
 func _ready():
-	for_position("nameE")
+	for_position()
 	
 
 
 
 func _on_Timer_timeout():
-	if i > 0:
+	if i > 0.1:
+		i = i - 0.1
 		$RichTextLabel.set_text(str(i))
-		i = i - 1
 	else:
 		if c != get_parent().get_parent().amount_status_bars.size() - 1:
 			for d in range(c, get_parent().get_parent().amount_status_bars.size() - 1):
@@ -25,7 +25,7 @@ func _on_Timer_timeout():
 		get_parent().get_parent().amount_status_bars.remove(c)
 		queue_free()
 
-func for_position(nameE):
+func for_position():
 	$RichTextLabel.set_text(str(i))
 	get_parent().get_parent().amount_status_bars.append(self)
 	c = get_parent().get_parent().amount_status_bars.size() - 1

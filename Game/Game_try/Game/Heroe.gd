@@ -5,7 +5,6 @@ var name_character = "Heroe"
 onready var anim_1 = get_node("CollisionPolygon2D/AnimationPlayer")
 onready var joystick_new = $CanvasLayer
 #onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
-
 var statusbar = preload("res://Game/Spells/BarDuration.tscn")
 var array_of_slowdowns = []
 var stun = false
@@ -18,15 +17,20 @@ var scale_gravity = 2
 var arrow = preload("res://Game/Spells/Arrow.tscn")
 var column = preload("res://Game/Spells/Column.tscn")
 var velocity = Vector2()
+var cant_jump = false
 var JUMP_POWER = 500
 var Button = load("res://Game/Button_attack.gd")
 var texture = preload("res://Icedeath.jpg")
 var Button1 = Button.new()
 var speed = 2.5
-var scale_speed_moving = 0
+var scale_speed_moving = 1
 var armor = 1
+var armor_left = 0
+var armor_right = 0
+var armor_ordinary = 0
 var defense = 1
 var counter_of_stone_sword = 0
+var damage_increase = 0
 var saving_current_animation_of_stone_sword
 var in_invisibility = false
 var amount_status_bars = []
@@ -52,23 +56,32 @@ func ally():
 	pass
 
 
-func handle_hit(damage, damage_save = 0):
-	print(damage)
-	$HP_Heroe.value -= damage * armor * defense
-	$value_of_HP.text = str($HP_Heroe.value)
-	if $HP_Heroe.value > 0:
-		print("You were hit! Your health: ", $HP_Heroe.value)
+func handle_hit(damage, attacking_object = null):
+	#health -= damage
+	if attacking_object != null:
+		var sum_armor
+		if attacking_object.global_position.x < self.global_position.x:
+			sum_armor = armor_left + armor_ordinary
+		else:
+			sum_armor = armor_right + armor_ordinary
+		if sum_armor > 1:
+			sum_armor = 1
+		$HP_Heroe.value -= damage * (1 - sum_armor) * (1 + attacking_object.damage_increase)
+		$value_of_HP.text = str($HP_Heroe.value)
+		if attacking_object.vampirism != 0:
+			attacking_object.get_node("HP_Enemy_1").value += damage * (1 - sum_armor) * attacking_object.vampirism
 	else:
-		GLOBAL.life_heroe = false
-		print("You died")
-		queue_free()
+		$HP_Heroe.value -= damage * (1 - armor_ordinary)
+		$value_of_HP.text = str($HP_Heroe.value)
+
+	if $HP_Heroe.value <= 0:
+		self.queue_free()
 		
 		
 func mana_using(manacost):
 	$Mana_Heroe.value -= manacost
 	$value_of_Mana.text = str($Mana_Heroe.value)
 	
-
 func _ready():
 	$HP_Heroe.max_value = SPELLS_PARAMETERS.HP_Heroe
 	$HP_Heroe.value = SPELLS_PARAMETERS.HP_Heroe
@@ -91,8 +104,15 @@ func _ready():
 	#timer_of_spell.set_autostart(true)
 
 
-func _physics_process(delta):
 
+func _timeout():
+	print("Timed out!")
+
+func _physics_process(delta):
+	#print(timer.time_left)
+	#print(timer.is_paused())
+	#print(scale_speed_moving)
+	#print(is_stopped())
 	match $Icon.get_animation():
 		"idle":
 			#$RayCastForFloor.set_enabled(true)
@@ -117,7 +137,6 @@ func _physics_process(delta):
 			$Icon.set_speed_scale(1)
 		"door_opening":
 			$Icon.set_speed_scale(1)
-			
 
 	if $RayCastForFloor.get_collider() && $Icon.get_animation() == "jump" or stun:
 		$Icon.play("idle")
@@ -181,8 +200,10 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 	#if ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run") && !in_invisibility:
 	if !file.is_open() && !GLOBAL.first_cat_scene && ($Icon.get_animation() == "idle" or $Icon.get_animation() == "run" or $Icon.get_animation() == "jump") && !in_invisibility && !stun:
-		translate(GLOBAL.move_vector_1 * speed)
+		translate(GLOBAL.move_vector_1 * speed * scale_speed_moving)
 		if GLOBAL.move_vector_1.x != 0:
+			#if ray_cast_thrust.get_cast_to() != Vector2(0, 100):
+			#	ray_cast_thrust.set_cast_to(Vector2(0, 100))
 			if $Icon.get_animation() != "jump":
 				animate("run")
 		if GLOBAL.move_vector_1.x == 0:
@@ -191,7 +212,7 @@ func _physics_process(delta):
 		if GLOBAL.move_vector_1.x > 0:
 			$Stone_Sword.set_position(Vector2(26, 3))
 			$Position_Arrow.set_position(Vector2(22, 4))
-			$Ray_Cast_Column.set_cast_to(Vector2(274, 0))
+			$Ray_Cast_Column.set_cast_to(Vector2(128, 0))
 			$Ray_Cast_Random_Spell.set_position(Vector2(133, -181))
 			$Icon.flip_h = false
 			if get_parent().has_node("Door"):
@@ -201,7 +222,7 @@ func _physics_process(delta):
 		elif GLOBAL.move_vector_1.x < 0:
 			$Stone_Sword.set_position(Vector2(-26, 3))
 			$Position_Arrow.set_position(Vector2(-22, 4))
-			$Ray_Cast_Column.set_cast_to(Vector2(-274, 0))
+			$Ray_Cast_Column.set_cast_to(Vector2(-128, 0))
 			$Ray_Cast_Random_Spell.set_position(Vector2(-133, -181))
 			$Icon.flip_h = true
 			if get_parent().has_node("Door"):
@@ -216,7 +237,7 @@ func _physics_process(delta):
 	#i = i + 1
 
 func start_jump_heroe():
-	if is_on_floor():
+	if is_on_floor() && !cant_jump:
 		velocity.y = -JUMP_POWER 
 		$Icon.play("jump")
 
@@ -416,7 +437,7 @@ func _on_Button_Third_pressed():
 			
 func _on_Stone_Sword_body_entered(body: Node2D):
 	if body.has_method("handle_hit") && body.has_method("enemy"):
-		body.handle_hit(SPELLS_PARAMETERS.damage_stone_sword_Heroe)
+		body.handle_hit(SPELLS_PARAMETERS.damage_stone_sword_Heroe, self)
 
 
 func _on_Timer_Of_Bow_timeout():
@@ -433,27 +454,35 @@ func _on_Timer_Of_First_Animation_Sword_timeout():
 		counter_of_stone_sword = 0
 
 func stun(duration):
+	var statusbar1 = statusbar.instance()
 	if stun == true:
 		if duration > $Timer_Of_Stun.time_left:
-			$Timer_Of_Stun.start()
+			stun = true
+			statusbar1.i = duration
 			$Timer_Of_Stun.set_wait_time(duration)
+			$Timer_Of_Stun.start()
 	else:
+		statusbar1.i = duration
+		get_node("For_Status_Bars").add_child(statusbar1)
+		#statusbar1.for_position()
 		stun = true
-		$Timer_Of_Stun.start()
 		$Timer_Of_Stun.set_wait_time(duration)
+		$Timer_Of_Stun.start()
 	
 func slowdown(scale_speed, duration):
 	var statusbar1 = statusbar.instance()
-	get_parent().get_node("For_Status_Bars").add_child(statusbar1)
 	statusbar1.i = duration
+	get_node("For_Status_Bars").add_child(statusbar1)
+	#statusbar1.for_position()
 	if scale_speed_moving > scale_speed:
 		scale_speed_moving -= scale_speed
 	else:
 		scale_speed_moving = 0
 	var timer = Timer.new()
+	add_child(timer)
 	timer.wait_time = duration
-	timer.connect("timeout", self, "_on_timer_timeout", scale_speed, timer)
-	timer.start
+	timer.connect("timeout", self, "_on_timer_timeout", [scale_speed, timer])
+	timer.start()
 	
 	
 func _on_timer_timeout(scale_speed, timer):
@@ -461,12 +490,35 @@ func _on_timer_timeout(scale_speed, timer):
 		scale_speed_moving += scale_speed
 	else:
 		scale_speed_moving = 1
+	cant_jump = false
 	timer.queue_free()
 	
-
 
 func _on_Timer_Of_Stun_timeout():
 	stun = false
 
-
+func thrust(body, shift):
+	#body_which_thrusting = body
+	var direction = sign(self.global_position.x - body.global_position.x)	
+	#ray_cast_thrust.set_position(Vector2.ZERO)
+	#ray_cast_thrust.set_cast_to(Vector2(shift * direction, 0))
+	#for i in range(get_parent().collisions.size()):
+	#	ray_cast_thrust.set_collision_mask_bit(get_parent().collisions[i], true)
+	
+	#print("Бит 1 " + str(ray_cast_thrust.get_collision_mask_bit(1)))
+	#print("Бит 2 " + str(ray_cast_thrust.get_collision_mask_bit(2)))
+	#print("Бит 3 " + str(ray_cast_thrust.get_collision_mask_bit(3)))
+	#print("Бит 4 " + str(ray_cast_thrust.get_collision_mask_bit(4)))
+	#print("Бит 10 " + str(ray_cast_thrust.get_collision_mask_bit(10)))
+	#if ray_cast_thrust.get_collider():
+	#	shift = abs(self.global_position.x - ray_cast_thrust.get_collision_point().x)
+	#else:
+		#if ray_cast_thrust.get_cast_to() != Vector2(0, 100):
+		#ray_cast_thrust.set_cast_to(Vector2(0, 100))
+	#print(ray_cast_thrust.get_collision_point().x)
+	for i in range(shift):
+		move_and_collide(Vector2(1,0) * direction)
+	#translate(Vector2(1,0) * shift * direction)
+	#ray_cast_thrust.set_cast_to(Vector2(0, 100))
+	#ray_cast_thrust.queue_free()
 		

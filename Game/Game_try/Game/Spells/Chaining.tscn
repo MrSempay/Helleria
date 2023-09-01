@@ -1,0 +1,41 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Game/Spells/Chaining.gd" type="Script" id=1]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanieTSEP9.png" type="Texture" id=2]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanieTSEP8.png" type="Texture" id=3]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanieTSEP6.png" type="Texture" id=4]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanieTSEP7.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanieTSEP10.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanieTSEP2.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanieTSEP3.png" type="Texture" id=8]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanieTSEP5.png" type="Texture" id=9]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanieTSEP4.png" type="Texture" id=10]
+[ext_resource path="res://Anims/Guards/Sed/Сковывание/knightSedSkovivanieTSEP1.png" type="Texture" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 11 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "start_appearing",
+"speed": 5.0
+} ]
+
+[node name="KinematicBody2D" type="Area2D"]
+position = Vector2( 158, 65 )
+scale = Vector2( 0.3, 0.3 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -4.99976, -79.9999 )
+scale = Vector2( 10, 10 )
+frames = SubResource( 1 )
+animation = "start_appearing"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2( 0.000244141, -79.9999 )
+polygon = PoolVector2Array( -15, 80, -140, 80, -140, 30, -120, 0, -120, -40, -80, -40, -80, -70, 0, -70, 0, -80, 10, -80, 10, -70, 80, -70, 80, -40, 120, -40, 120, 30, 140, 30, 140, 80 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true

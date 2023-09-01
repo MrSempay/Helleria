@@ -87,6 +87,9 @@ func mana_using(manacost):
 
 func _physics_process(delta):
 	
+	if manual_navigation && self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 :
+		manual_navigation = false
+	
 	if $RayCastVertical_3.get_collider() && $Sprite.get_animation() == "jump":
 		animate("idle")
 		
@@ -347,7 +350,7 @@ func _on_Sprite_animation_finished():
 
 func _on_Stone_Sword_body_entered(body: Node2D):
 	if body.has_method("handle_hit") && body.has_method("start_jump_heroe"):
-		body.handle_hit(SPELLS_PARAMETERS.damage_stone_sword_Belotur)
+		body.handle_hit(SPELLS_PARAMETERS.damage_stone_sword_Belotur, self)
 
 func _on_Timer_Stone_timeout():
 	stone_ready = true

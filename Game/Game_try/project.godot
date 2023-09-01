@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Ibo",
+"language": "GDScript",
+"path": "res://t.fufz ]etmf.gd"
+} ]
+_global_script_class_icons={
+"Ibo": ""
+}
+
 [application]
 
 config/name="Game_try"

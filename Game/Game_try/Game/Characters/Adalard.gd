@@ -289,7 +289,7 @@ func _on_Sprite_animation_finished():
 
 func _on_Sword_body_entered(body):
 	if body.has_method("handle_hit") && body.has_method("start_jump_heroe"):
-		body.handle_hit(SPELLS_PARAMETERS.damage_sword_Adalard)
+		body.handle_hit(SPELLS_PARAMETERS.damage_sword_Adalard, self)
 
 
 func _on_Timer_Sword_timeout():
@@ -430,7 +430,7 @@ func push():
 func _on_Area_Pushing_body_entered(body):
 	stop_pushing = true
 	if body.has_method("start_jump_heroe"):
-		body.handle_hit(SPELLS_PARAMETERS.damage_push_Adalard)
+		body.handle_hit(SPELLS_PARAMETERS.damage_push_Adalard, self)
 		body.stun(SPELLS_PARAMETERS.stun_duration_push_Adalard)
 	
 

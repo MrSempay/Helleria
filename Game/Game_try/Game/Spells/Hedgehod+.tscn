@@ -20,7 +20,7 @@
 animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": false,
-"name": "hedgehod",
+"name": "start_appearing",
 "speed": 7.0
 } ]
 
@@ -33,8 +33,7 @@ script = ExtResource( 15 )
 position = Vector2( -4.99976, -79.9999 )
 scale = Vector2( 10, 10 )
 frames = SubResource( 1 )
-animation = "hedgehod"
-frame = 9
+animation = "start_appearing"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 visible = false
