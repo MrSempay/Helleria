@@ -163,16 +163,16 @@ var characters = {
 		"handle_attack": {
 			"handle_attack_damage": 15,  #Spear 
 			"handle_attack_calldown": 0.5,
-			"handle_attack_manacost": 10,
-			"handle_attack_thrust": 20			
+			"handle_attack_manacost": 1,
+			"handle_attack_thrust": 10
 		},
 		"squall_attack": {
 			"squall_attack_damage": 5,  #Spear 
 			"squall_attack_calldown": 7,
-			"squall_attack_manacost": 20,
+			"squall_attack_manacost": 10,
 			"squall_attack_stun": 0.2,
 			"squall_attack_amount_attacks": 5,
-			"squall_attack_thrust": 10
+			"squall_attack_thrust": 2
 		},
 		"jumping_to_point": {
 			"jumping_to_point_calldown": 10,
