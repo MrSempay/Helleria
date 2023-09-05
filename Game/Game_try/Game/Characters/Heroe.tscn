@@ -555,6 +555,8 @@ occluder = SubResource( 23 )
 [node name="For_Status_Bars" type="Node2D" parent="."]
 position = Vector2( -2, -35 )
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
 [connection signal="use_move_vector" from="CanvasLayer" to="." method="_on_CanvasLayer_use_move_vector"]
 [connection signal="released" from="CanvasLayer/TouchScreenButton" to="CanvasLayer" method="_on_TouchScreenButton_released"]
 [connection signal="mouse_entered" from="CanvasLayer/Area_For_Jumping" to="CanvasLayer" method="_on_Area2D_mouse_entered"]

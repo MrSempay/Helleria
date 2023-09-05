@@ -32,9 +32,11 @@ var chains_ready = {
 	"damage_increase_chain_ready": true,
 	"cure_chain_ready": true
 }
+var array_for_dropping_consumption_health_animations = []
 
 var chaining = preload("res://Game/Spells/Chaining.tscn")
 var statusbar = preload("res://Game/Spells/BarDuration.tscn")
+var drop_of_consumption_health = preload("res://Game/Spells/Drop_For_Consumption_Helath.tscn")
 onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
 var amount_status_bars = []
@@ -109,6 +111,7 @@ func _ready():
 	$Sprite.connect("animation_finished", self, "_on_Sprite_animation_finished")
 
 func _physics_process(delta):
+	
 	#print(chains_ready["damage_block_chain_ready"])
 	health = $HP_Enemy_1.value
 	#print(str(self.get_global_position()) + " HER ")
@@ -131,6 +134,9 @@ func _physics_process(delta):
 	#print(nav_path)
 	#print(speed)
 	#print(self.global_position.x)
+	
+
+	
 	if !$Handle_Attack/CollisionShape2D.is_disabled():
 		if delay_handle_area == 1:
 			$Handle_Attack/CollisionShape2D.set_disabled(true)
@@ -348,6 +354,7 @@ func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
 			timer_for_calldown.start()
 			var index_of_required_target = 0
 			var statusbar1 = statusbar.instance()
+			var drop_of_consumption_health1 = drop_of_consumption_health.instance()
 			match type_of_chain:
 				"damage_block":
 					if targets_for_cast.size() != 1:
@@ -356,6 +363,7 @@ func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
 								index_of_required_target = j + 1
 					else:
 						index_of_required_target = 0
+					drop_for_consumption_helath(targets_for_cast[index_of_required_target], drop_of_consumption_health1, Color(0.0, 6.0, 0.0))
 					targets_for_cast[index_of_required_target].armor_ordinary = SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_fraction_absorbed_damage"]
 				"damage_increase":
 					if targets_for_cast.size() != 1:
@@ -364,6 +372,7 @@ func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
 								index_of_required_target = j + 1
 					else:
 						index_of_required_target = 0
+					drop_for_consumption_helath(targets_for_cast[index_of_required_target], drop_of_consumption_health1)
 					targets_for_cast[index_of_required_target].damage_increase = SPELLS_PARAMETERS.characters[name_character]["damage_increase_chain"]["damage_increase_chain_increase"]
 				"cure":
 					if targets_for_cast.size() != 1:
@@ -372,6 +381,7 @@ func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
 								index_of_required_target = j + 1
 					else:
 						index_of_required_target = 0
+					drop_for_consumption_helath(targets_for_cast[index_of_required_target], drop_of_consumption_health1)
 					targets_for_cast[index_of_required_target].regeneration_in_second = SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_regeneration_in_second"]
 			chains_ready[type_of_chain + "_chain_ready"] = false
 			statusbar1.i = SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_duration"]
@@ -422,6 +432,12 @@ func _on_Chain_timeout(timer, type_of_chain):
 	chains_ready[type_of_chain + "_chain_ready"] = true
 	timer.queue_free()
 
+func drop_for_consumption_helath(target, drop, color = null):
+	target.array_for_dropping_consumption_health_animations.append(drop)
+	if color != null:
+		drop.get_node("AnimatedSprite").modulate = color
+	if !target.has_node("Drop_For_Consumption_Helath"):
+		target.add_child(drop)
 
 """ --------------------------------------------- """
 
@@ -452,7 +468,8 @@ func _on_Sprite_animation_finished():
 	#	speed = 2.5
 		
 
-	
+
+
 func animate(art):
 	$Sprite.play(art)
 

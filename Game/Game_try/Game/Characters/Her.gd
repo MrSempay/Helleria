@@ -6,7 +6,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	
+	print(array_for_dropping_consumption_health_animations.size())
 	#print(self.global_position)
 	if get_parent().has_node("Heroe"):
 		if heroe == null:
