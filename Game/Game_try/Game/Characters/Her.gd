@@ -6,16 +6,8 @@ func _ready():
 
 
 func _physics_process(delta):
-	print(array_for_dropping_consumption_health_animations.size())
 	#print(self.global_position)
-	if get_parent().has_node("Heroe"):
-		if heroe == null:
-			if((self.global_position.x) - get_parent().get_node("Heroe").global_position.x) > 0:
-				$Sprite.flip_h = true
-			else:
-				$Sprite.flip_h = false
-	else:
-		heroe = null
+
 	
 	if heroe != null && !stun:
 		if get_parent().triggered_enemies[name_character] && get_parent().has_method("Fight_Scene") && !get_parent().get_node("Heroe").in_invisibility: 

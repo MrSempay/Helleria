@@ -7,4 +7,5 @@ margin_left = 383.0
 margin_top = 206.0
 margin_right = 423.0
 margin_bottom = 246.0
+rect_min_size = Vector2( 10, 10 )
 script = ExtResource( 1 )

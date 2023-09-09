@@ -24,7 +24,7 @@ extends Node
 #_________Heroe_________#
 
 
-var HP_Heroe = 150
+var HP_Heroe = 350
 var mana_Heroe = 250
 
 """Stone sword"""
@@ -201,6 +201,25 @@ var characters = {
 			"damage_increase_chain_duration": 10,
 			"damage_increase_chain_calldown": 5,
 			"damage_increase_chain_health_in_second": 15
+		}
+	},
+	
+	"Gasria": {
+		"health": 450,
+		"mana": 250,
+		
+		"stone_wall": {
+			"stone_wall_calldown": 0,
+			"stone_wall_manacost": 15,
+			"stone_wall_calldown_snare": 10
+		},
+		
+		"destruction_wave": {
+			"destruction_wave_damage": 13,
+			"destruction_wave_manacost":50,
+			"destruction_wave_calldown": 0,
+			"destruction_wave_speed": 150,
+			"destruction_wave_amount_bounces": 5
 		}
 	}
 }

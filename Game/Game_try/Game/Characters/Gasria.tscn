@@ -1,0 +1,374 @@
+[gd_scene load_steps=61 format=2]
+
+[ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
+[ext_resource path="res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3" type="AudioStream" id=2]
+[ext_resource path="res://Game/Characters/Area_For_Starting_Fight.gd" type="Script" id=3]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop14.png" type="Texture" id=4]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir1.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Guards/Hir/Прыжок/knightHirPrijok11.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop7.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Guards/Hir/Прыжок/knightHirPrijok4.png" type="Texture" id=8]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop10.png" type="Texture" id=9]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop1.png" type="Texture" id=10]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop9.png" type="Texture" id=11]
+[ext_resource path="res://Anims/Guards/Hir/Прыжок/knightHirPrijok8.png" type="Texture" id=12]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop8.png" type="Texture" id=13]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop12.png" type="Texture" id=14]
+[ext_resource path="res://Anims/Guards/Hir/Прыжок/knightHirPrijok2.png" type="Texture" id=15]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop13.png" type="Texture" id=16]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop4.png" type="Texture" id=17]
+[ext_resource path="res://Anims/Guards/Hir/Прыжок/knightHirPrijok9.png" type="Texture" id=18]
+[ext_resource path="res://Anims/Guards/Hir/Прыжок/knightHirPrijok1.png" type="Texture" id=19]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop5.png" type="Texture" id=20]
+[ext_resource path="res://Anims/Guards/Hir/Прыжок/knightHirPrijok10.png" type="Texture" id=21]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop6.png" type="Texture" id=22]
+[ext_resource path="res://Anims/Guards/Hir/Прыжок/knightHirPrijok5.png" type="Texture" id=23]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop11.png" type="Texture" id=24]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop2.png" type="Texture" id=25]
+[ext_resource path="res://Anims/Guards/Hir/dwiz/knightHirW2.png" type="Texture" id=26]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir13.png" type="Texture" id=27]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir14.png" type="Texture" id=28]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir16.png" type="Texture" id=29]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir2.png" type="Texture" id=30]
+[ext_resource path="res://Anims/Guards/Hir/dwiz/knightHirW1.png" type="Texture" id=31]
+[ext_resource path="res://Anims/Guards/Hir/dwiz/knightHirW6.png" type="Texture" id=32]
+[ext_resource path="res://Anims/Guards/Hir/dwiz/knightHirW4.png" type="Texture" id=33]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir12.png" type="Texture" id=34]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir3.png" type="Texture" id=35]
+[ext_resource path="res://Anims/Guards/Hir/dwiz/knightHirW3.png" type="Texture" id=36]
+[ext_resource path="res://Anims/Guards/Hir/dwiz/knightHirW5.png" type="Texture" id=37]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir8.png" type="Texture" id=38]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir5.png" type="Texture" id=39]
+[ext_resource path="res://Anims/Guards/Hir/Множествено ударов копьем/knightHirMnijYdarKop3.png" type="Texture" id=40]
+[ext_resource path="res://Anims/Guards/Hir/Прыжок/knightHirPrijok3.png" type="Texture" id=41]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir15.png" type="Texture" id=42]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir7.png" type="Texture" id=43]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir9.png" type="Texture" id=44]
+[ext_resource path="res://Anims/Guards/Hir/Прыжок/knightHirPrijok7.png" type="Texture" id=45]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir11.png" type="Texture" id=46]
+[ext_resource path="res://Anims/Guards/Hir/Прыжок/knightHirPrijok6.png" type="Texture" id=47]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir4.png" type="Texture" id=48]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir10.png" type="Texture" id=49]
+[ext_resource path="res://Anims/Guards/Hir/Удар копьем/knightHir6.png" type="Texture" id=50]
+[ext_resource path="res://Garsia.gd" type="Script" id=51]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3, 11.5 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 0, 0, -8, 0, -8, 22, -1, 22, -1, 14, 0, 14, 0, 22, 6, 22, 6, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "щгп"
+length = 0.24
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.09, 0.16, 0.22 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 14, -1, 14, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 14, 8, 14, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 30 ), ExtResource( 35 ), ExtResource( 48 ), ExtResource( 39 ), ExtResource( 50 ), ExtResource( 43 ), ExtResource( 38 ), ExtResource( 44 ), ExtResource( 49 ), ExtResource( 46 ), ExtResource( 34 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 42 ), ExtResource( 29 ) ],
+"loop": false,
+"name": "A_handle_attack",
+"speed": 17.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 25 ), ExtResource( 40 ), ExtResource( 17 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 7 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 9 ), ExtResource( 24 ), ExtResource( 14 ), ExtResource( 16 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "A_squall_attack",
+"speed": 75.0
+}, {
+"frames": [ ExtResource( 31 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": true,
+"name": "jumping_to_point",
+"speed": 25.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 15 ), ExtResource( 41 ), ExtResource( 8 ), ExtResource( 23 ), ExtResource( 47 ), ExtResource( 45 ), ExtResource( 12 ), ExtResource( 18 ), ExtResource( 21 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "preparing_jumping_to_point",
+"speed": 45.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 26 ), ExtResource( 36 ), ExtResource( 33 ), ExtResource( 37 ), ExtResource( 32 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 109, 53.5 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "EXTRA"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 31, 14 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 46.8215, 18.25 )
+
+[node name="Gasria" type="KinematicBody2D"]
+script = ExtResource( 51 )
+
+[node name="Area_For_Stop_Machine" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Stop_Machine"]
+position = Vector2( -1, 4.5 )
+shape = SubResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -0.645767, -6.08 )
+scale = Vector2( 0.3, 1 )
+polygon = PoolVector2Array( 0, 0, -8, 0, -8, 22, -1, 22, -1, 14, 0, 14, 0, 22, 6, 22, 6, 0 )
+one_way_collision_margin = 12.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionPolygon2D"]
+reset_on_save = false
+anims/RESET = SubResource( 2 )
+"anims/щгп" = SubResource( 3 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1.07996, -1.08002 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 4 )
+animation = "idle"
+
+[node name="HP_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -21.0
+margin_top = -34.0
+margin_right = 124.0
+margin_bottom = -13.0
+rect_scale = Vector2( 0.25, 0.25 )
+max_value = 150.0
+value = 150.0
+texture_progress = ExtResource( 1 )
+tint_progress = Color( 1, 0, 0, 1 )
+nine_patch_stretch = true
+
+[node name="Mana_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -21.0
+margin_top = -29.0
+margin_right = 124.0
+margin_bottom = -8.0
+rect_scale = Vector2( 0.25, 0.25 )
+max_value = 250.0
+value = 250.0
+texture_progress = ExtResource( 1 )
+tint_progress = Color( 0, 0.133333, 1, 1 )
+nine_patch_stretch = true
+
+[node name="value_of_HP" type="Label" parent="."]
+margin_left = -8.82999
+margin_top = -35.08
+margin_right = 19.17
+margin_bottom = 12.92
+rect_scale = Vector2( 0.5, 0.5 )
+text = "500
+
+"
+
+[node name="value_of_Mana" type="Label" parent="."]
+margin_left = -8.82999
+margin_top = -29.08
+margin_right = 31.17
+margin_bottom = 18.92
+rect_scale = Vector2( 0.5, 0.5 )
+text = "250
+
+"
+
+[node name="Trigger_Area" type="Area2D" parent="."]
+position = Vector2( 0.170013, -7.08 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Area"]
+position = Vector2( 1, -21.5 )
+scale = Vector2( 1.5, 1 )
+shape = SubResource( 5 )
+one_way_collision_margin = 0.0
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0.170013, -7.08 )
+
+[node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0, -35 )
+enabled = true
+cast_to = Vector2( 19, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_2" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0.170013, -13.08 )
+enabled = true
+cast_to = Vector2( 19, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( -4.32134e-07, 7 )
+enabled = true
+cast_to = Vector2( 3, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_4" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( -4.32134e-07, -23 )
+enabled = true
+cast_to = Vector2( 19, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_For_Heroe" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( -4.32134e-07, 2 )
+enabled = true
+cast_to = Vector2( 192, 0 )
+
+[node name="RayCastVertical" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 11, 1 )
+enabled = true
+cast_to = Vector2( 0, 22 )
+collision_mask = 4194304
+
+[node name="RayCastVertical_2" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0.170013, -13.08 )
+enabled = true
+cast_to = Vector2( 0, -26 )
+collision_mask = 2097152
+
+[node name="RayCastVertical_3" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+cast_to = Vector2( 0, 17 )
+collision_mask = 2097152
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/EXTRA = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_max_distance = 10.0
+navigation_layers = 16
+
+[node name="Area_For_Starting_Fight" type="Area2D" parent="."]
+visible = false
+scale = Vector2( 0.7, 1 )
+collision_layer = 17
+collision_mask = 17
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Starting_Fight"]
+shape = SubResource( 8 )
+disabled = true
+
+[node name="Line2D2" type="Line2D" parent="."]
+position = Vector2( -1.07996, -1.08002 )
+scale = Vector2( 2, 2 )
+
+[node name="For_Status_Bars" type="Node2D" parent="."]
+position = Vector2( -2, -43 )
+
+[node name="Handle_Attack" type="Area2D" parent="."]
+position = Vector2( 32, -3 )
+scale = Vector2( 0.7, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Handle_Attack"]
+shape = SubResource( 9 )
+disabled = true
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="Timer_For_Stun" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="Timer_Stop_Machine" type="Timer" parent="Timers"]
+wait_time = 0.3
+
+[node name="Timer_For_Updaiting_Way" type="Timer" parent="Timers"]
+wait_time = 0.3
+autostart = true
+
+[node name="Timer_For_Going_Back" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="Timer_Squall_Attack" type="Timer" parent="Timers"]
+wait_time = 8.0
+one_shot = true
+
+[node name="Timer_Handle_Attack" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="Timer_Jumping_To_Point" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="Timer_Of_HP" type="Timer" parent="Timers"]
+autostart = true
+
+[node name="Timer_Of_Mana" type="Timer" parent="Timers"]
+autostart = true
+
+[node name="Timer_Of_Stun" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
