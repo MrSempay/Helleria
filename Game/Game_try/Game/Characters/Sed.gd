@@ -18,8 +18,10 @@ var manual_navigation = false
 var current_target
 var vampirism = 0
 var damage_increase = 0
+var array_for_dropping_consumption_health_animations = []
 var chaining = preload("res://Game/Spells/Chaining.tscn")
 var statusbar = preload("res://Game/Spells/BarDuration.tscn")
+var drop_of_consumption_health = preload("res://Game/Spells/Drop_For_Consumption_Helath.tscn")
 onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
 var amount_status_bars = []

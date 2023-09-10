@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Game/Area_Of_Dialoge_Camera.gd" type="Script" id=1]
 [ext_resource path="res://Game/First_Scene.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Tile_Set_For_Fight_Scene.tres" type="TileSet" id=5]
 [ext_resource path="res://CtDnPXDocFwukJcuP8LpYC0crxbOApt_7RXkyjakJmieWOCz1Pjuw138Qrs_pM08jn0XEpqHzSQB0y4HuiMgfonN.jpg" type="Texture" id=6]
 [ext_resource path="res://Game/LocationsLevels/JAUlt.gd" type="Script" id=7]
+[ext_resource path="res://Game/Tile_setsTools_for_level/Tools_for_level/Stone_Wall.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Game/Tile_setsTools_for_level/Tools_for_level/Bushes_Plants/Bush.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -139,8 +140,15 @@ func _input(event):
 
 [sub_resource type="RectangleShape2D" id=9]
 
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 29.5, 14.5 )
+
 [node name="First_Scene" type="Node2D"]
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 1287.0 ],
+"_edit_vertical_guides_": [ 2148.0 ]
+}
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
@@ -165,13 +173,13 @@ show_collision = true
 collision_layer = 2097215
 collision_mask = 2097215
 format = 1
-tile_data = PoolIntArray( 1507356, 1, 0, 3866701, 3, 0, 4063317, 3, 0, 4259933, 3, 0, 4391120, 3, 0, 4456549, 3, 0, 4522122, 3, 0, 4522201, 3, 0, 4587670, 4, 0, 4653305, 1, 0, 4784286, 1, 0, 4915345, 3, 0, 5111945, 3, 0, 5177552, 3, 0, 5177569, 4, 0, 5308545, 3, 0, 5439704, 3, 0, 5505197, 1, 0, 5570711, 4, 0, 5636306, 4, 0, 5832805, 6, 0, 6422680, 2, 0, 6619352, 3, 0, 6684862, 1, 0, 6750345, 4, 0, 6881411, 4, 0, 6947041, 3, 0, 7012477, 4, 0, 7078030, 3, 0, 7143543, 4, 0, 7209110, 3, 0, 7209178, 3, 0, 7405727, 3, 0, 7405755, 1, 0, 7471313, 3, 0, 7536750, 4, 0, 7602323, 2, 0, 7733384, 1, 0, 7864422, 3, 0, 7929972, 4, 0, 7995514, 4, 0, 8061064, 1, 0, 8192110, 4, 0, 12517594, 1, 0 )
+tile_data = PoolIntArray( 1507356, 1, 0, 3866701, 3, 0, 4063317, 3, 0, 4259933, 3, 0, 4391120, 3, 0, 4456549, 3, 0, 4522122, 3, 0, 4522201, 3, 0, 4587670, 4, 0, 4915345, 3, 0, 5111945, 3, 0, 5177552, 3, 0, 5177569, 4, 0, 5308545, 3, 0, 5439704, 3, 0, 5570711, 4, 0, 5636306, 4, 0, 6422680, 2, 0, 6619352, 3, 0, 6750345, 4, 0, 6881411, 4, 0, 6947041, 3, 0, 7012477, 4, 0, 7078030, 3, 0, 7143543, 4, 0, 7209110, 3, 0, 7209178, 3, 0, 7405727, 3, 0, 7471313, 3, 0, 7536750, 4, 0, 7602323, 2, 0, 7864422, 3, 0, 7929972, 4, 0, 7995514, 4, 0, 8192110, 4, 0, 12517594, 1, 0 )
 
 [node name="Position_Jeison" type="Position2D" parent="."]
-position = Vector2( 1705, 1526 )
+position = Vector2( 2963, 1298 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 2351, 1524 )
+position = Vector2( 2037, 1270 )
 
 [node name="Position_Aglea" type="Position2D" parent="."]
 position = Vector2( 2674, 1528 )
@@ -183,7 +191,7 @@ position = Vector2( 2674, 1528 )
 position = Vector2( 2730, 1370 )
 
 [node name="Position_Belotur" type="Position2D" parent="."]
-position = Vector2( 1845, 1520 )
+position = Vector2( 2861, 1310 )
 
 [node name="Ally" type="Position2D" parent="."]
 position = Vector2( 117, 188 )
@@ -910,6 +918,148 @@ script = ExtResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt30"]
 position = Vector2( 4, -108 )
 shape = SubResource( 9 )
+
+[node name="Snares_Of_Boss" type="Node2D" parent="."]
+position = Vector2( 581, 275 )
+z_index = -1
+
+[node name="Area2D" type="Area2D" parent="Snares_Of_Boss"]
+position = Vector2( 1209, 1247 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D"]
+shape = SubResource( 23 )
+
+[node name="PositionsWalls" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D"]
+
+[node name="Stone_Wall" parent="Snares_Of_Boss/Area2D/PositionsWalls" instance=ExtResource( 8 )]
+position = Vector2( -145, 4 )
+
+[node name="Position2D" type="Position2D" parent="Snares_Of_Boss/Area2D/PositionsWalls"]
+position = Vector2( 54, 4 )
+
+[node name="Position2D2" type="Position2D" parent="Snares_Of_Boss/Area2D/PositionsWalls"]
+position = Vector2( -145, 4 )
+
+[node name="Area2D2" type="Area2D" parent="Snares_Of_Boss"]
+position = Vector2( 1514, 995 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D2"]
+position = Vector2( -1, 0 )
+shape = SubResource( 23 )
+
+[node name="PositionsWalls" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D2"]
+
+[node name="Stone_Wall" parent="Snares_Of_Boss/Area2D2/PositionsWalls" instance=ExtResource( 8 )]
+position = Vector2( 191, -1 )
+
+[node name="Position2D" type="Position2D" parent="Snares_Of_Boss/Area2D2/PositionsWalls"]
+position = Vector2( 191, -1 )
+
+[node name="Position2D2" type="Position2D" parent="Snares_Of_Boss/Area2D2/PositionsWalls"]
+position = Vector2( -58, 0 )
+
+[node name="Area2D3" type="Area2D" parent="Snares_Of_Boss"]
+position = Vector2( 1538, 1128 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D3"]
+shape = SubResource( 23 )
+
+[node name="PositionsWalls" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D3"]
+
+[node name="Stone_Wall" parent="Snares_Of_Boss/Area2D3/PositionsWalls" instance=ExtResource( 8 )]
+position = Vector2( 144, -2 )
+
+[node name="Position2D" type="Position2D" parent="Snares_Of_Boss/Area2D3/PositionsWalls"]
+position = Vector2( 144, -2 )
+
+[node name="Position2D2" type="Position2D" parent="Snares_Of_Boss/Area2D3/PositionsWalls"]
+position = Vector2( -60, -2 )
+
+[node name="Area2D4" type="Area2D" parent="Snares_Of_Boss"]
+position = Vector2( 1186, 1193 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D4"]
+position = Vector2( -15, 0 )
+shape = SubResource( 23 )
+
+[node name="PositionsWalls" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D4"]
+
+[node name="Stone_Wall" parent="Snares_Of_Boss/Area2D4/PositionsWalls" instance=ExtResource( 8 )]
+position = Vector2( -122, -2 )
+
+[node name="Position2D" type="Position2D" parent="Snares_Of_Boss/Area2D4/PositionsWalls"]
+position = Vector2( -122, -2 )
+
+[node name="Position2D2" type="Position2D" parent="Snares_Of_Boss/Area2D4/PositionsWalls"]
+position = Vector2( 30, -2 )
+
+[node name="Area2D5" type="Area2D" parent="Snares_Of_Boss"]
+position = Vector2( 1374, 779 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D5"]
+shape = SubResource( 23 )
+
+[node name="PositionsWalls" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D5"]
+
+[node name="Stone_Wall" parent="Snares_Of_Boss/Area2D5/PositionsWalls" instance=ExtResource( 8 )]
+position = Vector2( 125, 1 )
+
+[node name="Position2D" type="Position2D" parent="Snares_Of_Boss/Area2D5/PositionsWalls"]
+position = Vector2( 125, 1 )
+
+[node name="Position2D2" type="Position2D" parent="Snares_Of_Boss/Area2D5/PositionsWalls"]
+position = Vector2( -61, 1 )
+
+[node name="Area2D6" type="Area2D" parent="Snares_Of_Boss"]
+position = Vector2( 1147, 835 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D6"]
+shape = SubResource( 23 )
+
+[node name="PositionsWalls" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D6"]
+
+[node name="Stone_Wall" parent="Snares_Of_Boss/Area2D6/PositionsWalls" instance=ExtResource( 8 )]
+position = Vector2( -504, 8 )
+
+[node name="Position2D" type="Position2D" parent="Snares_Of_Boss/Area2D6/PositionsWalls"]
+position = Vector2( 61, 8 )
+
+[node name="Position2D2" type="Position2D" parent="Snares_Of_Boss/Area2D6/PositionsWalls"]
+position = Vector2( -504, 8 )
+
+[node name="Area2D7" type="Area2D" parent="Snares_Of_Boss"]
+position = Vector2( 1718, 642 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D7"]
+shape = SubResource( 23 )
+
+[node name="PositionsWalls" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D7"]
+
+[node name="Stone_Wall" parent="Snares_Of_Boss/Area2D7/PositionsWalls" instance=ExtResource( 8 )]
+position = Vector2( -396, 2 )
+
+[node name="Position2D" type="Position2D" parent="Snares_Of_Boss/Area2D7/PositionsWalls"]
+position = Vector2( -396, 2 )
+
+[node name="Position2D2" type="Position2D" parent="Snares_Of_Boss/Area2D7/PositionsWalls"]
+position = Vector2( 93, 2 )
+
+[node name="Area2D8" type="Area2D" parent="Snares_Of_Boss"]
+position = Vector2( 2333, 624 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D8"]
+shape = SubResource( 23 )
+
+[node name="PositionsWalls" type="CollisionShape2D" parent="Snares_Of_Boss/Area2D8"]
+
+[node name="Stone_Wall" parent="Snares_Of_Boss/Area2D8/PositionsWalls" instance=ExtResource( 8 )]
+position = Vector2( 78, -2 )
+
+[node name="Position2D" type="Position2D" parent="Snares_Of_Boss/Area2D8/PositionsWalls"]
+position = Vector2( 78, -2 )
+
+[node name="Position2D2" type="Position2D" parent="Snares_Of_Boss/Area2D8/PositionsWalls"]
+position = Vector2( -46, -2 )
 
 [connection signal="mouse_entered" from="Camera_For_Speaking/Area_Of_Dialoge_Camera" to="Camera_For_Speaking/Area_Of_Dialoge_Camera" method="_on_Area_Of_Dialoge_Camera_mouse_entered"]
 [connection signal="mouse_exited" from="Camera_For_Speaking/Area_Of_Dialoge_Camera" to="Camera_For_Speaking/Area_Of_Dialoge_Camera" method="_on_Area_Of_Dialoge_Camera_mouse_exited"]

@@ -27,14 +27,19 @@ var summary_health_or_mana_for_chain = []
 var handle_attack_ready = true
 var squall_attack_ready = true
 var jumping_to_point_ready = true
+var stone_wall_ready = true
 var chains_ready = {
 	"damage_block_chain_ready": true,
 	"damage_increase_chain_ready": true,
 	"cure_chain_ready": true
 }
+var array_for_dropping_consumption_health_animations = []
 
+var stone_wall = preload("res://Game/Tile_setsTools_for_level/Tools_for_level/Stone_Wall.tscn")
 var chaining = preload("res://Game/Spells/Chaining.tscn")
 var statusbar = preload("res://Game/Spells/BarDuration.tscn")
+var wave = preload("res://Game/Spells/Wave.tscn")
+var drop_of_consumption_health = preload("res://Game/Spells/Drop_For_Consumption_Helath.tscn")
 onready var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
 var amount_status_bars = []
@@ -109,6 +114,7 @@ func _ready():
 	$Sprite.connect("animation_finished", self, "_on_Sprite_animation_finished")
 
 func _physics_process(delta):
+	
 	#print(chains_ready["damage_block_chain_ready"])
 	health = $HP_Enemy_1.value
 	#print(str(self.get_global_position()) + " HER ")
@@ -131,6 +137,9 @@ func _physics_process(delta):
 	#print(nav_path)
 	#print(speed)
 	#print(self.global_position.x)
+	
+
+	
 	if !$Handle_Attack/CollisionShape2D.is_disabled():
 		if delay_handle_area == 1:
 			$Handle_Attack/CollisionShape2D.set_disabled(true)
@@ -146,8 +155,8 @@ func _physics_process(delta):
 	if get_parent().has_node("Heroe") && heroe == null:
 		heroe = get_parent().get_node("Heroe")
 		ally = get_parent().get_node("Ally")
-		
-	if !manual_navigation && heroe != null:
+
+	if !manual_navigation && heroe != null && is_instance_valid(heroe):
 		current_target = heroe.global_position
 		
 	
@@ -323,6 +332,7 @@ func jumping_to_point(point_to_jump, zone_of_casting):
 			scale_gravity = 2
 			velocity.y += 0.016 * 970 * scale_gravity
 			velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
+			mana_using(SPELLS_PARAMETERS.characters[name_character]["jumping_to_point"]["jumping_to_point_manacost"])
 
 
 func _on_Timer_Jumping_To_Point_timeout():
@@ -348,6 +358,7 @@ func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
 			timer_for_calldown.start()
 			var index_of_required_target = 0
 			var statusbar1 = statusbar.instance()
+			var drop_of_consumption_health1 = drop_of_consumption_health.instance()
 			match type_of_chain:
 				"damage_block":
 					if targets_for_cast.size() != 1:
@@ -356,6 +367,7 @@ func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
 								index_of_required_target = j + 1
 					else:
 						index_of_required_target = 0
+					drop_for_consumption_helath(targets_for_cast[index_of_required_target], drop_of_consumption_health1, Color(0.0, 6.0, 0.0))
 					targets_for_cast[index_of_required_target].armor_ordinary = SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_fraction_absorbed_damage"]
 				"damage_increase":
 					if targets_for_cast.size() != 1:
@@ -364,6 +376,7 @@ func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
 								index_of_required_target = j + 1
 					else:
 						index_of_required_target = 0
+					drop_for_consumption_helath(targets_for_cast[index_of_required_target], drop_of_consumption_health1)
 					targets_for_cast[index_of_required_target].damage_increase = SPELLS_PARAMETERS.characters[name_character]["damage_increase_chain"]["damage_increase_chain_increase"]
 				"cure":
 					if targets_for_cast.size() != 1:
@@ -372,6 +385,7 @@ func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
 								index_of_required_target = j + 1
 					else:
 						index_of_required_target = 0
+					drop_for_consumption_helath(targets_for_cast[index_of_required_target], drop_of_consumption_health1)
 					targets_for_cast[index_of_required_target].regeneration_in_second = SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_regeneration_in_second"]
 			chains_ready[type_of_chain + "_chain_ready"] = false
 			statusbar1.i = SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_duration"]
@@ -422,9 +436,52 @@ func _on_Chain_timeout(timer, type_of_chain):
 	chains_ready[type_of_chain + "_chain_ready"] = true
 	timer.queue_free()
 
+func drop_for_consumption_helath(target, drop, color = null):
+	target.array_for_dropping_consumption_health_animations.append(drop)
+	if color != null:
+		drop.get_node("AnimatedSprite").modulate = color
+	if !target.has_node("Drop_For_Consumption_Helath"):
+		target.add_child(drop)
 
 """ --------------------------------------------- """
 
+
+""" --------------- STONE WALL --------------- """
+
+func stone_wall(position_of_wall, should_be_disappearence_after_time = true, parent_node = get_parent()):
+	if stone_wall_ready:
+		mana_using(SPELLS_PARAMETERS.characters[name_character]["stone_wall"]["stone_wall_manacost"])
+		var timer_for_calldown = Timer.new()
+		timer_for_calldown.set_wait_time(SPELLS_PARAMETERS.characters[name_character]["stone_wall"]["stone_wall_calldown"])
+		timer_for_calldown.connect("timeout", self, "_on_Stone_Wall_timeout", [timer_for_calldown])
+		timer_for_calldown.one_shot = true
+		self.add_child(timer_for_calldown)
+		timer_for_calldown.start()
+		var stone_wall1 = stone_wall.instance()
+		parent_node.add_child(stone_wall1)
+		stone_wall1.set_global_position(position_of_wall)
+		stone_wall1.get_node("AnimatedSprite").play("wall_growing")
+		if parent_node.get_name() == "PositionsWalls":
+			stone_wall1.get_node("AnimatedSprite").flip_h = (position_of_wall.x < parent_node.get_parent().global_position.x)
+		stone_wall_ready = false
+		if should_be_disappearence_after_time:
+			var timer_for_disappearence_wall = Timer.new()
+			timer_for_disappearence_wall.set_wait_time(SPELLS_PARAMETERS.characters[name_character]["stone_wall"]["time_to_disappearance_wall"])
+			timer_for_disappearence_wall.connect("timeout", self, "_on_timer_for_disappearance_wall_timeout", [stone_wall1, timer_for_disappearence_wall])
+			timer_for_disappearence_wall.one_shot = true
+			self.add_child(timer_for_disappearence_wall)
+			timer_for_disappearence_wall.start()
+		
+
+func _on_Stone_Wall_timeout(timer):
+	stone_wall_ready = true
+	timer.queue_free()
+
+func _on_timer_for_disappearance_wall_timeout(stone_wall1, timer):
+	stone_wall1.get_node("AnimatedSprite").play("wall_destruction")
+	timer.queue_free()
+
+""" --------------------------------------------- """
 
 var t = 0
 func _on_Sprite_animation_finished():
@@ -452,7 +509,8 @@ func _on_Sprite_animation_finished():
 	#	speed = 2.5
 		
 
-	
+
+
 func animate(art):
 	$Sprite.play(art)
 

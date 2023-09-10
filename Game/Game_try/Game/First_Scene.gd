@@ -20,6 +20,7 @@ var position_enemy = ""
 var Belotur_was_triggered = false
 var Jeison_was_triggered = false
 var Adalard_was_triggered = false
+var triggered_enemies = {"Adalard": false, "Belotur": false, "Jeison": false, "Gasria": false}
 
 #var ally = preload("res://Game/Characters/Ally.tscn")
 #var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
@@ -27,6 +28,8 @@ var enemy_2 = preload("res://Game/Characters/Adalard.tscn")
 var enemy_3 = preload("res://Game/Characters/Enemy_33.tscn")
 #var enemy_4 = preload("res://Game/Characters/Enemy44.tscn")
 var enemy_5 = preload("res://Game/Characters/Enemy55.tscn")
+var gasria = preload("res://Game/Characters/Gasria.tscn")
+
 var heroe = preload("res://Game/Characters/Heroe.tscn")
 var door = preload("res://Game/Tile_setsTools_for_level/Tools_for_level/Doors/Door.tscn")
 
@@ -37,6 +40,7 @@ var enemy_1_2 = enemy_2.instance()
 var enemy_1_3 = enemy_3.instance()
 #var enemy_1_4 = enemy_4.instance()
 var enemy_1_5 = enemy_5.instance()
+var gasria1 = gasria.instance()
 var heroe_1 = heroe.instance()
 var door_1 = door.instance()
 
@@ -69,6 +73,9 @@ func First_Scene():
 
 func _ready():
 
+
+		
+	self.add_child(gasria1)
 	$NavigationPolygonInstance2.set_enter_cost(2)
 	if GLOBAL.first_cat_scene:
 		$Position_Heroe.set_global_position(Vector2(2535, 1528))
@@ -119,25 +126,8 @@ func _ready():
 	GLOBAL.heroe_uploaded = true
 	
 func _physics_process(delta):
-	
-	if GLOBAL.dialoge_No_heroe_camera && !get_node("Heroe/CanvasLayer/Dialoge_Field").file.is_open():
-		#emit_signal("dialoge_started", file_name, file)
-		get_node("Heroe/CanvasLayer/Dialoge_Field").set_visible(true)
-		get_node("Heroe/CanvasLayer/Dialoge_Field").file.open("res://Dialoges/" + file_name + ".txt", File.READ) 
-		var k = str(get_node("Heroe/CanvasLayer/Dialoge_Field").file.get_line())
-		get_node("Heroe/CanvasLayer/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
-		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
-		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[0])
-			
-	if GLOBAL.dialoge_heroe_camera && !get_node("Heroe/CanvasLayer/Dialoge_Field").file.is_open():
-		get_node("Heroe/CanvasLayer/Dialoge_Field").set_visible(true)
-		get_node("Heroe/CanvasLayer/Dialoge_Field").file.open("res://Dialoges/" + file_name + ".txt", File.READ) 
-		var k = str(get_node("Heroe/CanvasLayer/Dialoge_Field").file.get_line())
-		get_node("Heroe/CanvasLayer/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
-		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
-		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
 
-		
+			
 	if GLOBAL.life_Belotur:
 		if $Belotur.global_position == first_position_Belotur:
 			Belotur_was_triggered = false
