@@ -13,8 +13,6 @@ var amount_bounces = 0
 func _ready():
 	$AnimatedSprite.play("wave_starting")
 	self.set_global_position(global_position_for_wave)
-	print(get_parent().global_position.x )
-	print(self.global_position.x)
 	if get_parent().global_position.x < self.global_position.x:
 		vector = -1
 		$AnimatedSprite.flip_h = true
