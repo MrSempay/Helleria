@@ -1,6 +1,7 @@
 extends TouchScreenButton
 
-
+var current_scene
+var dialoge_name
 var mouse_in_area = false
 var file = File.new()
 var b = "taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaakkkkkkkkaaaaaaaaaaaaaaaaaaaext"
@@ -51,6 +52,7 @@ func _on_Dialoge_Field_pressed():
 		else:
 			self.set_visible(false)
 			file.close()
+			current_scene.dialoge_finished(dialoge_name)
 			#GLOBAL.dialoge_heroe_camera = false
 			#GLOBAL.dialoge_No_heroe_camera = false
 		mouse_in_area = true

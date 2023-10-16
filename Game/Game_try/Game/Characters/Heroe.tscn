@@ -1,4 +1,4 @@
-[gd_scene load_steps=134 format=2]
+[gd_scene load_steps=135 format=2]
 
 [ext_resource path="res://Game/Button_attack.gd" type="Script" id=1]
 [ext_resource path="res://Game/Button_Second.gd" type="Script" id=2]
@@ -122,6 +122,9 @@
 [ext_resource path="res://CtDnPXDocFwukJcuP8LpYC0crxbOApt_7RXkyjakJmieWOCz1Pjuw138Qrs_pM08jn0XEpqHzSQB0y4HuiMgfonN.jpg" type="Texture" id=120]
 [ext_resource path="res://Game/Characters/Dialoge_Field.gd" type="Script" id=121]
 [ext_resource path="res://Icons_For_Characters/Adalard.jpg" type="Texture" id=122]
+
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 8, 16.5 )
 
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 6, 10.5 )
@@ -249,6 +252,12 @@ position = Vector2( 444, 370 )
 z_index = 3
 script = ExtResource( 5 )
 
+[node name="Heroe_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Heroe_Area"]
+position = Vector2( -2, 9.5 )
+shape = SubResource( 26 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1.99997, 4.5 )
 scale = Vector2( 1, 0.999999 )
@@ -285,6 +294,7 @@ texture_scale = 0.11
 energy = 3.0
 
 [node name="Area_For_Jumping" type="Area2D" parent="CanvasLayer"]
+visible = false
 position = Vector2( -36, 87 )
 script = ExtResource( 11 )
 
@@ -391,7 +401,7 @@ text = "250
 [node name="Camera_Of_Heroe" type="Camera2D" parent="."]
 position = Vector2( 0, -19 )
 scale = Vector2( 0.496, 0.497 )
-zoom = Vector2( 0.4, 0.4 )
+zoom = Vector2( 0.9, 0.9 )
 drag_margin_left = 0.36
 drag_margin_top = 0.37
 drag_margin_right = 0.4

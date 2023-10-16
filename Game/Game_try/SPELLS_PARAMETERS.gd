@@ -83,34 +83,6 @@ var speed_stone_Belotur = 300
 var calldown_stone_Belotur = 2
 
 
-#_________Adalard_________#
-
-
-var HP_Adalard = 2750
-var mana_Adalard = 1500
-
-"""Sword"""
-
-var manacost_sword_Adalard = 0
-var damage_sword_Adalard = 15
-var scale_animation_speed_sword_Adalard = 1
-
-"""Armor"""
-
-var manacost_armor_Adalard = 50
-var fraction_absorbed_damage_armor_Adalard = 0.15
-var scale_animation_speed_armor_Adalard = 1
-var duration_armor_Adalard = 5
-var calldown_armor_Adalard = 12
-
-"""Push"""
-
-var manacost_push_Adalard = 10
-var damage_push_Adalard = 10
-var scale_animation_speed_push_Adalard = 1
-var speed_persenage_push_Adalard = 2.5
-var calldown_push_Adalard = 8
-var stun_duration_push_Adalard = 1
 
 
 #_________Sed_________#
@@ -155,7 +127,62 @@ var manacost_spear_squall_Her = 20
 var calldown_spear_squall_Her = 5
 var damage_spear_squall_Her = 25
 
+#_________Adalard_________#
+
+
+var HP_Adalard = 2750
+var mana_Adalard = 1500
+
+"""Sword"""
+
+var manacost_sword_Adalard = 0
+var damage_sword_Adalard = 15
+var scale_animation_speed_sword_Adalard = 1
+
+"""Armor"""
+
+var armor_manacost = 50
+var fraction_absorbed_damage_armor_Adalard = 0.15
+var scale_animation_speed_armor_Adalard = 1
+var duration_armor = 5
+var calldown_armor_Adalard = 12
+
+"""Push"""
+
+var manacost_push_Adalard = 10
+var damage_push_Adalard = 10
+var scale_animation_speed_push_Adalard = 1
+var speed_persenage_push_Adalard = 2.5
+var calldown_push_Adalard = 8
+var stun_duration_push_Adalard = 1
+
 var characters = {
+	
+	"Adalard": {
+		"health": 2750,
+		"mana": 1500,
+		
+		"handle_attack": {
+			"handle_attack_damage": 15, 
+			"handle_attack_calldown": 0,
+			"handle_attack_manacost": 1,
+		},
+		"armor": {
+			"armor_fraction_absorbed_damage": 0.15,
+			"armor_manacost": 50,
+			"armor_duration": 5,
+			"armor_calldown": 12
+
+		},
+		"push": {
+			"push_stun": 1, 
+			"push_manacost": 50,
+			"push_damage": 25,
+			"push_calldown": 8,
+			"push_speed": 2.5
+		}
+	},
+	
 	"Her": {
 		"health": 120,
 		"mana": 150,
@@ -176,7 +203,7 @@ var characters = {
 		},
 		"jumping_to_point": {
 			"jumping_to_point_calldown": 10,
-			"jumping_to_point_manacost": 50
+			"jumping_to_point_manacost": 10
 		}
 	},
 	
@@ -211,7 +238,26 @@ var characters = {
 		"stone_wall": {
 			"stone_wall_calldown": 0,
 			"stone_wall_manacost": 15,
-			"stone_wall_calldown_snare": 10
+			"stone_wall_calldown_snare": 18
+		},
+		
+		"destruction_wave": {
+			"destruction_wave_damage": 13,
+			"destruction_wave_manacost":50,
+			"destruction_wave_calldown": 0,
+			"destruction_wave_speed": 150,
+			"destruction_wave_amount_bounces": 5
+		}
+	},
+	
+	"GASR": {
+		"health": 450,
+		"mana": 250,
+		
+		"stone_wall": {
+			"stone_wall_calldown": 0,
+			"stone_wall_manacost": 15,
+			"stone_wall_calldown_snare": 18
 		},
 		
 		"destruction_wave": {

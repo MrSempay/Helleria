@@ -22,17 +22,18 @@ func _ready():
 
 
 func _physics_process(delta):
+	
 	velocity.x = SPELLS_PARAMETERS.characters[character_who_casted_wave.get_name()][name_of_wave + "_wave"][name_of_wave + "_wave_speed"] * delta * vector * speed
 	translate(velocity)
 
 
 func _on_Wave_body_entered(body):
-	
+	print("ibo")
 	if body.has_method("handle_hit") && body.has_method("start_jump_heroe"):
 		body.handle_hit(SPELLS_PARAMETERS.characters[character_who_casted_wave.get_name()][name_of_wave + "_wave"][name_of_wave + "_wave_damage"], character_who_casted_wave)
 	elif should_be_destroing_after_colliding:
 		queue_free()
-	if body.has_method("stone_wall") && amount_bounces > 0:
+	if body.has_method("stone_wall_self") && amount_bounces > 0:
 		speed = speed + 0.5
 		vector = vector * (-1)
 		$AnimatedSprite.flip_h = !$AnimatedSprite.is_flipped_h()
@@ -40,5 +41,5 @@ func _on_Wave_body_entered(body):
 			queue_free()
 			body.get_node("AnimatedSprite").play("wall_destruction")
 		amount_bounces += 1
-	if amount_bounces < 1:
+	if body.has_method("stone_wall_self") && amount_bounces < 1:
 		amount_bounces += 1

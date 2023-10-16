@@ -33,7 +33,6 @@ var gasria = preload("res://Game/Characters/Gasria.tscn")
 var heroe = preload("res://Game/Characters/Heroe.tscn")
 var door = preload("res://Game/Tile_setsTools_for_level/Tools_for_level/Doors/Door.tscn")
 
-
 #var ally_1 = ally.instance()
 #var enemy_1_1 = enemy_1.instance()
 var enemy_1_2 = enemy_2.instance()
@@ -72,9 +71,17 @@ func First_Scene():
 
 
 func _ready():
+	if self.has_node("Dialoge_Layer"):
+		for i in range($Dialoge_Layer.get_children().size()):
+			$Dialoge_Layer.get_children()[i].connect("body_entered", self, "_on_Dialoge_Area_body_entered", [$Dialoge_Layer.get_children()[i].get_name()])
+	
+	#$Areas_For_Moving/Moving_Gasria_Area_1.connect("body_entered", self, "_on_Area_For_Moving_After_Heroe_entered", [[self.get_node("Gasria")], [Vector2(170,523)], [false], "Moving_Guards_Area_1"])
+	if self.has_node("Snares_Of_Boss"):
+		for i in range($Snares_Of_Boss.get_children().size()):
+			if $Snares_Of_Boss.get_children()[i].has_node("Wall_Growing"):
+				$Snares_Of_Boss.get_children()[i].get_node("Wall_Growing").connect("area_entered", self, "_on_Wall_Growing_area_entered", [$Snares_Of_Boss.get_children()[i].get_node("Wall_Growing")])
 
-
-		
+	gasria1.position = $Position_Gasria.global_position
 	self.add_child(gasria1)
 	$NavigationPolygonInstance2.set_enter_cost(2)
 	if GLOBAL.first_cat_scene:
@@ -124,9 +131,13 @@ func _ready():
 	door_1.position = $Position_Door.global_position
 	self.add_child(door_1)
 	GLOBAL.heroe_uploaded = true
+	get_node("Gasria/Trigger_Area").set_monitoring(false)
 	
 func _physics_process(delta):
+	#print(get_node("Snares_Of_Boss/Area2D6/PositionsWalls"))
 
+			
+	$Line2D.set_points(get_node("Gasria").nav_path)
 			
 	if GLOBAL.life_Belotur:
 		if $Belotur.global_position == first_position_Belotur:
@@ -217,18 +228,70 @@ func _physics_process(delta):
 		area_of_dialoge_camera.was_pressed_4 = false
 		area_of_dialoge_camera.input_touch = 0
 		self.queue_free()
+
+func _on_Wall_Growing_area_entered(area, area_which_was_triggered):
+	if area.get_name() == "Area_For_Wall_Detecting":
+		#print(true)
+		var position_for_wall = area_which_was_triggered.get_parent().get_node("PositionsWalls/Position2D2").global_position
+		if abs(area_which_was_triggered.global_position.x - area_which_was_triggered.get_parent().get_node("PositionsWalls/Position2D").global_position.x) < abs(area_which_was_triggered.global_position.x - area_which_was_triggered.get_parent().get_node("PositionsWalls/Position2D2").global_position.x):
+			position_for_wall = area_which_was_triggered.get_parent().get_node("PositionsWalls/Position2D").global_position
+		get_node("Gasria").stone_wall(position_for_wall, false, area_which_was_triggered.get_parent().get_node("PositionsWalls"))
+	
+func _on_Area_For_Moving_After_Heroe_entered(body, array_of_characters, array_of_target_points, stay_triggered, area_which_was_triggered):
+	if body.has_method("start_jump_heroe"):
+		for i in range(array_of_characters.size()):
+			array_of_characters[i].animate("idle")
+			array_of_characters[i].area_from_which_manual_navigation_was_started = area_which_was_triggered
+			array_of_characters[i].should_be_triggered_after_manual_navigation = stay_triggered[i]
+			array_of_characters[i].current_target = array_of_target_points[i][0]
+			array_of_characters[i].target_points_for_manual_navigation = array_of_target_points[i]
+			array_of_characters[i].get_node("NavigationAgent2D").set_target_location(array_of_target_points[i][0])
+			array_of_characters[i].get_node("NavigationAgent2D").get_final_location()
+			array_of_characters[i].nav_path = array_of_characters[i].get_node("NavigationAgent2D").get_nav_path()
+			array_of_characters[i].target_points_for_manual_navigation.remove(0)
+			array_of_characters[i].speed = 4
+			array_of_characters[i].manual_navigation = true
+			array_of_characters[i].j = 0
+			get_node("Areas_For_Moving/" + area_which_was_triggered).queue_free()
+	
+func _on_Dialoge_Area_body_entered(body, dialoge_area_name):
+	if get_node("Heroe/CanvasLayer/Dialoge_Field").file.is_open():
+		get_node("Heroe/CanvasLayer/Dialoge_Field").file.close()
+		get_node("Heroe/CanvasLayer/Dialoge_Field").current_scene = self
+		get_node("Heroe/CanvasLayer/Dialoge_Field").dialoge_name = dialoge_area_name
+		get_node("Heroe/CanvasLayer/Dialoge_Field").set_visible(true)
+		get_node("Heroe/CanvasLayer/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + ".txt", File.READ) 
+		var k = str(get_node("Heroe/CanvasLayer/Dialoge_Field").file.get_line())
+		get_node("Heroe/CanvasLayer/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
+		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[0])
+
+	if (GLOBAL.dialoge_heroe_camera or GLOBAL.dialoge_No_heroe_camera) && !get_node("Heroe/CanvasLayer/Dialoge_Field").file.is_open():
+		get_node("Heroe/CanvasLayer/Dialoge_Field").set_visible(true)
+		get_node("Heroe/CanvasLayer/Dialoge_Field").current_scene = self
+		get_node("Heroe/CanvasLayer/Dialoge_Field").dialoge_name = dialoge_area_name
+		get_node("Heroe/CanvasLayer/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + ".txt", File.READ) 
+		var k = str(get_node("Heroe/CanvasLayer/Dialoge_Field").file.get_line())
+		get_node("Heroe/CanvasLayer/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
+		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
+		get_node("Dialoge_Layer/" + dialoge_area_name + "/CollisionShape2D").set_disabled(true)
+	get_node("Dialoge_Layer/" + dialoge_area_name).queue_free()
 	
 	
-	
-	
-		
-	
-	
-	
-	
-	
-	
-	
+func dialoge_finished(dialoge_name):
+	match dialoge_name:
+		"Dialoge_Area_3":
+			triggered_enemies["Gasria"] = true
+			get_node("Gasria").set_global_position(Vector2(1225, 800))
+			get_node("Gasria").should_be_triggered_after_manual_navigation = false
+			get_node("Gasria").current_target = Vector2(2450, 830)
+			get_node("Gasria").target_points_for_manual_navigation = [Vector2(2450, 830), Vector2(2512, 927), Vector2(2160, 920), Vector2(1842, 996), Vector2(1600, 1109) , Vector2(627, 1356)]
+			get_node("Gasria").update_way()
+			get_node("Gasria").target_points_for_manual_navigation.remove(0)
+			get_node("Gasria").speed = 2.5
+			get_node("Gasria").manual_navigation = true
+			get_node("Gasria").j = 0
 	
 	
 
@@ -237,18 +300,19 @@ func _on_Stop_Machine_body_entered(body):
 	if body.has_method("enemy"):
 		get_node("Stop_Machine/CollisionShape2D").set_disabled(true)
 		#body.stop_machine = true
-		body.get_node("Timer_Stop_Machine").start()
+
 
 
 func _on_NoSpeed_Area_body_entered(body):
 	if body.has_method("enemy"):
+		body.get_node("Timers/Timer_For_Stop_Machine").start()
 		if $Heroe.global_position.y < get_node("Areas_For_Specifical_Controlling/No-Speed_Area").global_position.y:
 			if body.get_node("RayCastHorizontal_For_Heroe").get_collider():
 				if !body.get_node("RayCastHorizontal_For_Heroe").get_collider().has_method("Heroe"):
 					body.speed = 0
 					body.stop_machine = true
 
-			if !body.get_node("RayCastHorizontal_For_Heroe").get_collider():
+			else:
 				body.speed = 0
 				body.stop_machine = true
 
@@ -335,3 +399,15 @@ func from_dex_to_bin(array):
 
 
 
+func _on_Area_For_Waiting_Gasria_body_entered(body):
+	if body.get_name() == "Gasria":
+
+		if abs(get_node("Gasria").global_position.x - get_node("Heroe").global_position.x) > 190:
+			get_node("Gasria").special_physics_process_controlling = true
+		get_node("Area_For_Waiting_Gasria").queue_free()
+
+
+
+func _on_Area_For_Starting_Fight_body_entered(body):
+	if body.get_name() == "Gasria":
+		get_node("Gasria/Area_For_Starting_Fight").monitoring = true

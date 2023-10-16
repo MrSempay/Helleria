@@ -32,13 +32,15 @@ collision_mask = 2097215
 format = 1
 tile_data = PoolIntArray( 196682, 1, 0, 262145, 1, 0, 524362, 1, 0, 589825, 1, 0, 655417, 3, 0, 655423, 3, 0, 655428, 3, 0, 720948, 4, 0, 786478, 4, 0, 852042, 1, 0, 917505, 1, 0, 917544, 4, 0, 1179668, 3, 0, 1179673, 3, 0, 1179679, 3, 0, 1179685, 3, 0, 1179691, 3, 0, 1179722, 1, 0, 1245185, 1, 0, 1310737, 4, 0, 1441845, 4, 0, 1507340, 4, 0, 1507402, 1, 0, 1572865, 1, 0, 1769481, 3, 0, 1769484, 3, 0, 1769490, 3, 0, 1769496, 3, 0, 1769497, 3, 0, 1769498, 3, 0, 1769499, 3, 0, 1769500, 3, 0, 1769505, 3, 0, 1769511, 3, 0, 1769517, 3, 0, 1900530, 2, 0, 1900531, 2, 0, 1900532, 2, 0, 1900533, 2, 0, 1900534, 2, 0, 1900535, 2, 0, 1900536, 2, 0, 1900537, 2, 0, 1900538, 2, 0, 1900539, 2, 0, 1900540, 2, 0, 1900541, 2, 0, 1966078, 2, 0, 1966079, 2, 0, 1900544, 2, 0, 1900545, 1, 0, 1900618, 1, 0, 2031615, 2, 0, 1966080, 2, 0, 1966083, 4, 0, 2097151, 2, 0, 2031670, 4, 0, 2162678, 2, 0, 2162679, 2, 0, 2162680, 2, 0, 2162681, 2, 0, 2162682, 2, 0, 2162683, 2, 0, 2162684, 2, 0, 2162685, 2, 0, 2162686, 2, 0, 2162687, 2, 0, 2097152, 2, 0, 2228214, 2, 0, 2228223, 2, 0, 2162688, 2, 0, 2293750, 2, 0, 2293751, 2, 0, 2293757, 2, 0, 2293758, 2, 0, 2293759, 2, 0, 2228224, 2, 0, 2359287, 2, 0, 2359288, 2, 0, 2359289, 2, 0, 2359290, 2, 0, 2359291, 2, 0, 2359292, 2, 0, 2359293, 2, 0, 2293760, 2, 0, 2293761, 0, 0, 2293769, 0, 0, 2293777, 0, 0, 2293785, 0, 0, 2293793, 0, 0, 2293801, 0, 0, 2293809, 0, 0, 2293817, 0, 0, 2293825, 0, 0 )
 
-[node name="Position_Jeison" type="Position2D" parent="."]
+[node name="Positions_For_Enemies" type="Node2D" parent="."]
+
+[node name="Position_Jeison" type="Position2D" parent="Positions_For_Enemies"]
 position = Vector2( 1122, 127 )
 
-[node name="Position_Sed" type="Position2D" parent="."]
+[node name="Position_Sed" type="Position2D" parent="Positions_For_Enemies"]
 position = Vector2( 611, 524 )
 
-[node name="Position_Her" type="Position2D" parent="."]
+[node name="Position_Her" type="Position2D" parent="Positions_For_Enemies"]
 position = Vector2( 641, 525 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
@@ -61,18 +63,18 @@ navigation_layers = 63
 
 [node name="Areas_For_Moving" type="Node2D" parent="."]
 
-[node name="Moving_Guards_Area_1" type="Area2D" parent="Areas_For_Moving"]
+[node name="Moving_Area_1" type="Area2D" parent="Areas_For_Moving"]
 position = Vector2( 900, 461 )
 scale = Vector2( 3, 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Moving/Moving_Guards_Area_1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Moving/Moving_Area_1"]
 shape = SubResource( 4 )
 
-[node name="Moving_Guards_Area_2" type="Area2D" parent="Areas_For_Moving"]
+[node name="Moving_Area_2" type="Area2D" parent="Areas_For_Moving"]
 position = Vector2( 242, 315 )
 scale = Vector2( 3, 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Moving/Moving_Guards_Area_2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Moving/Moving_Area_2"]
 shape = SubResource( 4 )
 
 [node name="Dialoge_Layer" type="Node2D" parent="."]

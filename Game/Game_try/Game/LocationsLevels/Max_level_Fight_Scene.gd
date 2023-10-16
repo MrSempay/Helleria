@@ -40,7 +40,7 @@ func _physics_process(delta):
 	
 	
 	if has_node("Heroe"):
-		current_target = $Heroe.global_position
+		get_node("Belotur").current_target = $Heroe.global_position
 	
 	if !life_enemy:
 		GLOBAL.scene("First_Scene")
