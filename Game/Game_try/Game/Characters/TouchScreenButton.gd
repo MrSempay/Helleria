@@ -1,5 +1,8 @@
 extends TouchScreenButton
 
+func _physics_process(delta):
+	self.set_visible(GLOBAL.dialoge_heroe_camera)
+
 
 var jumping = false
 

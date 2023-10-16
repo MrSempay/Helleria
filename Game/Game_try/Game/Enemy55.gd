@@ -4,11 +4,10 @@ var targets_for_interaction = ["Her", "Sed"]
 
 
 func _ready():
-	pass
+	animate("idle")
 
 
 func _physics_process(delta):
-	
 	#print(self.global_position)
 	if get_parent().has_node("Heroe"):
 		if heroe == null:
@@ -20,7 +19,8 @@ func _physics_process(delta):
 		heroe = null
 	
 	if heroe != null && !stun && get_parent().has_method("Fight_Scene"):
-		if get_parent().triggered_enemies[name_character] && get_parent().has_method("Fight_Scene") && !get_parent().get_node("Heroe").in_invisibility: 
+		print("???")
+		if get_parent().triggered_enemies[name_character] && !get_parent().get_node("Heroe").in_invisibility: 
 			#chain("damage_block", [get_parent().get_node("Her"), get_parent().get_node("Sed")])
 			chain("damage_block", [get_parent().get_node("Her")])
 			#chain("cure", [get_parent().get_node("Her"), get_parent().get_node("Sed")])

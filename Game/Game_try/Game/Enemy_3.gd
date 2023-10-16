@@ -23,6 +23,7 @@ var target_points_for_manual_navigation = []
 var heroe = null
 var should_be_triggered_after_manual_navigation = false
 var area_from_which_manual_navigation_was_started = null
+var special_physics_process_controlling = false
 
 onready var timer_of_stone = get_node("Timer_Stone")
 onready var timer_of_stone_sword = get_node("Timer_Stone_Sword")
@@ -92,18 +93,19 @@ func mana_using(manacost):
 
 func _physics_process(delta):
 	
-	if manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
-		if target_points_for_manual_navigation != []:
-			current_target = target_points_for_manual_navigation[0]
-			update_way()
-			target_points_for_manual_navigation.remove(0)
-		else:
-			manual_navigation = false
-			speed = 2.5
-			animate("idle")
-			get_parent().triggered_enemies[name] = should_be_triggered_after_manual_navigation
-			if get_parent().has_method("already_finished_manual_navigation_which_started_from_area_entering") && area_from_which_manual_navigation_was_started != null:
-				get_parent().already_finished_manual_navigation_which_started_from_area_entering(self.name_character, area_from_which_manual_navigation_was_started)
+	if nav_path.size() > 0:
+		if manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
+			if target_points_for_manual_navigation != []:
+				current_target = target_points_for_manual_navigation[0]
+				update_way()
+				target_points_for_manual_navigation.remove(0)
+			else:
+				manual_navigation = false
+				speed = 2.5
+				animate("idle")
+				get_parent().triggered_enemies[name] = should_be_triggered_after_manual_navigation
+				if get_parent().has_method("already_finished_manual_navigation_which_started_from_area_entering") && area_from_which_manual_navigation_was_started != null:
+					get_parent().already_finished_manual_navigation_which_started_from_area_entering(self.name_character, area_from_which_manual_navigation_was_started)
 	
 	if $RayCastVertical_3.get_collider() && $Sprite.get_animation() == "jump":
 		animate("idle")
@@ -146,12 +148,9 @@ func _physics_process(delta):
 					current_target = Vector2(101, 318)
 			else:
 				if abs(self.global_position.x - current_target.x) < 3:
-					print("A1")
 					if current_target == Vector2(935, 233):
-						print("A2")
 						current_target = Vector2(101, 318)
 					else:
-						print("A3")
 						current_target = Vector2(935, 233)
 			
 			
@@ -206,10 +205,10 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 	
 	collision_of_stone_sword.set_disabled(true)
-	if get_parent().has_node("Heroe") && !stun:
+	if !stun && !special_physics_process_controlling && get_parent().get_name() != "root":
 		#var heroe = get_parent().get_node("Heroe")
 		
-		if trigger_of_ally or get_parent().has_method("Fight_Scene") or get_parent().get_node("Heroe").in_invisibility && get_parent().Belotur_was_triggered:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
+		if trigger_of_ally or get_parent().has_method("Fight_Scene") or get_parent().triggered_enemies[name_character] == true:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
 			if get_parent().has_method("Fight_Scene"):
 				if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 30) && (self.get_position().y - heroe.get_position().y > -30)) && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_stone_sword_Belotur && get_parent().get_name() != "Garsia_Boss_Fight_Scene": 
 					if $Sprite.get_animation() == "stone":

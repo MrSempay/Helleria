@@ -129,18 +129,20 @@ func _physics_process(delta):
 	#print(str(self.get_global_position()) + " HER ")
 	#print(get_parent().triggered_enemies[name])
 	#print(get_parent().triggered_enemies[name_character])
-	if manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
-		if target_points_for_manual_navigation != []:
-			current_target = target_points_for_manual_navigation[0]
-			update_way()
-			target_points_for_manual_navigation.remove(0)
-		else:
-			manual_navigation = false
-			speed = 2.5
-			animate("idle")
-			get_parent().triggered_enemies[name] = should_be_triggered_after_manual_navigation
-			if get_parent().has_method("already_finished_manual_navigation_which_started_from_area_entering") && area_from_which_manual_navigation_was_started != null:
-				get_parent().already_finished_manual_navigation_which_started_from_area_entering(self.name_character, area_from_which_manual_navigation_was_started)
+
+	if nav_path.size() > 0:
+		if manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
+			if target_points_for_manual_navigation != []:
+				current_target = target_points_for_manual_navigation[0]
+				update_way()
+				target_points_for_manual_navigation.remove(0)
+			else:
+				manual_navigation = false
+				speed = 2.5
+				animate("idle")
+				get_parent().triggered_enemies[name] = should_be_triggered_after_manual_navigation
+				if get_parent().has_method("already_finished_manual_navigation_which_started_from_area_entering") && area_from_which_manual_navigation_was_started != null:
+					get_parent().already_finished_manual_navigation_which_started_from_area_entering(self.name_character, area_from_which_manual_navigation_was_started)
 	#print(self.global_position)
 	#print(current_target)
 	#print(manual_navigation)
@@ -174,90 +176,96 @@ func _physics_process(delta):
 		current_target = heroe.global_position
 		
 	
-	if get_parent().has_node("Heroe") && !stun && !special_physics_process_controlling:
+	if !stun && !special_physics_process_controlling:
 		#print(heroe.global_position.x)
-		if((self.global_position.x) - get_parent().get_node("Heroe").global_position.x) > 0:
-			$Handle_Attack.set_position(Vector2(-position_attack_area_x, -6))
-			$Sprite.flip_h = true
-		else:
-			$Handle_Attack.set_position(Vector2(position_attack_area_x, -6))
-			$Sprite.flip_h = false
+		if get_parent().has_node("Heroe"):
+			if((self.global_position.x) - get_parent().get_node("Heroe").global_position.x) > 0:
+				$Handle_Attack.set_position(Vector2(-position_attack_area_x, -6))
+				$Sprite.flip_h = true
+			else:
+				$Handle_Attack.set_position(Vector2(position_attack_area_x, -6))
+				$Sprite.flip_h = false
 		#var heroe = get_parent().get_node("Heroe")
-		if get_parent().get_node("Heroe").in_invisibility or get_parent().triggered_enemies[name_character] == true:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping			
-			#print("SHIT")
-			if j < nav_path.size() - 1:
-				#print(true)
-				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
-					#print(false)
-					if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
-						if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && nav_path[j].y > nav_path[j+1].y:
-							start_jump_enemy()
-				elif ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && !$RayCastVertical_2.get_collider() && nav_path[j].y > nav_path[j+1].y:
-							start_jump_enemy()
-				if $RayCastVertical.get_collider():
-					#print(nav_path)
-					#print( "Collider " + str($RayCastVertical.get_collider().global_position.y) )
-					#print( "path " + str(nav_path[1].y))
-					if $RayCastVertical.get_collider().has_node("Area_To_Jump"):
+		if get_parent().get_name() != "root":
+			if get_parent().triggered_enemies[name_character] == true:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping			
+				#print(nav_path)
+				#print(current_target)
+				#print(name_character)
+				#print("SHIT")
+				if j < nav_path.size() - 1:
+					#print(true)
+					if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
+						#print(false)
+						if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
+							if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && nav_path[j].y > nav_path[j+1].y:
+								start_jump_enemy()
+					elif ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && !$RayCastVertical_2.get_collider() && nav_path[j].y > nav_path[j+1].y:
+								start_jump_enemy()
+					if $RayCastVertical.get_collider():
+						#print(nav_path)
+						#print( "Collider " + str($RayCastVertical.get_collider().global_position.y) )
+						#print( "path " + str(nav_path[1].y))
+						if $RayCastVertical.get_collider().has_node("Area_To_Jump"):
+							if nav_path.size() == 2:
+								if GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider().get_node("Area_To_Jump")), [[nav_path[0], nav_path[1]]]):
+									print("Ibo1")
+									start_jump_enemy()
+							else:
+								if GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider().get_node("Area_To_Jump")), [[nav_path[0], nav_path[1]], [nav_path[1], nav_path[2]]]):
+									print("Ibo2")
+									start_jump_enemy()
 						if nav_path.size() == 2:
-							if GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider().get_node("Area_To_Jump")), [[nav_path[0], nav_path[1]]]):
-								print("Ibo1")
+							if !GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider()), [[nav_path[0], nav_path[1]]]):
+								print("Ibo3")
 								start_jump_enemy()
 						else:
-							if GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider().get_node("Area_To_Jump")), [[nav_path[0], nav_path[1]], [nav_path[1], nav_path[2]]]):
-								print("Ibo2")
+							if !GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider()), [[nav_path[0], nav_path[1]], [nav_path[1], nav_path[2]]]):
+								#print(nav_path)
+								print("Ibo4")
 								start_jump_enemy()
-					if nav_path.size() == 2:
-						if !GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider()), [[nav_path[0], nav_path[1]]]):
-							print("Ibo3")
-							start_jump_enemy()
-					else:
-						if !GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider()), [[nav_path[0], nav_path[1]], [nav_path[1], nav_path[2]]]):
-							#print(nav_path)
-							print("Ibo4")
-							start_jump_enemy()
-				if $RayCastHorizontal_3.get_collider():
-					start_jump_enemy()
-			if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
-				if $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
-					stop_machine = false
-			#print(j < nav_path.size() - 1)
-			#print(current_target)
-			#print(get_parent().triggered_enemies[name_character])
-			#print(nav_path)
-			#print(nav_path)
-			if j < nav_path.size() - 1 && ($Sprite.get_animation() == "idle" or $Sprite.get_animation() == "jump" or $Sprite.get_animation() == "run" or $Sprite.get_animation() == "jumping_to_point" or $Sprite.get_animation() == "preparing_jumping_to_point") && $Handle_Attack/CollisionShape2D.is_disabled():
-				#print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-				if (nav_path[j].x - nav_path[j+1].x) >= 0:
-					$RayCastHorizontal_1.set_cast_to(Vector2(-19,0))
-					$RayCastHorizontal_2.set_cast_to(Vector2(-19,0))
-					$RayCastHorizontal_3.set_cast_to(Vector2(-4,0))
-					$RayCastHorizontal_4.set_cast_to(Vector2(-19,0))
-					$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
-					$RayCastVertical.set_position(Vector2(-11,1))
-					if !stop_machine:
-						move_and_collide(Vector2(-1,0) * speed * scale_speed_moving)
-						get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-						if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
-							animate("run")
-					$Sprite.flip_h = true
-				if (nav_path[j].x - nav_path[j+1].x) <= -0:
-					$RayCastHorizontal_1.set_cast_to(Vector2(19,0))
-					$RayCastHorizontal_2.set_cast_to(Vector2(19,0))
-					$RayCastHorizontal_3.set_cast_to(Vector2(4,0))
-					$RayCastHorizontal_4.set_cast_to(Vector2(19,0))
-					$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
-					$RayCastVertical.set_position(Vector2(11,1))
-					if !stop_machine:
-						move_and_collide(Vector2(1,0) * speed * scale_speed_moving)
-						get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-						if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
-							animate("run")
-					$Sprite.flip_h = false
+					if $RayCastHorizontal_3.get_collider():
+						start_jump_enemy()
+				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
+					if $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
+						stop_machine = false
+				#print(j < nav_path.size() - 1)
+				#print(current_target)
+				#print(get_parent().triggered_enemies[name_character])
+				#print(nav_path)
+				#print(nav_path)
+				if j < nav_path.size() - 1 && ($Sprite.get_animation() == "idle" or $Sprite.get_animation() == "jump" or $Sprite.get_animation() == "run" or $Sprite.get_animation() == "jumping_to_point" or $Sprite.get_animation() == "preparing_jumping_to_point") && $Handle_Attack/CollisionShape2D.is_disabled():
+					#print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+					if (nav_path[j].x - nav_path[j+1].x) >= 0:
+						
+						$RayCastHorizontal_1.set_cast_to(Vector2(-19,0))
+						$RayCastHorizontal_2.set_cast_to(Vector2(-19,0))
+						$RayCastHorizontal_3.set_cast_to(Vector2(-4,0))
+						$RayCastHorizontal_4.set_cast_to(Vector2(-19,0))
+						$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
+						$RayCastVertical.set_position(Vector2(-11,1))
+						if !stop_machine:
+							move_and_collide(Vector2(-1,0) * speed * scale_speed_moving)
+							get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+							if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
+								animate("run")
+						$Sprite.flip_h = true
+					if (nav_path[j].x - nav_path[j+1].x) <= -0:
+						$RayCastHorizontal_1.set_cast_to(Vector2(19,0))
+						$RayCastHorizontal_2.set_cast_to(Vector2(19,0))
+						$RayCastHorizontal_3.set_cast_to(Vector2(4,0))
+						$RayCastHorizontal_4.set_cast_to(Vector2(19,0))
+						$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
+						$RayCastVertical.set_position(Vector2(11,1))
+						if !stop_machine:
+							move_and_collide(Vector2(1,0) * speed * scale_speed_moving)
+							get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+							if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
+								animate("run")
+						$Sprite.flip_h = false
 
-			if j < nav_path.size() - 1:
-				if ((self.global_position.x - nav_path[j+1].x) < stop_distance_to_point && (self.global_position.x - nav_path[j+1].x) > -stop_distance_to_point) && j < nav_path.size() - 1:
-					j += 1
+				if j < nav_path.size() - 1:
+					if ((self.global_position.x - nav_path[j+1].x) < stop_distance_to_point && (self.global_position.x - nav_path[j+1].x) > -stop_distance_to_point) && j < nav_path.size() - 1:
+						j += 1
 	if !$RayCastVertical_3.get_collider():
 		velocity.y += delta * 970 * scale_gravity
 		velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
@@ -642,6 +650,7 @@ func animate(art):
 
 func _on_VisibilityNotifier2D_screen_exited():
 	if get_parent().has_method("First_Scene") && GLOBAL.first_cat_scene:
+		print("wqpijedapwidj")
 		queue_free()
 
 
@@ -653,16 +662,16 @@ func _on_NavigationAgent2D_path_changed():
 
 
 func _on_Timer_For_Updaiting_Way_timeout():
-	if get_parent().has_node("Heroe"):
-		update_way()
+	update_way()
 			
 			
 			
 func update_way():
-	$NavigationAgent2D.set_target_location(current_target)
-	$NavigationAgent2D.get_final_location()
-	nav_path = $NavigationAgent2D.get_nav_path()
-	j = 0
+	if current_target != null:
+		$NavigationAgent2D.set_target_location(current_target)
+		$NavigationAgent2D.get_final_location()
+		nav_path = $NavigationAgent2D.get_nav_path()
+		j = 0
 
 
 func _on_Area_For_Starting_Fight_body_entered(body):
@@ -670,7 +679,7 @@ func _on_Area_For_Starting_Fight_body_entered(body):
 		if !body.in_invisibility:
 			GLOBAL.enemy_for_fight = name_character
 			GLOBAL.position_heroe_before_fight = get_parent().get_node("Heroe").global_position
-			GLOBAL.scene(LOCATIONS_PARAMETERS.locations[get_parent().get_name]["enemies_fight_scenes"][name_character])
+			GLOBAL.scene(LOCATIONS_PARAMETERS.locations[get_parent().get_name()]["enemies_fight_scenes"][name_character])
 
 func stun(duration):
 	_on_Sprite_animation_finished(true)

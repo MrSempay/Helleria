@@ -1,4 +1,5 @@
 extends Camera2D
+
 var resolution_x
 var camera_scale
 

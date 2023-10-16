@@ -20,13 +20,13 @@ var position_enemy = ""
 var Belotur_was_triggered = false
 var Jeison_was_triggered = false
 var Adalard_was_triggered = false
-var triggered_enemies = {"Adalard": false, "Belotur": false, "Jeison": false, "Gasria": false}
+var triggered_enemies = {"Adalard": true, "Belotur": true, "Jeison": true, "Gasria": false, "Akira": true, "Aglea": true}
 
 #var ally = preload("res://Game/Characters/Ally.tscn")
-#var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
+var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
 var enemy_2 = preload("res://Game/Characters/Adalard.tscn")
 var enemy_3 = preload("res://Game/Characters/Enemy_33.tscn")
-#var enemy_4 = preload("res://Game/Characters/Enemy44.tscn")
+var enemy_4 = preload("res://Game/Characters/Enemy44.tscn")
 var enemy_5 = preload("res://Game/Characters/Enemy55.tscn")
 var gasria = preload("res://Game/Characters/Gasria.tscn")
 
@@ -34,10 +34,10 @@ var heroe = preload("res://Game/Characters/Heroe.tscn")
 var door = preload("res://Game/Tile_setsTools_for_level/Tools_for_level/Doors/Door.tscn")
 
 #var ally_1 = ally.instance()
-#var enemy_1_1 = enemy_1.instance()
+var enemy_1_1 = enemy_1.instance()
 var enemy_1_2 = enemy_2.instance()
 var enemy_1_3 = enemy_3.instance()
-#var enemy_1_4 = enemy_4.instance()
+var enemy_1_4 = enemy_4.instance()
 var enemy_1_5 = enemy_5.instance()
 var gasria1 = gasria.instance()
 var heroe_1 = heroe.instance()
@@ -71,6 +71,11 @@ func First_Scene():
 
 
 func _ready():
+	
+	if !GLOBAL.first_cat_scene:
+		GLOBAL.dialoge_No_heroe_camera = false
+		GLOBAL.dialoge_heroe_camera = true
+	
 	if self.has_node("Dialoge_Layer"):
 		for i in range($Dialoge_Layer.get_children().size()):
 			$Dialoge_Layer.get_children()[i].connect("body_entered", self, "_on_Dialoge_Area_body_entered", [$Dialoge_Layer.get_children()[i].get_name()])
@@ -108,26 +113,26 @@ func _ready():
 		$Position_Jeison.set_global_position(Vector2(3530, 1528))
 	else:
 		pass
-		#$Position_Jeison.set_global_position(first_position_Jeison)
+	#$Position_Jeison.set_global_position(first_position_Jeison)
 	#ally_1.position = $Ally.global_position
 	#self.add_child(ally_1)
-	#if GLOBAL.life_Aglea == true:
-	#	enemy_1_1.position = $Position_Aglea.global_position
-	#	self.add_child(enemy_1_1)
-	if GLOBAL.life_Adalard == true:
-		enemy_1_2.position = $Position_Adalard.global_position
-		self.add_child(enemy_1_2)
-	if GLOBAL.life_Belotur == true:
-		enemy_1_3.position = $Position_Belotur.global_position
-		self.add_child(enemy_1_3)
-	#if GLOBAL.life_Akira == true:
-	#	enemy_1_4.position = $Position_Akira.global_position
-	#	self.add_child(enemy_1_4)
-	if GLOBAL.life_Jeison == true:
-		enemy_1_5.position = $Position_Jeison.global_position
-		self.add_child(enemy_1_5)
 	heroe_1.position = $Position_Heroe.global_position
 	self.add_child(heroe_1)
+	if GLOBAL.life_Aglea == true:
+		#enemy_1_1.position = $Position_Aglea.global_position
+		self.add_child(enemy_1_1)
+	if GLOBAL.life_Adalard == true:
+		#enemy_1_2.position = $Position_Adalard.global_position
+		self.add_child(enemy_1_2)
+	if GLOBAL.life_Belotur == true:
+		#enemy_1_3.position = $Position_Belotur.global_position
+		self.add_child(enemy_1_3)
+	if GLOBAL.life_Akira == true:
+		#enemy_1_4.position = $Position_Akira.global_position
+		self.add_child(enemy_1_4)
+	if GLOBAL.life_Jeison == true:
+		#enemy_1_5.position = $Position_Jeison.global_position
+		self.add_child(enemy_1_5)
 	door_1.position = $Position_Door.global_position
 	self.add_child(door_1)
 	GLOBAL.heroe_uploaded = true
@@ -136,16 +141,17 @@ func _ready():
 func _physics_process(delta):
 	#print(get_node("Snares_Of_Boss/Area2D6/PositionsWalls"))
 
-			
+	#print(GLOBAL.dialoge_No_heroe_camera)
+	#print(GLOBAL.dialoge_heroe_camera)
 	$Line2D.set_points(get_node("Gasria").nav_path)
 			
-	if GLOBAL.life_Belotur:
-		if $Belotur.global_position == first_position_Belotur:
-			Belotur_was_triggered = false
-		if $Jeison.global_position == first_position_Jeison:
-			Jeison_was_triggered = false
-		if $Adalard.global_position == first_position_Adalard:
-			Adalard_was_triggered = false
+	#if GLOBAL.life_Belotur:
+	#	if $Belotur.global_position == first_position_Belotur:
+	#		Belotur_was_triggered = false
+	#	if $Jeison.global_position == first_position_Jeison:
+	#		Jeison_was_triggered = false
+	#	if $Adalard.global_position == first_position_Adalard:
+	#		Adalard_was_triggered = false
 	
 	
 	if self.has_node("Heroe"):
@@ -176,7 +182,62 @@ func _physics_process(delta):
 		#if (($Belotur.global_position.x) - $Heroe.global_position.x < 25) && (($Belotur.global_position.x) - $Heroe.global_position.x > -26) && (($Belotur.global_position.y) - $Heroe.global_position.y < 15) && (($Belotur.global_position.y) - $Heroe.global_position.y > -15):
 			#GLOBAL.position_heroe_before_fight = $Heroe.global_position
 			#GLOBAL.scene("Max_level_Fight_Scene")
+	if GLOBAL.first_cat_scene && GLOBAL.dialoge_heroe_camera == true:
+		GLOBAL.dialoge_No_heroe_camera = true
+		GLOBAL.dialoge_heroe_camera = false
+	if has_node("Dialoge_Layer/Dialoge_Area_2"):
+		if has_node("Aglea"):
+			if GLOBAL.first_cat_scene && !self.has_node("Heroe") && get_node("Aglea").current_target != Vector2(2250, 1530):
+				get_node("Aglea").set_global_position(Vector2(2425, 1530))
+				get_node("Aglea").should_be_triggered_after_manual_navigation = false
+				get_node("Aglea").current_target = Vector2(2250, 1530)
+				get_node("Aglea").target_points_for_manual_navigation = [Vector2(2250, 1530)]
+				get_node("Aglea").update_way()
+				get_node("Aglea").speed = 2.5
+				get_node("Aglea").manual_navigation = true
+				get_node("Aglea").j = 0
+				
+				get_node("Akira").set_global_position(Vector2(2535, 1530))
+				get_node("Akira").should_be_triggered_after_manual_navigation = false
+				get_node("Akira").current_target = Vector2(2280, 1530)
+				get_node("Akira").target_points_for_manual_navigation = [Vector2(2280, 1530)]
+				get_node("Akira").update_way()
+				get_node("Akira").speed = 2.5
+				get_node("Akira").manual_navigation = true
+				get_node("Akira").j = 0
+				
+				get_node("Belotur").set_global_position(Vector2(2545, 1530))
+				get_node("Belotur").should_be_triggered_after_manual_navigation = false
+				get_node("Belotur").current_target = Vector2(2165, 1530)
+				get_node("Belotur").target_points_for_manual_navigation = [Vector2(2165, 1530), Vector2(2185, 1530)]
+				get_node("Belotur").update_way()
+				get_node("Belotur").target_points_for_manual_navigation.remove(0)
+				get_node("Belotur").speed = 2.5
+				get_node("Belotur").manual_navigation = true
+				get_node("Belotur").j = 0
+			
+				get_node("Adalard").set_global_position(Vector2(2515, 1530))
+				get_node("Adalard").should_be_triggered_after_manual_navigation = false
+				get_node("Adalard").current_target = Vector2(2135, 1530)
+				get_node("Adalard").target_points_for_manual_navigation = [Vector2(2135, 1530), Vector2(2155, 1530)]
+				get_node("Adalard").update_way()
+				get_node("Adalard").target_points_for_manual_navigation.remove(0)
+				get_node("Adalard").speed = 2.5
+				get_node("Adalard").manual_navigation = true
+				get_node("Adalard").j = 0
+				
+				get_node("Jeison").set_global_position(Vector2(2555, 1530))
+				get_node("Jeison").should_be_triggered_after_manual_navigation = false
+				get_node("Jeison").current_target = Vector2(2105, 1530)
+				get_node("Jeison").target_points_for_manual_navigation = [Vector2(2105, 1530), Vector2(2125, 1530)]
+				get_node("Jeison").update_way()
+				get_node("Jeison").target_points_for_manual_navigation.remove(0)
+				get_node("Jeison").speed = 2.5
+				get_node("Jeison").manual_navigation = true
+				get_node("Jeison").j = 0
+		
 	
+	"""
 	if !self.has_node("Heroe") && !stop_Aglea_1M && GLOBAL.first_cat_scene:
 		$Aglea.number_of_moving = 1
 		$Aglea.moving_state = true
@@ -217,16 +278,12 @@ func _physics_process(delta):
 		$Akira.number_of_dialoge = 1
 		$Akira.array_dialoge_flags = [4,6,8,12,14]
 		stop_Akira_1D = true
-	
+	"""
 	if !self.has_node("Akira") && !self.has_node("Aglea") && !self.has_node("Jeison") && !self.has_node("Adalard") && !self.has_node("Belotur") && !self.has_node("Heroe"):
+		print("???")
 		match GLOBAL.first_cat_scene:
 			true: GLOBAL.scene("Temple_lvl")
 		GLOBAL.first_cat_scene = false
-		area_of_dialoge_camera.was_pressed_1 = false
-		area_of_dialoge_camera.was_pressed_2 = false
-		area_of_dialoge_camera.was_pressed_3 = false
-		area_of_dialoge_camera.was_pressed_4 = false
-		area_of_dialoge_camera.input_touch = 0
 		self.queue_free()
 
 func _on_Wall_Growing_area_entered(area, area_which_was_triggered):
@@ -255,27 +312,52 @@ func _on_Area_For_Moving_After_Heroe_entered(body, array_of_characters, array_of
 			get_node("Areas_For_Moving/" + area_which_was_triggered).queue_free()
 	
 func _on_Dialoge_Area_body_entered(body, dialoge_area_name):
-	if get_node("Heroe/CanvasLayer/Dialoge_Field").file.is_open():
-		get_node("Heroe/CanvasLayer/Dialoge_Field").file.close()
-		get_node("Heroe/CanvasLayer/Dialoge_Field").current_scene = self
-		get_node("Heroe/CanvasLayer/Dialoge_Field").dialoge_name = dialoge_area_name
-		get_node("Heroe/CanvasLayer/Dialoge_Field").set_visible(true)
-		get_node("Heroe/CanvasLayer/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + ".txt", File.READ) 
-		var k = str(get_node("Heroe/CanvasLayer/Dialoge_Field").file.get_line())
-		get_node("Heroe/CanvasLayer/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
-		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
-		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[0])
+	if !GLOBAL.dialoge_No_heroe_camera:
+		if get_node("Heroe/CanvasLayer/Dialoge_Field").file.is_open():
+			print("nu_i_che_za_hueta?")
+			get_node("Heroe/CanvasLayer/Dialoge_Field").file.close()
+			get_node("Heroe/CanvasLayer/Dialoge_Field").current_scene = self
+			get_node("Heroe/CanvasLayer/Dialoge_Field").dialoge_name = dialoge_area_name
+			get_node("Heroe/CanvasLayer/Dialoge_Field").set_visible(true)
+			get_node("Heroe/CanvasLayer/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + ".txt", File.READ) 
+			var k = str(get_node("Heroe/CanvasLayer/Dialoge_Field").file.get_line())
+			get_node("Heroe/CanvasLayer/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+			get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
+			get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[0])
 
-	if (GLOBAL.dialoge_heroe_camera or GLOBAL.dialoge_No_heroe_camera) && !get_node("Heroe/CanvasLayer/Dialoge_Field").file.is_open():
-		get_node("Heroe/CanvasLayer/Dialoge_Field").set_visible(true)
-		get_node("Heroe/CanvasLayer/Dialoge_Field").current_scene = self
-		get_node("Heroe/CanvasLayer/Dialoge_Field").dialoge_name = dialoge_area_name
-		get_node("Heroe/CanvasLayer/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + ".txt", File.READ) 
-		var k = str(get_node("Heroe/CanvasLayer/Dialoge_Field").file.get_line())
-		get_node("Heroe/CanvasLayer/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
-		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
-		get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
-		get_node("Dialoge_Layer/" + dialoge_area_name + "/CollisionShape2D").set_disabled(true)
+		else:
+			print("nu_i_che_za_hueta?ibo")
+			get_node("Heroe/CanvasLayer/Dialoge_Field").set_visible(true)
+			get_node("Heroe/CanvasLayer/Dialoge_Field").current_scene = self
+			get_node("Heroe/CanvasLayer/Dialoge_Field").dialoge_name = dialoge_area_name
+			get_node("Heroe/CanvasLayer/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + ".txt", File.READ) 
+			var k = str(get_node("Heroe/CanvasLayer/Dialoge_Field").file.get_line())
+			get_node("Heroe/CanvasLayer/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+			get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
+			get_node("Heroe/CanvasLayer/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
+			get_node("Dialoge_Layer/" + dialoge_area_name + "/CollisionShape2D").set_disabled(true)
+	else:
+		if get_node("Camera_For_Speaking/Dialoge_Field").file.is_open():
+			get_node("Camera_For_Speaking/Dialoge_Field").file.close()
+			get_node("Camera_For_Speaking/Dialoge_Field").current_scene = self
+			get_node("Camera_For_Speaking/Dialoge_Field").dialoge_name = dialoge_area_name
+			get_node("Camera_For_Speaking/Dialoge_Field").set_visible(true)
+			get_node("Camera_For_Speaking/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + ".txt", File.READ) 
+			var k = str(get_node("Camera_For_Speaking/Dialoge_Field").file.get_line())
+			get_node("Camera_For_Speaking/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+			get_node("Camera_For_Speaking/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
+			get_node("Camera_For_Speaking/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[0])
+
+		else:
+			get_node("Camera_For_Speaking/Dialoge_Field").set_visible(true)
+			get_node("Camera_For_Speaking/Dialoge_Field").current_scene = self
+			get_node("Camera_For_Speaking/Dialoge_Field").dialoge_name = dialoge_area_name
+			get_node("Camera_For_Speaking/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + ".txt", File.READ) 
+			var k = str(get_node("Camera_For_Speaking/Dialoge_Field").file.get_line())
+			get_node("Camera_For_Speaking/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+			get_node("Camera_For_Speaking/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
+			get_node("Camera_For_Speaking/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
+			get_node("Dialoge_Layer/" + dialoge_area_name + "/CollisionShape2D").set_disabled(true)
 	get_node("Dialoge_Layer/" + dialoge_area_name).queue_free()
 	
 	
@@ -292,6 +374,52 @@ func dialoge_finished(dialoge_name):
 			get_node("Gasria").speed = 2.5
 			get_node("Gasria").manual_navigation = true
 			get_node("Gasria").j = 0
+		"Dialoge_Area_2":
+			print("shit")
+			triggered_enemies = {"Adalard": true, "Belotur": true, "Jeison": true, "Gasria": false, "Akira": true, "Aglea": true}
+			get_node("Aglea").should_be_triggered_after_manual_navigation = false
+			get_node("Aglea").current_target = Vector2(3250, 1530)
+			get_node("Aglea").target_points_for_manual_navigation = [Vector2(3250, 1530)]
+			get_node("Aglea").update_way()
+			get_node("Aglea").speed = 2.5
+			get_node("Aglea").manual_navigation = true
+			get_node("Aglea").j = 0
+			
+			get_node("Akira").should_be_triggered_after_manual_navigation = false
+			get_node("Akira").current_target = Vector2(3280, 1530)
+			get_node("Akira").target_points_for_manual_navigation = [Vector2(3280, 1530)]
+			get_node("Akira").update_way()
+			get_node("Akira").speed = 2.5
+			get_node("Akira").manual_navigation = true
+			get_node("Akira").j = 0
+			
+			get_node("Belotur").should_be_triggered_after_manual_navigation = false
+			get_node("Belotur").current_target = Vector2(1165, 1530)
+			get_node("Belotur").target_points_for_manual_navigation = [Vector2(1165, 1530), Vector2(2185, 1530)]
+			get_node("Belotur").update_way()
+			get_node("Belotur").target_points_for_manual_navigation.remove(0)
+			get_node("Belotur").speed = 2.5
+			get_node("Belotur").manual_navigation = true
+			get_node("Belotur").j = 0
+		
+			get_node("Adalard").should_be_triggered_after_manual_navigation = false
+			get_node("Adalard").current_target = Vector2(1135, 1530)
+			get_node("Adalard").target_points_for_manual_navigation = [Vector2(1135, 1530), Vector2(2155, 1530)]
+			get_node("Adalard").update_way()
+			get_node("Adalard").target_points_for_manual_navigation.remove(0)
+			get_node("Adalard").speed = 2.5
+			get_node("Adalard").manual_navigation = true
+			get_node("Adalard").j = 0
+			
+			get_node("Jeison").should_be_triggered_after_manual_navigation = false
+			get_node("Jeison").current_target = Vector2(1105, 1530)
+			get_node("Jeison").target_points_for_manual_navigation = [Vector2(1105, 1530), Vector2(2125, 1530)]
+			get_node("Jeison").update_way()
+			get_node("Jeison").target_points_for_manual_navigation.remove(0)
+			get_node("Jeison").speed = 2.5
+			get_node("Jeison").manual_navigation = true
+			get_node("Jeison").j = 0
+			#GLOBAL.first_cat_scene = false
 	
 	
 

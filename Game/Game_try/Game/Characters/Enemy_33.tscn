@@ -333,7 +333,6 @@ script = ExtResource( 18 )
 shape = SubResource( 7 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-visible = false
 
 [node name="Timer_Of_Stun" type="Timer" parent="."]
 wait_time = 3.0

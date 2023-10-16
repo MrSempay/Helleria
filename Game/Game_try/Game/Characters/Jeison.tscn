@@ -185,7 +185,7 @@ anims/RESET = SubResource( 4 )
 position = Vector2( -1.07996, -1.08002 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
-animation = "damage_increase_chain"
+animation = "run"
 
 [node name="HP_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -21.0
@@ -357,7 +357,6 @@ disabled = true
 position = Vector2( -2, -43 )
 
 [connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_path_changed"]
 [connection signal="body_entered" from="Area_For_Starting_Fight" to="." method="_on_Area_For_Starting_Fight_body_entered"]
 [connection signal="timeout" from="Timers/Timer_For_Updaiting_Way" to="." method="_on_Timer_For_Updaiting_Way_timeout"]

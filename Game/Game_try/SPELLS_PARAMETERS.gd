@@ -250,23 +250,14 @@ var characters = {
 		}
 	},
 	
-	"GASR": {
-		"health": 450,
-		"mana": 250,
-		
-		"stone_wall": {
-			"stone_wall_calldown": 0,
-			"stone_wall_manacost": 15,
-			"stone_wall_calldown_snare": 18
-		},
-		
-		"destruction_wave": {
-			"destruction_wave_damage": 13,
-			"destruction_wave_manacost":50,
-			"destruction_wave_calldown": 0,
-			"destruction_wave_speed": 150,
-			"destruction_wave_amount_bounces": 5
-		}
+	"Akira": {
+		"health": 2750,
+		"mana": 1500
+	},
+	
+	"Aglea": {
+		"health": 2750,
+		"mana": 1500
 	}
 }
 
