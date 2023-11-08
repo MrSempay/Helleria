@@ -1,89 +1,13 @@
-extends Node
+extends Node2D
 
 
-var Attack = 1
-var counter_of_phrase = 1
-var counter = 0
-
-var variable_1 
-var variable_2 
-
-var life_Belotur = true
-var life_Aglea = true
-var life_Akira = true
-var life_Adalard = true
-var life_Jeison = true
-var stop = false
-var stop_ghost = false
-var continue_jump = false
-var continue_jump_ghost = false
-var spell_of_button
-var counter_of_body_armor = 0
-var time_out_of_body_seal = false
+func _ready():
+	#print(get_segments_from_CollisionShape_or_collisionPolygon($Area2D))
+	#print($Area2D/CollisionShape2D.shape.extents.x)
+	#print(Vector2(0, 50).cross(Vector2(50,-20)))
+	print(intersecting_vectors(get_segments_from_CollisionShape_or_collisionPolygon($Area2D2), [[Vector2(196,21), Vector2(210,22)]]))
 
 
-var stone = 2 
-
-
-var counter_of_first_button = 0
-var counter_of_second_button = 0
-var counter_of_third_button = 0
-
-
-
-
-var counter_of_bow = 0
-var counter_of_stone = 0
-var counter_of_hedgehod = 0
-
-
-var arrow_amount = 7
-var vector_of_moving = 1
-var count_of_containment = 7
-var move_vector_1 = Vector2(0, 0)
-var move_vector_1_ghost = Vector2(0, 0)
-
-var life_heroe = true
-var heroe_uploaded = false
-var position_heroe_before_fight = Vector2(0, 0)
-
-var dialoge_heroe_camera = true
-var dialoge_No_heroe_camera = false
-
-var aglea_dialoge_started = false
-var heroe_dialoge_started = false
-var imaginary_heroe_dialoge_started = false
-var akira_dialoge_started = false
-var belotur_dialoge_started = false
-var adalard_dialoge_started = false
-var jeison_dialoge_started = false
-
-var aglea_dialoge_finished = false
-var heroe_dialoge_finished = false
-var imaginary_heroe_dialoge_finished = false
-var akira_dialoge_finished = false
-var belotur_dialoge_finished = false
-var adalard_dialoge_finished = false
-var jeison_dialoge_finished = false
-
-
-var first_cat_scene = true
-var first_starting_temple_lvl = true
-
-var heroe_pos_changed = false
-var enemy_for_fight = ""
-
-var heroe_is_observe = false
-var ibo = true
-func scene(name):
-	get_tree().get_current_scene().queue_free()
-	get_tree().change_scene("res://Game/LocationsLevels/"+name+".tscn")
-	
-
-func first_spell_changing(speed, armor=0):
-	speed = speed * 0.5
-	return speed
-	
 func get_segments_from_CollisionShape_or_collisionPolygon(area):
 	var array_of_segments = []
 	var shape = area.get_children()[0]
@@ -145,7 +69,7 @@ func intersecting_vectors(mass_segment1, mass_segment2):
 				#print(((B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x)))
 				#print(((mass_segment1[i][1].x - mass_segment1[i][0].x) * (mass_segment2[i][1].x - mass_segment2[i][0].x) - (mass_segment1[j][1].y - mass_segment1[j][0].y) * (mass_segment2[j][1].y - mass_segment2[j][0].y)))
 				t = ((C.x - A.x) * (D.y - C.y) - (C.y - A.y) * (D.x - C.x)) / ((B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x))
-				s = (A.x + t * (B.x - A.x) - C.x)/(D.x + 0.0001 - C.x)
+				s = (A.x + t * (B.x - A.x) - C.x)/(D.x - C.x)
 				if s >= 0 && s <= 1 && t >= 0 && t <= 1:
 					return true	
 	#var coefficient_at_s = (D.x - C.x)/(B.y - A.y)
@@ -157,5 +81,3 @@ func intersecting_vectors(mass_segment1, mass_segment2):
 	#var t = ((C.y - A.y) * (D.x - C.x) + (A.x - C.x) * (D.y - C.y)) / ((B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x))
 	#print(ibo)
 	return false
-
-

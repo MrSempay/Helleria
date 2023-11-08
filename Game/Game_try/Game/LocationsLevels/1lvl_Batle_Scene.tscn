@@ -18,6 +18,7 @@ outlines = [ PoolVector2Array( 337, 396, 338, 574, 708, 575, 706, 397 ) ]
 script = ExtResource( 3 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0, 0, 0, 1 )
 
 [node name="Fon1" type="Sprite" parent="."]
 position = Vector2( 426, 486 )
@@ -62,10 +63,7 @@ format = 1
 tile_data = PoolIntArray( 393221, 1, 0, 393227, 6, 0, 458757, 1, 0, 458763, 6, 0, 524293, 1, 0, 524299, 6, 0 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 563, 540 )
-
-[node name="Position_Enemy" type="Position2D" parent="."]
-position = Vector2( 677, 543 )
+position = Vector2( 664, 541 )
 
 [node name="Line2D2" type="Line2D" parent="."]
 width = 3.0
@@ -92,3 +90,8 @@ texture = ExtResource( 5 )
 
 [node name="Сhandelier" parent="." instance=ExtResource( 7 )]
 position = Vector2( 522, 402 )
+
+[node name="Positions_For_Enemies" type="Node2D" parent="."]
+
+[node name="Position_Adalard" type="Position2D" parent="Positions_For_Enemies"]
+position = Vector2( 623, 549 )

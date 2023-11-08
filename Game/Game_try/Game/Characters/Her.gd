@@ -9,10 +9,10 @@ func _physics_process(delta):
 	#print(self.global_position)
 
 	
-	if heroe != null && !stun:
+	if is_instance_valid(heroe) && !stun:
 		if get_parent().triggered_enemies[name_character] && get_parent().has_method("Fight_Scene") && !get_parent().get_node("Heroe").in_invisibility: 
-			if (self.global_position.x < get_parent().get_node("Sed").global_position.x && get_parent().get_node("Sed").global_position.x < get_parent().get_node("Heroe").global_position.x) or (self.global_position.x > get_parent().get_node("Sed").global_position.x && get_parent().get_node("Sed").global_position.x > get_parent().get_node("Heroe").global_position.x):
-				self.jumping_to_point(Vector2(heroe.global_position.x + 50 * sign(heroe.global_position.x - self.global_position.x), heroe.global_position.y), 150)
+#			if (self.global_position.x < get_parent().get_node("Sed").global_position.x && get_parent().get_node("Sed").global_position.x < get_parent().get_node("Heroe").global_position.x) or (self.global_position.x > get_parent().get_node("Sed").global_position.x && get_parent().get_node("Sed").global_position.x > get_parent().get_node("Heroe").global_position.x):
+#				self.jumping_to_point(Vector2(heroe.global_position.x + 50 * sign(heroe.global_position.x - self.global_position.x), heroe.global_position.y), 150)
 			self.squall_attack(SPELLS_PARAMETERS.characters[name_character]["squall_attack"]["squall_attack_amount_attacks"])
 			self.handle_attack()
 """
@@ -42,5 +42,3 @@ func _on_Sprite_animation_finished():
 """
 
 
-func _on_Timer_Spear_Punch_timeout():
-	handle_attack_ready = true

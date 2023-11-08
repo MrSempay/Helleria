@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-
+var damage_increase = 0
+var vampirism = 0
 var speed = 2.5
 var velocity = Vector2()
 var name_character = "Belotur"
@@ -17,13 +18,18 @@ var sprite_position = Vector2(67,0)
 var JUMP_POWER = 500
 var stun = false
 var EXTRA = false
-
+var current_target = null
+var target_points_for_manual_navigation = []
+var heroe = null
+var should_be_triggered_after_manual_navigation = false
+var area_from_which_manual_navigation_was_started = null
+var special_physics_process_controlling = false
 
 onready var timer_of_stone = get_node("Timer_Stone")
 onready var timer_of_stone_sword = get_node("Timer_Stone_Sword")
 onready var timer_of_hedgehod = get_node("Timer_Hedgehod")
 onready var collision_of_stone_sword = get_node("Stone_Sword/CollisionShape2D")
-onready var heroe = get_parent().get_node("Heroe")
+
 
 var stop_machine = false
 var stop_distance_to_point = 1.5
@@ -87,8 +93,19 @@ func mana_using(manacost):
 
 func _physics_process(delta):
 	
-	if manual_navigation && self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 :
-		manual_navigation = false
+	if nav_path.size() > 0:
+		if manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
+			if target_points_for_manual_navigation != []:
+				current_target = target_points_for_manual_navigation[0]
+				update_way()
+				target_points_for_manual_navigation.remove(0)
+			else:
+				manual_navigation = false
+				speed = 2.5
+				animate("idle")
+				get_parent().triggered_enemies[name] = should_be_triggered_after_manual_navigation
+				if get_parent().has_method("already_finished_manual_navigation_which_started_from_area_entering") && area_from_which_manual_navigation_was_started != null:
+					get_parent().already_finished_manual_navigation_which_started_from_area_entering(self.name_character, area_from_which_manual_navigation_was_started)
 	
 	if $RayCastVertical_3.get_collider() && $Sprite.get_animation() == "jump":
 		animate("idle")
@@ -114,9 +131,30 @@ func _physics_process(delta):
 		$Timer_For_Updaiting_Way.set_wait_time(0.1)
 	else:
 		$Timer_For_Updaiting_Way.set_wait_time(0.3)
+	if get_parent().has_node("Heroe") && heroe == null:
+		heroe = get_parent().get_node("Heroe")
+
+
+	if !manual_navigation && heroe != null && is_instance_valid(heroe):
+		if get_parent().get_name() != "Garsia_Boss_Fight_Scene":
+			current_target = heroe.global_position
+		elif is_on_floor():
+			if current_target == null:
+				current_target = Vector2(101, 318)
+			if get_parent().heroe_on_floor == "Second":
+				if self.global_position.x > heroe.global_position.x:
+					current_target = Vector2(935, 233)
+				else:
+					current_target = Vector2(101, 318)
+			else:
+				if abs(self.global_position.x - current_target.x) < 3:
+					if current_target == Vector2(935, 233):
+						current_target = Vector2(101, 318)
+					else:
+						current_target = Vector2(935, 233)
+			
+			
 	if get_parent().has_node("Heroe"):
-		
-		var heroe = get_parent().get_node("Heroe")
 		if((self.global_position.x) - get_parent().get_node("Heroe").global_position.x) > 0:
 			$Stone_Position.set_position(Vector2(-34,-2))
 			$Stone_Sword.set_position(Vector2(-25,-6))
@@ -167,12 +205,12 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 	
 	collision_of_stone_sword.set_disabled(true)
-	if get_parent().has_node("Heroe") && !stun:
+	if !stun && !special_physics_process_controlling && get_parent().get_name() != "root":
 		#var heroe = get_parent().get_node("Heroe")
 		
-		if trigger_of_ally or get_parent().has_method("Fight_Scene") or get_parent().get_node("Heroe").in_invisibility && get_parent().Belotur_was_triggered:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
+		if trigger_of_ally or get_parent().has_method("Fight_Scene") or get_parent().triggered_enemies[name_character] == true:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
 			if get_parent().has_method("Fight_Scene"):
-				if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 30) && (self.get_position().y - heroe.get_position().y > -30)) && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_stone_sword_Belotur: 
+				if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 30) && (self.get_position().y - heroe.get_position().y > -30)) && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_stone_sword_Belotur && get_parent().get_name() != "Garsia_Boss_Fight_Scene": 
 					if $Sprite.get_animation() == "stone":
 						 if $Sprite.get_frame() >= 20:
 								if((self.global_position.x) - heroe.global_position.x) > 0:
@@ -327,7 +365,7 @@ func _on_Timer_Of_Mana_timeout():
 func _on_Trigger_Area_body_entered(body):
 	if body.has_method("ally"):
 		trigger_of_ally = true
-		get_parent().Belotur_was_triggered = true
+		get_parent().triggered_enemies[self.get_name()] = true
 		manual_navigation = false
 		
 		
@@ -443,7 +481,11 @@ func _on_Timer_Stop_Machine_timeout():
 	stop_machine = false
 	get_parent().get_node("Stop_Machine/CollisionShape2D").set_disabled(false)
 
-
+func update_way():
+	$NavigationAgent2D.set_target_location(current_target)
+	$NavigationAgent2D.get_final_location()
+	nav_path = $NavigationAgent2D.get_nav_path()
+	j = 0
 
 
 func _on_NavigationAgent2D_path_changed():
@@ -451,21 +493,20 @@ func _on_NavigationAgent2D_path_changed():
 
 
 func _on_Area_For_Starting_Fight_body_entered(body):
-	if body.has_method("start_jump_heroe"):
+	if body.has_method("start_jump_heroe") && !get_parent().has_node("Fight_Scene"):
 		if !body.in_invisibility:
 			GLOBAL.enemy_for_fight = name_character
 			GLOBAL.position_heroe_before_fight = get_parent().get_node("Heroe").global_position
-			GLOBAL.scene("Max_level_Fight_Scene")
+			GLOBAL.scene(LOCATIONS_PARAMETERS.locations[get_parent().get_name]["enemies_fight_scenes"][name_character])
 
 
 func _on_Timer_For_Updaiting_Way_timeout():
 	if get_parent().has_node("Heroe"):
 		#if get_parent().current_target != Vector2(0,0):
 		if !manual_navigation:
-			$NavigationAgent2D.set_target_location(get_parent().current_target)
+			$NavigationAgent2D.set_target_location(current_target)
 			$NavigationAgent2D.get_final_location()
 			nav_path = $NavigationAgent2D.get_nav_path()
-			get_parent().get_node("Line2D2").points = $NavigationAgent2D.get_nav_path()
 			j = 0
 		
 func _on_start_timer_going_back():

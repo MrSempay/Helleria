@@ -14,6 +14,7 @@ var stun = false
 var nav_path = [Vector2()]
 var should_be_triggered_after_manual_navigation = false
 var area_from_which_manual_navigation_was_started
+var target_points_for_manual_navigation = []
 var manual_navigation = false
 var current_target
 var vampirism = 0
@@ -99,13 +100,18 @@ func _physics_process(delta):
 	#	if (nav_path[j].x - nav_path[j+1].x) <= -0:
 	#		$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
 	#print($RayCastHorizontal_For_Heroe.get_cast_to())
-	if manual_navigation && self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20:
-		manual_navigation = false
-		speed = 2.5
-		animate("idle")
-		get_parent().triggered_enemies[name] = should_be_triggered_after_manual_navigation
-		if get_parent().has_method("already_finished_manual_navigation"):
-			get_parent().already_finished_manual_navigation(self.name_character, area_from_which_manual_navigation_was_started)
+	if manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
+		if target_points_for_manual_navigation != []:
+			current_target = target_points_for_manual_navigation[0]
+			update_way()
+			target_points_for_manual_navigation.remove(0)
+		else:
+			manual_navigation = false
+			speed = 2.5
+			animate("idle")
+			get_parent().triggered_enemies[name] = should_be_triggered_after_manual_navigation
+			if get_parent().has_method("already_finished_manual_navigation_which_started_from_area_entering") && area_from_which_manual_navigation_was_started != null:
+				get_parent().already_finished_manual_navigation_which_started_from_area_entering(self.name_character, area_from_which_manual_navigation_was_started)
 	#print("ibo")
 	#print($Sprite.get_animation())
 	if $Sprite.get_animation() == "idle_shield":
@@ -313,7 +319,11 @@ func _on_Area_For_Starting_Fight_body_entered(body):
 			#GLOBAL.scene("Max_level_Fight_Scene")
 
 
-
+func update_way():
+	$NavigationAgent2D.set_target_location(current_target)
+	$NavigationAgent2D.get_final_location()
+	nav_path = $NavigationAgent2D.get_nav_path()
+	j = 0
 
 
 func _on_Timer_Chaining_timeout():

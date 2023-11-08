@@ -24,17 +24,12 @@ var amount_squall_attacks
 var vampirism = 0
 var delay_handle_area = 0
 var damage_increase = 0
-var vector_push
 var summary_health_or_mana_for_chain = []
-var preparing_for_pushing_finished = false
-var stop_pushing = false
 var spells_ready = {
 	"handle_attack_ready": true,
 	"squall_attack_ready": true,
 	"jumping_to_point_ready": true,
-	"stone_wall_ready": true,
-	"push_ready": true,
-	"armor_ready": true
+	"stone_wall_ready": true
 	}
 var chains_ready = {
 	"damage_block_chain_ready": true,
@@ -101,7 +96,6 @@ func enemy():
 	
 func _ready():
 	
-	#print(GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($Area_For_Wall_Detecting), [[Vector2(196,21), Vector2(210,22)]]))
 	name_character = self.get_name()
 	health = SPELLS_PARAMETERS.characters[name_character]["health"]
 	$HP_Enemy_1.max_value = SPELLS_PARAMETERS.characters[name_character]["health"]
@@ -129,20 +123,18 @@ func _physics_process(delta):
 	#print(str(self.get_global_position()) + " HER ")
 	#print(get_parent().triggered_enemies[name])
 	#print(get_parent().triggered_enemies[name_character])
-
-	if nav_path.size() > 0:
-		if manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
-			if target_points_for_manual_navigation != []:
-				current_target = target_points_for_manual_navigation[0]
-				update_way()
-				target_points_for_manual_navigation.remove(0)
-			else:
-				manual_navigation = false
-				speed = 2.5
-				animate("idle")
-				get_parent().triggered_enemies[name] = should_be_triggered_after_manual_navigation
-				if get_parent().has_method("already_finished_manual_navigation_which_started_from_area_entering") && area_from_which_manual_navigation_was_started != null:
-					get_parent().already_finished_manual_navigation_which_started_from_area_entering(self.name_character, area_from_which_manual_navigation_was_started)
+	if manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
+		if target_points_for_manual_navigation != []:
+			current_target = target_points_for_manual_navigation[0]
+			update_way()
+			target_points_for_manual_navigation.remove(0)
+		else:
+			manual_navigation = false
+			speed = 2.5
+			animate("idle")
+			get_parent().triggered_enemies[name] = should_be_triggered_after_manual_navigation
+			if get_parent().has_method("already_finished_manual_navigation_which_started_from_area_entering") && area_from_which_manual_navigation_was_started != null:
+				get_parent().already_finished_manual_navigation_which_started_from_area_entering(self.name_character, area_from_which_manual_navigation_was_started)
 	#print(self.global_position)
 	#print(current_target)
 	#print(manual_navigation)
@@ -175,102 +167,9 @@ func _physics_process(delta):
 	if !manual_navigation && heroe != null && is_instance_valid(heroe):
 		current_target = heroe.global_position
 		
-	
-	if !stun && !special_physics_process_controlling:
-		#print(heroe.global_position.x)
-		if get_parent().has_node("Heroe"):
-			if((self.global_position.x) - get_parent().get_node("Heroe").global_position.x) > 0:
-				$Handle_Attack.set_position(Vector2(-position_attack_area_x, -6))
-				$Sprite.flip_h = true
-			else:
-				$Handle_Attack.set_position(Vector2(position_attack_area_x, -6))
-				$Sprite.flip_h = false
-		#var heroe = get_parent().get_node("Heroe")
-		if get_parent().get_name() != "root":
-			if get_parent().triggered_enemies[name_character] == true:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping			
-				#print(nav_path)
-				#print(current_target)
-				#print(name_character)
-				#print("SHIT")
-				if j < nav_path.size() - 1:
-					#print(true)
-					if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
-						#print(false)
-						if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
-							if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && nav_path[j].y > nav_path[j+1].y:
-								start_jump_enemy()
-					elif ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && !$RayCastVertical_2.get_collider() && nav_path[j].y > nav_path[j+1].y:
-								start_jump_enemy()
-					if $RayCastVertical.get_collider():
-						#print(nav_path)
-						#print( "Collider " + str($RayCastVertical.get_collider().global_position.y) )
-						#print( "path " + str(nav_path[1].y))
-						if $RayCastVertical.get_collider().has_node("Area_To_Jump"):
-							if nav_path.size() == 2:
-								if GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider().get_node("Area_To_Jump")), [[nav_path[0], nav_path[1]]]):
-									print("Ibo1")
-									start_jump_enemy()
-							else:
-								if GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider().get_node("Area_To_Jump")), [[nav_path[0], nav_path[1]], [nav_path[1], nav_path[2]]]):
-									print("Ibo2")
-									start_jump_enemy()
-						if nav_path.size() == 2:
-							if !GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider()), [[nav_path[0], nav_path[1]]]):
-								print("Ibo3")
-								start_jump_enemy()
-						else:
-							if !GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider()), [[nav_path[0], nav_path[1]], [nav_path[1], nav_path[2]]]):
-								#print(nav_path)
-								print("Ibo4")
-								start_jump_enemy()
-					if $RayCastHorizontal_3.get_collider():
-						start_jump_enemy()
-				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
-					if $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
-						stop_machine = false
-				#print(j < nav_path.size() - 1)
-				#print(current_target)
-				#print(get_parent().triggered_enemies[name_character])
-				#print(nav_path)
-				#print(nav_path)
-				if j < nav_path.size() - 1 && ($Sprite.get_animation() == "idle" or $Sprite.get_animation() == "jump" or $Sprite.get_animation() == "run" or $Sprite.get_animation() == "jumping_to_point" or $Sprite.get_animation() == "preparing_jumping_to_point") && $Handle_Attack/CollisionShape2D.is_disabled():
-					#print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-					if (nav_path[j].x - nav_path[j+1].x) >= 0:
-						
-						$RayCastHorizontal_1.set_cast_to(Vector2(-19,0))
-						$RayCastHorizontal_2.set_cast_to(Vector2(-19,0))
-						$RayCastHorizontal_3.set_cast_to(Vector2(-4,0))
-						$RayCastHorizontal_4.set_cast_to(Vector2(-19,0))
-						$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
-						$RayCastVertical.set_position(Vector2(-11,1))
-						if !stop_machine:
-							move_and_collide(Vector2(-1,0) * speed * scale_speed_moving)
-							get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-							if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
-								animate("run")
-						$Sprite.flip_h = true
-					if (nav_path[j].x - nav_path[j+1].x) <= -0:
-						$RayCastHorizontal_1.set_cast_to(Vector2(19,0))
-						$RayCastHorizontal_2.set_cast_to(Vector2(19,0))
-						$RayCastHorizontal_3.set_cast_to(Vector2(4,0))
-						$RayCastHorizontal_4.set_cast_to(Vector2(19,0))
-						$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
-						$RayCastVertical.set_position(Vector2(11,1))
-						if !stop_machine:
-							move_and_collide(Vector2(1,0) * speed * scale_speed_moving)
-							get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-							if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
-								animate("run")
-						$Sprite.flip_h = false
-
-				if j < nav_path.size() - 1:
-					if ((self.global_position.x - nav_path[j+1].x) < stop_distance_to_point && (self.global_position.x - nav_path[j+1].x) > -stop_distance_to_point) && j < nav_path.size() - 1:
-						j += 1
 	if !$RayCastVertical_3.get_collider():
 		velocity.y += delta * 970 * scale_gravity
 		velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-		#translate(velocity)
-		#velocity.y = 0
 	else:
 			
 		#print("Еблявая хуета")
@@ -279,11 +178,79 @@ func _physics_process(delta):
 			speed = 2.5
 			animate("idle")
 			update_way()
+	
+	if get_parent().has_node("Heroe") && !stun && !special_physics_process_controlling:
+		#print(heroe.global_position.x)
+		if((self.global_position.x) - get_parent().get_node("Heroe").global_position.x) > 0:
+			$Handle_Attack.set_position(Vector2(-position_attack_area_x, -6))
+			$Sprite.flip_h = true
+		else:
+			$Handle_Attack.set_position(Vector2(position_attack_area_x, -6))
+			$Sprite.flip_h = false
+		#var heroe = get_parent().get_node("Heroe")
+		if get_parent().get_node("Heroe").in_invisibility or get_parent().triggered_enemies[name_character] == true:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping			
+			#print("SHIT")
+			if j < nav_path.size() - 1:
+				#print(true)
+				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
+					#print(false)
+					if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
+						if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && nav_path[j].y > nav_path[j+1].y:
+							start_jump_enemy()
+				elif ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && !$RayCastVertical_2.get_collider() && nav_path[j].y > nav_path[j+1].y:
+							start_jump_enemy()
+				if $RayCastVertical.get_collider():
+					start_jump_enemy()
+				if $RayCastHorizontal_3.get_collider():
+					start_jump_enemy()
+			if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
+				if $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
+					stop_machine = false
+			#print(j < nav_path.size() - 1)
+			#print(current_target)
+			#print(get_parent().triggered_enemies[name_character])
+			#print(nav_path)
+			#print(nav_path)
+			if j < nav_path.size() - 1 && ($Sprite.get_animation() == "idle" or $Sprite.get_animation() == "jump" or $Sprite.get_animation() == "run" or $Sprite.get_animation() == "jumping_to_point" or $Sprite.get_animation() == "preparing_jumping_to_point") && $Handle_Attack/CollisionShape2D.is_disabled():
+				#print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+				if (nav_path[j].x - nav_path[j+1].x) >= 0:
+					$RayCastHorizontal_1.set_cast_to(Vector2(-19,0))
+					$RayCastHorizontal_2.set_cast_to(Vector2(-19,0))
+					$RayCastHorizontal_3.set_cast_to(Vector2(-3,0))
+					$RayCastHorizontal_4.set_cast_to(Vector2(-19,0))
+					$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
+					$RayCastVertical.set_position(Vector2(-11,1))
+					if !stop_machine:
+						move_and_collide(Vector2(-1,0) * speed * scale_speed_moving)
+						#get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+						if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
+							animate("run")
+					$Sprite.flip_h = true
+				if (nav_path[j].x - nav_path[j+1].x) <= -0:
+					$RayCastHorizontal_1.set_cast_to(Vector2(19,0))
+					$RayCastHorizontal_2.set_cast_to(Vector2(19,0))
+					$RayCastHorizontal_3.set_cast_to(Vector2(3,0))
+					$RayCastHorizontal_4.set_cast_to(Vector2(19,0))
+					$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
+					$RayCastVertical.set_position(Vector2(11,1))
+					if !stop_machine:
+						move_and_collide(Vector2(1,0) * speed * scale_speed_moving)
+						#get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
+						if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
+							animate("run")
+					$Sprite.flip_h = false
+
+			if j < nav_path.size() - 1:
+				if ((self.global_position.x - nav_path[j+1].x) < stop_distance_to_point && (self.global_position.x - nav_path[j+1].x) > -stop_distance_to_point) && j < nav_path.size() - 1:
+					j += 1
+		
 		
 func start_jump_enemy():
-	if (is_on_floor() or $RayCastVertical_3.get_collider()) && $Sprite.get_animation()[0] != "A":
-		velocity.y = -JUMP_POWER
-		velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
+	#print("IBOO")
+	if is_on_floor() or $RayCastVertical_3.get_collider():
+		#print("AAAAAAAAAAAAA")
+		#animate("jump")
+		velocity.y = -JUMP_POWER 
 
 
 func _on_Timer_Of_HP_timeout():
@@ -308,33 +275,27 @@ func _on_Trigger_Area_body_entered(body):
 func _on_Handle_Attack_body_entered(body):
 	if body.has_method("handle_hit") && body.has_method("start_jump_heroe"):
 		if $Sprite.get_animation().substr(0, 2) == "A_":
-			if SPELLS_PARAMETERS.characters[name_character]["handle_attack"].has("handle_attack_damage"):
-				body.handle_hit(SPELLS_PARAMETERS.characters[name_character]["handle_attack"]["handle_attack_damage"], self)
-			if SPELLS_PARAMETERS.characters[name_character]["handle_attack"].has("handle_attack_stun"):
-				body.stun(SPELLS_PARAMETERS.characters[name_character]["handle_attack"]["handle_attack_stun"])
-			if SPELLS_PARAMETERS.characters[name_character]["handle_attack"].has("handle_attack_thrust"):
-				body.thrust(self, SPELLS_PARAMETERS.characters[name_character]["handle_attack"]["handle_attack_thrust"])
+			if SPELLS_PARAMETERS.characters[name_character][$Sprite.get_animation().substr(2, $Sprite.get_animation().length())].has($Sprite.get_animation().substr(2, $Sprite.get_animation().length()) + "_damage"):
+				body.handle_hit(SPELLS_PARAMETERS.characters[name_character][$Sprite.get_animation().substr(2, $Sprite.get_animation().length())][$Sprite.get_animation().substr(2, $Sprite.get_animation().length()) + "_damage"], self)
+			if SPELLS_PARAMETERS.characters[name_character][$Sprite.get_animation().substr(2, $Sprite.get_animation().length())].has($Sprite.get_animation().substr(2, $Sprite.get_animation().length()) + "_stun"):
+				body.stun(SPELLS_PARAMETERS.characters[name_character][$Sprite.get_animation().substr(2, $Sprite.get_animation().length())][$Sprite.get_animation().substr(2, $Sprite.get_animation().length()) + "_stun"])
+			if SPELLS_PARAMETERS.characters[name_character][$Sprite.get_animation().substr(2, $Sprite.get_animation().length())].has($Sprite.get_animation().substr(2, $Sprite.get_animation().length()) + "_thrust"):
+				body.thrust(self, SPELLS_PARAMETERS.characters[name_character][$Sprite.get_animation().substr(2, $Sprite.get_animation().length())][$Sprite.get_animation().substr(2, $Sprite.get_animation().length()) + "_thrust"])
 
 func handle_attack():
-	if (($Handle_Attack.global_position.x) - heroe.global_position.x < $Handle_Attack/CollisionShape2D.shape.extents.x * 0.8) && (($Handle_Attack.global_position.x) - heroe.global_position.x > -$Handle_Attack/CollisionShape2D.shape.extents.x * 0.8) && $RayCastVertical_3.get_collider() && ((self.get_position().y - heroe.get_position().y < 30) && (self.get_position().y - heroe.get_position().y > -30)) && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character]["handle_attack"]["handle_attack_manacost"] && spells_ready["handle_attack_ready"]: 
+	if (($Handle_Attack.global_position.x) - heroe.global_position.x < $Handle_Attack/CollisionShape2D.shape.extents.x * 0.8) && (($Handle_Attack.global_position.x) - heroe.global_position.x > -$Handle_Attack/CollisionShape2D.shape.extents.x * 0.8) && $RayCastVertical_3.get_collider() && ((self.get_position().y - heroe.get_position().y < 50) && (self.get_position().y - heroe.get_position().y > -50)) && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character]["handle_attack"]["handle_attack_manacost"] && spells_ready["handle_attack_ready"]: 
 		if $Sprite.get_animation()[0] != "A":
 			manual_navigation = false
-			var amount_animations_of_handle_attack = 0
-			for i in range ($Sprite.get_sprite_frames().get_animation_names().size()):
-				if $Sprite.get_sprite_frames().get_animation_names()[i].substr(2, $Sprite.get_sprite_frames().get_animation_names()[i].length() - 3) == "handle_attack":
-					amount_animations_of_handle_attack += 1
-			$Sprite.flip_h = self.global_position.x > heroe.global_position.x
+			if((self.global_position.x) - heroe.global_position.x) > 0:
+				$Sprite.flip_h = true
+			else:
+				$Sprite.flip_h = false
 			speed = 0
 			creating_timer_for_calldown("handle_attack")
 			spells_ready["handle_attack_ready"] = false
-			if amount_animations_of_handle_attack > 0:
-				var rand_sword = RandomNumberGenerator.new()
-				rand_sword.randomize()
-				animate("A_handle_attack" + str(rand_sword.randi_range(1, amount_animations_of_handle_attack)))
-			else:
-				animate("A_handle_attack")
-			#if SPELLS_PARAMETERS.characters[name_character][$Sprite.get_animation().substr(2, $Sprite.get_animation().length())].has($Sprite.get_animation().substr(2, $Sprite.get_animation().length()) + "_thrust"):
-			#	thrust(self, SPELLS_PARAMETERS.characters[name_character]["handle_attack"]["handle_attack_thrust"])
+			animate("A_handle_attack")
+			if SPELLS_PARAMETERS.characters[name_character][$Sprite.get_animation().substr(2, $Sprite.get_animation().length())].has($Sprite.get_animation().substr(2, $Sprite.get_animation().length()) + "_thrust"):
+				thrust(self, SPELLS_PARAMETERS.characters[name_character]["handle_attack"]["handle_attack_thrust"])
 	
 """ --------------------------------------------- """
 
@@ -521,46 +482,8 @@ func _on_timer_for_disappearance_wall_timeout(stone_wall1, timer):
 
 """ --------------------------------------------- """
 
-
-""" ------------------- PUSH ------------------- """
-
-func push():
-	#print("ibo")
-	#print(speed)
-	if spells_ready["push_ready"] == true:
-		if $Mana_Enemy_1.value >= (SPELLS_PARAMETERS.characters[name_character]["push"]["push_manacost"] + SPELLS_PARAMETERS.characters[name_character]["armor"]["armor_manacost"]) && $Sprite.get_animation() != "A_push" && $Sprite.get_animation() != "A_push_preparing" && armor_ordinary == 1:
-			$Sprite.flip_h = self.global_position > get_parent().get_node("Heroe").global_position
-			animate("A_armor")
-		if $Sprite.get_animation() != "A_push" && $Sprite.get_animation() != "A_armor" && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character]["push"]["push_manacost"]:
-			animate("A_push_preparing")
-			$Sprite.flip_h = self.global_position > get_parent().get_node("Heroe").global_position
-		if preparing_for_pushing_finished:
-			special_physics_process_controlling = true
-			animate("A_push")
-			if !stop_pushing:
-				translate(vector_push * SPELLS_PARAMETERS.characters[name_character]["push"]["push_speed"]) 
-			else:
-				special_physics_process_controlling = false
-				spells_ready["push_ready"] = false
-				get_node("Area_Pushing").set_monitoring(false)
-				preparing_for_pushing_finished = false
-				animate("idle")
-	
-func _on_Area_Pushing_body_entered(body):
-	stop_pushing = true
-	if body.has_method("start_jump_heroe"):
-		body.handle_hit(SPELLS_PARAMETERS.characters[name_character]["push"]["damage_push"], self)
-		body.stun(SPELLS_PARAMETERS.characters[name_character]["push"]["duration_push"])
-
-func _on_timer_for_armor_duration_timeout(timer):
-	if armor_ordinary - SPELLS_PARAMETERS.characters[name_character]["armor"]["fraction_absorbed_damage_armor_Adalard"] >= 0:
-		armor_ordinary -= SPELLS_PARAMETERS.characters[name_character]["armor"]["fraction_absorbed_damage_armor_Adalard"]
-	else: 
-		armor_ordinary = 0
-		
-""" --------------------------------------------- """
-
 func creating_timer_for_calldown(spell):
+	print(spell)
 	var timer_for_calldown = Timer.new()
 	timer_for_calldown.set_wait_time(SPELLS_PARAMETERS.characters[name_character][spell][spell + "_calldown"])
 	timer_for_calldown.connect("timeout", self, "_on_timer_for_calldown_spells_timeout", [spell, timer_for_calldown])
@@ -573,75 +496,30 @@ func _on_timer_for_calldown_spells_timeout(spell, timer):
 	timer.queue_free()
 
 var t = 0
-func _on_Sprite_animation_finished(by_stune = false):
-	if !by_stune:
-		if $Sprite.get_animation()[0] == "A":
-			#print($Sprite.get_animation().split("_"))
-			if $Sprite.get_animation().split("_")[1] == "handle":
-				spells_ready["handle_attack_ready"] = true
-				animate("idle")
-				speed = 2.5
-				mana_using(SPELLS_PARAMETERS.characters[name_character]["handle_attack"]["handle_attack_manacost"])
-				$Handle_Attack/CollisionShape2D.set_disabled(false)
-		match $Sprite.get_animation():
-			"A_squall_attack":
-				$Handle_Attack/CollisionShape2D.set_disabled(false)
-				if amount_squall_attacks > t:
-					$Sprite.set_frame(0)
-					t += 1
-				else:
-					speed = 2.5
-					t = 0
-					animate("idle")
-			"A_preparing_jumping_to_point":
-				animate("jumping_to_point")
-			"A_push_preparing":
-				preparing_for_pushing_finished = true
-				stop_pushing = false
-				get_node("Area_Pushing").set_monitoring(true)
-				mana_using(SPELLS_PARAMETERS.characters[name_character]["push"]["push_manacost"])
-				creating_timer_for_calldown("push")
-				match self.global_position < get_parent().get_node("Heroe").global_position:
-					true: vector_push = Vector2(1,0)
-					false: vector_push = Vector2(-1,0)
-			"A_push":
-				speed = 2.5
-			"A_armor":
-				armor_ordinary = SPELLS_PARAMETERS.characters[name_character]["armor"]["fraction_absorbed_damage_armor_Adalard"]
-				mana_using(SPELLS_PARAMETERS.characters[name_character]["armor"]["manacost_armor_Adalard"])
-				animate("A_push_preparing")
-				speed = 2.5
-				var timer_for_duration_armor = Timer.new()
-				timer_for_duration_armor.set_wait_time(SPELLS_PARAMETERS.characters[name_character]["armor"]["armo_duration"])
-				timer_for_duration_armor.connect("timeout", self, "_on_timer_for_armor_duration_timeout", [timer_for_duration_armor])
-				timer_for_duration_armor.one_shot = true
-				self.add_child(timer_for_duration_armor)
-				timer_for_duration_armor.start()
-	else:
-		if $Sprite.get_animation()[0] == "A":
-			if $Sprite.get_animation().split("_")[1] == "handle":
-				spells_ready["handle_attack_ready"] = true
-				animate("idle")
-				speed = 2.5
-		match $Sprite.get_animation():
-			"A_squall_attack":
-				t = 0
-				animate("idle")
-			"A_preparing_jumping_to_point":
-				animate("idle")
-			"A_push_preparing":
-				special_physics_process_controlling = false
-				creating_timer_for_calldown("push")
-				animate("idle")
-			"A_push":
-				special_physics_process_controlling = false
-				spells_ready["push_ready"] = false
-				animate("idle")
-				speed = 2.5
-			"A_armor":
-				animate("idle")
-				speed = 2.5
-	
+func _on_Sprite_animation_finished():
+	if $Sprite.get_animation() == "A_handle_attack":
+		spells_ready["handle_attack_ready"] = true
+		animate("idle")
+		speed = 2.5
+		mana_using(SPELLS_PARAMETERS.characters[name_character]["handle_attack"]["handle_attack_manacost"])
+		$Handle_Attack/CollisionShape2D.set_disabled(false)
+	if $Sprite.get_animation() == "A_squall_attack":
+		#stun(SPELLS_PARAMETERS.characters[name_character]["squall_attack"]["squall_attack_stun"])
+		$Handle_Attack/CollisionShape2D.set_disabled(false)
+		if amount_squall_attacks > t:
+			$Sprite.set_frame(0)
+			t += 1
+		else:
+			speed = 2.5
+			t = 0
+			animate("idle")
+	if $Sprite.get_animation() == "preparing_jumping_to_point":
+		#print(true)
+		animate("jumping_to_point")
+	#if $Sprite.get_animation() == "jumping_to_point":
+	#	animate("idle")
+	#	speed = 2.5
+		
 
 
 
@@ -650,7 +528,6 @@ func animate(art):
 
 func _on_VisibilityNotifier2D_screen_exited():
 	if get_parent().has_method("First_Scene") && GLOBAL.first_cat_scene:
-		print("wqpijedapwidj")
 		queue_free()
 
 
@@ -662,27 +539,28 @@ func _on_NavigationAgent2D_path_changed():
 
 
 func _on_Timer_For_Updaiting_Way_timeout():
-	update_way()
-			
-			
+	if get_parent().has_node("Heroe"):
+		
+			$NavigationAgent2D.set_target_location(current_target)
+			$NavigationAgent2D.get_final_location()
+			nav_path = $NavigationAgent2D.get_nav_path()
+			j = 0
 			
 func update_way():
-	if current_target != null:
-		$NavigationAgent2D.set_target_location(current_target)
-		$NavigationAgent2D.get_final_location()
-		nav_path = $NavigationAgent2D.get_nav_path()
-		j = 0
+	$NavigationAgent2D.set_target_location(current_target)
+	$NavigationAgent2D.get_final_location()
+	nav_path = $NavigationAgent2D.get_nav_path()
+	j = 0
 
 
 func _on_Area_For_Starting_Fight_body_entered(body):
-	if body.has_method("start_jump_heroe") && !get_parent().has_node("Fight_Scene"):
+	if body.has_method("start_jump_heroe"):
 		if !body.in_invisibility:
 			GLOBAL.enemy_for_fight = name_character
 			GLOBAL.position_heroe_before_fight = get_parent().get_node("Heroe").global_position
-			GLOBAL.scene(LOCATIONS_PARAMETERS.locations[get_parent().get_name()]["enemies_fight_scenes"][name_character])
+			GLOBAL.scene("Garsia_Boss_Fight_Scene")
 
 func stun(duration):
-	_on_Sprite_animation_finished(true)
 	var statusbar1 = statusbar.instance()
 	if stun == true:
 		if duration > $Timers/Timer_Of_Stun.time_left:
@@ -733,5 +611,3 @@ func _on_Timer_For_Going_Back_timeout():
 	
 func thrust(body, shift):
 	translate(Vector2(-1,0) * shift * abs(self.global_position.x - body.global_position.x))
-
-

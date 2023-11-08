@@ -1,0 +1,363 @@
+[gd_scene load_steps=55 format=2]
+
+[ext_resource path="res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Game/Enemy55.gd" type="Script" id=2]
+[ext_resource path="res://Game/Characters/Area_For_Starting_Fight.gd" type="Script" id=3]
+[ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=4]
+[ext_resource path="res://Anims/Джейсон/Jump/animJumpJason3.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Джейсон/Jump/animJumpJason7.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Джейсон/Jump/animJumpJason4.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Jason/Движ/anim5+5.png" type="Texture" id=8]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT13.png" type="Texture" id=9]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna11.png" type="Texture" id=10]
+[ext_resource path="res://Anims/Джейсон/Jump/animJumpJason8.png" type="Texture" id=11]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna6.png" type="Texture" id=12]
+[ext_resource path="res://Anims/Джейсон/Jump/animJumpJason5.png" type="Texture" id=13]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna12.png" type="Texture" id=14]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna1.png" type="Texture" id=15]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna9.png" type="Texture" id=16]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna5.png" type="Texture" id=17]
+[ext_resource path="res://Anims/Jason/Движ/anim5+2.png" type="Texture" id=18]
+[ext_resource path="res://Anims/Jason/Движ/anim5+4.png" type="Texture" id=19]
+[ext_resource path="res://Anims/Джейсон/Jump/animJumpJason6.png" type="Texture" id=20]
+[ext_resource path="res://Anims/Джейсон/Jump/animJumpJason1.png" type="Texture" id=21]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT11.png" type="Texture" id=22]
+[ext_resource path="res://Anims/Jason/Движ/anim5+1.png" type="Texture" id=23]
+[ext_resource path="res://Anims/Jason/Движ/anim5+3.png" type="Texture" id=24]
+[ext_resource path="res://Anims/Jason/Движ/anim5+6.png" type="Texture" id=25]
+[ext_resource path="res://Anims/Джейсон/Jump/animJumpJason2.png" type="Texture" id=26]
+[ext_resource path="res://Anims/Джейсон/Jump/animJumpJason9.png" type="Texture" id=27]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT10.png" type="Texture" id=28]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT2.png" type="Texture" id=29]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna8.png" type="Texture" id=30]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT5.png" type="Texture" id=31]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT7.png" type="Texture" id=32]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna4.png" type="Texture" id=33]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT3.png" type="Texture" id=34]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna7.png" type="Texture" id=35]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT6.png" type="Texture" id=36]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna3.png" type="Texture" id=37]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT1.png" type="Texture" id=38]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna13.png" type="Texture" id=39]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT9.png" type="Texture" id=40]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT4.png" type="Texture" id=41]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna2.png" type="Texture" id=42]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT12.png" type="Texture" id=43]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna10.png" type="Texture" id=44]
+[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT8.png" type="Texture" id=45]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 3, 11.5 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ PoolVector2Array( 0, 0, -8, 0, -8, 22, -1, 22, -1, 14, 0, 14, 0, 22, 6, 22, 6, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "щгп"
+length = 0.24
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.09, 0.16, 0.22 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 14, -1, 14, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 14, 8, 14, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 21 ), ExtResource( 26 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 13 ), ExtResource( 20 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 27 ) ],
+"loop": true,
+"name": "Jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 42 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 17 ), ExtResource( 12 ), ExtResource( 35 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 44 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 39 ) ],
+"loop": false,
+"name": "cure_chain",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 38 ), ExtResource( 29 ), ExtResource( 34 ), ExtResource( 41 ), ExtResource( 31 ), ExtResource( 36 ), ExtResource( 32 ), ExtResource( 45 ), ExtResource( 40 ), ExtResource( 28 ), ExtResource( 22 ), ExtResource( 43 ), ExtResource( 9 ) ],
+"loop": false,
+"name": "damage_block_chain",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 42 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 17 ), ExtResource( 12 ), ExtResource( 35 ), ExtResource( 30 ), ExtResource( 16 ), ExtResource( 44 ), ExtResource( 10 ), ExtResource( 14 ), ExtResource( 39 ) ],
+"loop": false,
+"name": "damage_increase_chain",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 23 ), ExtResource( 18 ), ExtResource( 24 ), ExtResource( 19 ), ExtResource( 8 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 109, 53.5 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "EXTRA"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 31, 14 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 46.8215, 18.25 )
+
+[node name="Jeison" type="KinematicBody2D"]
+position = Vector2( 332, 164 )
+z_index = 3
+collision_layer = 16
+collision_mask = 16
+script = ExtResource( 2 )
+
+[node name="Area_For_Stop_Machine" type="Area2D" parent="."]
+collision_layer = 135
+collision_mask = 135
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Stop_Machine"]
+position = Vector2( -1, 4.5 )
+shape = SubResource( 8 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -0.645767, -6.08 )
+scale = Vector2( 0.3, 1 )
+polygon = PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 )
+one_way_collision_margin = 12.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionPolygon2D"]
+reset_on_save = false
+anims/RESET = SubResource( 4 )
+"anims/щгп" = SubResource( 5 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1.07996, -1.08002 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "run"
+
+[node name="HP_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -21.0
+margin_top = -34.0
+margin_right = 124.0
+margin_bottom = -13.0
+rect_scale = Vector2( 0.25, 0.25 )
+max_value = 150.0
+value = 150.0
+texture_progress = ExtResource( 4 )
+tint_progress = Color( 1, 0, 0, 1 )
+nine_patch_stretch = true
+
+[node name="Mana_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -21.0
+margin_top = -29.0
+margin_right = 124.0
+margin_bottom = -8.0
+rect_scale = Vector2( 0.25, 0.25 )
+max_value = 250.0
+value = 250.0
+texture_progress = ExtResource( 4 )
+tint_progress = Color( 0, 0.133333, 1, 1 )
+nine_patch_stretch = true
+
+[node name="value_of_HP" type="Label" parent="."]
+margin_left = -8.82999
+margin_top = -35.08
+margin_right = 19.17
+margin_bottom = 12.92
+rect_scale = Vector2( 0.5, 0.5 )
+text = "500
+
+"
+
+[node name="value_of_Mana" type="Label" parent="."]
+margin_left = -8.82999
+margin_top = -29.08
+margin_right = 31.17
+margin_bottom = 18.92
+rect_scale = Vector2( 0.5, 0.5 )
+text = "250
+
+"
+
+[node name="Trigger_Area" type="Area2D" parent="."]
+position = Vector2( 0.170013, -7.08 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Area"]
+position = Vector2( 1, -21.5 )
+shape = SubResource( 3 )
+one_way_collision_margin = 0.0
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0.170013, -7.08 )
+
+[node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0, -35 )
+enabled = true
+cast_to = Vector2( 19, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_2" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0.170013, -13.08 )
+enabled = true
+cast_to = Vector2( 19, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( -4.32134e-07, 7 )
+enabled = true
+cast_to = Vector2( 3, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_4" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( -4.32134e-07, -23 )
+enabled = true
+cast_to = Vector2( 19, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_For_Heroe" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( -4.32134e-07, 2 )
+enabled = true
+cast_to = Vector2( 192, 0 )
+
+[node name="RayCastVertical" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 11, 1 )
+enabled = true
+cast_to = Vector2( 0, 22 )
+collision_mask = 4194304
+
+[node name="RayCastVertical_2" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0.170013, -13.08 )
+enabled = true
+cast_to = Vector2( 0, -26 )
+collision_mask = 2097152
+
+[node name="RayCastVertical_3" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+cast_to = Vector2( 0, 17 )
+collision_mask = 2097152
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/EXTRA = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_max_distance = 10.0
+navigation_layers = 16
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 0.170013, -7.08 )
+width = 5.0
+
+[node name="Area_For_Starting_Fight" type="Area2D" parent="."]
+scale = Vector2( 0.7, 1 )
+collision_layer = 17
+collision_mask = 17
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Starting_Fight"]
+shape = SubResource( 9 )
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="Timer_Stop_Machine" type="Timer" parent="Timers"]
+wait_time = 0.3
+
+[node name="Timer_For_Updaiting_Way" type="Timer" parent="Timers"]
+wait_time = 0.3
+autostart = true
+
+[node name="Timer_For_Going_Back" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="Timer_Of_Stun" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Timer_Of_HP" type="Timer" parent="Timers"]
+autostart = true
+
+[node name="Timer_Of_Mana" type="Timer" parent="Timers"]
+autostart = true
+
+[node name="Handle_Attack" type="Area2D" parent="."]
+visible = false
+position = Vector2( 32, -3 )
+scale = Vector2( 0.7, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Handle_Attack"]
+shape = SubResource( 10 )
+disabled = true
+
+[node name="For_Status_Bars" type="Node2D" parent="."]
+position = Vector2( -2, -43 )
+
+[connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]
+[connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_path_changed"]
+[connection signal="body_entered" from="Area_For_Starting_Fight" to="." method="_on_Area_For_Starting_Fight_body_entered"]
+[connection signal="timeout" from="Timers/Timer_For_Updaiting_Way" to="." method="_on_Timer_For_Updaiting_Way_timeout"]
+[connection signal="timeout" from="Timers/Timer_For_Going_Back" to="." method="_on_Timer_For_Going_Back_timeout"]

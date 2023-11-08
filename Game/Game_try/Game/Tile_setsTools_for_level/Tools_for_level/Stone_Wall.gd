@@ -6,7 +6,7 @@ func _ready():
 	if get_parent().get_name() == "PositionsWalls":
 		$AnimatedSprite.flip_h = get_parent().global_position.x > self.global_position.x
 
-func stone_wall():
+func stone_wall_self():
 	pass
 
 func _physics_process(delta):
