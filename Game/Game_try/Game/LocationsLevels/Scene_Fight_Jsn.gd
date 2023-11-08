@@ -1,19 +1,7 @@
 extends "res://Locations.gd"
 var her_1
-"""
-var heroe_1
 
 
-
-var Her_was_triggered
-var jeison = preload("res://Game/Characters/Enemy55.tscn")
-var sed = preload("res://Game/Characters/Sed.tscn")
-var her = preload("res://Game/Characters/Her.tscn")
-var enemys = ["Sed", "Her", "Jeison"]
-#var enemy_3 = preload("res://Game/Characters/Hir.tscn")
-
-var heroe = preload("res://Game/Characters/Heroe.tscn")
-"""
 var Sed_was_triggered = false
 var collisions = [1,2,3,9]
 var floor_of_level = "First"
@@ -22,29 +10,14 @@ func Fight_Scene():
 	pass
 
 func _ready():
-	"""if self.has_node("Dialoge_Layer"):
-		for i in range($Dialoge_Layer.get_children().size()):
-			$Dialoge_Layer.get_children()[i].connect("body_entered", self, "_on_Dialoge_Area_body_entered", [$Dialoge_Layer.get_children()[i].get_name()])
-	if self.has_node("Areas_For_Moving"):
-		for i in range($Areas_For_Moving.get_children().size()):
-			$Areas_For_Moving.get_children()[i].connect("body_entered", self, "_on_Area_For_Moving_After_Heroe_entered", [LOCATIONS_PARAMETERS.locations[self.get_name()]["Areas_For_Moving"][$Areas_For_Moving.get_children()[i].get_name()]])
-	heroe_1 = heroe.instance()
-	heroe_1.position = $Position_Heroe.global_position
-	self.add_child(heroe_1)"""
-	heroe1.set_collision_layer(3)
-	heroe1.set_collision_mask(3)
-	"""
-	var jeison_1 = jeison.instance()
-	jeison_1.position = $Position_Jeison.global_position
-	self.add_child(jeison_1)
-	var sed_1 = sed.instance()
-	sed_1.position = $Position_Sed.global_position
-	self.add_child(sed_1)
-	her_1 = her.instance()
-	her_1.position = $Position_Her.global_position
-	self.add_child(her_1)"""
-	#$Areas_For_Moving/Moving_Area_1.connect("body_entered", self, "_on_Area_For_Moving_After_Heroe_entered", [[self.get_node("Her"), self.get_node("Sed")], [[Vector2(170,523)], [Vector2(170,523)]], [false, false], "Moving_Area_1"])
-	#$Areas_For_Moving/Moving_Area_2.connect("body_entered", self, "_on_Area_For_Moving_After_Heroe_entered", [[self.get_node("Her"), self.get_node("Sed")], [[Vector2(670,400)], [Vector2(670,400)]], [false, false], "Moving_Area_2"])
+	get_node("Dialoge_Layer/Dialoge_Area_4").disconnect("body_entered", self, "dialoge_start")
+	get_node("Dialoge_Layer/Dialoge_Area_4").connect("body_entered", self, "dialoge_start", ["Dialoge_Area_4", "First_Scene"])
+	GLOBAL.cameras["Heroe/CanvasLayer"] = true
+	GLOBAL.first_cat_scene = false
+	get_node("Sed").set_collision_layer_bit(0, true)
+	get_node("Sed").set_collision_mask_bit(0, true)
+	#heroe1.set_collision_layer(3)
+	#heroe1.set_collision_mask(3)
 	get_node("Jeison").special_physics_process_controlling = true
 	her_1 = get_node("Her")
 	
@@ -70,9 +43,6 @@ func _physics_process(delta):
 			her_1.get_node("NavigationAgent2D").get_final_location()
 			her_1.nav_path = her_1.get_node("NavigationAgent2D").get_nav_path()
 		
-
-
-
 			
 			
 		

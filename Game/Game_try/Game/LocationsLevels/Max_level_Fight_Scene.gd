@@ -12,6 +12,7 @@ var point_3
 var mass_of_points = []
 var current_target
 var Belotur_was_triggered = false
+var triggered_enemies = {"Belotur": true}
 
 var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
 var enemy_2 = preload("res://Game/Characters/Enemy_2.tscn")

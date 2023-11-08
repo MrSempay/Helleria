@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Anims/Guards/Sed/dwiz/knightSedW5.png" type="Texture" id=1]
 [ext_resource path="res://Anims/Guards/Sed/dwiz/knightSedW1.png" type="Texture" id=2]
@@ -157,10 +157,16 @@ extents = Vector2( 31, 14 )
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 26, 33.75 )
 
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 1.25, 10.5 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 2, 10 )
+
 [node name="Sed" type="KinematicBody2D"]
 position = Vector2( 314, 191 )
-collision_layer = 514
-collision_mask = 514
+collision_layer = 3
+collision_mask = 3
 script = ExtResource( 10 )
 
 [node name="Area_For_Stop_Machine" type="Area2D" parent="."]
@@ -200,9 +206,6 @@ texture_progress = ExtResource( 9 )
 tint_progress = Color( 1, 0, 0, 1 )
 nine_patch_stretch = true
 
-[node name="Timer_Of_HP" type="Timer" parent="HP_Enemy_1"]
-autostart = true
-
 [node name="Mana_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -21.0
 margin_top = -29.0
@@ -214,9 +217,6 @@ value = 250.0
 texture_progress = ExtResource( 9 )
 tint_progress = Color( 0, 0.133333, 1, 1 )
 nine_patch_stretch = true
-
-[node name="Timer_Of_Mana" type="Timer" parent="Mana_Enemy_1"]
-autostart = true
 
 [node name="value_of_HP" type="Label" parent="."]
 margin_left = -8.82999
@@ -361,9 +361,25 @@ position = Vector2( 0, -12.25 )
 shape = SubResource( 9 )
 disabled = true
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.75, -3.5 )
+shape = SubResource( 10 )
+
+[node name="AreaOfEnemy" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaOfEnemy"]
+position = Vector2( -1, 6 )
+shape = SubResource( 11 )
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="Timer_Of_HP" type="Timer" parent="Timers"]
+autostart = true
+
+[node name="Timer_Of_Mana" type="Timer" parent="Timers"]
+autostart = true
+
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
-[connection signal="timeout" from="HP_Enemy_1/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
-[connection signal="timeout" from="Mana_Enemy_1/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
 [connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]
 [connection signal="timeout" from="Timer_Of_Stun" to="." method="_on_Timer_Of_Stun_timeout"]
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_path_changed"]
@@ -373,3 +389,5 @@ disabled = true
 [connection signal="timeout" from="Timer_Chaining" to="." method="_on_Timer_Chaining_timeout"]
 [connection signal="timeout" from="Timer_Shield_Punch" to="." method="_on_Timer_Shield_Punch_timeout"]
 [connection signal="body_entered" from="Shield_Punch" to="." method="_on_Shield_Punch_body_entered"]
+[connection signal="timeout" from="Timers/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
+[connection signal="timeout" from="Timers/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]

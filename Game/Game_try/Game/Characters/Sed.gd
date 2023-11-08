@@ -50,31 +50,27 @@ var number_of_moving
 var chaining_ready = true
 
 
-func handle_hit(damage, attacking_object = null):
-	if health <= 0:
-		queue_free()
-		
+func handle_hit(damage, attacking_character, attacking_object = null):
+	var what_attacks = attacking_character
 	if attacking_object != null:
-		var sum_armor
-		if attacking_object.global_position.x < self.global_position.x:
-			sum_armor = armor_left + armor_ordinary
-		else:
-			sum_armor = armor_right + armor_ordinary
-		if sum_armor > 1:
-			sum_armor = 1
-		$HP_Enemy_1.value -= damage * (1 - sum_armor) * (1 + attacking_object.damage_increase)
-		$value_of_HP.text = str($HP_Enemy_1.value)
+		what_attacks = attacking_object
+	var sum_armor
+	if what_attacks.global_position.x < self.global_position.x:
+		sum_armor = armor_left + armor_ordinary
 	else:
-		$HP_Enemy_1.value -= damage * (1 - armor_ordinary)
-		$value_of_HP.text = str($HP_Enemy_1.value)
+		sum_armor = armor_right + armor_ordinary
+	if sum_armor > 1:
+		sum_armor = 1
+	$HP_Enemy_1.value -= damage * (1 - sum_armor) * (1 + attacking_character.damage_increase)
+	$value_of_HP.text = str($HP_Enemy_1.value)
+	if attacking_character.vampirism != 0:
+		attacking_character.get_node("HP_Enemy_1").value += damage * (1 - sum_armor) * attacking_character.vampirism
 
 
 	if $HP_Enemy_1.value > 0:
 		print(name_character + " was hit! Health of enemy: ", $HP_Enemy_1.value)
 	else:
 		print(name_character + " was destroyed")
-		GLOBAL.life_first_enemy = false
-		get_parent().life_enemy = false
 		queue_free()
 
 
@@ -88,7 +84,7 @@ func enemy():
 
 
 func _ready():
-	pass
+	health = SPELLS_PARAMETERS.characters[name_character]["health"]
 
 
 func _physics_process(delta):

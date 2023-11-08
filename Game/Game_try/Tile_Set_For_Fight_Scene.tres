@@ -72,7 +72,7 @@ extents = Vector2( 24, 31 )
 1/occluder_offset = Vector2( 9.3827, 50.8655 )
 1/navigation_offset = Vector2( 9.3827, 50.8655 )
 1/shape_offset = Vector2( 7.3827, 10.8655 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 7.3827, 10.8655 )
+1/shape_transform = Transform2D( 0.97, 0, 0, 1, 7.3827, 10.8655 )
 1/shape = SubResource( 3 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
@@ -81,7 +81,7 @@ extents = Vector2( 24, 31 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 7.3827, 10.8655 )
+"shape_transform": Transform2D( 0.97, 0, 0, 1, 7.3827, 10.8655 )
 }, {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,

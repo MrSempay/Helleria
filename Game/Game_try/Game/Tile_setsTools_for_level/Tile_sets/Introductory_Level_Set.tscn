@@ -260,9 +260,10 @@ polygon = PoolVector2Array( -42, -12, 84, -12, 84, -6, 43, -6, 43, 11, 41, 13, 3
 
 [node name="Sprite8" type="Sprite" parent="."]
 position = Vector2( 149, 154 )
+z_index = -1
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( -0.678711, 48.1328, 129.216, 31.6671 )
+region_rect = Rect2( -0.678711, 48, 129.216, 32 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite8"]
 

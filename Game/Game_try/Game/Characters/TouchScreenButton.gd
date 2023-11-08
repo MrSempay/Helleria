@@ -1,7 +1,7 @@
 extends TouchScreenButton
 
 func _physics_process(delta):
-	self.set_visible(GLOBAL.dialoge_heroe_camera)
+	self.set_visible(GLOBAL.cameras["Heroe/CanvasLayer"])
 
 
 var jumping = false

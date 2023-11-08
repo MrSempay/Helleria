@@ -2,12 +2,12 @@
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
 [ext_resource path="res://Game/Enemy44.gd" type="Script" id=2]
-[ext_resource path="res://Anims/Акира/anim1.png" type="Texture" id=3]
-[ext_resource path="res://Anims/Акира/anim2.png" type="Texture" id=4]
-[ext_resource path="res://Anims/Акира/anim3.png" type="Texture" id=5]
-[ext_resource path="res://Anims/Акира/anim4.png" type="Texture" id=6]
-[ext_resource path="res://Anims/Акира/anim5.png" type="Texture" id=7]
-[ext_resource path="res://Anims/Акира/anim6.png" type="Texture" id=8]
+[ext_resource path="res://Anims/Akira/anim1.png" type="Texture" id=3]
+[ext_resource path="res://Anims/Akira/anim2.png" type="Texture" id=4]
+[ext_resource path="res://Anims/Akira/anim3.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Akira/anim4.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Akira/anim5.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Akira/anim6.png" type="Texture" id=8]
 [ext_resource path="res://Game/Characters/Area_For_Starting_Fight.gd" type="Script" id=9]
 [ext_resource path="res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3" type="AudioStream" id=10]
 
@@ -133,50 +133,6 @@ reset_on_save = false
 anims/RESET = SubResource( 3 )
 "anims/щгп" = SubResource( 4 )
 
-[node name="HP_Enemy_1" type="TextureProgress" parent="."]
-margin_left = -21.0
-margin_top = -34.0
-margin_right = 124.0
-margin_bottom = -13.0
-rect_scale = Vector2( 0.25, 0.25 )
-max_value = 150.0
-value = 150.0
-texture_progress = ExtResource( 1 )
-tint_progress = Color( 1, 0, 0, 1 )
-nine_patch_stretch = true
-
-[node name="Mana_Enemy_1" type="TextureProgress" parent="."]
-margin_left = -21.0
-margin_top = -29.0
-margin_right = 124.0
-margin_bottom = -8.0
-rect_scale = Vector2( 0.25, 0.25 )
-max_value = 250.0
-value = 250.0
-texture_progress = ExtResource( 1 )
-tint_progress = Color( 0, 0.133333, 1, 1 )
-nine_patch_stretch = true
-
-[node name="value_of_HP" type="Label" parent="."]
-margin_left = -8.82999
-margin_top = -35.08
-margin_right = 19.17
-margin_bottom = 12.92
-rect_scale = Vector2( 0.5, 0.5 )
-text = "500
-
-"
-
-[node name="value_of_Mana" type="Label" parent="."]
-margin_left = -8.82999
-margin_top = -29.08
-margin_right = 31.17
-margin_bottom = 18.92
-rect_scale = Vector2( 0.5, 0.5 )
-text = "250
-
-"
-
 [node name="Trigger_Area" type="Area2D" parent="."]
 position = Vector2( 0.170013, -7.08 )
 
@@ -301,3 +257,47 @@ disabled = true
 
 [node name="For_Status_Bars" type="Node2D" parent="."]
 position = Vector2( -2, -43 )
+
+[node name="health_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -21.0
+margin_top = -34.0
+margin_right = 124.0
+margin_bottom = -13.0
+rect_scale = Vector2( 0.25, 0.25 )
+max_value = 150.0
+value = 150.0
+texture_progress = ExtResource( 1 )
+tint_progress = Color( 1, 0, 0, 1 )
+nine_patch_stretch = true
+
+[node name="mana_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -21.0
+margin_top = -29.0
+margin_right = 124.0
+margin_bottom = -8.0
+rect_scale = Vector2( 0.25, 0.25 )
+max_value = 250.0
+value = 250.0
+texture_progress = ExtResource( 1 )
+tint_progress = Color( 0, 0.133333, 1, 1 )
+nine_patch_stretch = true
+
+[node name="value_of_health" type="Label" parent="."]
+margin_left = -8.82999
+margin_top = -35.08
+margin_right = 19.17
+margin_bottom = 12.92
+rect_scale = Vector2( 0.5, 0.5 )
+text = "500
+
+"
+
+[node name="value_of_mana" type="Label" parent="."]
+margin_left = -8.82999
+margin_top = -29.08
+margin_right = 31.17
+margin_bottom = 18.92
+rect_scale = Vector2( 0.5, 0.5 )
+text = "250
+
+"

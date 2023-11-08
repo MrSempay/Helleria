@@ -1,80 +1,80 @@
-[gd_scene load_steps=86 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
 [ext_resource path="res://Game/Characters/Adalard.gd" type="Script" id=2]
-[ext_resource path="res://Anims/Adalar/Движ/anim2.png" type="Texture" id=3]
-[ext_resource path="res://Anims/Adalar/Движ/anim4.png" type="Texture" id=4]
-[ext_resource path="res://Anims/Adalar/Движ/anim5.png" type="Texture" id=5]
-[ext_resource path="res://Anims/Adalar/Движ/anim3.png" type="Texture" id=6]
-[ext_resource path="res://Anims/Adalar/Движ/anim7.png" type="Texture" id=7]
-[ext_resource path="res://Anims/Adalar/Движ/anim6.png" type="Texture" id=8]
-[ext_resource path="res://Anims/Adalar/Движ/anim8.png" type="Texture" id=9]
-[ext_resource path="res://Anims/Adalar/Jump/animJumpAdal1.png" type="Texture" id=10]
-[ext_resource path="res://Anims/Adalar/Jump/animJumpAdal2.png" type="Texture" id=11]
-[ext_resource path="res://Anims/Adalar/Jump/animJumpAdal6.png" type="Texture" id=12]
-[ext_resource path="res://Anims/Adalar/Jump/animJumpAdal4.png" type="Texture" id=13]
-[ext_resource path="res://Anims/Adalar/Jump/animJumpAdal5.png" type="Texture" id=14]
-[ext_resource path="res://Anims/Adalar/Jump/animJumpAdal3.png" type="Texture" id=15]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)1.png" type="Texture" id=16]
+[ext_resource path="res://Anims/Adalard/Движ/anim2.png" type="Texture" id=3]
+[ext_resource path="res://Anims/Adalard/Движ/anim4.png" type="Texture" id=4]
+[ext_resource path="res://Anims/Adalard/Движ/anim5.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Adalard/Движ/anim3.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Adalard/Движ/anim7.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Adalard/Движ/anim6.png" type="Texture" id=8]
+[ext_resource path="res://Anims/Adalard/Движ/anim8.png" type="Texture" id=9]
+[ext_resource path="res://Anims/Adalard/Jump/animJumpAdal1.png" type="Texture" id=10]
+[ext_resource path="res://Anims/Adalard/Jump/animJumpAdal2.png" type="Texture" id=11]
+[ext_resource path="res://Anims/Adalard/Jump/animJumpAdal6.png" type="Texture" id=12]
+[ext_resource path="res://Anims/Adalard/Jump/animJumpAdal4.png" type="Texture" id=13]
+[ext_resource path="res://Anims/Adalard/Jump/animJumpAdal5.png" type="Texture" id=14]
+[ext_resource path="res://Anims/Adalard/Jump/animJumpAdal3.png" type="Texture" id=15]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)1.png" type="Texture" id=16]
 [ext_resource path="res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3" type="AudioStream" id=17]
 [ext_resource path="res://Game/Characters/Area_For_Starting_Fight.gd" type="Script" id=18]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)3.png" type="Texture" id=19]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)4.png" type="Texture" id=20]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)5.png" type="Texture" id=21]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)10.png" type="Texture" id=22]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)9.png" type="Texture" id=23]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok4.png" type="Texture" id=24]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok5.png" type="Texture" id=25]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)7.png" type="Texture" id=26]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok11.png" type="Texture" id=27]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok15.png" type="Texture" id=28]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok3.png" type="Texture" id=29]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok17.png" type="Texture" id=30]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)3.png" type="Texture" id=31]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)9.png" type="Texture" id=32]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok8.png" type="Texture" id=33]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)5.png" type="Texture" id=34]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(2)2.png" type="Texture" id=35]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok16.png" type="Texture" id=36]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(2)1.png" type="Texture" id=37]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)8.png" type="Texture" id=38]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Броня/ayplot2.png" type="Texture" id=39]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Броня/ayplot3.png" type="Texture" id=40]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Броня/ayplot4.png" type="Texture" id=41]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Броня/ayplot5.png" type="Texture" id=42]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Броня/ayplot6.png" type="Texture" id=43]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Броня/ayplot11.png" type="Texture" id=44]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Броня/ayplot12.png" type="Texture" id=45]
-[ext_resource path="res://Anims/Adalar/Jump/animJumpAdal7.png" type="Texture" id=46]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Броня/ayplot7.png" type="Texture" id=47]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Броня/ayplot8.png" type="Texture" id=48]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Броня/ayplot9.png" type="Texture" id=49]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Броня/ayplot10.png" type="Texture" id=50]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Броня/ayplot1.png" type="Texture" id=51]
-[ext_resource path="res://Anims/Adalar/Jump/animJumpAdal9.png" type="Texture" id=52]
-[ext_resource path="res://Anims/Adalar/Jump/animJumpAdal8.png" type="Texture" id=53]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok13.png" type="Texture" id=54]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok9.png" type="Texture" id=55]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok1.png" type="Texture" id=56]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok2.png" type="Texture" id=57]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)4.png" type="Texture" id=58]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok6.png" type="Texture" id=59]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok12.png" type="Texture" id=60]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok7.png" type="Texture" id=61]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)1.png" type="Texture" id=62]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)6.png" type="Texture" id=63]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok10.png" type="Texture" id=64]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok14.png" type="Texture" id=65]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)7.png" type="Texture" id=66]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)8.png" type="Texture" id=67]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)2.png" type="Texture" id=68]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(2)3.png" type="Texture" id=69]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(2)4.png" type="Texture" id=70]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(2)5.png" type="Texture" id=71]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(2)6.png" type="Texture" id=72]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)6.png" type="Texture" id=73]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)2.png" type="Texture" id=74]
-[ext_resource path="res://Anims/Adalar/Ядро изменений/Толчок(НовСпособн)/tolchok18.png" type="Texture" id=75]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)3.png" type="Texture" id=19]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)4.png" type="Texture" id=20]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)5.png" type="Texture" id=21]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)10.png" type="Texture" id=22]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)9.png" type="Texture" id=23]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok4.png" type="Texture" id=24]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok5.png" type="Texture" id=25]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)7.png" type="Texture" id=26]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok11.png" type="Texture" id=27]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok15.png" type="Texture" id=28]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok3.png" type="Texture" id=29]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok17.png" type="Texture" id=30]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)3.png" type="Texture" id=31]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)9.png" type="Texture" id=32]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok8.png" type="Texture" id=33]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)5.png" type="Texture" id=34]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(2)2.png" type="Texture" id=35]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok16.png" type="Texture" id=36]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(2)1.png" type="Texture" id=37]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)8.png" type="Texture" id=38]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Броня/ayplot2.png" type="Texture" id=39]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Броня/ayplot3.png" type="Texture" id=40]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Броня/ayplot4.png" type="Texture" id=41]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Броня/ayplot5.png" type="Texture" id=42]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Броня/ayplot6.png" type="Texture" id=43]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Броня/ayplot11.png" type="Texture" id=44]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Броня/ayplot12.png" type="Texture" id=45]
+[ext_resource path="res://Anims/Adalard/Jump/animJumpAdal7.png" type="Texture" id=46]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Броня/ayplot7.png" type="Texture" id=47]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Броня/ayplot8.png" type="Texture" id=48]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Броня/ayplot9.png" type="Texture" id=49]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Броня/ayplot10.png" type="Texture" id=50]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Броня/ayplot1.png" type="Texture" id=51]
+[ext_resource path="res://Anims/Adalard/Jump/animJumpAdal9.png" type="Texture" id=52]
+[ext_resource path="res://Anims/Adalard/Jump/animJumpAdal8.png" type="Texture" id=53]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok13.png" type="Texture" id=54]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok9.png" type="Texture" id=55]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok1.png" type="Texture" id=56]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok2.png" type="Texture" id=57]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)4.png" type="Texture" id=58]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok6.png" type="Texture" id=59]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok12.png" type="Texture" id=60]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok7.png" type="Texture" id=61]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)1.png" type="Texture" id=62]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)6.png" type="Texture" id=63]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok10.png" type="Texture" id=64]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok14.png" type="Texture" id=65]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)7.png" type="Texture" id=66]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)8.png" type="Texture" id=67]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(1)2.png" type="Texture" id=68]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(2)3.png" type="Texture" id=69]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(2)4.png" type="Texture" id=70]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(2)5.png" type="Texture" id=71]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(2)6.png" type="Texture" id=72]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)6.png" type="Texture" id=73]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Меч(НовСпособн)/SwordAdalar(3)2.png" type="Texture" id=74]
+[ext_resource path="res://Anims/Adalard/Ядро изменений/Толчок(НовСпособн)/tolchok18.png" type="Texture" id=75]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 12, 10 )
@@ -203,11 +203,17 @@ extents = Vector2( 31, 14 )
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 46.8215, 18.25 )
 
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 1.25, 9 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 2, 10 )
+
 [node name="Adalard" type="KinematicBody2D"]
 position = Vector2( 328, 165 )
 z_index = 3
-collision_layer = 516
-collision_mask = 516
+collision_layer = 4
+collision_mask = 4
 script = ExtResource( 2 )
 
 [node name="Area_Pushing" type="Area2D" parent="."]
@@ -239,7 +245,7 @@ reset_on_save = false
 anims/RESET = SubResource( 4 )
 "anims/щгп" = SubResource( 5 )
 
-[node name="HP_Enemy_1" type="TextureProgress" parent="."]
+[node name="health_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -21.0
 margin_top = -34.0
 margin_right = 124.0
@@ -251,7 +257,7 @@ texture_progress = ExtResource( 1 )
 tint_progress = Color( 1, 0, 0, 1 )
 nine_patch_stretch = true
 
-[node name="Mana_Enemy_1" type="TextureProgress" parent="."]
+[node name="mana_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -21.0
 margin_top = -29.0
 margin_right = 124.0
@@ -263,7 +269,7 @@ texture_progress = ExtResource( 1 )
 tint_progress = Color( 0, 0.133333, 1, 1 )
 nine_patch_stretch = true
 
-[node name="value_of_HP" type="Label" parent="."]
+[node name="value_of_health" type="Label" parent="."]
 margin_left = -8.82999
 margin_top = -35.08
 margin_right = 19.17
@@ -273,7 +279,7 @@ text = "500
 
 "
 
-[node name="value_of_Mana" type="Label" parent="."]
+[node name="value_of_mana" type="Label" parent="."]
 margin_left = -8.82999
 margin_top = -29.08
 margin_right = 31.17
@@ -366,6 +372,8 @@ disabled = true
 [node name="Line2D2" type="Line2D" parent="."]
 position = Vector2( -1.07996, -1.08002 )
 scale = Vector2( 2, 2 )
+width = 40.0
+default_color = Color( 1, 0.654902, 0.4, 1 )
 
 [node name="For_Status_Bars" type="Node2D" parent="."]
 position = Vector2( -2, -43 )
@@ -403,6 +411,16 @@ autostart = true
 [node name="Timer_Of_Stun" type="Timer" parent="Timers"]
 wait_time = 3.0
 one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.75, -2 )
+shape = SubResource( 11 )
+
+[node name="AreaOfEnemy" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaOfEnemy"]
+position = Vector2( -1, 6 )
+shape = SubResource( 12 )
 
 [connection signal="body_entered" from="Area_Pushing" to="." method="_on_Area_Pushing_body_entered"]
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]

@@ -1,11 +1,45 @@
 extends Node2D
 
 
+func _physics_process(delta):
+	$KinematicBody2D.translate(Vector2(0,1))
+
+func say_hello():
+	print("Hello!")
+
+func ibo(mega):
+	print("a")
+	mega.call_func()
+	print("b")
+func foo():
+	return("bar")
+var d = "assd"
 func _ready():
+	#get_tree().get_current_scene().free()
+	#print(get_tree().get_current_scene().get_name())
+	var ibo = self.get("modulate")
+	var property_name = "a"
+	var property_value = str2var("ibo." + property_name)
+
+
+	#var a = funcref($Ibo, "foo")
+	#print(a) # Prints bar
+
+
+
+	#var nodil = Node2D.new()
+	#nodil.name = "Ibo"
+	#self.add_child(nodil)
+	#self.get_node("Ibo").queue_free()
+	#yield(get_tree(), "idle_frame")
+	#print(nodil)
+	#print(self.get_node("Ibo"))
+
+	#$Area2D.connect("body_entered", self, "_on_Area2D_body_entered", [1, 2])
 	#print(get_segments_from_CollisionShape_or_collisionPolygon($Area2D))
 	#print($Area2D/CollisionShape2D.shape.extents.x)
 	#print(Vector2(0, 50).cross(Vector2(50,-20)))
-	print(intersecting_vectors(get_segments_from_CollisionShape_or_collisionPolygon($Area2D2), [[Vector2(196,21), Vector2(210,22)]]))
+	#print(intersecting_vectors(get_segments_from_CollisionShape_or_collisionPolygon($Area2D2), [[Vector2(196,21), Vector2(210,22)]]))
 
 
 func get_segments_from_CollisionShape_or_collisionPolygon(area):
@@ -81,3 +115,11 @@ func intersecting_vectors(mass_segment1, mass_segment2):
 	#var t = ((C.y - A.y) * (D.x - C.x) + (A.x - C.x) * (D.y - C.y)) / ((B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x))
 	#print(ibo)
 	return false
+
+
+
+func _on_Area2D_body_entered(tody = null, mda = 5, k = 11):
+	print(tody)
+	print(mda)
+	print(k)
+	

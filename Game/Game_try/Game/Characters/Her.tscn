@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://Anims/Guards/Hir/dwiz/knightHirW1.png" type="Texture" id=1]
 [ext_resource path="res://Anims/Guards/Hir/dwiz/knightHirW2.png" type="Texture" id=2]
@@ -54,6 +54,9 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 3, 11.5 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 1.25, 9 )
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -161,10 +164,13 @@ extents = Vector2( 31, 14 )
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 46.8215, 18.25 )
 
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 2, 10 )
+
 [node name="Her" type="KinematicBody2D"]
 position = Vector2( 314, 191 )
-collision_layer = 516
-collision_mask = 516
+collision_layer = 4
+collision_mask = 4
 script = ExtResource( 10 )
 
 [node name="Area_For_Stop_Machine" type="Area2D" parent="."]
@@ -174,6 +180,10 @@ collision_mask = 128
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Stop_Machine"]
 position = Vector2( -1, 4.5 )
 shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.75, -2 )
+shape = SubResource( 10 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -0.645767, -6.08 )
@@ -192,7 +202,7 @@ scale = Vector2( 2, 2 )
 frames = SubResource( 4 )
 animation = "idle"
 
-[node name="HP_Enemy_1" type="TextureProgress" parent="."]
+[node name="health_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -21.0
 margin_top = -34.0
 margin_right = 124.0
@@ -204,7 +214,7 @@ texture_progress = ExtResource( 9 )
 tint_progress = Color( 1, 0, 0, 1 )
 nine_patch_stretch = true
 
-[node name="Mana_Enemy_1" type="TextureProgress" parent="."]
+[node name="mana_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -21.0
 margin_top = -29.0
 margin_right = 124.0
@@ -216,7 +226,7 @@ texture_progress = ExtResource( 9 )
 tint_progress = Color( 0, 0.133333, 1, 1 )
 nine_patch_stretch = true
 
-[node name="value_of_HP" type="Label" parent="."]
+[node name="value_of_health" type="Label" parent="."]
 margin_left = -8.82999
 margin_top = -35.08
 margin_right = 19.17
@@ -226,7 +236,7 @@ text = "500
 
 "
 
-[node name="value_of_Mana" type="Label" parent="."]
+[node name="value_of_mana" type="Label" parent="."]
 margin_left = -8.82999
 margin_top = -29.08
 margin_right = 31.17
@@ -263,6 +273,7 @@ cast_to = Vector2( 19, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
+visible = false
 position = Vector2( -1, 7 )
 enabled = true
 cast_to = Vector2( 4, 0 )
@@ -364,5 +375,11 @@ autostart = true
 [node name="Timer_Of_Stun" type="Timer" parent="Timers"]
 wait_time = 3.0
 one_shot = true
+
+[node name="AreaOfEnemy" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaOfEnemy"]
+position = Vector2( -1, 6 )
+shape = SubResource( 11 )
 
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]

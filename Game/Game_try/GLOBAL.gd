@@ -47,6 +47,24 @@ var life_heroe = true
 var heroe_uploaded = false
 var position_heroe_before_fight = Vector2(0, 0)
 
+var cameras = {
+	"Heroe/CanvasLayer": true,
+	"Camera_For_Speaking": false
+}
+
+var died_enemies_at_first_level = {
+	"Jeison": false,
+	"Adalard": false,
+	"Belotur": false
+}
+
+var position_for_died_enemies_at_Gasria_fight = {
+	"Jeison": Vector2(906, 75),
+	"Belotur": Vector2(914, 213),
+	"Adalard": Vector2(906, 355)
+}
+
+
 var dialoge_heroe_camera = true
 var dialoge_No_heroe_camera = false
 
@@ -67,7 +85,7 @@ var adalard_dialoge_finished = false
 var jeison_dialoge_finished = false
 
 
-var first_cat_scene = true
+var first_cat_scene = false
 var first_starting_temple_lvl = true
 
 var heroe_pos_changed = false
@@ -75,9 +93,18 @@ var enemy_for_fight = ""
 
 var heroe_is_observe = false
 var ibo = true
-func scene(name):
+
+
+var name_of_dialoge_for_dialoge_field_scene = ""
+func scene(name, dialoge_between_scenes = false):
 	get_tree().get_current_scene().queue_free()
-	get_tree().change_scene("res://Game/LocationsLevels/"+name+".tscn")
+	if !dialoge_between_scenes:
+		get_tree().change_scene("res://Game/LocationsLevels/"+name+".tscn")
+		return
+	else:
+		name_of_dialoge_for_dialoge_field_scene = get_tree().get_current_scene().get_name() + "-" + name
+		get_tree().change_scene("res://Game/Dialoge_Field.tscn")
+		
 	
 
 func first_spell_changing(speed, armor=0):
@@ -113,23 +140,14 @@ func get_segments_from_CollisionShape_or_collisionPolygon(area):
 
 
 func intersecting_vectors(mass_segment1, mass_segment2):
-	#X_AB(t) = mass_points1[i][0].x + t * (mass_points1[i][1].x - mass_points1[i][0].x)
-	#C.y + s * (D.y - C.y) = A.y + t * (B.y - A.y)
-	#C.x + s * (D.x - C.x) = A.x + t * (B.x - A.x)          s * (D.x - C.x) - (s * coefficient_at_s + absolute_term_at_s) * (B.x - A.x) = A.x - C.x
-	#(C.y + s * (D.y - C.y) - A.y)/(B.y - A.y) = t			s * (D.x - C.x) - s * coefficient_at_s * (B.x - A.x) = A.x - C.x - absolute_term_at_s * (B.x - A.x)
-	#(A.x + t * (B.x - A.x) - C.x)/(D.x - C.x) = s			s = (A.x - C.x - absolute_term_at_s * (B.x - A.x))/((D.x - C.x) - coefficient_at_s * (B.x - A.x))
 	var t
-	var s	
+	var s
 	var A = Vector2.ZERO
 	var B = Vector2.ZERO
 	var C = Vector2.ZERO
 	var D = Vector2.ZERO
-	# правильные: var t = ((C.x - A.x) * (D.y - C.y) - (C.y - A.y) * (D.x - C.x)) / ((B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x))
-	# правильные: var s = (A.x + t * (B.x - A.x) - C.x)/(D.x - C.x)
 	var is_intersection = false
 	for i in range(mass_segment1.size()):
-		#print((B.x - A.x))
-		#print((D.x - C.x))
 		A.x = mass_segment1[i][0].x
 		A.y = mass_segment1[i][0].y
 		B.x = mass_segment1[i][1].x
@@ -142,20 +160,28 @@ func intersecting_vectors(mass_segment1, mass_segment2):
 			if ((B.x - A.x) * (D.y - C.y) == (B.y - A.y) * (D.x - C.x)):
 				pass
 			else:
-				#print(((B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x)))
-				#print(((mass_segment1[i][1].x - mass_segment1[i][0].x) * (mass_segment2[i][1].x - mass_segment2[i][0].x) - (mass_segment1[j][1].y - mass_segment1[j][0].y) * (mass_segment2[j][1].y - mass_segment2[j][0].y)))
 				t = ((C.x - A.x) * (D.y - C.y) - (C.y - A.y) * (D.x - C.x)) / ((B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x))
 				s = (A.x + t * (B.x - A.x) - C.x)/(D.x + 0.0001 - C.x)
 				if s >= 0 && s <= 1 && t >= 0 && t <= 1:
-					return true	
-	#var coefficient_at_s = (D.x - C.x)/(B.y - A.y)
-	#var absolute_term_at_s = (C.y - A.y)/(B.y - A.y)
-	#var ibo = (A.x - C.x - absolute_term_at_s * (B.x - A.x))/((D.x - C.x) - coefficient_at_s * (B.x - A.x))
-	#C.x + s * (D.x - C.x) = A.x + (C.y + s * (D.y - C.y) - A.y)/(B.y - A.y) * (B.x - A.x)
-	#var s = (A.x - C.x + (C.y - A.y)/(B.y - A.y) * (B.x - A.x)) / ((D.x - C.x) - (D.y - C.y)/(B.y - A.y) * (B.x - A.x))
-	#var ibo = (C.x + s * (D.x - C.x) - A.x)/(B.x - A.x)
-	#var t = ((C.y - A.y) * (D.x - C.x) + (A.x - C.x) * (D.y - C.y)) / ((B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x))
-	#print(ibo)
+					return true
 	return false
+
+func making_animation_for_sprite_from_folder(path, sprite, anim_name, animation_loop = false, sprite_position = Vector2(0, 0), fps = 5, start_animation_after_completing = true):
+	var dir_animation = Directory.new()
+	if dir_animation.open(path) == OK:
+		dir_animation.list_dir_begin(true)
+		var animation_frame = dir_animation.get_next()
+		sprite.set_sprite_frames(SpriteFrames.new())
+		sprite.get_sprite_frames().add_animation(anim_name)
+		sprite.get_sprite_frames().set_animation_loop(anim_name, animation_loop)
+		sprite.set_position(sprite_position)
+		sprite.get_sprite_frames().set_animation_speed(anim_name, fps)
+		sprite.scale = Vector2(2, 2)
+		while animation_frame != "":
+			sprite.get_sprite_frames().add_frame(anim_name, load(path + "/" + animation_frame))
+			animation_frame = dir_animation.get_next()
+	if start_animation_after_completing:
+		sprite.play(anim_name)
+	return sprite
 
 

@@ -4,16 +4,17 @@ var locations = {
 	"Garsia_Boss_Fight_Scene": {
 		
 		
-		"characters_for_uploading": ["Gasria", "Belotur", "Jeison", "Adalard", "Her"]
+		#"characters_for_uploading": {"Gasria": false, "Belotur": true, "Jeison": true, "Adalard": true}
+		"characters_for_uploading": {"Gasria": false}
 	},
 	
 	"Scene_Fight_Jsn": {
 		
-		"characters_for_uploading": ["Jeison", "Her", "Sed"],
+		"characters_for_uploading": {"Jeison": false, "Her": false, "Sed": false},
 		
 		"Areas_For_Moving": {
-			"Moving_Area_1": [["Her", "Sed"], [[Vector2(170,530)], [Vector2(170,530)]], [false, false], "Moving_Area_1"],
-			"Moving_Area_2": [["Her", "Sed"], [[Vector2(670,400)], [Vector2(670,400)]], [false, false], "Moving_Area_2"]
+			"Moving_Area_1": [["Her", "Sed"], [[Vector2(170,530)], [Vector2(170,530)]], [false, false], "Moving_Area_1", null, [4, 4]],
+			"Moving_Area_2": [["Her", "Sed"], [[Vector2(670,400)], [Vector2(670,400)]], [false, false], "Moving_Area_2", null, [4, 4]]
 		}
 	
 	},

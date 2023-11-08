@@ -76,13 +76,13 @@ func handle_hit(damage, attacking_object = null):
 			sum_armor = armor_right + armor_ordinary
 		if sum_armor > 1:
 			sum_armor = 1
-		$HP_Enemy_1.value -= damage * (1 - sum_armor) * (1 + attacking_object.damage_increase)
-		$value_of_HP.text = str($HP_Enemy_1.value)
+		$health_Enemy_1.value -= damage * (1 - sum_armor) * (1 + attacking_object.damage_increase)
+		$value_of_HP.text = str($health_Enemy_1.value)
 	else:
-		$HP_Enemy_1.value -= damage * (1 - armor_ordinary)
-		$value_of_HP.text = str($HP_Enemy_1.value)
+		$health_Enemy_1.value -= damage * (1 - armor_ordinary)
+		$value_of_HP.text = str($health_Enemy_1.value)
 
-	if $HP_Enemy_1.value <= 0:
+	if $health_Enemy_1.value <= 0:
 		self.queue_free()
 
 func mana_using(manacost):
@@ -98,9 +98,9 @@ func _ready():
 	
 	name_character = self.get_name()
 	health = SPELLS_PARAMETERS.characters[name_character]["health"]
-	$HP_Enemy_1.max_value = SPELLS_PARAMETERS.characters[name_character]["health"]
-	$HP_Enemy_1.value = SPELLS_PARAMETERS.characters[name_character]["health"]
-	$value_of_HP.text = str($HP_Enemy_1.value)
+	$health_Enemy_1.max_value = SPELLS_PARAMETERS.characters[name_character]["health"]
+	$health_Enemy_1.value = SPELLS_PARAMETERS.characters[name_character]["health"]
+	$value_of_HP.text = str($health_Enemy_1.value)
 	
 	$Mana_Enemy_1.max_value = SPELLS_PARAMETERS.characters[name_character]["mana"]
 	$Mana_Enemy_1.value = SPELLS_PARAMETERS.characters[name_character]["mana"]
@@ -119,7 +119,7 @@ func _ready():
 
 func _physics_process(delta):
 	#print(chains_ready["damage_block_chain_ready"])
-	health = $HP_Enemy_1.value
+	health = $health_Enemy_1.value
 	#print(str(self.get_global_position()) + " HER ")
 	#print(get_parent().triggered_enemies[name])
 	#print(get_parent().triggered_enemies[name_character])
@@ -254,8 +254,8 @@ func start_jump_enemy():
 
 
 func _on_Timer_Of_HP_timeout():
-	$value_of_HP.text = str($HP_Enemy_1.value)
-	$HP_Enemy_1.value += regeneration_in_second
+	$value_of_HP.text = str($health_Enemy_1.value)
+	$health_Enemy_1.value += regeneration_in_second
 
 	
 func _on_Timer_Of_Mana_timeout():
@@ -411,10 +411,10 @@ func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
 func _on_timer_for_consumption_mana_or_health_timeout(timer, type_of_chain, index_of_summary, target_to_cast):
 	match type_of_chain:
 		"damage_block":
-			summary_health_or_mana_for_chain[index_of_summary] += SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"] * 0.2
-			if summary_health_or_mana_for_chain[index_of_summary] < SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_duration"] * SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"]:
-				$HP_Enemy_1.value = $HP_Enemy_1.value - (SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"] * 0.2)
-				$value_of_HP.text = str($HP_Enemy_1.value)
+			summary_health_or_mana_for_chain[index_of_summary] += SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_consumption_health_in_second"] * 0.2
+			if summary_health_or_mana_for_chain[index_of_summary] < SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_duration"] * SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_consumption_health_in_second"]:
+				$health_Enemy_1.value = $health_Enemy_1.value - (SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_consumption_health_in_second"] * 0.2)
+				$value_of_HP.text = str($health_Enemy_1.value)
 			else:
 				if target_to_cast.armor_ordinary - SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_fraction_absorbed_damage"] >= 0:
 					target_to_cast.armor_ordinary -= SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_fraction_absorbed_damage"]
@@ -422,17 +422,17 @@ func _on_timer_for_consumption_mana_or_health_timeout(timer, type_of_chain, inde
 					target_to_cast.armor_ordinary = 0
 				timer.queue_free()
 		"damage_increase":
-			summary_health_or_mana_for_chain[index_of_summary] += SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"] * 0.2
-			if summary_health_or_mana_for_chain[index_of_summary] < SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_duration"] * SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"]:
-				$HP_Enemy_1.value = $HP_Enemy_1.value - (SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"] * 0.2)
-				$value_of_HP.text = str($HP_Enemy_1.value)
+			summary_health_or_mana_for_chain[index_of_summary] += SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_consumption_health_in_second"] * 0.2
+			if summary_health_or_mana_for_chain[index_of_summary] < SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_duration"] * SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_consumption_health_in_second"]:
+				$health_Enemy_1.value = $health_Enemy_1.value - (SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_consumption_health_in_second"] * 0.2)
+				$value_of_HP.text = str($health_Enemy_1.value)
 			else:
 				target_to_cast.damage_increase -= SPELLS_PARAMETERS.characters[name_character]["damage_increase_chain"]["damage_increase_chain_increase"]
 				timer.queue_free()
 		"cure":
-			summary_health_or_mana_for_chain[index_of_summary] += SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_mana_in_second"] * 0.2
-			if summary_health_or_mana_for_chain[index_of_summary] < SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_duration"] * SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"]:
-				$Mana_Enemy_1.value = $Mana_Enemy_1.value - (SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_mana_in_second"] * 0.2)
+			summary_health_or_mana_for_chain[index_of_summary] += SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_consumption_mana_in_second"] * 0.2
+			if summary_health_or_mana_for_chain[index_of_summary] < SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_duration"] * SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_consumption_health_in_second"]:
+				$Mana_Enemy_1.value = $Mana_Enemy_1.value - (SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_consumption_mana_in_second"] * 0.2)
 				$value_of_Mana.text = str($Mana_Enemy_1.value)
 			else:
 				target_to_cast.regeneration_in_second = 1

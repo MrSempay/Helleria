@@ -1,15 +1,19 @@
 extends Node2D
 
 var mouse_in_area = false
-var variation_energy
+var variation_energy = 2.8
 var scaleT = 1
-
+var fading
 
 func _physics_process(delta):
-
-	if $AnimatedSprite.get_animation() == "torchOn":
+	if $AnimatedSprite.get_animation() == "torchOn" && fading == null:
 		variation_energy = 2.8 * scaleT
-		$Light2D.set_energy(variation_energy)
+	# Amendment of speed of fading torches
+	if fading:
+		variation_energy = variation_energy * exp(-scaleT * 0.01)  
+	else:
+		variation_energy = variation_energy + 0.02 * (2.8 - variation_energy)
+	$Light2D.set_energy(variation_energy)
 
 
 func _on_Area2D_body_entered(body):

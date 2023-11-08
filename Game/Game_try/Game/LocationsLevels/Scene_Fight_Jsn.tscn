@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Tile_Set_For_Fight_Scene.tres" type="TileSet" id=1]
 [ext_resource path="res://Game/LocationsLevels/Scene_Fight_Jsn.gd" type="Script" id=2]
+[ext_resource path="res://Game/Tile_setsTools_for_level/Tools_for_level/Torches/Torch.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Game/Tile_setsTools_for_level/Tools_for_level/Torches/Сhandelier.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Anims/background/FOn2-scale-2.png" type="Texture" id=5]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 45, 555, 42, 492, 160.705, 491.184, 846, 560, 846, 514.574, 181, 458, 592, 461, 769, 487, 309, 287, 308, 314, 290, 351, 198, 352, 179, 352, 180, 318, 261, 210, 311, 210, 608, 222, 608, 176, 723, 179, 724, 223, 787, 288, 724, 242, 640, 242, 607, 242, 490, 205, 195, 431, 179, 412, 179, 371, 290, 371, 663, 431, 1179, 561, 955, 559, 955, 515, 1181, 455, 954, 493, 865, 345, 932, 343, 868.937, 410.969, 806, 428, 369, 315, 837.458, 345.39, 871.716, 457.549, 817, 458, 846, 493, 744, 463 )
@@ -30,12 +33,12 @@ show_collision = true
 collision_layer = 2097215
 collision_mask = 2097215
 format = 1
-tile_data = PoolIntArray( 196682, 1, 0, 262145, 1, 0, 524362, 1, 0, 589825, 1, 0, 655417, 3, 0, 655423, 3, 0, 655428, 3, 0, 720948, 4, 0, 786478, 4, 0, 852042, 1, 0, 917505, 1, 0, 917544, 4, 0, 1179668, 3, 0, 1179673, 3, 0, 1179679, 3, 0, 1179685, 3, 0, 1179691, 3, 0, 1179722, 1, 0, 1245185, 1, 0, 1310737, 4, 0, 1441845, 4, 0, 1507340, 4, 0, 1507402, 1, 0, 1572865, 1, 0, 1769481, 3, 0, 1769484, 3, 0, 1769490, 3, 0, 1769496, 3, 0, 1769497, 3, 0, 1769498, 3, 0, 1769499, 3, 0, 1769500, 3, 0, 1769505, 3, 0, 1769511, 3, 0, 1769517, 3, 0, 1900530, 2, 0, 1900531, 2, 0, 1900532, 2, 0, 1900533, 2, 0, 1900534, 2, 0, 1900535, 2, 0, 1900536, 2, 0, 1900537, 2, 0, 1900538, 2, 0, 1900539, 2, 0, 1900540, 2, 0, 1900541, 2, 0, 1966078, 2, 0, 1966079, 2, 0, 1900544, 2, 0, 1900545, 1, 0, 1900618, 1, 0, 2031615, 2, 0, 1966080, 2, 0, 1966083, 4, 0, 2097151, 2, 0, 2031670, 4, 0, 2162678, 2, 0, 2162679, 2, 0, 2162680, 2, 0, 2162681, 2, 0, 2162682, 2, 0, 2162683, 2, 0, 2162684, 2, 0, 2162685, 2, 0, 2162686, 2, 0, 2162687, 2, 0, 2097152, 2, 0, 2228214, 2, 0, 2228223, 2, 0, 2162688, 2, 0, 2293750, 2, 0, 2293751, 2, 0, 2293757, 2, 0, 2293758, 2, 0, 2293759, 2, 0, 2228224, 2, 0, 2359287, 2, 0, 2359288, 2, 0, 2359289, 2, 0, 2359290, 2, 0, 2359291, 2, 0, 2359292, 2, 0, 2359293, 2, 0, 2293760, 2, 0, 2293761, 0, 0, 2293769, 0, 0, 2293777, 0, 0, 2293785, 0, 0, 2293793, 0, 0, 2293801, 0, 0, 2293809, 0, 0, 2293817, 0, 0, 2293825, 0, 0 )
+tile_data = PoolIntArray( 196682, 1, 0, 262145, 1, 0, 524362, 1, 0, 589825, 1, 0, 655417, 3, 0, 655423, 3, 0, 655428, 3, 0, 720948, 4, 0, 786478, 4, 0, 852042, 1, 0, 917505, 1, 0, 917544, 4, 0, 1179668, 3, 0, 1179673, 3, 0, 1179679, 3, 0, 1179685, 3, 0, 1179691, 3, 0, 1179722, 1, 0, 1245185, 1, 0, 1310737, 4, 0, 1441845, 4, 0, 1507340, 4, 0, 1507402, 1, 0, 1572865, 1, 0, 1769481, 3, 0, 1769487, 3, 0, 1769493, 3, 0, 1769499, 3, 0, 1769505, 3, 0, 1769511, 3, 0, 1769517, 3, 0, 1900530, 2, 0, 1900531, 2, 0, 1900532, 2, 0, 1900533, 2, 0, 1900534, 2, 0, 1900535, 2, 0, 1900536, 2, 0, 1900537, 2, 0, 1900538, 2, 0, 1900539, 2, 0, 1900540, 2, 0, 1900541, 2, 0, 1966078, 2, 0, 1966079, 2, 0, 1900544, 2, 0, 1900545, 1, 0, 1900618, 1, 0, 2031615, 2, 0, 1966080, 2, 0, 1966083, 4, 0, 2097151, 2, 0, 2031670, 4, 0, 2162678, 2, 0, 2162679, 2, 0, 2162680, 2, 0, 2162681, 2, 0, 2162682, 2, 0, 2162683, 2, 0, 2162684, 2, 0, 2162685, 2, 0, 2162686, 2, 0, 2162687, 2, 0, 2097152, 2, 0, 2228214, 2, 0, 2228223, 2, 0, 2162688, 2, 0, 2293750, 2, 0, 2293751, 2, 0, 2293757, 2, 0, 2293758, 2, 0, 2293759, 2, 0, 2228224, 2, 0, 2359287, 2, 0, 2359288, 2, 0, 2359289, 2, 0, 2359290, 2, 0, 2359291, 2, 0, 2359292, 2, 0, 2359293, 2, 0, 2293760, 2, 0, 2293761, 0, 0, 2293769, 0, 0, 2293777, 0, 0, 2293785, 0, 0, 2293793, 0, 0, 2293801, 0, 0, 2293809, 0, 0, 2293817, 0, 0, 2293825, 0, 0 )
 
 [node name="Positions_For_Enemies" type="Node2D" parent="."]
 
 [node name="Position_Jeison" type="Position2D" parent="Positions_For_Enemies"]
-position = Vector2( 1122, 127 )
+position = Vector2( 1158, 127 )
 
 [node name="Position_Sed" type="Position2D" parent="Positions_For_Enemies"]
 position = Vector2( 611, 524 )
@@ -44,21 +47,25 @@ position = Vector2( 611, 524 )
 position = Vector2( 641, 525 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 158, 525 )
+position = Vector2( 207, 539 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+visible = false
 navpoly = SubResource( 1 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="."]
+visible = false
 navpoly = SubResource( 2 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance3" type="NavigationPolygonInstance" parent="."]
+visible = false
 navpoly = SubResource( 3 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance4" type="NavigationPolygonInstance" parent="."]
+visible = false
 navigation_layers = 63
 
 [node name="Areas_For_Moving" type="Node2D" parent="."]
@@ -101,8 +108,89 @@ scale = Vector2( 3, 3 )
 shape = SubResource( 4 )
 
 [node name="Dialoge_Area_4" type="Area2D" parent="Dialoge_Layer"]
-position = Vector2( 971, 129 )
+position = Vector2( 1119, 129 )
 scale = Vector2( 3, 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dialoge_Layer/Dialoge_Area_4"]
 shape = SubResource( 4 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0, 0, 0, 1 )
+
+[node name="Fon2-scale-2" type="Sprite" parent="."]
+position = Vector2( 576, 325 )
+scale = Vector2( 12.1944, 5.66667 )
+z_index = -3
+texture = ExtResource( 5 )
+
+[node name="Light_Objects" type="Node2D" parent="."]
+
+[node name="Torch" parent="Light_Objects" instance=ExtResource( 3 )]
+position = Vector2( 39, 517 )
+rotation = 0.862193
+
+[node name="Сhandelier4" parent="Light_Objects" instance=ExtResource( 4 )]
+position = Vector2( 391, 318 )
+
+[node name="Сhandelier" parent="Light_Objects" instance=ExtResource( 4 )]
+position = Vector2( 186, 462 )
+
+[node name="Сhandelier2" parent="Light_Objects" instance=ExtResource( 4 )]
+position = Vector2( 451, 462 )
+
+[node name="Сhandelier3" parent="Light_Objects" instance=ExtResource( 4 )]
+position = Vector2( 691, 462 )
+
+[node name="Сhandelier5" parent="Light_Objects" instance=ExtResource( 4 )]
+position = Vector2( 664, 318 )
+
+[node name="Torch2" parent="Light_Objects" instance=ExtResource( 3 )]
+position = Vector2( 859, 503 )
+rotation = -0.74002
+
+[node name="Torch3" parent="Light_Objects" instance=ExtResource( 3 )]
+position = Vector2( 939, 503 )
+rotation = 0.74002
+
+[node name="Torch4" parent="Light_Objects" instance=ExtResource( 3 )]
+position = Vector2( 1176, 504 )
+rotation = -0.74002
+
+[node name="Torch5" parent="Light_Objects" instance=ExtResource( 3 )]
+position = Vector2( 843, 356 )
+rotation = -0.74002
+
+[node name="Torch6" parent="Light_Objects" instance=ExtResource( 3 )]
+position = Vector2( 923, 356 )
+rotation = 0.74002
+
+[node name="Torch7" parent="Light_Objects" instance=ExtResource( 3 )]
+position = Vector2( 635, 228 )
+rotation = -0.74002
+
+[node name="Torch8" parent="Light_Objects" instance=ExtResource( 3 )]
+position = Vector2( 715, 228 )
+rotation = 0.74002
+
+[node name="Torch9" parent="Light_Objects" instance=ExtResource( 3 )]
+position = Vector2( 731, 197 )
+rotation = -0.74002
+
+[node name="Torch10" parent="Light_Objects" instance=ExtResource( 3 )]
+position = Vector2( 811, 197 )
+rotation = 0.74002
+
+[node name="Torch11" parent="Light_Objects" instance=ExtResource( 3 )]
+position = Vector2( 827, 183 )
+rotation = -0.74002
+
+[node name="Torch12" parent="Light_Objects" instance=ExtResource( 3 )]
+position = Vector2( 907, 183 )
+rotation = 0.74002
+
+[node name="Torch13" parent="Light_Objects" instance=ExtResource( 3 )]
+position = Vector2( 1175, 128 )
+rotation = -0.74002
+
+[node name="Сhandelier6" parent="Light_Objects" instance=ExtResource( 4 )]
+position = Vector2( 1059, 190 )

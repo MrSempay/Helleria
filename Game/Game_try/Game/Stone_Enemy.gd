@@ -1,16 +1,16 @@
 extends Area2D
 
-
 var manacost = 100
 var stown = 20
-var velocity = Vector2()
-var vector = 1
+var velocity = Vector2.ZERO
+var vector = Vector2.ZERO
 
 onready var heroe = get_node("../Heroe")
 onready var enemy = get_parent().get_node("Belotur/Sprite")
 onready var collision_of_stone = get_node("CollisionShape2D")
 
 func _ready():
+
 	$Sprite.play("stone_lifting")
 	if get_node("../Belotur/RayCastStone").get_collider():
 		vector = get_node("../Heroe").global_position - self.global_position + Vector2(0,7)
@@ -44,7 +44,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_Stone_body_entered(body):
 	if body.has_method("handle_hit") && body.has_method("start_jump_heroe"):
-		body.handle_hit(SPELLS_PARAMETERS.damage_stone_Belotur)
+		body.handle_hit(SPELLS_PARAMETERS.damage_stone_Belotur, get_parent().get_node("Belotur"))
 		queue_free()
 	if !body.has_method("handle_hit"):
 		queue_free()

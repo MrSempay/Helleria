@@ -12,7 +12,7 @@ var camera_scale
 func _ready():
 
 	resolution_x = get_viewport().size.x
-	camera_scale = Vector2(0.25 * 1024/resolution_x,0.25 * 1024/resolution_x) / 0.8
+	camera_scale = Vector2(0.25 * 1024/resolution_x,0.25 * 1024/resolution_x)
 	set_zoom(camera_scale)
 	
 	get_viewport().connect("size_changed",self,"resize")
@@ -22,6 +22,6 @@ func _ready():
 
 func resize():
 	resolution_x = get_viewport().size.x
-	camera_scale = Vector2(0.25 * 1024/resolution_x,0.25 * 1024/resolution_x) / 0.7
+	camera_scale = Vector2(0.25 * 1024/resolution_x,0.25 * 1024/resolution_x)
 	set_zoom(camera_scale)
 
