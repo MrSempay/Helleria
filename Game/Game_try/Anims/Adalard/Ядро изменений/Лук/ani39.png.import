@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/ani39.png-602999e1d90d1bc3b079c9c61fb7e741.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Anims/Adalard/Ядро изменений/Лук/ani39.png"
+dest_files=[ "res://.import/ani39.png-602999e1d90d1bc3b079c9c61fb7e741.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

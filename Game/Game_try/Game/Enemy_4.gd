@@ -9,10 +9,10 @@ var trigger_of_ally = false
 
 func handle_hit(damage):
 	#health -= damage
-	$HP_Enemy_1.value -= damage
-	$value_of_HP.text = str($HP_Enemy_1.value)
-	if $HP_Enemy_1.value > 0:
-		print(name_enemy + " was hit! Health of enemy: ", $HP_Enemy_1.value)
+	$health_Enemy_1.value -= damage
+	$value_of_HP.text = str($health_Enemy_1.value)
+	if $health_Enemy_1.value > 0:
+		print(name_enemy + " was hit! Health of enemy: ", $health_Enemy_1.value)
 	else:
 		print(name_enemy + " was destroyed")
 		GLOBAL.life_first_enemy = false
@@ -55,8 +55,8 @@ func _physics_process(delta):
 
 
 func _on_Timer_Of_HP_timeout():
-	$value_of_HP.text = str($HP_Enemy_1.value)
-	$HP_Enemy_1.value += 1
+	$value_of_HP.text = str($health_Enemy_1.value)
+	$health_Enemy_1.value += 1
 
 	
 func _on_Timer_Of_Mana_timeout():

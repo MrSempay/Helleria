@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+var mana
 var health
 var ally = null
 var heroe = null
@@ -34,7 +35,9 @@ var spells_ready = {
 	"jumping_to_point_ready": true,
 	"stone_wall_ready": true,
 	"push_ready": true,
-	"armor_ready": true
+	"armor_ready": true,
+	"fier_ball_ready": true,
+	"invisibility_ready": true
 	}
 var chains_ready = {
 	"damage_block_chain_ready": true,
@@ -67,32 +70,87 @@ var special_physics_process_controlling = false
 
 var moving_state
 var number_of_moving
+var auto_manual_navigation = false
 
 var position_attack_area_x
 
 
-func handle_hit(damage, attacking_object = null):
-	#health -= damage
+func handle_hit(damage, attacking_character, attacking_object = null):
+	var what_attacks = attacking_character
 	if attacking_object != null:
-		var sum_armor
-		if attacking_object.global_position.x < self.global_position.x:
-			sum_armor = armor_left + armor_ordinary
-		else:
-			sum_armor = armor_right + armor_ordinary
-		if sum_armor > 1:
-			sum_armor = 1
-		$HP_Enemy_1.value -= damage * (1 - sum_armor) * (1 + attacking_object.damage_increase)
-		$value_of_HP.text = str($HP_Enemy_1.value)
+		what_attacks = attacking_object
+	var sum_armor
+	if what_attacks.global_position.x < self.global_position.x:
+		sum_armor = armor_left + armor_ordinary
 	else:
-		$HP_Enemy_1.value -= damage * (1 - armor_ordinary)
-		$value_of_HP.text = str($HP_Enemy_1.value)
+		sum_armor = armor_right + armor_ordinary
+	if sum_armor > 1:
+		sum_armor = 1
+	$health_Enemy_1.value -= damage * (1 - sum_armor) * (1 + attacking_character.damage_increase)
+	$value_of_health.text = str($health_Enemy_1.value)
+	if attacking_character.vampirism != 0:
+		attacking_character.get_node("health_Enemy_1").value += damage * (1 - sum_armor) * attacking_character.vampirism
 
-	if $HP_Enemy_1.value <= 0:
+
+	if $health_Enemy_1.value <= 0:
+		if GLOBAL.died_enemies_at_first_level.has(name_character):
+			GLOBAL.died_enemies_at_first_level[name_character] = true
 		self.queue_free()
+		
 
 func mana_using(manacost):
-	$Mana_Enemy_1.value -= manacost
-	$value_of_Mana.text = str($Mana_Enemy_1.value)
+	$mana_Enemy_1.value -= manacost
+	$value_of_mana.text = str($mana_Enemy_1.value)
+
+
+var enough_HP_or_mana_for_cast
+var timers_for_consumption_health_or_mana = {}
+
+func mana_controlling(type_of_controlling, name_spell):
+	var enough_HP_or_mana_for_cast
+	var array_of_timers = []
+	if SPELLS_PARAMETERS.characters[name_character][name_spell].has(name_spell + "_manacost"):
+		if  type_of_controlling == "mana_control":
+			enough_HP_or_mana_for_cast = SPELLS_PARAMETERS.characters[name_character][name_spell][name_spell + "_manacost"] < mana
+			return enough_HP_or_mana_for_cast
+		$mana_Enemy_1.value -= SPELLS_PARAMETERS.characters[name_character][name_spell][name_spell + "_manacost"]
+		$value_of_mana.text = str($mana_Enemy_1.value)
+	if SPELLS_PARAMETERS.characters[name_character][name_spell].has(name_spell + "_consumption_health_in_second"):
+		if type_of_controlling == "mana_control": enough_HP_or_mana_for_cast = (SPELLS_PARAMETERS.characters[name_character][name_spell][name_spell + "_consumption_health_in_second"] * SPELLS_PARAMETERS.characters[name_character][name_spell][name_spell + "_duration"]) < health
+		else:
+			summary_health_or_mana_for_chain.append(0)
+			var timer_for_consumption_mana_or_health_per_tick = Timer.new()
+			timer_for_consumption_mana_or_health_per_tick.set_wait_time(0.2)
+			timer_for_consumption_mana_or_health_per_tick.connect("timeout", self, "_on_timer_for_consumption_mana_or_health_timeout", [timer_for_consumption_mana_or_health_per_tick, name_spell + "_SPELL", summary_health_or_mana_for_chain.size() - 1, self, null, null, "health"])
+			timer_for_consumption_mana_or_health_per_tick.one_shot = false
+			self.add_child(timer_for_consumption_mana_or_health_per_tick)
+			timer_for_consumption_mana_or_health_per_tick.start()
+			array_of_timers.append(timer_for_consumption_mana_or_health_per_tick)
+	if SPELLS_PARAMETERS.characters[name_character][name_spell].has(name_spell + "_consumption_mana_in_second"):
+		if type_of_controlling == "mana_control" && enough_HP_or_mana_for_cast == null: enough_HP_or_mana_for_cast = (SPELLS_PARAMETERS.characters[name_character][name_spell][name_spell + "_consumption_mana_in_second"] * SPELLS_PARAMETERS.characters[name_character][name_spell][name_spell + "_duration"] < mana)
+		elif type_of_controlling == "mana_control" && enough_HP_or_mana_for_cast: enough_HP_or_mana_for_cast = (SPELLS_PARAMETERS.characters[name_character][name_spell][name_spell + "_consumption_mana_in_second"] * SPELLS_PARAMETERS.characters[name_character][name_spell][name_spell + "_duration"] < mana)
+		if type_of_controlling == "mana_using":
+			summary_health_or_mana_for_chain.append(0)
+			var timer_for_consumption_mana_or_health_per_tick = Timer.new()
+			timer_for_consumption_mana_or_health_per_tick.set_wait_time(0.2)
+			timer_for_consumption_mana_or_health_per_tick.connect("timeout", self, "_on_timer_for_consumption_mana_or_health_timeout", [timer_for_consumption_mana_or_health_per_tick, name_spell + "_SPELL", summary_health_or_mana_for_chain.size() - 1, self, null, null, "mana"])
+			timer_for_consumption_mana_or_health_per_tick.one_shot = false
+			self.add_child(timer_for_consumption_mana_or_health_per_tick)
+			timer_for_consumption_mana_or_health_per_tick.start()
+			array_of_timers.append(timer_for_consumption_mana_or_health_per_tick)
+
+	if type_of_controlling == "mana_control":
+		return enough_HP_or_mana_for_cast
+	return array_of_timers
+	
+func free_timers_for_consumption(array_of_timers):
+	if array_of_timers.size() > 1:
+		array_of_timers[0].queue_free()
+		array_of_timers[1].queue_free()
+	elif is_instance_valid(array_of_timers[0]):
+		array_of_timers[0].queue_free()
+
+	
 
 
 func enemy():
@@ -104,16 +162,18 @@ func _ready():
 	#print(GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($Area_For_Wall_Detecting), [[Vector2(196,21), Vector2(210,22)]]))
 	name_character = self.get_name()
 	health = SPELLS_PARAMETERS.characters[name_character]["health"]
-	$HP_Enemy_1.max_value = SPELLS_PARAMETERS.characters[name_character]["health"]
-	$HP_Enemy_1.value = SPELLS_PARAMETERS.characters[name_character]["health"]
-	$value_of_HP.text = str($HP_Enemy_1.value)
+	mana = SPELLS_PARAMETERS.characters[name_character]["mana"]
+	#print(get_children())
+	$health_Enemy_1.max_value = SPELLS_PARAMETERS.characters[name_character]["health"]
+	$health_Enemy_1.value = SPELLS_PARAMETERS.characters[name_character]["health"]
+	$value_of_health.text = str($health_Enemy_1.value)
 	
-	$Mana_Enemy_1.max_value = SPELLS_PARAMETERS.characters[name_character]["mana"]
-	$Mana_Enemy_1.value = SPELLS_PARAMETERS.characters[name_character]["mana"]
-	$value_of_Mana.text = str($Mana_Enemy_1.value)
+	$mana_Enemy_1.max_value = SPELLS_PARAMETERS.characters[name_character]["mana"]
+	$mana_Enemy_1.value = SPELLS_PARAMETERS.characters[name_character]["mana"]
+	$value_of_mana.text = str($mana_Enemy_1.value)
 	
 	for i in range($Timers.get_children().size()):
-			$Timers.get_children()[i].connect("timeout", self, "_on_" + $Timers.get_children()[i].get_name() + "_timeout")
+		$Timers.get_children()[i].connect("timeout", self, "_on_" + $Timers.get_children()[i].get_name() + "_timeout")
 	$Trigger_Area.connect("body_entered", self, "_on_Trigger_Area_body_entered")
 	$VisibilityNotifier2D.connect("screen_exited", self, "_on_VisibilityNotifier2D_screen_exited")
 	$NavigationAgent2D.connect("path_changed", self, "_on_NavigationAgent2D_path_changed")
@@ -124,14 +184,15 @@ func _ready():
 	$Sprite.connect("animation_finished", self, "_on_Sprite_animation_finished")
 
 func _physics_process(delta):
+
 	#print(chains_ready["damage_block_chain_ready"])
-	health = $HP_Enemy_1.value
+	health = $health_Enemy_1.value
+	mana = $mana_Enemy_1.value
 	#print(str(self.get_global_position()) + " HER ")
 	#print(get_parent().triggered_enemies[name])
 	#print(get_parent().triggered_enemies[name_character])
-
 	if nav_path.size() > 0:
-		if manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
+		if !auto_manual_navigation && manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
 			if target_points_for_manual_navigation != []:
 				current_target = target_points_for_manual_navigation[0]
 				update_way()
@@ -187,7 +248,7 @@ func _physics_process(delta):
 				$Sprite.flip_h = false
 		#var heroe = get_parent().get_node("Heroe")
 		if get_parent().get_name() != "root":
-			if get_parent().triggered_enemies[name_character] == true:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping			
+			if get_parent().triggered_enemies[name_character] == true:   # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping			
 				#print(nav_path)
 				#print(current_target)
 				#print(name_character)
@@ -202,26 +263,22 @@ func _physics_process(delta):
 					elif ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && !$RayCastVertical_2.get_collider() && nav_path[j].y > nav_path[j+1].y:
 								start_jump_enemy()
 					if $RayCastVertical.get_collider():
+						update_way()
 						#print(nav_path)
 						#print( "Collider " + str($RayCastVertical.get_collider().global_position.y) )
 						#print( "path " + str(nav_path[1].y))
 						if $RayCastVertical.get_collider().has_node("Area_To_Jump"):
 							if nav_path.size() == 2:
 								if GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider().get_node("Area_To_Jump")), [[nav_path[0], nav_path[1]]]):
-									print("Ibo1")
 									start_jump_enemy()
 							else:
 								if GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider().get_node("Area_To_Jump")), [[nav_path[0], nav_path[1]], [nav_path[1], nav_path[2]]]):
-									print("Ibo2")
 									start_jump_enemy()
 						if nav_path.size() == 2:
 							if !GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider()), [[nav_path[0], nav_path[1]]]):
-								print("Ibo3")
 								start_jump_enemy()
 						else:
 							if !GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider()), [[nav_path[0], nav_path[1]], [nav_path[1], nav_path[2]]]):
-								#print(nav_path)
-								print("Ibo4")
 								start_jump_enemy()
 					if $RayCastHorizontal_3.get_collider():
 						start_jump_enemy()
@@ -232,7 +289,7 @@ func _physics_process(delta):
 				#print(current_target)
 				#print(get_parent().triggered_enemies[name_character])
 				#print(nav_path)
-				#print(nav_path)
+				#print(speed)
 				if j < nav_path.size() - 1 && ($Sprite.get_animation() == "idle" or $Sprite.get_animation() == "jump" or $Sprite.get_animation() == "run" or $Sprite.get_animation() == "jumping_to_point" or $Sprite.get_animation() == "preparing_jumping_to_point") && $Handle_Attack/CollisionShape2D.is_disabled():
 					#print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 					if (nav_path[j].x - nav_path[j+1].x) >= 0:
@@ -287,13 +344,13 @@ func start_jump_enemy():
 
 
 func _on_Timer_Of_HP_timeout():
-	$value_of_HP.text = str($HP_Enemy_1.value)
-	$HP_Enemy_1.value += regeneration_in_second
+	$value_of_health.text = str($health_Enemy_1.value)
+	$health_Enemy_1.value += regeneration_in_second
 
 	
 func _on_Timer_Of_Mana_timeout():
-	$value_of_Mana.text = str($Mana_Enemy_1.value)
-	$Mana_Enemy_1.value += 1
+	$value_of_mana.text = str($mana_Enemy_1.value)
+	$mana_Enemy_1.value += 1
 
 
 func _on_Trigger_Area_body_entered(body):
@@ -316,7 +373,7 @@ func _on_Handle_Attack_body_entered(body):
 				body.thrust(self, SPELLS_PARAMETERS.characters[name_character]["handle_attack"]["handle_attack_thrust"])
 
 func handle_attack():
-	if (($Handle_Attack.global_position.x) - heroe.global_position.x < $Handle_Attack/CollisionShape2D.shape.extents.x * 0.8) && (($Handle_Attack.global_position.x) - heroe.global_position.x > -$Handle_Attack/CollisionShape2D.shape.extents.x * 0.8) && $RayCastVertical_3.get_collider() && ((self.get_position().y - heroe.get_position().y < 30) && (self.get_position().y - heroe.get_position().y > -30)) && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character]["handle_attack"]["handle_attack_manacost"] && spells_ready["handle_attack_ready"]: 
+	if (($Handle_Attack.global_position.x) - heroe.global_position.x < $Handle_Attack/CollisionShape2D.shape.extents.x * 0.8) && (($Handle_Attack.global_position.x) - heroe.global_position.x > -$Handle_Attack/CollisionShape2D.shape.extents.x * 0.8) && $RayCastVertical_3.get_collider() && ((self.get_position().y - heroe.get_position().y < 30) && (self.get_position().y - heroe.get_position().y > -30)) && $mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character]["handle_attack"]["handle_attack_manacost"] && spells_ready["handle_attack_ready"]: 
 		if $Sprite.get_animation()[0] != "A":
 			manual_navigation = false
 			var amount_animations_of_handle_attack = 0
@@ -343,7 +400,7 @@ func handle_attack():
 
 func squall_attack(amount_attacks):
 	#for i in range ($Sprite.frames.get_animation_names().size()):
-	if (($Handle_Attack.global_position.x) - heroe.global_position.x < $Handle_Attack/CollisionShape2D.shape.extents.x * 0.8) && (($Handle_Attack.global_position.x) - heroe.global_position.x > -$Handle_Attack/CollisionShape2D.shape.extents.x * 0.8) && $RayCastVertical_3.get_collider() && ((self.get_position().y - heroe.get_position().y < 50) && (self.get_position().y - heroe.get_position().y > -50)) && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character]["squall_attack"]["squall_attack_manacost"] && spells_ready["squall_attack_ready"]: 
+	if (($Handle_Attack.global_position.x) - heroe.global_position.x < $Handle_Attack/CollisionShape2D.shape.extents.x * 0.8) && (($Handle_Attack.global_position.x) - heroe.global_position.x > -$Handle_Attack/CollisionShape2D.shape.extents.x * 0.8) && $RayCastVertical_3.get_collider() && ((self.get_position().y - heroe.get_position().y < 50) && (self.get_position().y - heroe.get_position().y > -50)) && $mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character]["squall_attack"]["squall_attack_manacost"] && spells_ready["squall_attack_ready"]: 
 		if $Sprite.get_animation()[0] != "A":
 			manual_navigation = false
 			if((self.global_position.x) - heroe.global_position.x) > 0:
@@ -366,7 +423,7 @@ func squall_attack(amount_attacks):
 """ --------------- JUMPING TO POINT --------------- """
 
 func jumping_to_point(point_to_jump, zone_of_casting):
-		if ((((self.global_position.x - heroe.global_position.x) < zone_of_casting) && ((self.global_position.x - heroe.global_position.x) > 23)) or (((self.global_position.x - heroe.global_position.x) > -zone_of_casting) && ((self.global_position.x - heroe.global_position.x) < -23))) && $RayCastVertical_3.get_collider() && ((self.get_position().y - heroe.get_position().y < 50) && (self.get_position().y - heroe.get_position().y > -50)) && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character]["jumping_to_point"]["jumping_to_point_manacost"] && spells_ready["jumping_to_point_ready"]:
+		if ((((self.global_position.x - heroe.global_position.x) < zone_of_casting) && ((self.global_position.x - heroe.global_position.x) > 23)) or (((self.global_position.x - heroe.global_position.x) > -zone_of_casting) && ((self.global_position.x - heroe.global_position.x) < -23))) && $RayCastVertical_3.get_collider() && ((self.get_position().y - heroe.get_position().y < 50) && (self.get_position().y - heroe.get_position().y > -50)) && $mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character]["jumping_to_point"]["jumping_to_point_manacost"] && spells_ready["jumping_to_point_ready"]:
 			j = 0
 			velocity.y = -JUMP_POWER 
 			manual_navigation = true
@@ -386,15 +443,24 @@ func jumping_to_point(point_to_jump, zone_of_casting):
 """ --------------------------------------------- """
 
 
-""" --------------- DAMAGE BLOCK CHAIN --------------- """
+""" -------------------- CHAIN -------------------- """
+
 
 func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
-	if chains_ready[type_of_chain + "_chain_ready"] && targets_for_cast != []:
-		for j in range(targets_for_cast.size() - 1):
-			if targets_for_cast[j] == null:
-				targets_for_cast.remove(j)
-				j -= 1
-		if zone_of_casting == null or ((((self.global_position.x - heroe.global_position.x) < zone_of_casting) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -zone_of_casting) && ((self.global_position.x - heroe.global_position.x) < -53))) && $RayCastVertical_3.get_collider() && ((self.get_position().y - heroe.get_position().y < 50) && (self.get_position().y - heroe.get_position().y > -50)) && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_manacost"] && chains_ready[type_of_chain + "_chain_ready"]:
+	if SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"].has(type_of_chain + "_chain_consumption_health_in_second"):
+		enough_HP_or_mana_for_cast = (SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_consumption_health_in_second"] * SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_duration"]) < health
+	if SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"].has(type_of_chain + "_chain_consumption_mana_in_second"):
+		enough_HP_or_mana_for_cast = (SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_consumption_mana_in_second"] * SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_duration"]) < mana
+	if SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"].has(type_of_chain + "_chain_consumption_mana_in_second") && SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"].has(type_of_chain + "_chain_consumption_health_in_second"):
+		enough_HP_or_mana_for_cast = (SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_consumption_mana_in_second"] * SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_duration"]) < mana && (SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_consumption_health_in_second"] * SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_duration"]) < health
+	if chains_ready[type_of_chain + "_chain_ready"] && targets_for_cast != [] && enough_HP_or_mana_for_cast:
+		var m = 0
+		while m < (targets_for_cast.size()):
+			if targets_for_cast[m] == null or !is_instance_valid(targets_for_cast[m]) or (type_of_chain == "cure" && targets_for_cast[m].health == SPELLS_PARAMETERS.characters[targets_for_cast[m].name_character]["health"]):
+				targets_for_cast.remove(m)
+				m -= 1
+			m += 1
+		if targets_for_cast != [] && (zone_of_casting == null or ((((self.global_position.x - heroe.global_position.x) < zone_of_casting) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -zone_of_casting) && ((self.global_position.x - heroe.global_position.x) < -53))) && $RayCastVertical_3.get_collider() && ((self.get_position().y - heroe.get_position().y < 50) && (self.get_position().y - heroe.get_position().y > -50)) && $mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_manacost"] && chains_ready[type_of_chain + "_chain_ready"]):
 			var timer_for_calldown = Timer.new()
 			timer_for_calldown.set_wait_time(SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_calldown"] + SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_duration"])
 			timer_for_calldown.connect("timeout", self, "_on_Chain_timeout", [timer_for_calldown, type_of_chain])
@@ -404,6 +470,7 @@ func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
 			var index_of_required_target = 0
 			var statusbar1 = statusbar.instance()
 			var drop_of_consumption_health1 = drop_of_consumption_health.instance()
+			animate(type_of_chain + "_chain")
 			match type_of_chain:
 				"damage_block":
 					if targets_for_cast.size() != 1:
@@ -430,52 +497,84 @@ func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
 								index_of_required_target = j + 1
 					else:
 						index_of_required_target = 0
-					drop_for_consumption_helath(targets_for_cast[index_of_required_target], drop_of_consumption_health1)
-					targets_for_cast[index_of_required_target].regeneration_in_second = SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_regeneration_in_second"]
+					if !targets_for_cast[index_of_required_target].has_node("SpriteCure"):
+						var animation_sprite_for_cure = AnimatedSprite.new()
+						animation_sprite_for_cure.name = "SpriteCure"
+						targets_for_cast[index_of_required_target].add_child(GLOBAL.making_animation_for_sprite_from_folder("res://Anims/Heal", animation_sprite_for_cure, "anim_cure", true, Vector2(0, -3), 7, true))
+					else:
+						targets_for_cast[index_of_required_target].get_node("SpriteCure").modulate.a = 1
+						targets_for_cast[index_of_required_target].get_node("SpriteCure").play("anim_cure")
 			chains_ready[type_of_chain + "_chain_ready"] = false
 			statusbar1.i = SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_duration"]
 			targets_for_cast[index_of_required_target].get_node("For_Status_Bars").add_child(statusbar1)
+			var statusbar2 = statusbar.instance()
 			if targets_for_cast[index_of_required_target] != self:
-				var statusbar2 = statusbar.instance()
 				statusbar2.i = SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_duration"]
 				self.get_node("For_Status_Bars").add_child(statusbar2)
 			summary_health_or_mana_for_chain.append(0)
 			var timer_for_consumption_mana_or_health_per_tick = Timer.new()
 			timer_for_consumption_mana_or_health_per_tick.set_wait_time(0.2)
-			timer_for_consumption_mana_or_health_per_tick.connect("timeout", self, "_on_timer_for_consumption_mana_or_health_timeout", [timer_for_consumption_mana_or_health_per_tick, type_of_chain, summary_health_or_mana_for_chain.size() - 1, targets_for_cast[index_of_required_target]])
+			timer_for_consumption_mana_or_health_per_tick.connect("timeout", self, "_on_timer_for_consumption_mana_or_health_timeout", [timer_for_consumption_mana_or_health_per_tick, type_of_chain, summary_health_or_mana_for_chain.size() - 1, targets_for_cast[index_of_required_target], statusbar1, statusbar2])
 			timer_for_consumption_mana_or_health_per_tick.one_shot = false
 			self.add_child(timer_for_consumption_mana_or_health_per_tick)
 			timer_for_consumption_mana_or_health_per_tick.start()
 
-func _on_timer_for_consumption_mana_or_health_timeout(timer, type_of_chain, index_of_summary, target_to_cast):
-	match type_of_chain:
-		"damage_block":
-			summary_health_or_mana_for_chain[index_of_summary] += SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"] * 0.2
-			if summary_health_or_mana_for_chain[index_of_summary] < SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_duration"] * SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"]:
-				$HP_Enemy_1.value = $HP_Enemy_1.value - (SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"] * 0.2)
-				$value_of_HP.text = str($HP_Enemy_1.value)
-			else:
-				if target_to_cast.armor_ordinary - SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_fraction_absorbed_damage"] >= 0:
-					target_to_cast.armor_ordinary -= SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_fraction_absorbed_damage"]
+func _on_timer_for_consumption_mana_or_health_timeout(timer, type_of_chain, index_of_summary, target_to_cast, enemy_status_bar = null, self_status_bar = null, what_is_consumpting = null):
+	if type_of_chain.split("_")[type_of_chain.split("_").size() - 1] == "SPELL":
+		summary_health_or_mana_for_chain[index_of_summary] += SPELLS_PARAMETERS.characters[name_character][type_of_chain.left(type_of_chain.length() - 6)][type_of_chain.left(type_of_chain.length() - 6) + "_consumption_" + what_is_consumpting + "_in_second"] * 0.2
+		if SPELLS_PARAMETERS.characters[name_character][type_of_chain.left(type_of_chain.length() - 6)][type_of_chain.left(type_of_chain.length() - 6) + "_consumption_" + what_is_consumpting + "_in_second"] * 0.2 > get_node(what_is_consumpting + "_Enemy_1").value:
+			not_enough_mana_for_ongoing_spell(type_of_chain, timer)
+			return
+		if summary_health_or_mana_for_chain[index_of_summary] < SPELLS_PARAMETERS.characters[name_character][type_of_chain.left(type_of_chain.length() - 6)][type_of_chain.left(type_of_chain.length() - 6) + "_duration"] * SPELLS_PARAMETERS.characters[name_character][type_of_chain.left(type_of_chain.length() - 6)][type_of_chain.left(type_of_chain.length() - 6) + "_consumption_" + what_is_consumpting + "_in_second"] or SPELLS_PARAMETERS.characters[name_character][type_of_chain.left(type_of_chain.length() - 6)][type_of_chain.left(type_of_chain.length() - 6) + "_duration"] == 0:
+			get_node(what_is_consumpting + "_Enemy_1").value = get_node(what_is_consumpting + "_Enemy_1").value - (SPELLS_PARAMETERS.characters[name_character][type_of_chain.left(type_of_chain.length() - 6)][type_of_chain.left(type_of_chain.length() - 6) + "_consumption_" + what_is_consumpting + "_in_second"] * 0.2)
+			get_node("value_of_" + what_is_consumpting).text = str(get_node(what_is_consumpting + "_Enemy_1").value)
+		else:
+			timer.queue_free()
+		return
+
+		
+	if is_instance_valid(target_to_cast):
+		match type_of_chain:
+			"damage_block":
+				summary_health_or_mana_for_chain[index_of_summary] += SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_consumption_health_in_second"] * 0.2
+				if summary_health_or_mana_for_chain[index_of_summary] < SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_duration"] * SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_consumption_health_in_second"] && SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_consumption_health_in_second"] * 0.2 < get_node("health_Enemy_1").value:
+					$health_Enemy_1.value = $health_Enemy_1.value - (SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_consumption_health_in_second"] * 0.2)
+					$value_of_health.text = str($health_Enemy_1.value)
 				else:
-					target_to_cast.armor_ordinary = 0
-				timer.queue_free()
-		"damage_increase":
-			summary_health_or_mana_for_chain[index_of_summary] += SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"] * 0.2
-			if summary_health_or_mana_for_chain[index_of_summary] < SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_duration"] * SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"]:
-				$HP_Enemy_1.value = $HP_Enemy_1.value - (SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"] * 0.2)
-				$value_of_HP.text = str($HP_Enemy_1.value)
-			else:
-				target_to_cast.damage_increase -= SPELLS_PARAMETERS.characters[name_character]["damage_increase_chain"]["damage_increase_chain_increase"]
-				timer.queue_free()
-		"cure":
-			summary_health_or_mana_for_chain[index_of_summary] += SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_mana_in_second"] * 0.2
-			if summary_health_or_mana_for_chain[index_of_summary] < SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_duration"] * SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_health_in_second"]:
-				$Mana_Enemy_1.value = $Mana_Enemy_1.value - (SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_mana_in_second"] * 0.2)
-				$value_of_Mana.text = str($Mana_Enemy_1.value)
-			else:
-				target_to_cast.regeneration_in_second = 1
-				timer.queue_free()
+					if target_to_cast.armor_ordinary - SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_fraction_absorbed_damage"] >= 0:
+						target_to_cast.armor_ordinary -= SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_fraction_absorbed_damage"]
+					else:
+						target_to_cast.armor_ordinary = 0
+					enemy_status_bar.i = 0
+					self_status_bar.i = 0
+					timer.queue_free()
+			"damage_increase":
+				summary_health_or_mana_for_chain[index_of_summary] += SPELLS_PARAMETERS.characters[name_character]["damage_increase_chain"]["damage_increase_chain_consumption_health_in_second"] * 0.2
+				if summary_health_or_mana_for_chain[index_of_summary] < SPELLS_PARAMETERS.characters[name_character]["damage_increase_chain"]["damage_increase_chain_duration"] * SPELLS_PARAMETERS.characters[name_character]["damage_increase_chain"]["damage_increase_chain_consumption_health_in_second"] && SPELLS_PARAMETERS.characters[name_character]["damage_block_chain"]["damage_block_chain_consumption_health_in_second"] * 0.2 < get_node("health_Enemy_1").value:
+					$health_Enemy_1.value = $health_Enemy_1.value - (SPELLS_PARAMETERS.characters[name_character]["damage_increase_chain"]["damage_increase_chain_consumption_health_in_second"] * 0.2)
+					$value_of_health.text = str($health_Enemy_1.value)
+				else:
+					target_to_cast.damage_increase -= SPELLS_PARAMETERS.characters[name_character]["damage_increase_chain"]["damage_increase_chain_increase"]
+					enemy_status_bar.i = 0
+					self_status_bar.i = 0
+					timer.queue_free()
+			"cure":
+				summary_health_or_mana_for_chain[index_of_summary] += SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_regeneration_in_second"] * 0.2
+				if summary_health_or_mana_for_chain[index_of_summary] < SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_duration"] * SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_regeneration_in_second"] && SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_consumption_mana_in_second"] * 0.2 < get_node("mana_Enemy_1").value:
+					$mana_Enemy_1.value = $mana_Enemy_1.value - (SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_consumption_mana_in_second"] * 0.2)
+					$value_of_mana.text = str($mana_Enemy_1.value)
+					target_to_cast.get_node("health_Enemy_1").value += SPELLS_PARAMETERS.characters[name_character]["cure_chain"]["cure_chain_regeneration_in_second"] * 0.2
+					target_to_cast.get_node("value_of_health").text = str(target_to_cast.get_node("health_Enemy_1").value)
+				else:
+					target_to_cast.get_node("SpriteCure").stop()
+					target_to_cast.get_node("SpriteCure").set_frame(0)
+					target_to_cast.get_node("SpriteCure").modulate.a = 0
+					enemy_status_bar.i = 0
+					self_status_bar.i = 0
+					timer.queue_free()
+	else: 
+		timer.queue_free()
+		self_status_bar.i = 0
 
 func _on_Chain_timeout(timer, type_of_chain):
 	chains_ready[type_of_chain + "_chain_ready"] = true
@@ -487,6 +586,10 @@ func drop_for_consumption_helath(target, drop, color = null):
 		drop.get_node("AnimatedSprite").modulate = color
 	if !target.has_node("Drop_For_Consumption_Helath"):
 		target.add_child(drop)
+		
+func not_enough_mana_for_ongoing_spell(name_spell, timer): #Abstract method, see definition in child objects.
+	pass
+
 
 """ --------------------------------------------- """
 
@@ -525,13 +628,11 @@ func _on_timer_for_disappearance_wall_timeout(stone_wall1, timer):
 """ ------------------- PUSH ------------------- """
 
 func push():
-	#print("ibo")
-	#print(speed)
 	if spells_ready["push_ready"] == true:
-		if $Mana_Enemy_1.value >= (SPELLS_PARAMETERS.characters[name_character]["push"]["push_manacost"] + SPELLS_PARAMETERS.characters[name_character]["armor"]["armor_manacost"]) && $Sprite.get_animation() != "A_push" && $Sprite.get_animation() != "A_push_preparing" && armor_ordinary == 1:
+		if $mana_Enemy_1.value >= (SPELLS_PARAMETERS.characters[name_character]["push"]["push_manacost"] + SPELLS_PARAMETERS.characters[name_character]["armor"]["armor_manacost"]) && $Sprite.get_animation() != "A_push" && $Sprite.get_animation() != "A_push_preparing" && armor_ordinary == 1:
 			$Sprite.flip_h = self.global_position > get_parent().get_node("Heroe").global_position
 			animate("A_armor")
-		if $Sprite.get_animation() != "A_push" && $Sprite.get_animation() != "A_armor" && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character]["push"]["push_manacost"]:
+		if $Sprite.get_animation() != "A_push" && $Sprite.get_animation() != "A_armor" && $mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character]["push"]["push_manacost"]:
 			animate("A_push_preparing")
 			$Sprite.flip_h = self.global_position > get_parent().get_node("Heroe").global_position
 		if preparing_for_pushing_finished:
@@ -560,6 +661,105 @@ func _on_timer_for_armor_duration_timeout(timer):
 		
 """ --------------------------------------------- """
 
+
+""" ------------------- FLYING PROJECTILE ------------------- """
+
+func flying_projectile(type_of_flying_projectile, minimal_distance_to_target_for_cast, maximal_distance_to_target_for_cast, should_go_out_from_invisibility = false):
+	if $RayCastFlyingProjectile.get_collider() && $RayCastFlyingProjectile2.get_collider() && $RayCastFlyingProjectile3.get_collider():
+		if $RayCastFlyingProjectile.get_collider().has_method("start_jump_heroe") && $RayCastFlyingProjectile2.get_collider().has_method("start_jump_heroe") && $RayCastFlyingProjectile3.get_collider().has_method("start_jump_heroe") && $mana_Enemy_1.value >= SPELLS_PARAMETERS.characters[name_character][type_of_flying_projectile][type_of_flying_projectile + "_manacost"]:
+			if (abs(self.global_position.x - heroe.global_position.x) < maximal_distance_to_target_for_cast && abs(self.global_position.x - heroe.global_position.x) > minimal_distance_to_target_for_cast) && spells_ready[type_of_flying_projectile + "_ready"] == true && $RayCastVertical_3.get_collider():
+				if $Sprite.get_animation()[0] != "A":
+					if should_go_out_from_invisibility && modulate.a == 0:
+						get_node("AnimationInvisibility").play("animation_out_from_invisibility")
+						free_timers_for_consumption(timers_for_consumption_health_or_mana["invisibility"])
+					if((self.global_position.x) - heroe.global_position.x) > 0:
+						$Sprite.flip_h = true
+					else:
+						$Sprite.flip_h = false
+					mana_using(SPELLS_PARAMETERS.characters[name_character][type_of_flying_projectile][type_of_flying_projectile + "_manacost"])
+					if SPELLS_PARAMETERS.characters[name_character][type_of_flying_projectile][type_of_flying_projectile + "_calldown"] > 0:
+						creating_timer_for_calldown(type_of_flying_projectile)
+						spells_ready[type_of_flying_projectile + "_ready"] = false
+					speed = 0
+					animate("A_" + type_of_flying_projectile)
+					var flying_projectile = preload("res://Game/Spells/Flying_Projectile.tscn").instance()
+					flying_projectile.position = $FlyingProjectilePosition.global_position
+					flying_projectile.selfish = name_character
+					flying_projectile.name_spell = type_of_flying_projectile
+					get_node("..").add_child(flying_projectile)
+
+""" --------------------------------------------------------- """
+
+
+
+""" ---------------------- INVISIBILITY ---------------------- """
+
+func invisibility(condition_for_activation, target = null):
+	if spells_ready["invisibility_ready"] && modulate.a == 1 && mana_controlling("mana_control", "invisibility"):
+		match condition_for_activation:
+			"target_came_up":
+				if abs((self.global_position.x) - target.global_position.x) < 75 && abs((self.global_position.y) - target.global_position.y) < 25:
+					animate("A_invisibility")
+					speed = 0
+					timers_for_consumption_health_or_mana["invisibility"] = mana_controlling("mana_using", "invisibility")
+					if SPELLS_PARAMETERS.characters[name_character]["invisibility"]["invisibility_calldown"] > 0:
+						creating_timer_for_calldown("invisibility")
+						spells_ready["invisibility_ready"] = false
+					if !self.has_node("AnimationInvisibility"):
+						var anim_player = AnimationPlayer.new()
+						self.add_child(anim_player)
+						anim_player.name = "AnimationInvisibility"
+						##### go to insibility #####
+						var new_anim = Animation.new()
+						anim_player.add_animation("animation_invisibility", new_anim)
+						var track_idx = new_anim.add_track(Animation.TYPE_VALUE)
+						var animation_time = $Sprite.get_sprite_frames().get_frame_count("A_invisibility")/$Sprite.get_sprite_frames().get_animation_speed("A_invisibility")
+						print(animation_time)
+						new_anim.track_set_path(track_idx, ".:modulate:a")
+						new_anim.track_insert_key(track_idx, 0, 1.0)
+						new_anim.track_insert_key(track_idx, 2, 0.0)
+						new_anim.length = 2
+						##### go out from invisibility #####
+						var new_anim1 = Animation.new()
+						anim_player.add_animation("animation_out_from_invisibility", new_anim1)
+						var track_idx1 = new_anim1.add_track(Animation.TYPE_VALUE)
+						new_anim1.track_set_path(track_idx1, ".:modulate:a")
+						new_anim1.track_insert_key(track_idx1, 0, 0.0)
+						new_anim1.track_insert_key(track_idx1, 2, 1.0)
+						new_anim1.length = 2
+						anim_player.play("animation_invisibility")
+					else:
+						get_node("AnimationInvisibility").play("animation_invisibility")
+
+""" --------------------------------------------------------- """
+
+
+""" ---------------------- CALL CHARACTERS ---------------------- """
+
+var array_of_characters_which_were_called = []
+
+func call_characters(names_characters_which_have_to_be_called, positions_for_spawn, name_of_spell, calls_once = false):
+	if mana_controlling("mana_control", name_of_spell) && spells_ready[name_of_spell + "_ready"]:
+		timers_for_consumption_health_or_mana[name_of_spell] = mana_controlling("mana_using", name_of_spell)
+		for i in range(names_characters_which_have_to_be_called.size()):
+			print(names_characters_which_have_to_be_called[i])
+			array_of_characters_which_were_called.append(load("res://Game/Characters/" + names_characters_which_have_to_be_called[i] + ".tscn").instance())
+			array_of_characters_which_were_called[i].position = positions_for_spawn[i]
+			get_parent().triggered_enemies[names_characters_which_have_to_be_called[i]] = true
+			get_parent().add_child(array_of_characters_which_were_called[i])
+			array_of_characters_which_were_called[i].set_collision_layer(0)
+			array_of_characters_which_were_called[i].set_collision_mask(0)
+			array_of_characters_which_were_called[i].set_collision_layer_bit(i + 2, true)
+			array_of_characters_which_were_called[i].set_collision_mask_bit(i + 2, true)
+		if SPELLS_PARAMETERS.characters[name_character][name_of_spell][name_of_spell + "_calldown"] > 0 && !calls_once:
+			creating_timer_for_calldown(name_of_spell)
+			spells_ready[name_of_spell + "_ready"] = false
+		if calls_once:
+			spells_ready[name_of_spell + "_ready"] = false
+
+
+""" --------------------------------------------------------- """
+
 func creating_timer_for_calldown(spell):
 	var timer_for_calldown = Timer.new()
 	timer_for_calldown.set_wait_time(SPELLS_PARAMETERS.characters[name_character][spell][spell + "_calldown"])
@@ -574,6 +774,7 @@ func _on_timer_for_calldown_spells_timeout(spell, timer):
 
 var t = 0
 func _on_Sprite_animation_finished(by_stune = false):
+	$Sprite.set_speed_scale(1)
 	if !by_stune:
 		if $Sprite.get_animation()[0] == "A":
 			#print($Sprite.get_animation().split("_"))
@@ -583,7 +784,15 @@ func _on_Sprite_animation_finished(by_stune = false):
 				speed = 2.5
 				mana_using(SPELLS_PARAMETERS.characters[name_character]["handle_attack"]["handle_attack_manacost"])
 				$Handle_Attack/CollisionShape2D.set_disabled(false)
+			if $Sprite.get_animation().split("_").size() >= 3:
+				if $Sprite.get_animation().split("_")[1] + "_" + $Sprite.get_animation().split("_")[2] == "fier_ball":
+					$Sprite.get_sprite_frames().set_animation_speed($Sprite.get_animation(), 5)
+					animate("idle")
+					speed = 2.5
 		match $Sprite.get_animation():
+			"A_invisibility":
+				animate("idle")
+				speed = 2.5
 			"A_squall_attack":
 				$Handle_Attack/CollisionShape2D.set_disabled(false)
 				if amount_squall_attacks > t:
@@ -593,7 +802,7 @@ func _on_Sprite_animation_finished(by_stune = false):
 					speed = 2.5
 					t = 0
 					animate("idle")
-			"A_preparing_jumping_to_point":
+			"preparing_jumping_to_point":
 				animate("jumping_to_point")
 			"A_push_preparing":
 				preparing_for_pushing_finished = true
@@ -618,12 +827,21 @@ func _on_Sprite_animation_finished(by_stune = false):
 				self.add_child(timer_for_duration_armor)
 				timer_for_duration_armor.start()
 	else:
+		animate("idle")
+		speed = 2.5
 		if $Sprite.get_animation()[0] == "A":
 			if $Sprite.get_animation().split("_")[1] == "handle":
 				spells_ready["handle_attack_ready"] = true
 				animate("idle")
-				speed = 2.5
+			if $Sprite.get_animation().split("_").size() >= 3:
+				if $Sprite.get_animation().split("_")[1] + "_" + $Sprite.get_animation().split("_")[2] == "fier_ball":
+					$Sprite.get_sprite_frames().set_animation_speed($Sprite.get_animation(), 5)
+					animate("idle")
 		match $Sprite.get_animation():
+			"run":
+				animate("idle")
+			"A_invisibility":
+				animate("idle")
 			"A_squall_attack":
 				t = 0
 				animate("idle")
@@ -637,11 +855,9 @@ func _on_Sprite_animation_finished(by_stune = false):
 				special_physics_process_controlling = false
 				spells_ready["push_ready"] = false
 				animate("idle")
-				speed = 2.5
 			"A_armor":
 				animate("idle")
-				speed = 2.5
-	
+
 
 
 
@@ -650,7 +866,6 @@ func animate(art):
 
 func _on_VisibilityNotifier2D_screen_exited():
 	if get_parent().has_method("First_Scene") && GLOBAL.first_cat_scene:
-		print("wqpijedapwidj")
 		queue_free()
 
 
@@ -667,7 +882,7 @@ func _on_Timer_For_Updaiting_Way_timeout():
 			
 			
 func update_way():
-	if current_target != null:
+	if current_target != null && !$Sprite.get_animation() == "jumping_to_point" && (is_on_floor() or $RayCastVertical_3.get_collider()):
 		$NavigationAgent2D.set_target_location(current_target)
 		$NavigationAgent2D.get_final_location()
 		nav_path = $NavigationAgent2D.get_nav_path()
@@ -679,7 +894,24 @@ func _on_Area_For_Starting_Fight_body_entered(body):
 		if !body.in_invisibility:
 			GLOBAL.enemy_for_fight = name_character
 			GLOBAL.position_heroe_before_fight = get_parent().get_node("Heroe").global_position
-			GLOBAL.scene(LOCATIONS_PARAMETERS.locations[get_parent().get_name()]["enemies_fight_scenes"][name_character])
+			body.create_animation_for_disappearing()
+			body.get_node("AnimationPlayer").play("disappearing")
+			body.stun = true
+			self.stun = true
+			self.animate("idle")
+			for i in range(get_parent().get_node("Light_Objects").get_children().size()):
+				get_parent().get_node("Light_Objects").get_children()[i].fading = true
+			var timer = Timer.new()
+			add_child(timer)
+			timer.wait_time = 2.5
+			timer.one_shot = true
+			timer.connect("timeout", self, "_on_timer_for_start_fight_timeout", [timer])
+			timer.start()
+			
+			
+func _on_timer_for_start_fight_timeout(timer):
+	GLOBAL.scene(LOCATIONS_PARAMETERS.locations[get_parent().get_name()]["enemies_fight_scenes"][name_character], true)
+	timer.queue_free()
 
 func stun(duration):
 	_on_Sprite_animation_finished(true)

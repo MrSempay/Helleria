@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Game/Enemy55.gd" type="Script" id=2]
@@ -7,44 +7,44 @@
 [ext_resource path="res://Anims/Джейсон/Jump/animJumpJason3.png" type="Texture" id=5]
 [ext_resource path="res://Anims/Джейсон/Jump/animJumpJason7.png" type="Texture" id=6]
 [ext_resource path="res://Anims/Джейсон/Jump/animJumpJason4.png" type="Texture" id=7]
-[ext_resource path="res://Anims/Jason/Движ/anim5+5.png" type="Texture" id=8]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT13.png" type="Texture" id=9]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna11.png" type="Texture" id=10]
+[ext_resource path="res://Anims/Jeison/Движ/anim5+5.png" type="Texture" id=8]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Цепи вампиризма/Аним/AnimT13.png" type="Texture" id=9]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Волна/animvolna11.png" type="Texture" id=10]
 [ext_resource path="res://Anims/Джейсон/Jump/animJumpJason8.png" type="Texture" id=11]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna6.png" type="Texture" id=12]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Волна/animvolna6.png" type="Texture" id=12]
 [ext_resource path="res://Anims/Джейсон/Jump/animJumpJason5.png" type="Texture" id=13]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna12.png" type="Texture" id=14]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna1.png" type="Texture" id=15]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna9.png" type="Texture" id=16]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna5.png" type="Texture" id=17]
-[ext_resource path="res://Anims/Jason/Движ/anim5+2.png" type="Texture" id=18]
-[ext_resource path="res://Anims/Jason/Движ/anim5+4.png" type="Texture" id=19]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Волна/animvolna12.png" type="Texture" id=14]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Волна/animvolna1.png" type="Texture" id=15]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Волна/animvolna9.png" type="Texture" id=16]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Волна/animvolna5.png" type="Texture" id=17]
+[ext_resource path="res://Anims/Jeison/Движ/anim5+2.png" type="Texture" id=18]
+[ext_resource path="res://Anims/Jeison/Движ/anim5+4.png" type="Texture" id=19]
 [ext_resource path="res://Anims/Джейсон/Jump/animJumpJason6.png" type="Texture" id=20]
 [ext_resource path="res://Anims/Джейсон/Jump/animJumpJason1.png" type="Texture" id=21]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT11.png" type="Texture" id=22]
-[ext_resource path="res://Anims/Jason/Движ/anim5+1.png" type="Texture" id=23]
-[ext_resource path="res://Anims/Jason/Движ/anim5+3.png" type="Texture" id=24]
-[ext_resource path="res://Anims/Jason/Движ/anim5+6.png" type="Texture" id=25]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Цепи вампиризма/Аним/AnimT11.png" type="Texture" id=22]
+[ext_resource path="res://Anims/Jeison/Движ/anim5+1.png" type="Texture" id=23]
+[ext_resource path="res://Anims/Jeison/Движ/anim5+3.png" type="Texture" id=24]
+[ext_resource path="res://Anims/Jeison/Движ/anim5+6.png" type="Texture" id=25]
 [ext_resource path="res://Anims/Джейсон/Jump/animJumpJason2.png" type="Texture" id=26]
 [ext_resource path="res://Anims/Джейсон/Jump/animJumpJason9.png" type="Texture" id=27]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT10.png" type="Texture" id=28]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT2.png" type="Texture" id=29]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna8.png" type="Texture" id=30]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT5.png" type="Texture" id=31]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT7.png" type="Texture" id=32]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna4.png" type="Texture" id=33]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT3.png" type="Texture" id=34]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna7.png" type="Texture" id=35]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT6.png" type="Texture" id=36]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna3.png" type="Texture" id=37]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT1.png" type="Texture" id=38]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna13.png" type="Texture" id=39]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT9.png" type="Texture" id=40]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT4.png" type="Texture" id=41]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna2.png" type="Texture" id=42]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT12.png" type="Texture" id=43]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Волна/animvolna10.png" type="Texture" id=44]
-[ext_resource path="res://Anims/Jason/Ядро исцеления/Цепи вампиризма/Аним/AnimT8.png" type="Texture" id=45]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Цепи вампиризма/Аним/AnimT10.png" type="Texture" id=28]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Цепи вампиризма/Аним/AnimT2.png" type="Texture" id=29]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Волна/animvolna8.png" type="Texture" id=30]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Цепи вампиризма/Аним/AnimT5.png" type="Texture" id=31]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Цепи вампиризма/Аним/AnimT7.png" type="Texture" id=32]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Волна/animvolna4.png" type="Texture" id=33]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Цепи вампиризма/Аним/AnimT3.png" type="Texture" id=34]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Волна/animvolna7.png" type="Texture" id=35]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Цепи вампиризма/Аним/AnimT6.png" type="Texture" id=36]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Волна/animvolna3.png" type="Texture" id=37]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Цепи вампиризма/Аним/AnimT1.png" type="Texture" id=38]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Волна/animvolna13.png" type="Texture" id=39]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Цепи вампиризма/Аним/AnimT9.png" type="Texture" id=40]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Цепи вампиризма/Аним/AnimT4.png" type="Texture" id=41]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Волна/animvolna2.png" type="Texture" id=42]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Цепи вампиризма/Аним/AnimT12.png" type="Texture" id=43]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Волна/animvolna10.png" type="Texture" id=44]
+[ext_resource path="res://Anims/Jeison/Ядро исцеления/Цепи вампиризма/Аним/AnimT8.png" type="Texture" id=45]
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 3, 11.5 )
@@ -155,6 +155,12 @@ extents = Vector2( 31, 14 )
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 46.8215, 18.25 )
 
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 1.25, 9 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 3, 10 )
+
 [node name="Jeison" type="KinematicBody2D"]
 position = Vector2( 332, 164 )
 z_index = 3
@@ -187,7 +193,7 @@ scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "run"
 
-[node name="HP_Enemy_1" type="TextureProgress" parent="."]
+[node name="health_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -21.0
 margin_top = -34.0
 margin_right = 124.0
@@ -199,7 +205,7 @@ texture_progress = ExtResource( 4 )
 tint_progress = Color( 1, 0, 0, 1 )
 nine_patch_stretch = true
 
-[node name="Mana_Enemy_1" type="TextureProgress" parent="."]
+[node name="mana_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -21.0
 margin_top = -29.0
 margin_right = 124.0
@@ -211,7 +217,7 @@ texture_progress = ExtResource( 4 )
 tint_progress = Color( 0, 0.133333, 1, 1 )
 nine_patch_stretch = true
 
-[node name="value_of_HP" type="Label" parent="."]
+[node name="value_of_health" type="Label" parent="."]
 margin_left = -8.82999
 margin_top = -35.08
 margin_right = 19.17
@@ -221,7 +227,7 @@ text = "500
 
 "
 
-[node name="value_of_Mana" type="Label" parent="."]
+[node name="value_of_mana" type="Label" parent="."]
 margin_left = -8.82999
 margin_top = -29.08
 margin_right = 31.17
@@ -355,6 +361,16 @@ disabled = true
 
 [node name="For_Status_Bars" type="Node2D" parent="."]
 position = Vector2( -2, -43 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.75, -2 )
+shape = SubResource( 11 )
+
+[node name="AreaOfEnemy" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaOfEnemy"]
+position = Vector2( -1, 6 )
+shape = SubResource( 12 )
 
 [connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_path_changed"]

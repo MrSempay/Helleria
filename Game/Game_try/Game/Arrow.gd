@@ -26,7 +26,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_Arrow_body_entered(body: Node) -> void:
 	if body.has_method("handle_hit") && !body.has_method("start_jump"):
-		body.handle_hit(damage_arrow)
+		body.handle_hit(damage_arrow, get_parent().get_node("Heroe"), self)
 	if !body.has_method("start_jump"):
 		queue_free()
 	pass

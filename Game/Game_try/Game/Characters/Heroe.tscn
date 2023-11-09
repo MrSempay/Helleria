@@ -1,4 +1,4 @@
-[gd_scene load_steps=135 format=2]
+[gd_scene load_steps=141 format=2]
 
 [ext_resource path="res://Game/Button_attack.gd" type="Script" id=1]
 [ext_resource path="res://Game/Button_Second.gd" type="Script" id=2]
@@ -115,7 +115,6 @@
 [ext_resource path="res://Anims/гл. гр/jump/animjump4.png" type="Texture" id=113]
 [ext_resource path="res://Anims/гл. гр/jump/animjump6.png" type="Texture" id=114]
 [ext_resource path="res://Anims/гл. гр/jump/animjump1.png" type="Texture" id=115]
-[ext_resource path="res://32131.png" type="Texture" id=116]
 [ext_resource path="res://1.png" type="Texture" id=117]
 [ext_resource path="res://2.png" type="Texture" id=118]
 [ext_resource path="res://Game/Characters/TouchScreenButton.gd" type="Script" id=119]
@@ -178,8 +177,14 @@ tracks/0/keys = {
 "values": [ PoolVector2Array( 0, -8, -11, -8, -11.0001, 21.9433, -1.50012, 21.9433, -1.50012, 12.8867, 0.399902, 12.8867, 0.399902, 21.9433, 7.99988, 21.9433, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11.0001, 21.9433, -1.50012, 21.9433, -1.50012, 12.8867, 0.399902, 12.8867, 0.399902, 12.8867, 7.99988, 12.8867, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11.0001, 12.8867, -1.50012, 12.8867, -1.50012, 12.8867, 0.399902, 12.8867, 0.399902, 21.9433, 7.99988, 21.9433, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11.0001, 21.9433, -1.50012, 21.9433, -1.50012, 12.8867, 0.399902, 12.8867, 0.399902, 21.9433, 7.99988, 21.9433, 8, -8 ) ]
 }
 
+[sub_resource type="CanvasItemMaterial" id=27]
+light_mode = 1
+
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 147.5, 154 )
+
+[sub_resource type="CanvasItemMaterial" id=35]
+light_mode = 1
 
 [sub_resource type="SpriteFrames" id=16]
 animations = [ {
@@ -237,15 +242,81 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 19, 21.5 )
 
+[sub_resource type="CanvasItemMaterial" id=28]
+light_mode = 1
+
 [sub_resource type="RectangleShape2D" id=25]
 extents = Vector2( 295, 290 )
 
-[sub_resource type="CanvasItemMaterial" id=24]
-render_priority = 3
+[sub_resource type="CanvasItemMaterial" id=29]
+light_mode = 1
 
-[sub_resource type="ShaderMaterial" id=13]
+[sub_resource type="CanvasItemMaterial" id=24]
+render_priority = 1
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=30]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=31]
+light_mode = 1
 
 [sub_resource type="OccluderPolygon2D" id=23]
+
+[sub_resource type="Animation" id=32]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 444, 370 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=33]
+resource_name = "appearing"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Heroe" type="KinematicBody2D"]
 position = Vector2( 444, 370 )
@@ -283,15 +354,9 @@ scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 4 )
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer"]
+material = SubResource( 27 )
 position = Vector2( -63.3333, 103.333 )
 normal = ExtResource( 14 )
-
-[node name="Light2D" type="Light2D" parent="CanvasLayer/TouchScreenButton"]
-position = Vector2( 63.3331, 63.3336 )
-scale = Vector2( 2.5, 2.5 )
-texture = ExtResource( 116 )
-texture_scale = 0.11
-energy = 3.0
 
 [node name="Area_For_Jumping" type="Area2D" parent="CanvasLayer"]
 visible = false
@@ -304,6 +369,7 @@ shape = SubResource( 4 )
 
 [node name="Dialoge_Field" type="TouchScreenButton" parent="CanvasLayer"]
 visible = false
+material = SubResource( 35 )
 position = Vector2( 66.6666, 133.333 )
 scale = Vector2( 2.59668, 2.30769 )
 z_index = 5
@@ -312,6 +378,7 @@ pressed = ExtResource( 120 )
 script = ExtResource( 121 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Dialoge_Field"]
+use_parent_material = true
 margin_left = 31.0
 margin_top = 3.0
 margin_right = 404.0
@@ -320,11 +387,13 @@ rect_scale = Vector2( 0.4, 0.4 )
 text = "ulyfilnilnguo;go;go;;'"
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer/Dialoge_Field"]
+use_parent_material = true
 position = Vector2( 15.3776, 15.8889 )
 scale = Vector2( 0.0895394, 0.190059 )
 texture = ExtResource( 122 )
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Dialoge_Field"]
+use_parent_material = true
 margin_left = 1.28375
 margin_top = 31.7778
 margin_right = 72.2838
@@ -409,6 +478,7 @@ drag_margin_bottom = 0.39
 script = ExtResource( 23 )
 
 [node name="Jumping_Button" type="TouchScreenButton" parent="."]
+material = SubResource( 28 )
 position = Vector2( 55, 23 )
 scale = Vector2( 0.05, 0.05 )
 normal = ExtResource( 117 )
@@ -416,20 +486,15 @@ pressed = ExtResource( 118 )
 script = ExtResource( 119 )
 
 [node name="Area2D" type="Area2D" parent="Jumping_Button"]
+visible = false
 position = Vector2( 310, 310 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jumping_Button/Area2D"]
 position = Vector2( -15, -10 )
 shape = SubResource( 25 )
 
-[node name="Light2D" type="Light2D" parent="Jumping_Button"]
-position = Vector2( 300.001, 300 )
-scale = Vector2( 10, 10 )
-texture = ExtResource( 116 )
-texture_scale = 0.11
-energy = 3.0
-
 [node name="Buttons_Of_Heroe" type="Sprite" parent="."]
+material = SubResource( 29 )
 position = Vector2( 111, 34 )
 scale = Vector2( 0.15, 0.15 )
 z_index = 20
@@ -455,7 +520,7 @@ one_shot = true
 [node name="Button_Second" type="Button" parent="Buttons_Of_Heroe"]
 modulate = Color( 0.101961, 0.839216, 0.631373, 1 )
 self_modulate = Color( 0.741176, 1, 0.0980392, 1 )
-material = SubResource( 13 )
+material = SubResource( 30 )
 margin_left = -153.226
 margin_top = 19.8793
 margin_right = -46.2259
@@ -480,7 +545,7 @@ one_shot = true
 [node name="Button_Third" type="Button" parent="Buttons_Of_Heroe"]
 modulate = Color( 0.101961, 0.839216, 0.631373, 1 )
 self_modulate = Color( 0.741176, 1, 0.0980392, 1 )
-material = SubResource( 13 )
+material = SubResource( 31 )
 margin_left = -153.226
 margin_top = 96.3381
 margin_right = -46.2259
@@ -517,13 +582,6 @@ margin_bottom = -2.0
 disabled = true
 text = "No, let's fight!"
 
-[node name="Light2D" type="Light2D" parent="Buttons_Of_Heroe"]
-position = Vector2( -45, -0.000610352 )
-scale = Vector2( 5, 5 )
-texture = ExtResource( 116 )
-texture_scale = 0.11
-energy = 3.0
-
 [node name="Dialoge_Window_Position" type="Position2D" parent="."]
 position = Vector2( 8, -38 )
 
@@ -537,10 +595,9 @@ margin_bottom = 40.0
 [node name="Timer" type="Timer" parent="Timers_For_Spells"]
 
 [node name="Ray_Cast_Column" type="RayCast2D" parent="."]
-visible = false
 enabled = true
 cast_to = Vector2( 128, 0 )
-collision_mask = 512
+collision_mask = 62
 
 [node name="Ray_Cast_Random_Spell" type="RayCast2D" parent="."]
 visible = false
@@ -566,6 +623,10 @@ occluder = SubResource( 23 )
 position = Vector2( -2, -35 )
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 32 )
+anims/appearing = SubResource( 33 )
 
 [connection signal="use_move_vector" from="CanvasLayer" to="." method="_on_CanvasLayer_use_move_vector"]
 [connection signal="released" from="CanvasLayer/TouchScreenButton" to="CanvasLayer" method="_on_TouchScreenButton_released"]

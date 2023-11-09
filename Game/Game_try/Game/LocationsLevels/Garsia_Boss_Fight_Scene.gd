@@ -1,4 +1,4 @@
-#extends "res://Locations.gd"
+extends "res://Locations.gd"
 
 var enemies_on_floor = {
 	"Gasria": "Third",
@@ -25,3 +25,39 @@ func _on_Area_For_Floor_entered(area, area_which_was_triggered):
 		#53н7 	print(enemies_on_floor["Adalard"])
 	if area.get_name() == "Heroe_Area":
 		heroe_on_floor = area_which_was_triggered.get_name().split("_")[1]
+		
+func _on_NoSpeed_Area2_body_entered(body):
+		if body.has_method("enemy"):
+			if body.get_node("RayCastHorizontal_For_Heroe").get_collider():
+				if !body.get_node("RayCastHorizontal_For_Heroe").get_collider().has_method("Heroe"):
+					body.speed = 0
+					body.stop_machine = true
+			body.speed = 0
+			body.stop_machine = true
+
+
+func _on_Speed_Area_body_entered(body):
+	if body.has_method("enemy"):
+		body.speed = 2.5
+		body.stop_machine = false
+
+
+func _on_Area2D_area_entered(area):
+	if area.get_name() == "AreaOfAdalard":
+		area.get_parent().speed = 0
+		area.get_parent().stop_machine = true
+		var timer_start_moving = Timer.new()
+		timer_start_moving.set_wait_time(1)
+		timer_start_moving.name = "TimerStartMoving"
+		timer_start_moving.connect("timeout", self, "_on_timer_for_timer_start_moving_timeout", [area, timer_start_moving])
+		timer_start_moving.one_shot = true
+		self.add_child(timer_start_moving)
+		timer_start_moving.start()
+		
+func _on_timer_for_timer_start_moving_timeout(area, timer):
+	area.get_parent().speed = 2.5
+	area.get_parent().stop_machine = false
+	timer.queue_free()
+
+
+

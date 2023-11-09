@@ -43,6 +43,7 @@ var dialoge_window = preload("res://Game/Dialoge_Window.tscn")
 var array_dialoge_flags = []
 var i = 0
 var number_of_dialoge
+var vampirism = 0
 
 var point_of_position_string
 var point_of_position_string_x
@@ -56,23 +57,22 @@ func ally():
 	pass
 
 
-func handle_hit(damage, attacking_object = null):
-	#health -= damage
+func handle_hit(damage, attacking_character, attacking_object = null):
+	var what_attacks = attacking_character
 	if attacking_object != null:
-		var sum_armor
-		if attacking_object.global_position.x < self.global_position.x:
-			sum_armor = armor_left + armor_ordinary
-		else:
-			sum_armor = armor_right + armor_ordinary
-		if sum_armor > 1:
-			sum_armor = 1
-		$HP_Heroe.value -= damage * (1 - sum_armor) * (1 + attacking_object.damage_increase)
-		$value_of_HP.text = str($HP_Heroe.value)
-		if attacking_object.vampirism != 0:
-			attacking_object.get_node("HP_Enemy_1").value += damage * (1 - sum_armor) * attacking_object.vampirism
+		what_attacks = attacking_object
+	var sum_armor
+	if what_attacks.global_position.x < self.global_position.x:
+		sum_armor = armor_left + armor_ordinary
 	else:
-		$HP_Heroe.value -= damage * (1 - armor_ordinary)
-		$value_of_HP.text = str($HP_Heroe.value)
+		sum_armor = armor_right + armor_ordinary
+	if sum_armor > 1:
+		sum_armor = 1
+	$HP_Heroe.value -= damage * (1 - sum_armor) * (1 + attacking_character.damage_increase)
+	$value_of_HP.text = str($HP_Heroe.value)
+	if attacking_character.vampirism != 0:
+		attacking_character.get_node("HP_Enemy_1").value += damage * (1 - sum_armor) * attacking_character.vampirism
+
 
 	if $HP_Heroe.value <= 0:
 		self.queue_free()
@@ -83,6 +83,9 @@ func mana_using(manacost):
 	$value_of_Mana.text = str($Mana_Heroe.value)
 	
 func _ready():
+
+
+
 	$HP_Heroe.max_value = SPELLS_PARAMETERS.HP_Heroe
 	$HP_Heroe.value = SPELLS_PARAMETERS.HP_Heroe
 	$value_of_HP.text = str($HP_Heroe.value)
@@ -180,8 +183,8 @@ func _physics_process(delta):
 			speed = 0
 			if $Icon.get_frame() == 17 && !self.has_node("Arrow"):
 				var arrow_1 = arrow.instance()
-				arrow_1.position = $Position_Arrow.position
-				add_child(arrow_1)
+				arrow_1.global_position = $Position_Arrow.global_position
+				get_parent().add_child(arrow_1)
 		"сolumn":
 			speed = 0
 			if $Icon.get_frame() == 6:
@@ -193,7 +196,6 @@ func _physics_process(delta):
 	
 	if moving_state:
 		navigation(number_of_moving)
-	
 	
 	velocity.x = 0
 	velocity.y += delta * 970 * 2
@@ -521,4 +523,17 @@ func thrust(body, shift):
 	#translate(Vector2(1,0) * shift * direction)
 	#ray_cast_thrust.set_cast_to(Vector2(0, 100))
 	#ray_cast_thrust.queue_free()
-		
+
+func create_animation_for_disappearing():
+	var anim_player = $AnimationPlayer
+	##### disappearing #####
+	var new_anim = Animation.new()
+	anim_player.add_animation("disappearing", new_anim)
+	var track_idx = new_anim.add_track(Animation.TYPE_VALUE)
+	var animation_time = modulate.a * 2.5
+	print(animation_time)
+	print( modulate.a)
+	new_anim.track_set_path(track_idx, ".:modulate:a")
+	new_anim.track_insert_key(track_idx, 0, modulate.a)
+	new_anim.track_insert_key(track_idx, animation_time, 0.0)
+	new_anim.length = animation_time

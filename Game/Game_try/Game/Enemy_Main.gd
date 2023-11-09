@@ -70,9 +70,9 @@ func _physics_process(delta):
 
 func handle_hit(damage):
 	#health -= damage
-	$HP_Enemy_1.value -= damage
-	if $HP_Enemy_1.value > 0:
-		print("Enemy was hit! Health of enemy: ", $HP_Enemy_1.value)
+	$health_Enemy_1.value -= damage
+	if $health_Enemy_1.value > 0:
+		print("Enemy was hit! Health of enemy: ", $health_Enemy_1.value)
 	else:
 		print("Enemy was destroyed")
 		GLOBAL.life_first_enemy = false
@@ -80,8 +80,8 @@ func handle_hit(damage):
 
 
 func _on_Timer_timeout():
-	$value_of_HP.text = str($HP_Enemy_1.value)
-	$HP_Enemy_1.value += 1
+	$value_of_HP.text = str($health_Enemy_1.value)
+	$health_Enemy_1.value += 1
 
 
 func _on_Next_pressed():

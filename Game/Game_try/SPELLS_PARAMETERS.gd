@@ -183,6 +183,11 @@ var characters = {
 		}
 	},
 	
+	"Sed": {
+		"health": 150,
+		"mana": 150
+	},
+	
 	"Her": {
 		"health": 120,
 		"mana": 150,
@@ -215,19 +220,19 @@ var characters = {
 			"damage_block_chain_fraction_absorbed_damage": 0.5, 
 			"damage_block_chain_duration": 10,
 			"damage_block_chain_calldown": 5,
-			"damage_block_chain_health_in_second": 10
+			"damage_block_chain_consumption_health_in_second": 10
 		},
 		"cure_chain": {
-			"cure_chain_regeneration_in_second": 5, 
+			"cure_chain_regeneration_in_second": 5.0, 
 			"cure_chain_duration": 10,
 			"cure_chain_calldown": 5,
-			"cure_chain_mana_in_second": 15
+			"cure_chain_consumption_mana_in_second": 15
 		},
 		"damage_increase_chain": {
 			"damage_increase_chain_increase": 1, 
 			"damage_increase_chain_duration": 10,
 			"damage_increase_chain_calldown": 5,
-			"damage_increase_chain_health_in_second": 15
+			"damage_increase_chain_consumption_health_in_second": 15
 		}
 	},
 	
@@ -247,6 +252,30 @@ var characters = {
 			"destruction_wave_calldown": 0,
 			"destruction_wave_speed": 150,
 			"destruction_wave_amount_bounces": 5
+		},
+		
+		"fier_ball": {
+			"fier_ball_damage": 50,
+			"fier_ball_manacost": 20,
+			"fier_ball_animation_speed_scale_creating_projectile": 0.75,
+			"fier_ball_animation_speed_scale_flying_projectile": 3,
+			"fier_ball_calldown": 0,
+			"fier_ball_speed": 250
+		},
+		
+		"invisibility": {
+			"invisibility_consumption_mana_in_second": 5.0,
+			"invisibility_duration": 0,
+			"invisibility_calldown": 5
+		},
+		
+		"call_of_the_dead": {
+
+			"call_of_the_dead_consumption_mana_in_second": 15,
+			"call_of_the_dead_calldown": 0,
+			"call_of_the_dead_duration": 0 # if spell has to be endless 
+
+
 		}
 	},
 	
@@ -256,6 +285,11 @@ var characters = {
 	},
 	
 	"Aglea": {
+		"health": 2750,
+		"mana": 1500
+	},
+	
+	"Belotur": {
 		"health": 2750,
 		"mana": 1500
 	}

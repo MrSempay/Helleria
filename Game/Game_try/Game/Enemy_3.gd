@@ -24,13 +24,20 @@ var heroe = null
 var should_be_triggered_after_manual_navigation = false
 var area_from_which_manual_navigation_was_started = null
 var special_physics_process_controlling = false
+var array_for_dropping_consumption_health_animations = []
+var armor_ordinary = 0
+var armor_left = 0
+var armor_right = 0
+var amount_status_bars = []
+var regeneration_in_second = 1
 
 onready var timer_of_stone = get_node("Timer_Stone")
 onready var timer_of_stone_sword = get_node("Timer_Stone_Sword")
 onready var timer_of_hedgehod = get_node("Timer_Hedgehod")
 onready var collision_of_stone_sword = get_node("Stone_Sword/CollisionShape2D")
 
-
+var health
+var mana
 var stop_machine = false
 var stop_distance_to_point = 1.5
 var dialoge_window = preload("res://Game/Dialoge_Window.tscn")
@@ -57,13 +64,15 @@ var dat = 1
 
 
 func _ready():
-	$HP_Enemy_1.max_value = SPELLS_PARAMETERS.HP_Belotur
-	$HP_Enemy_1.value = SPELLS_PARAMETERS.HP_Belotur
-	$value_of_HP.text = str($HP_Enemy_1.value)
+	health = SPELLS_PARAMETERS.characters[name_character]["health"]
+	mana = SPELLS_PARAMETERS.characters[name_character]["mana"]
+	$health_Enemy_1.max_value = SPELLS_PARAMETERS.characters[name_character]["health"]
+	$health_Enemy_1.value = SPELLS_PARAMETERS.characters[name_character]["health"]
+	$value_of_health.text = str($health_Enemy_1.value)
 	
-	$Mana_Enemy_1.max_value = SPELLS_PARAMETERS.mana_Belotur
-	$Mana_Enemy_1.value = SPELLS_PARAMETERS.mana_Belotur
-	$value_of_Mana.text = str($Mana_Enemy_1.value)
+	$mana_Enemy_1.max_value = SPELLS_PARAMETERS.characters[name_character]["mana"]
+	$mana_Enemy_1.value = SPELLS_PARAMETERS.characters[name_character]["mana"]
+	$value_of_mana.text = str($mana_Enemy_1.value)
 	
 	if get_parent().has_method("Fight_Scene"):
 		$AudioStreamPlayer2D.stream = load("res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3")
@@ -73,26 +82,34 @@ func _ready():
 func enemy():
 	pass
 
-
-func handle_hit(damage):
+func handle_hit(damage, attacking_object = null):
 	#health -= damage
-	$HP_Enemy_1.value -= damage
-	$value_of_HP.text = str($HP_Enemy_1.value)
-	if $HP_Enemy_1.value > 0:
-		print(name_character + " was hit! Health of enemy: ", $HP_Enemy_1.value)
+	if attacking_object != null:
+		var sum_armor
+		if attacking_object.global_position.x < self.global_position.x:
+			sum_armor = armor_left + armor_ordinary
+		else:
+			sum_armor = armor_right + armor_ordinary
+		if sum_armor > 1:
+			sum_armor = 1
+		$health_Enemy_1.value -= damage * (1 - sum_armor) * (1 + attacking_object.damage_increase)
+		$value_of_health.text = str($health_Enemy_1.value)
 	else:
-		print(name_character + " was destroyed")
-		GLOBAL.life_Belotur = false
-		get_parent().life_enemy = false
-		queue_free()
+		$health_Enemy_1.value -= damage * (1 - armor_ordinary)
+		$value_of_health.text = str($health_Enemy_1.value)
+
+	if $health_Enemy_1.value <= 0:
+		if GLOBAL.died_enemies_at_first_level.has[name_character]:
+			GLOBAL.died_enemies_at_first_level[name_character] = true
+		self.queue_free()
 
 
 func mana_using(manacost):
-	$Mana_Enemy_1.value -= manacost
-	$value_of_Mana.text = str($Mana_Enemy_1.value)
+	$mana_Enemy_1.value -= manacost
+	$value_of_mana.text = str($mana_Enemy_1.value)
 
 func _physics_process(delta):
-	
+
 	if nav_path.size() > 0:
 		if manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
 			if target_points_for_manual_navigation != []:
@@ -133,19 +150,31 @@ func _physics_process(delta):
 		$Timer_For_Updaiting_Way.set_wait_time(0.3)
 	if get_parent().has_node("Heroe") && heroe == null:
 		heroe = get_parent().get_node("Heroe")
-
-
+	#print($Sprite.get_animation())
+	#print(speed)
 	if !manual_navigation && heroe != null && is_instance_valid(heroe):
 		if get_parent().get_name() != "Garsia_Boss_Fight_Scene":
 			current_target = heroe.global_position
 		elif is_on_floor():
+			
+			if abs(self.global_position.x - heroe.global_position.x) < 53:
+				animate("run")
+			
 			if current_target == null:
 				current_target = Vector2(101, 318)
 			if get_parent().heroe_on_floor == "Second":
-				if self.global_position.x > heroe.global_position.x:
-					current_target = Vector2(935, 233)
-				else:
-					current_target = Vector2(101, 318)
+				if abs(self.global_position.x - current_target.x) < 3:
+					if current_target == Vector2(935, 233):
+						animate("idle")
+						speed = 2.5
+						current_target = Vector2(101, 318)
+					else:
+						speed = 2.5
+						animate("idle")
+						current_target = Vector2(935, 233)
+				if abs(self.global_position.x - heroe.global_position.x) < 45 && abs(self.global_position.y - heroe.global_position.y) < 20:
+					animate("run")
+					speed = 2.5
 			else:
 				if abs(self.global_position.x - current_target.x) < 3:
 					if current_target == Vector2(935, 233):
@@ -175,10 +204,10 @@ func _physics_process(delta):
 			$RayCastStone3.set_cast_to(get_parent().get_node("Heroe").global_position - self.global_position - Vector2(34,-4))
 
 	
-	if $HP_Enemy_1.value <= 50 && !EXTRA:
+	if $health_Enemy_1.value <= 50 && !EXTRA:
 		EXTRA = true
 		stun = true
-		$HP_Enemy_1.value += 100
+		$health_Enemy_1.value += 100
 		$Timer_Of_Stun.start()
 		$CollisionPolygon2D.set_scale(Vector2(0.353, 0.6))
 		$AnimationPlayer.play("EXTRA")
@@ -208,9 +237,9 @@ func _physics_process(delta):
 	if !stun && !special_physics_process_controlling && get_parent().get_name() != "root":
 		#var heroe = get_parent().get_node("Heroe")
 		
-		if trigger_of_ally or get_parent().has_method("Fight_Scene") or get_parent().triggered_enemies[name_character] == true:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
+		if (trigger_of_ally or get_parent().has_method("Fight_Scene") or get_parent().triggered_enemies[name_character] == true) && is_instance_valid(heroe):       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping
 			if get_parent().has_method("Fight_Scene"):
-				if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 30) && (self.get_position().y - heroe.get_position().y > -30)) && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_stone_sword_Belotur && get_parent().get_name() != "Garsia_Boss_Fight_Scene": 
+				if ((self.global_position.x) - heroe.global_position.x < 52) && (self.global_position.x - heroe.global_position.x > -52) && is_on_floor() && ((self.get_position().y - heroe.get_position().y < 30) && (self.get_position().y - heroe.get_position().y > -30)) && $mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_stone_sword_Belotur && get_parent().get_name() != "Garsia_Boss_Fight_Scene": 
 					if $Sprite.get_animation() == "stone":
 						 if $Sprite.get_frame() >= 20:
 								if((self.global_position.x) - heroe.global_position.x) > 0:
@@ -245,7 +274,7 @@ func _physics_process(delta):
 				#&& $RayCastStone2.get_collider() && $RayCastStone3.get_collider()
 				# && $RayCastStone2.get_collider().has_method("start_jump_heroe") && $RayCastStone3.get_collider().has_method("start_jump_heroe") 			
 				if $RayCastStone.get_collider() && $RayCastStone2.get_collider() && $RayCastStone3.get_collider():
-					if $RayCastStone.get_collider().has_method("start_jump_heroe") && $RayCastStone2.get_collider().has_method("start_jump_heroe") && $RayCastStone3.get_collider().has_method("start_jump_heroe") && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_stone_Belotur:
+					if $RayCastStone.get_collider().has_method("start_jump_heroe") && $RayCastStone2.get_collider().has_method("start_jump_heroe") && $RayCastStone3.get_collider().has_method("start_jump_heroe") && $mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_stone_Belotur:
 						if ((((self.global_position.x - heroe.global_position.x) < 650) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -650) && ((self.global_position.x - heroe.global_position.x) < -53))) && stone_ready && $RayCastVertical_3.get_collider():
 							if $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
 								if((self.global_position.x) - heroe.global_position.x) > 0:
@@ -269,8 +298,8 @@ func _physics_process(delta):
 				elif $Sprite.get_frame() == 27:
 					animate("idle")
 					speed = 2.5
-				if $RayCastHorizontal_For_Heroe.get_collider() && get_parent().get_node("Heroe/RayCastForFloor").get_collider() && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_hedgehod:
-						if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && hedgehod_ready && is_on_floor() && $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
+				if $RayCastHorizontal_For_Heroe.get_collider() && get_parent().get_node("Heroe/RayCastForFloor").get_collider() && $mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_hedgehod:
+						if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && hedgehod_ready && is_on_floor() && $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe") && get_parent().get_name() != "Garsia_Boss_Fight_Scene":
 							if $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "stone":
 								if((self.global_position.x) - heroe.global_position.x) > 0:
 									$Sprite.flip_h = true
@@ -353,13 +382,13 @@ func start_jump_enemy():
 		
 
 func _on_Timer_Of_HP_timeout():
-	$value_of_HP.text = str($HP_Enemy_1.value)
-	$HP_Enemy_1.value += 1
+	$value_of_health.text = str($health_Enemy_1.value)
+	$health_Enemy_1.value += 1
 
 	
 func _on_Timer_Of_Mana_timeout():
-	$value_of_Mana.text = str($Mana_Enemy_1.value)
-	$Mana_Enemy_1.value += 1
+	$value_of_mana.text = str($mana_Enemy_1.value)
+	$mana_Enemy_1.value += 1
 
 
 func _on_Trigger_Area_body_entered(body):
@@ -458,11 +487,6 @@ func dialoge(array_dialoge_flags, number_of_dialoge):
 			if i == (array_dialoge_flags.size() - 1):
 				pass
 
-
-
-
-
-
 func _on_VisibilityNotifier2D_screen_exited():
 	if get_parent().has_method("First_Scene") && GLOBAL.first_cat_scene:
 		queue_free()
@@ -497,13 +521,13 @@ func _on_Area_For_Starting_Fight_body_entered(body):
 		if !body.in_invisibility:
 			GLOBAL.enemy_for_fight = name_character
 			GLOBAL.position_heroe_before_fight = get_parent().get_node("Heroe").global_position
-			GLOBAL.scene(LOCATIONS_PARAMETERS.locations[get_parent().get_name]["enemies_fight_scenes"][name_character])
+			GLOBAL.scene(LOCATIONS_PARAMETERS.locations[get_parent().get_name]["enemies_fight_scenes"][name_character], true)
 
 
 func _on_Timer_For_Updaiting_Way_timeout():
 	if get_parent().has_node("Heroe"):
 		#if get_parent().current_target != Vector2(0,0):
-		if !manual_navigation:
+		if !manual_navigation && is_on_floor():
 			$NavigationAgent2D.set_target_location(current_target)
 			$NavigationAgent2D.get_final_location()
 			nav_path = $NavigationAgent2D.get_nav_path()

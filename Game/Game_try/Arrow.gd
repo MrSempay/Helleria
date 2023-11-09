@@ -5,7 +5,7 @@ var vector = 0
 
 
 func _ready():
-	if get_parent().get_node("Icon").is_flipped_h():
+	if get_parent().get_node("Heroe/Icon").is_flipped_h():
 		vector = -1
 		$Sprite.flip_h = true
 	else: 
@@ -21,7 +21,7 @@ func _physics_process(delta):
 
 func _on_Arrow_body_entered(body):
 	if body.has_method("handle_hit") && body.has_method("enemy"):
-		body.handle_hit(SPELLS_PARAMETERS.damage_bow_Heroe, get_parent().get_node("Heroe"))
+		body.handle_hit(SPELLS_PARAMETERS.damage_bow_Heroe, get_parent().get_node("Heroe"), self)
 		queue_free()
 	if !body.has_method("ally"):
 		queue_free()

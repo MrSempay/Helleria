@@ -2,13 +2,13 @@
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
 [ext_resource path="res://Game/Enemy_2.gd" type="Script" id=2]
-[ext_resource path="res://Anims/Adalar/Движ/anim2.png" type="Texture" id=3]
-[ext_resource path="res://Anims/Adalar/Движ/anim3.png" type="Texture" id=4]
-[ext_resource path="res://Anims/Adalar/Движ/anim4.png" type="Texture" id=5]
-[ext_resource path="res://Anims/Adalar/Движ/anim5.png" type="Texture" id=6]
-[ext_resource path="res://Anims/Adalar/Движ/anim6.png" type="Texture" id=7]
-[ext_resource path="res://Anims/Adalar/Движ/anim7.png" type="Texture" id=8]
-[ext_resource path="res://Anims/Adalar/Движ/anim8.png" type="Texture" id=9]
+[ext_resource path="res://Anims/Adalard/Движ/anim2.png" type="Texture" id=3]
+[ext_resource path="res://Anims/Adalard/Движ/anim3.png" type="Texture" id=4]
+[ext_resource path="res://Anims/Adalard/Движ/anim4.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Adalard/Движ/anim5.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Adalard/Движ/anim6.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Adalard/Движ/anim7.png" type="Texture" id=8]
+[ext_resource path="res://Anims/Adalard/Движ/anim8.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=4]
 length = 0.001
