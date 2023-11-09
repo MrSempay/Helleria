@@ -53,9 +53,9 @@ var cameras = {
 }
 
 var died_enemies_at_first_level = {
-	"Jeison": false,
-	"Adalard": false,
-	"Belotur": false
+	"Jeison": true,
+	"Adalard": true,
+	"Belotur": true
 }
 
 var position_for_died_enemies_at_Gasria_fight = {
