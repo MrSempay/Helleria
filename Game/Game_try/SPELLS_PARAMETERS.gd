@@ -213,7 +213,7 @@ var characters = {
 	},
 	
 	"Jeison": {
-		"health": 450,
+		"health": 150,
 		"mana": 250,
 		
 		"damage_block_chain": {
@@ -290,7 +290,7 @@ var characters = {
 	},
 	
 	"Belotur": {
-		"health": 2750,
+		"health": 150,
 		"mana": 1500
 	}
 }

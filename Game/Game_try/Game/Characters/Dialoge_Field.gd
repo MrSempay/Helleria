@@ -32,7 +32,6 @@ func _ready():
 		get_node("Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
 		get_node("RichTextLabel").set_text(k.split(":: ")[1])
 		get_node("RichTextLabel2").set_text(k.split(":: ")[0])
-		print(modulate.a)
 
 
 

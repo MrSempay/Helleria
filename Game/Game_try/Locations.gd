@@ -42,9 +42,10 @@ func _ready():
 			heroe1.modulate.a = 0
 			self.add_child(heroe1)
 			heroe1.get_node("AnimationPlayer").play("appearing")
-			for i in range(get_node("Light_Objects").get_children().size()):
-				get_node("Light_Objects").get_children()[i].variation_energy = 0
-				get_node("Light_Objects").get_children()[i].fading = false
+			if has_node("Light_Objects"):
+				for i in range(get_node("Light_Objects").get_children().size()):
+					get_node("Light_Objects").get_children()[i].variation_energy = 0
+					get_node("Light_Objects").get_children()[i].fading = false
 		else:
 			self.add_child(heroe1)
 	else:
@@ -93,23 +94,8 @@ func dialoge_start(body = null, dialoge_area_name = null, dialoge_between_scenes
 			right_body = true
 	if body == null or right_body:
 		if dialoge_between_scenesNameTargetScene != null:
-			get_node("Heroe").create_animation_for_disappearing()
-			get_node("Heroe/AnimationPlayer").play("disappearing")
-			get_node("Heroe").stun = true
-			for i in range(enemies.size()):
-				if is_instance_valid(enemies[i]):
-					enemies[i].stun = true
-					enemies[i].animate("idle")
-			for i in range(get_node("Light_Objects").get_children().size()):
-				get_node("Light_Objects").get_children()[i].fading = true
-			var timer = Timer.new()
-			add_child(timer)
-			timer.wait_time = 2.5
-			timer.one_shot = true
-			timer.connect("timeout", self, "_on_timer_for_start_changing_scene_to_dialoge_timeout", [timer, dialoge_between_scenesNameTargetScene])
-			timer.start()
+			start_transition_between_scenes_with_dialogue()
 			return
-				
 		var activated_camera
 		for key in GLOBAL.cameras.keys():
 			if GLOBAL.cameras[key] == true:
@@ -127,6 +113,22 @@ func dialoge_start(body = null, dialoge_area_name = null, dialoge_between_scenes
 		get_node(activated_camera + "/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
 		get_node("Dialoge_Layer/" + dialoge_area_name).queue_free()
 
+func start_transition_between_scenes_with_dialogue():
+	get_node("Heroe").create_animation_for_disappearing()
+	get_node("Heroe/AnimationPlayer").play("disappearing")
+	get_node("Heroe").stun = true
+	for i in range(enemies.size()):
+		if is_instance_valid(enemies[i]):
+			enemies[i].stun = true
+			enemies[i].animate("idle")
+	for i in range(get_node("Light_Objects").get_children().size()):
+		get_node("Light_Objects").get_children()[i].fading = true
+	var timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = 2.5
+	timer.one_shot = true
+	timer.connect("timeout", self, "_on_timer_for_start_changing_scene_to_dialoge_timeout", [timer, GLOBAL.name_of_dialoge_for_dialoge_field_scene.split("-")[0]])
+	timer.start()
 
 func _on_Area_Stop_Moving_area_entered(area):
 	if area.get_name() == "AreaOfEnemy":
@@ -150,3 +152,11 @@ func _on_timer_for_start_moving_timeout(area, timer):
 func _on_timer_for_start_changing_scene_to_dialoge_timeout(timer, target_scene):
 	GLOBAL.scene(target_scene, true)
 	timer.queue_free()
+	
+func changing_scene_if_enemies_die(name_character):
+	if has_method("Fight_Scene"):
+		for key in LOCATIONS_PARAMETERS.locations[self.get_name()]["characters_for_uploading"]:
+			if has_node(key) && key != name_character:
+				return
+		start_transition_between_scenes_with_dialogue()
+	

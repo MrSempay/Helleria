@@ -107,7 +107,7 @@ func _ready():
 	if GLOBAL.first_cat_scene:
 		$Position_Adalard.set_global_position(Vector2(3535, 1528))
 	else:
-		$Position_Adalard.set_global_position(first_position_Adalard)
+		pass
 		
 	if GLOBAL.first_cat_scene:
 		$Position_Jeison.set_global_position(Vector2(3530, 1528))

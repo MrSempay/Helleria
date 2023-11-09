@@ -55,7 +55,9 @@ collision_mask = 2097215
 format = 1
 tile_data = PoolIntArray( -786408, 3, 0, -589805, 4, 0, -589794, 4, 0, -393202, 4, 0, -393180, 4, 0, -327677, 7, 0, -327631, 7, 0, -196608, 8, 0, -196600, 4, 0, -196584, 3, 0, -196566, 4, 0, -196557, 8, 0, -65517, 4, 0, -65505, 4, 0, 65529, 0, 0, 1, 0, 0, 9, 0, 0, 35, 0, 0, 43, 0, 0, 51, 0, 0 )
 
-[node name="Position_Enemy" type="Position2D" parent="."]
+[node name="Positions_For_Enemies" type="Node2D" parent="."]
+
+[node name="Position_Belotur" type="Position2D" parent="Positions_For_Enemies"]
 position = Vector2( 914, -27 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]

@@ -531,8 +531,6 @@ func create_animation_for_disappearing():
 	anim_player.add_animation("disappearing", new_anim)
 	var track_idx = new_anim.add_track(Animation.TYPE_VALUE)
 	var animation_time = modulate.a * 2.5
-	print(animation_time)
-	print( modulate.a)
 	new_anim.track_set_path(track_idx, ".:modulate:a")
 	new_anim.track_insert_key(track_idx, 0, modulate.a)
 	new_anim.track_insert_key(track_idx, animation_time, 0.0)

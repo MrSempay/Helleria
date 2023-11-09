@@ -73,25 +73,27 @@ visible = false
 navpoly = SubResource( 1 )
 navigation_layers = 63
 
-[node name="NTorch" parent="." instance=ExtResource( 6 )]
-position = Vector2( 524, 520 )
-
-[node name="LTorch2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 394, 522 )
-
-[node name="ZTorch3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 661, 526 )
-
 [node name="Fon7" type="Sprite" parent="."]
 position = Vector2( 525, 469 )
 scale = Vector2( 6.2, 3.48333 )
 z_index = -2
 texture = ExtResource( 5 )
 
-[node name="Сhandelier" parent="." instance=ExtResource( 7 )]
-position = Vector2( 522, 402 )
-
 [node name="Positions_For_Enemies" type="Node2D" parent="."]
 
 [node name="Position_Adalard" type="Position2D" parent="Positions_For_Enemies"]
 position = Vector2( 623, 549 )
+
+[node name="Light_Objects" type="Node2D" parent="."]
+
+[node name="NTorch" parent="Light_Objects" instance=ExtResource( 6 )]
+position = Vector2( 524, 520 )
+
+[node name="LTorch2" parent="Light_Objects" instance=ExtResource( 6 )]
+position = Vector2( 394, 522 )
+
+[node name="ZTorch3" parent="Light_Objects" instance=ExtResource( 6 )]
+position = Vector2( 661, 526 )
+
+[node name="Сhandelier" parent="Light_Objects" instance=ExtResource( 7 )]
+position = Vector2( 522, 402 )

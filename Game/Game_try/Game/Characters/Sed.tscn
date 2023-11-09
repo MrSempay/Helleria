@@ -194,7 +194,7 @@ scale = Vector2( 2, 2 )
 frames = SubResource( 4 )
 animation = "idle"
 
-[node name="HP_Enemy_1" type="TextureProgress" parent="."]
+[node name="health_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -21.0
 margin_top = -34.0
 margin_right = 124.0
@@ -206,7 +206,7 @@ texture_progress = ExtResource( 9 )
 tint_progress = Color( 1, 0, 0, 1 )
 nine_patch_stretch = true
 
-[node name="Mana_Enemy_1" type="TextureProgress" parent="."]
+[node name="mana_Enemy_1" type="TextureProgress" parent="."]
 margin_left = -21.0
 margin_top = -29.0
 margin_right = 124.0
@@ -218,7 +218,7 @@ texture_progress = ExtResource( 9 )
 tint_progress = Color( 0, 0.133333, 1, 1 )
 nine_patch_stretch = true
 
-[node name="value_of_HP" type="Label" parent="."]
+[node name="value_of_health" type="Label" parent="."]
 margin_left = -8.82999
 margin_top = -35.08
 margin_right = 19.17
@@ -228,7 +228,7 @@ text = "500
 
 "
 
-[node name="value_of_Mana" type="Label" parent="."]
+[node name="value_of_mana" type="Label" parent="."]
 margin_left = -8.82999
 margin_top = -29.08
 margin_right = 31.17

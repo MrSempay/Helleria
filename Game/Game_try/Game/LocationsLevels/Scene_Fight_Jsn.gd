@@ -74,5 +74,8 @@ func already_finished_manual_navigation_which_started_from_area_entering(name_ch
 func dialoge_finished(dialoge_name):
 	pass
 	
-	
+
+func changing_scene_if_enemies_die(name_character):
+	if name_character == "Jeison":
+		start_transition_between_scenes_with_dialogue()
 	

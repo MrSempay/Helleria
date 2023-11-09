@@ -10,8 +10,10 @@ func _physics_process(delta):
 
 	#print(manual_navigation)
 	if is_instance_valid(heroe) && !stun:
-		print(current_target)
-		if get_parent().triggered_enemies[name_character] && get_parent().has_method("Fight_Scene") && !get_parent().get_node("Heroe").in_invisibility: 
+		if get_parent().get_name() == "Scene_Fight_Jsn" && manual_navigation:
+			stun = false
+			
+		if get_parent().triggered_enemies[name_character] && get_parent().has_method("Fight_Scene") && !get_parent().get_node("Heroe").in_invisibility && !manual_navigation: 
 			if (self.global_position.x < get_parent().get_node("Sed").global_position.x && get_parent().get_node("Sed").global_position.x < get_parent().get_node("Heroe").global_position.x) or (self.global_position.x > get_parent().get_node("Sed").global_position.x && get_parent().get_node("Sed").global_position.x > get_parent().get_node("Heroe").global_position.x):
 				self.jumping_to_point(Vector2(heroe.global_position.x + 50 * sign(heroe.global_position.x - self.global_position.x), heroe.global_position.y), 150)
 			self.squall_attack(SPELLS_PARAMETERS.characters[name_character]["squall_attack"]["squall_attack_amount_attacks"])

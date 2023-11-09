@@ -21,15 +21,19 @@ var locations = {
 	
 	"1lvl_Batle_Scene": {
 		
-		"characters_for_uploading": ["Adalard"],
+		"characters_for_uploading": {"Adalard": true},
 	},
 	
 	"First_Scene": {
 		"enemies_fight_scenes": {
-			"Belotur": "Max_level_Fight_Scene",
+			"Belotur": "Max_Level_Fight_Scene",
 			"Adalard": "1lvl_Batle_Scene",
 			"Jeison": "Scene_Fight_Jsn",
 			"Gasria": "Garsia_Boss_Fight_Scene"
 		}
+	},
+	
+	"Max_Level_Fight_Scene": {
+		"characters_for_uploading": {"Belotur": true}
 	}
 }

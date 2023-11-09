@@ -61,22 +61,22 @@ func handle_hit(damage, attacking_character, attacking_object = null):
 		sum_armor = armor_right + armor_ordinary
 	if sum_armor > 1:
 		sum_armor = 1
-	$HP_Enemy_1.value -= damage * (1 - sum_armor) * (1 + attacking_character.damage_increase)
-	$value_of_HP.text = str($HP_Enemy_1.value)
+	$health_Enemy_1.value -= damage * (1 - sum_armor) * (1 + attacking_character.damage_increase)
+	$value_of_health.text = str($health_Enemy_1.value)
 	if attacking_character.vampirism != 0:
-		attacking_character.get_node("HP_Enemy_1").value += damage * (1 - sum_armor) * attacking_character.vampirism
+		attacking_character.get_node("health_Enemy_1").value += damage * (1 - sum_armor) * attacking_character.vampirism
 
 
-	if $HP_Enemy_1.value > 0:
-		print(name_character + " was hit! Health of enemy: ", $HP_Enemy_1.value)
+	if $health_Enemy_1.value > 0:
+		print(name_character + " was hit! Health of enemy: ", $health_Enemy_1.value)
 	else:
 		print(name_character + " was destroyed")
 		queue_free()
 
 
 func mana_using(manacost):
-	$Mana_Enemy_1.value -= manacost
-	$value_of_Mana.text = str($Mana_Enemy_1.value)
+	$mana_Enemy_1.value -= manacost
+	$value_of_mana.text = str($mana_Enemy_1.value)
 
 
 func enemy():
@@ -88,7 +88,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	health = $HP_Enemy_1.value
+	health = $health_Enemy_1.value
 	#print(self.get_global_position())
 	#if j < nav_path.size() - 1:
 	#	if (nav_path[j].x - nav_path[j+1].x) >= 0:
@@ -164,9 +164,9 @@ func _physics_process(delta):
 					start_jump_enemy()
 			#print($RayCastHorizontal_For_Heroe.get_collider())
 			#print(get_parent().get_node("Heroe/RayCastForFloor").get_collider())
-			#print($Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_chaining_Sed)
+			#print($mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_chaining_Sed)
 			#print($Sprite.get_animation() == "idle")
-			if $RayCastHorizontal_For_Heroe.get_collider() && get_parent().get_node("Heroe/RayCastForFloor").get_collider() && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_chaining_Sed && $Sprite.get_animation() == "idle":
+			if $RayCastHorizontal_For_Heroe.get_collider() && get_parent().get_node("Heroe/RayCastForFloor").get_collider() && $mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_chaining_Sed && $Sprite.get_animation() == "idle":
 				if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && chaining_ready && $RayCastVertical_3.get_collider() && $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
 						if((self.global_position.x) - heroe.global_position.x) > 0:
 							$Sprite.flip_h = true
@@ -185,7 +185,7 @@ func _physics_process(delta):
 						var chaining_1 = chaining.instance()
 						chaining_1.position = heroe.global_position - Vector2(0, -25)
 						get_node("..").add_child(chaining_1)
-			if ((self.global_position.x) - heroe.global_position.x < 38) && (self.global_position.x - heroe.global_position.x > -38) && $RayCastVertical_3.get_collider() && ((self.get_position().y - heroe.get_position().y < 50) && (self.get_position().y - heroe.get_position().y > -50)) && $Mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_shield_punch_Sed && shield_punch_ready: 
+			if ((self.global_position.x) - heroe.global_position.x < 38) && (self.global_position.x - heroe.global_position.x > -38) && $RayCastVertical_3.get_collider() && ((self.get_position().y - heroe.get_position().y < 50) && (self.get_position().y - heroe.get_position().y > -50)) && $mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_shield_punch_Sed && shield_punch_ready: 
 					if $Sprite.get_animation() == "idle_shield":
 						if((self.global_position.x) - heroe.global_position.x) > 0:
 							$Sprite.flip_h = true
@@ -244,13 +244,13 @@ func start_jump_enemy():
 
 
 func _on_Timer_Of_HP_timeout():
-	$value_of_HP.text = str($HP_Enemy_1.value)
-	$HP_Enemy_1.value += regeneration_in_second
+	$value_of_health.text = str($health_Enemy_1.value)
+	$health_Enemy_1.value += regeneration_in_second
 
 	
 func _on_Timer_Of_Mana_timeout():
-	$value_of_Mana.text = str($Mana_Enemy_1.value)
-	$Mana_Enemy_1.value += 1
+	$value_of_mana.text = str($mana_Enemy_1.value)
+	$mana_Enemy_1.value += 1
 
 
 func _on_Trigger_Area_body_entered(body):

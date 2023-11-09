@@ -93,6 +93,7 @@ func handle_hit(damage, attacking_character, attacking_object = null):
 
 
 	if $health_Enemy_1.value <= 0:
+		get_parent().changing_scene_if_enemies_die(name_character)
 		if GLOBAL.died_enemies_at_first_level.has(name_character):
 			GLOBAL.died_enemies_at_first_level[name_character] = true
 		self.queue_free()
@@ -234,6 +235,7 @@ func _physics_process(delta):
 		ally = get_parent().get_node("Ally")
 
 	if !manual_navigation && heroe != null && is_instance_valid(heroe):
+		#print("???")
 		current_target = heroe.global_position
 		
 	

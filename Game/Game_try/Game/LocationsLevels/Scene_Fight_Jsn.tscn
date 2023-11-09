@@ -47,7 +47,7 @@ position = Vector2( 611, 524 )
 position = Vector2( 641, 525 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 207, 539 )
+position = Vector2( 949, 119 )
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
 visible = false

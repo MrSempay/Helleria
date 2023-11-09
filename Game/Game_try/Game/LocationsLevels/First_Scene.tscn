@@ -204,10 +204,10 @@ tile_data = PoolIntArray( -4848850, 10, 0, -4848849, 10, 0, -4848848, 10, 0, -47
 position = Vector2( 919, 688 )
 
 [node name="Position_Jeison" type="Position2D" parent="."]
-position = Vector2( 1288, 996 )
+position = Vector2( 1288, 1003 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 1410, 1000 )
+position = Vector2( 1444, 1001 )
 
 [node name="Position_Aglea" type="Position2D" parent="."]
 position = Vector2( 2674, 1528 )
@@ -216,10 +216,10 @@ position = Vector2( 2674, 1528 )
 position = Vector2( 2674, 1528 )
 
 [node name="Position_Adalard" type="Position2D" parent="."]
-position = Vector2( 2730, 1370 )
+position = Vector2( 1691, 908 )
 
 [node name="Position_Belotur" type="Position2D" parent="."]
-position = Vector2( 2861, 1310 )
+position = Vector2( 1763, 1050 )
 
 [node name="Ally" type="Position2D" parent="."]
 position = Vector2( 117, 188 )

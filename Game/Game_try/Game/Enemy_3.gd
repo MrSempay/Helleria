@@ -82,24 +82,26 @@ func _ready():
 func enemy():
 	pass
 
-func handle_hit(damage, attacking_object = null):
-	#health -= damage
+func handle_hit(damage, attacking_character, attacking_object = null):
+	var what_attacks = attacking_character
 	if attacking_object != null:
-		var sum_armor
-		if attacking_object.global_position.x < self.global_position.x:
-			sum_armor = armor_left + armor_ordinary
-		else:
-			sum_armor = armor_right + armor_ordinary
-		if sum_armor > 1:
-			sum_armor = 1
-		$health_Enemy_1.value -= damage * (1 - sum_armor) * (1 + attacking_object.damage_increase)
-		$value_of_health.text = str($health_Enemy_1.value)
+		what_attacks = attacking_object
+	var sum_armor
+	if what_attacks.global_position.x < self.global_position.x:
+		sum_armor = armor_left + armor_ordinary
 	else:
-		$health_Enemy_1.value -= damage * (1 - armor_ordinary)
-		$value_of_health.text = str($health_Enemy_1.value)
+		sum_armor = armor_right + armor_ordinary
+	if sum_armor > 1:
+		sum_armor = 1
+	$health_Enemy_1.value -= damage * (1 - sum_armor) * (1 + attacking_character.damage_increase)
+	$value_of_health.text = str($health_Enemy_1.value)
+	if attacking_character.vampirism != 0:
+		attacking_character.get_node("health_Enemy_1").value += damage * (1 - sum_armor) * attacking_character.vampirism
+
 
 	if $health_Enemy_1.value <= 0:
-		if GLOBAL.died_enemies_at_first_level.has[name_character]:
+		get_parent().changing_scene_if_enemies_die(name_character)
+		if GLOBAL.died_enemies_at_first_level.has(name_character):
 			GLOBAL.died_enemies_at_first_level[name_character] = true
 		self.queue_free()
 
@@ -521,7 +523,24 @@ func _on_Area_For_Starting_Fight_body_entered(body):
 		if !body.in_invisibility:
 			GLOBAL.enemy_for_fight = name_character
 			GLOBAL.position_heroe_before_fight = get_parent().get_node("Heroe").global_position
-			GLOBAL.scene(LOCATIONS_PARAMETERS.locations[get_parent().get_name]["enemies_fight_scenes"][name_character], true)
+			body.create_animation_for_disappearing()
+			body.get_node("AnimationPlayer").play("disappearing")
+			body.stun = true
+			self.stun = true
+			self.animate("idle")
+			for i in range(get_parent().get_node("Light_Objects").get_children().size()):
+				get_parent().get_node("Light_Objects").get_children()[i].fading = true
+			var timer = Timer.new()
+			add_child(timer)
+			timer.wait_time = 2.5
+			timer.one_shot = true
+			timer.connect("timeout", self, "_on_timer_for_start_fight_timeout", [timer])
+			timer.start()
+			
+			
+func _on_timer_for_start_fight_timeout(timer):
+	GLOBAL.scene(LOCATIONS_PARAMETERS.locations[get_parent().get_name()]["enemies_fight_scenes"][name_character], true)
+	timer.queue_free()
 
 
 func _on_Timer_For_Updaiting_Way_timeout():
