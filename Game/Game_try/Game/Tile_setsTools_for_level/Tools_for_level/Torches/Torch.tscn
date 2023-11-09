@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Door2.png" type="Texture" id=1]
-[ext_resource path="res://Game/Tile_setsTools_for_level/Tools_for_level/Torches/Torch.gd" type="Script" id=2]
+[ext_resource path="res://Torch.gd" type="Script" id=2]
 [ext_resource path="res://Anims/гл. гр/Декорации/Факел/OffFakelSdumom/OffFakelSdumom2.png" type="Texture" id=3]
 [ext_resource path="res://Anims/гл. гр/Декорации/Факел/OnFakel/OnFakel3.png" type="Texture" id=4]
 [ext_resource path="res://Anims/гл. гр/Декорации/Факел/OnFakel/OnFakel2.png" type="Texture" id=5]
@@ -52,7 +52,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "torchOn"
-frame = 4
+frame = 5
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -81,14 +81,6 @@ texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 164.376, 166.927, 602.507, 676.232 )
 
-[node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 0, 2 )
-texture = ExtResource( 21 )
-texture_scale = 0.25
-color = Color( 1, 0.847059, 0.309804, 1 )
-energy = 2.8
-shadow_enabled = true
-
 [node name="Timer_Random_Energy_Light" type="Timer" parent="."]
 wait_time = 0.2
 autostart = true
@@ -96,6 +88,12 @@ autostart = true
 [node name="Timer_Without_Smoke" type="Timer" parent="."]
 wait_time = 15.0
 one_shot = true
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 21 )
+texture_scale = 0.25
+color = Color( 0.776471, 0.815686, 0.0509804, 1 )
+energy = 2.8
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
