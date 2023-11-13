@@ -83,7 +83,7 @@ func mana_using(manacost):
 	$value_of_Mana.text = str($Mana_Heroe.value)
 	
 func _ready():
-
+	#self.set_physics_process(false)
 
 
 	$HP_Heroe.max_value = SPELLS_PARAMETERS.HP_Heroe
@@ -112,6 +112,9 @@ func _timeout():
 	print("Timed out!")
 
 func _physics_process(delta):
+	self.set_process(false)
+	self.set_process_input(false)
+	self.set_process_internal(false)
 	#print(timer.time_left)
 	#print(timer.is_paused())
 	#print(scale_speed_moving)
@@ -458,18 +461,18 @@ func _on_Timer_Of_First_Animation_Sword_timeout():
 func stun(duration):
 	var statusbar1 = statusbar.instance()
 	if stun == true:
-		if duration > $Timer_Of_Stun.time_left:
+		if duration > $Timers/Timer_Of_Stun.time_left:
 			stun = true
 			statusbar1.i = duration
-			$Timer_Of_Stun.set_wait_time(duration)
-			$Timer_Of_Stun.start()
+			$Timers/Timer_Of_Stun.set_wait_time(duration)
+			$Timers/Timer_Of_Stun.start()
 	else:
 		statusbar1.i = duration
 		get_node("For_Status_Bars").add_child(statusbar1)
 		#statusbar1.for_position()
 		stun = true
-		$Timer_Of_Stun.set_wait_time(duration)
-		$Timer_Of_Stun.start()
+		$Timers/Timer_Of_Stun.set_wait_time(duration)
+		$Timers/Timer_Of_Stun.start()
 	
 func slowdown(scale_speed, duration):
 	var statusbar1 = statusbar.instance()
@@ -481,7 +484,7 @@ func slowdown(scale_speed, duration):
 	else:
 		scale_speed_moving = 0
 	var timer = Timer.new()
-	add_child(timer)
+	$Timers.add_child(timer)
 	timer.wait_time = duration
 	timer.connect("timeout", self, "_on_timer_timeout", [scale_speed, timer])
 	timer.start()
@@ -535,3 +538,10 @@ func create_animation_for_disappearing():
 	new_anim.track_insert_key(track_idx, 0, modulate.a)
 	new_anim.track_insert_key(track_idx, animation_time, 0.0)
 	new_anim.length = animation_time
+
+
+
+
+func _on_Call_Menu_Button_pressed():
+	GLOBAL.pause_or_unpause_game(get_parent(), !has_node("Local_Menu"))
+	GLOBAL.load_game()

@@ -10,6 +10,8 @@ func Fight_Scene():
 	pass
 
 func _ready():
+
+
 	get_node("Dialoge_Layer/Dialoge_Area_4").disconnect("body_entered", self, "dialoge_start")
 	get_node("Dialoge_Layer/Dialoge_Area_4").connect("body_entered", self, "dialoge_start", ["Dialoge_Area_4", "First_Scene"])
 	GLOBAL.cameras["Heroe/CanvasLayer"] = true

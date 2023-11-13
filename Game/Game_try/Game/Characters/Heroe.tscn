@@ -429,9 +429,6 @@ texture_progress = ExtResource( 6 )
 tint_progress = Color( 1, 0, 0, 1 )
 nine_patch_stretch = true
 
-[node name="Timer_Of_HP" type="Timer" parent="HP_Heroe"]
-autostart = true
-
 [node name="Mana_Heroe" type="TextureProgress" parent="."]
 margin_left = -20.0
 margin_top = -22.0
@@ -443,9 +440,6 @@ value = 250.0
 texture_progress = ExtResource( 6 )
 tint_progress = Color( 0, 0.133333, 1, 1 )
 nine_patch_stretch = true
-
-[node name="Timer_Of_Mana" type="Timer" parent="Mana_Heroe"]
-autostart = true
 
 [node name="value_of_HP" type="Label" parent="."]
 margin_left = -8.0
@@ -559,29 +553,6 @@ script = ExtResource( 3 )
 wait_time = 5.0
 one_shot = true
 
-[node name="Control" type="Control" parent="Buttons_Of_Heroe"]
-visible = false
-margin_left = -1622.98
-margin_top = -38.2294
-margin_right = -1324.98
-margin_bottom = 24.7706
-rect_scale = Vector2( 2, 2 )
-
-[node name="Button" type="Button" parent="Buttons_Of_Heroe/Control"]
-anchor_right = 1.0
-margin_bottom = 30.0
-disabled = true
-text = "Yes, give him money"
-
-[node name="Button2" type="Button" parent="Buttons_Of_Heroe/Control"]
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_top = -32.0
-margin_bottom = -2.0
-disabled = true
-text = "No, let's fight!"
-
 [node name="Dialoge_Window_Position" type="Position2D" parent="."]
 position = Vector2( 8, -38 )
 
@@ -613,8 +584,6 @@ enabled = true
 cast_to = Vector2( 0, 27 )
 collision_mask = 2097152
 
-[node name="Timer_Of_Stun" type="Timer" parent="."]
-
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 position = Vector2( 0, 10 )
 occluder = SubResource( 23 )
@@ -622,11 +591,28 @@ occluder = SubResource( 23 )
 [node name="For_Status_Bars" type="Node2D" parent="."]
 position = Vector2( -2, -35 )
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="Call_Menu" type="CanvasLayer" parent="."]
+
+[node name="Call_Menu_Button" type="Button" parent="Call_Menu"]
+margin_left = 956.0
+margin_top = 12.0
+margin_right = 1013.0
+margin_bottom = 68.0
+text = "Edit"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 32 )
 anims/appearing = SubResource( 33 )
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="Timer_Of_Stun" type="Timer" parent="Timers"]
+
+[node name="Timer_Of_Mana" type="Timer" parent="Timers"]
+autostart = true
+
+[node name="Timer_Of_HP" type="Timer" parent="Timers"]
+autostart = true
 
 [connection signal="use_move_vector" from="CanvasLayer" to="." method="_on_CanvasLayer_use_move_vector"]
 [connection signal="released" from="CanvasLayer/TouchScreenButton" to="CanvasLayer" method="_on_TouchScreenButton_released"]
@@ -636,8 +622,6 @@ anims/appearing = SubResource( 33 )
 [connection signal="released" from="CanvasLayer/Dialoge_Field" to="CanvasLayer/Dialoge_Field" method="_on_Dialoge_Field_released"]
 [connection signal="animation_finished" from="Icon" to="." method="_on_Icon_animation_finished"]
 [connection signal="body_entered" from="Stone_Sword" to="." method="_on_Stone_Sword_body_entered"]
-[connection signal="timeout" from="HP_Heroe/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
-[connection signal="timeout" from="Mana_Heroe/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
 [connection signal="released" from="Jumping_Button" to="Jumping_Button" method="_on_TouchScreenButton_released"]
 [connection signal="input_event" from="Jumping_Button/Area2D" to="Jumping_Button" method="_on_Area2D_input_event"]
 [connection signal="mouse_exited" from="Jumping_Button/Area2D" to="Jumping_Button" method="_on_Area2D_mouse_exited"]
@@ -647,6 +631,7 @@ anims/appearing = SubResource( 33 )
 [connection signal="timeout" from="Buttons_Of_Heroe/Button_Second/Timer_Of_Bow" to="." method="_on_Timer_Of_Bow_timeout"]
 [connection signal="pressed" from="Buttons_Of_Heroe/Button_Third" to="." method="_on_Button_Third_pressed"]
 [connection signal="timeout" from="Buttons_Of_Heroe/Button_Third/Timer_Of_Column" to="." method="_on_Timer_Of_Column_timeout"]
-[connection signal="pressed" from="Buttons_Of_Heroe/Control/Button" to="." method="_on_Button_pressed"]
-[connection signal="pressed" from="Buttons_Of_Heroe/Control/Button2" to="." method="_on_Button2_pressed"]
-[connection signal="timeout" from="Timer_Of_Stun" to="." method="_on_Timer_Of_Stun_timeout"]
+[connection signal="pressed" from="Call_Menu/Call_Menu_Button" to="." method="_on_Call_Menu_Button_pressed"]
+[connection signal="timeout" from="Timers/Timer_Of_Stun" to="." method="_on_Timer_Of_Stun_timeout"]
+[connection signal="timeout" from="Timers/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
+[connection signal="timeout" from="Timers/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]

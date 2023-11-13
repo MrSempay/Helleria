@@ -31,10 +31,11 @@ var armor_right = 0
 var amount_status_bars = []
 var regeneration_in_second = 1
 
-onready var timer_of_stone = get_node("Timer_Stone")
-onready var timer_of_stone_sword = get_node("Timer_Stone_Sword")
-onready var timer_of_hedgehod = get_node("Timer_Hedgehod")
+onready var timer_of_stone = get_node("Timers/Timer_Stone")
+onready var timer_of_stone_sword = get_node("Timers/Timer_Stone_Sword")
+onready var timer_of_hedgehod = get_node("Timers/Timer_Hedgehod")
 onready var collision_of_stone_sword = get_node("Stone_Sword/CollisionShape2D")
+var statusbar = preload("res://Game/Spells/BarDuration.tscn")
 
 var health
 var mana
@@ -147,9 +148,9 @@ func _physics_process(delta):
 			$Sprite.set_speed_scale(1)
 			
 	if !$RayCastVertical_3.get_collider():
-		$Timer_For_Updaiting_Way.set_wait_time(0.1)
+		$Timers/Timer_For_Updaiting_Way.set_wait_time(0.1)
 	else:
-		$Timer_For_Updaiting_Way.set_wait_time(0.3)
+		$Timers/Timer_For_Updaiting_Way.set_wait_time(0.3)
 	if get_parent().has_node("Heroe") && heroe == null:
 		heroe = get_parent().get_node("Heroe")
 	#print($Sprite.get_animation())
@@ -210,7 +211,7 @@ func _physics_process(delta):
 		EXTRA = true
 		stun = true
 		$health_Enemy_1.value += 100
-		$Timer_Of_Stun.start()
+		$Timers/Timer_Of_Stun.start()
 		$CollisionPolygon2D.set_scale(Vector2(0.353, 0.6))
 		$AnimationPlayer.play("EXTRA")
 		$Sprite.position.y = $Sprite.position.y - 7
@@ -404,15 +405,19 @@ func animate(art):
 	$Sprite.play(art)
 
 
-func _on_Sprite_animation_finished():
-	if $Sprite.get_animation() == "stone":
-		speed = 2.5
-	if $Sprite.get_animation() == "stoneSword":
-		stone_sword_finished = true
-		animate("idle")
-		speed = 2.5
-	if $Sprite.get_animation() == "hedgehod":
-		hedgehod_finished = true
+func _on_Sprite_animation_finished(by_stune = false):
+	if !by_stune:
+		if $Sprite.get_animation() == "stone":
+			speed = 2.5
+		if $Sprite.get_animation() == "stoneSword":
+			stone_sword_finished = true
+			animate("idle")
+			speed = 2.5
+		if $Sprite.get_animation() == "hedgehod":
+			hedgehod_finished = true
+			animate("idle")
+			speed = 2.5
+	else:
 		animate("idle")
 		speed = 2.5
 
@@ -498,9 +503,20 @@ func _on_Timer_Of_Stun_timeout():
 	stun = false
 
 func stun(duration):
-	stun = true
-	$Timer_Of_Stun.start()
-	$Timer_Of_Stun.set_wait_time(duration)
+	_on_Sprite_animation_finished(true)
+	var statusbar1 = statusbar.instance()
+	if stun == true:
+		if duration > $Timers/Timer_Of_Stun.time_left:
+			stun = true
+			statusbar1.i = duration
+			$Timers/Timer_Of_Stun.set_wait_time(duration)
+			$Timers/Timer_Of_Stun.start()
+	else:
+		statusbar1.i = duration
+		get_node("For_Status_Bars").add_child(statusbar1)
+		stun = true
+		$Timers/Timer_Of_Stun.set_wait_time(duration)
+		$Timers/Timer_Of_Stun.start()
 	
 
 func _on_Timer_Stop_Machine_timeout():
@@ -531,7 +547,7 @@ func _on_Area_For_Starting_Fight_body_entered(body):
 			for i in range(get_parent().get_node("Light_Objects").get_children().size()):
 				get_parent().get_node("Light_Objects").get_children()[i].fading = true
 			var timer = Timer.new()
-			add_child(timer)
+			get_node("Timers").add_child(timer)
 			timer.wait_time = 2.5
 			timer.one_shot = true
 			timer.connect("timeout", self, "_on_timer_for_start_fight_timeout", [timer])

@@ -52,7 +52,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "torchOn"
-frame = 5
+frame = 2
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -92,7 +92,7 @@ one_shot = true
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 21 )
 texture_scale = 0.25
-color = Color( 0.776471, 0.815686, 0.0509804, 1 )
+color = Color( 1, 0.847059, 0.309804, 1 )
 energy = 2.8
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

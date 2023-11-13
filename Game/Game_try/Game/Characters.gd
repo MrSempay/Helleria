@@ -124,7 +124,7 @@ func mana_controlling(type_of_controlling, name_spell):
 			timer_for_consumption_mana_or_health_per_tick.set_wait_time(0.2)
 			timer_for_consumption_mana_or_health_per_tick.connect("timeout", self, "_on_timer_for_consumption_mana_or_health_timeout", [timer_for_consumption_mana_or_health_per_tick, name_spell + "_SPELL", summary_health_or_mana_for_chain.size() - 1, self, null, null, "health"])
 			timer_for_consumption_mana_or_health_per_tick.one_shot = false
-			self.add_child(timer_for_consumption_mana_or_health_per_tick)
+			get_node("Timers").add_child(timer_for_consumption_mana_or_health_per_tick)
 			timer_for_consumption_mana_or_health_per_tick.start()
 			array_of_timers.append(timer_for_consumption_mana_or_health_per_tick)
 	if SPELLS_PARAMETERS.characters[name_character][name_spell].has(name_spell + "_consumption_mana_in_second"):
@@ -136,7 +136,7 @@ func mana_controlling(type_of_controlling, name_spell):
 			timer_for_consumption_mana_or_health_per_tick.set_wait_time(0.2)
 			timer_for_consumption_mana_or_health_per_tick.connect("timeout", self, "_on_timer_for_consumption_mana_or_health_timeout", [timer_for_consumption_mana_or_health_per_tick, name_spell + "_SPELL", summary_health_or_mana_for_chain.size() - 1, self, null, null, "mana"])
 			timer_for_consumption_mana_or_health_per_tick.one_shot = false
-			self.add_child(timer_for_consumption_mana_or_health_per_tick)
+			get_node("Timers").add_child(timer_for_consumption_mana_or_health_per_tick)
 			timer_for_consumption_mana_or_health_per_tick.start()
 			array_of_timers.append(timer_for_consumption_mana_or_health_per_tick)
 
@@ -467,7 +467,7 @@ func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
 			timer_for_calldown.set_wait_time(SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_calldown"] + SPELLS_PARAMETERS.characters[name_character][type_of_chain + "_chain"][type_of_chain + "_chain_duration"])
 			timer_for_calldown.connect("timeout", self, "_on_Chain_timeout", [timer_for_calldown, type_of_chain])
 			timer_for_calldown.one_shot = true
-			self.add_child(timer_for_calldown)
+			get_node("Timers").add_child(timer_for_calldown)
 			timer_for_calldown.start()
 			var index_of_required_target = 0
 			var statusbar1 = statusbar.instance()
@@ -518,7 +518,7 @@ func chain(type_of_chain, targets_for_cast, zone_of_casting = null):
 			timer_for_consumption_mana_or_health_per_tick.set_wait_time(0.2)
 			timer_for_consumption_mana_or_health_per_tick.connect("timeout", self, "_on_timer_for_consumption_mana_or_health_timeout", [timer_for_consumption_mana_or_health_per_tick, type_of_chain, summary_health_or_mana_for_chain.size() - 1, targets_for_cast[index_of_required_target], statusbar1, statusbar2])
 			timer_for_consumption_mana_or_health_per_tick.one_shot = false
-			self.add_child(timer_for_consumption_mana_or_health_per_tick)
+			get_node("Timers").add_child(timer_for_consumption_mana_or_health_per_tick)
 			timer_for_consumption_mana_or_health_per_tick.start()
 
 func _on_timer_for_consumption_mana_or_health_timeout(timer, type_of_chain, index_of_summary, target_to_cast, enemy_status_bar = null, self_status_bar = null, what_is_consumpting = null):
@@ -616,7 +616,7 @@ func stone_wall(position_of_wall, should_be_disappearence_after_time = true, par
 			timer_for_disappearence_wall.set_wait_time(SPELLS_PARAMETERS.characters[name_character]["stone_wall"]["time_to_disappearance_wall"])
 			timer_for_disappearence_wall.connect("timeout", self, "_on_timer_for_disappearance_wall_timeout", [stone_wall1, timer_for_disappearence_wall])
 			timer_for_disappearence_wall.one_shot = true
-			self.add_child(timer_for_disappearence_wall)
+			get_node("Timers").add_child(timer_for_disappearence_wall)
 			timer_for_disappearence_wall.start()
 		
 
@@ -767,7 +767,7 @@ func creating_timer_for_calldown(spell):
 	timer_for_calldown.set_wait_time(SPELLS_PARAMETERS.characters[name_character][spell][spell + "_calldown"])
 	timer_for_calldown.connect("timeout", self, "_on_timer_for_calldown_spells_timeout", [spell, timer_for_calldown])
 	timer_for_calldown.one_shot = true
-	self.add_child(timer_for_calldown)
+	get_node("Timers").add_child(timer_for_calldown)
 	timer_for_calldown.start()
 
 func _on_timer_for_calldown_spells_timeout(spell, timer):
@@ -826,7 +826,7 @@ func _on_Sprite_animation_finished(by_stune = false):
 				timer_for_duration_armor.set_wait_time(SPELLS_PARAMETERS.characters[name_character]["armor"]["armo_duration"])
 				timer_for_duration_armor.connect("timeout", self, "_on_timer_for_armor_duration_timeout", [timer_for_duration_armor])
 				timer_for_duration_armor.one_shot = true
-				self.add_child(timer_for_duration_armor)
+				get_node("Timers").add_child(timer_for_duration_armor)
 				timer_for_duration_armor.start()
 	else:
 		animate("idle")

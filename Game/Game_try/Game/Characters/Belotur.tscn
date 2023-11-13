@@ -241,18 +241,6 @@ reset_on_save = false
 anims/RESET = SubResource( 5 )
 "anims/щгп" = SubResource( 6 )
 
-[node name="Timer_Stone" type="Timer" parent="."]
-wait_time = 0.3
-one_shot = true
-
-[node name="Timer_Stone_Sword" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
-[node name="Timer_Hedgehod" type="Timer" parent="."]
-wait_time = 11.678
-one_shot = true
-
 [node name="Sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
@@ -342,10 +330,6 @@ shape = SubResource( 7 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 visible = false
 
-[node name="Timer_Of_Stun" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
 [node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
 position = Vector2( 0, -35 )
 enabled = true
@@ -424,30 +408,48 @@ navigation_layers = 4
 visible = false
 width = 5.0
 
-[node name="Timer_Stop_Machine" type="Timer" parent="."]
-wait_time = 0.3
-
-[node name="Timer_For_Updaiting_Way" type="Timer" parent="."]
-wait_time = 0.3
-autostart = true
-
-[node name="Timer_For_Going_Back" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
 [node name="For_Status_Bars" type="Node2D" parent="."]
 position = Vector2( -8, -41 )
 
-[connection signal="timeout" from="Timer_Stone" to="." method="_on_Timer_Stone_timeout"]
-[connection signal="timeout" from="Timer_Stone_Sword" to="." method="_on_Timer_Stone_Sword_timeout"]
-[connection signal="timeout" from="Timer_Hedgehod" to="." method="_on_Timer_Hedgehod_timeout"]
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="Timer_Stop_Machine" type="Timer" parent="Timers"]
+wait_time = 0.3
+
+[node name="Timer_For_Going_Back" type="Timer" parent="Timers"]
+wait_time = 5.0
+one_shot = true
+
+[node name="Timer_For_Updaiting_Way" type="Timer" parent="Timers"]
+wait_time = 0.3
+autostart = true
+
+[node name="Timer_Of_Stun" type="Timer" parent="Timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Timer_Hedgehod" type="Timer" parent="Timers"]
+wait_time = 11.678
+one_shot = true
+
+[node name="Timer_Stone" type="Timer" parent="Timers"]
+wait_time = 0.3
+one_shot = true
+
+[node name="Timer_Stone_Sword" type="Timer" parent="Timers"]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
 [connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]
 [connection signal="body_entered" from="Stone_Sword" to="." method="_on_Stone_Sword_body_entered"]
 [connection signal="body_entered" from="Area_For_Starting_Fight" to="." method="_on_Area_For_Starting_Fight_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
-[connection signal="timeout" from="Timer_Of_Stun" to="." method="_on_Timer_Of_Stun_timeout"]
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_path_changed"]
-[connection signal="timeout" from="Timer_Stop_Machine" to="." method="_on_Timer_Stop_Machine_timeout"]
-[connection signal="timeout" from="Timer_For_Updaiting_Way" to="." method="_on_Timer_For_Updaiting_Way_timeout"]
-[connection signal="timeout" from="Timer_For_Going_Back" to="." method="_on_Timer_For_Going_Back_timeout"]
+[connection signal="timeout" from="Timers/Timer_Stop_Machine" to="." method="_on_Timer_Stop_Machine_timeout"]
+[connection signal="timeout" from="Timers/Timer_For_Going_Back" to="." method="_on_Timer_For_Going_Back_timeout"]
+[connection signal="timeout" from="Timers/Timer_For_Updaiting_Way" to="." method="_on_Timer_For_Updaiting_Way_timeout"]
+[connection signal="timeout" from="Timers/Timer_Of_Stun" to="." method="_on_Timer_Of_Stun_timeout"]
+[connection signal="timeout" from="Timers/Timer_Hedgehod" to="." method="_on_Timer_Hedgehod_timeout"]
+[connection signal="timeout" from="Timers/Timer_Stone" to="." method="_on_Timer_Stone_timeout"]
+[connection signal="timeout" from="Timers/Timer_Stone_Sword" to="." method="_on_Timer_Stone_Sword_timeout"]

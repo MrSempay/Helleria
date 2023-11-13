@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Game/Local_Menu.gd" type="Script" id=1]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+light_mode = 1
+
+[node name="Local_Menu" type="Control"]
+material = SubResource( 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -102.0
+margin_top = -152.0
+margin_right = -39.0
+margin_bottom = -39.0
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+use_parent_material = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -6.0
+color = Color( 0.847059, 0.521569, 0.368627, 1 )
+
+[node name="Control" type="VBoxContainer" parent="."]
+modulate = Color( 0.658824, 0.34902, 1, 1 )
+use_parent_material = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Continue_Game" type="Button" parent="Control"]
+use_parent_material = true
+margin_right = 63.0
+margin_bottom = 20.0
+size_flags_vertical = 2
+
+[node name="Save_Game" type="Button" parent="Control"]
+use_parent_material = true
+margin_top = 29.0
+margin_right = 63.0
+margin_bottom = 49.0
+size_flags_vertical = 2
+
+[node name="Settings" type="Button" parent="Control"]
+use_parent_material = true
+margin_top = 58.0
+margin_right = 63.0
+margin_bottom = 78.0
+size_flags_vertical = 2
+
+[node name="Exit_To_Main_Menu" type="Button" parent="Control"]
+use_parent_material = true
+margin_top = 87.0
+margin_right = 63.0
+margin_bottom = 107.0
+size_flags_vertical = 2
+
+[connection signal="pressed" from="Control/Continue_Game" to="." method="_on_Continue_Game_pressed"]

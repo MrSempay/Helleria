@@ -14,12 +14,19 @@ func ibo(mega):
 func foo():
 	return("bar")
 var d = "assd"
+const namm = "res://Game/Characters/Heroe.tscn"
 func _ready():
+	#var her = load(namm)
+	#get_tree().change_scene_to(her)
+	#her.instance().modulate = Color(0.3, 0.3, 0.3, 0)
+	
 	#get_tree().get_current_scene().free()
 	#print(get_tree().get_current_scene().get_name())
-	var ibo = self.get("modulate")
-	var property_name = "a"
-	var property_value = str2var("ibo." + property_name)
+	self.modulate.a = 1
+	var ibo = self.get("modulate")[3]
+	#print(ibo)
+	#var property_name = "a"
+	#var property_value = str2var("ibo." + property_name)
 
 
 	#var a = funcref($Ibo, "foo")

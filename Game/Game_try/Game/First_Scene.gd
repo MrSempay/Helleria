@@ -25,7 +25,7 @@ var triggered_enemies = {"Adalard": false, "Belotur": false, "Jeison": false, "G
 #var ally = preload("res://Game/Characters/Ally.tscn")
 var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
 var enemy_2 = preload("res://Game/Characters/Adalard.tscn")
-var enemy_3 = preload("res://Game/Characters/Enemy_33.tscn")
+var enemy_3 = preload("res://Game/Characters/Belotur.tscn")
 var enemy_4 = preload("res://Game/Characters/Enemy44.tscn")
 var enemy_5 = preload("res://Game/Characters/Jeison.tscn")
 var gasria = preload("res://Game/Characters/Gasria.tscn")
@@ -153,11 +153,10 @@ func _ready():
 	self.add_child(door_1)
 	GLOBAL.heroe_uploaded = true
 	get_node("Gasria/Trigger_Area").set_monitoring(false)
-	
+	GLOBAL.save_game(self)
 	
 func _physics_process(delta):
 	#print(get_node("Snares_Of_Boss/Area2D6/PositionsWalls"))
-
 	#print(GLOBAL.dialoge_No_heroe_camera)
 	#print(GLOBAL.dialoge_heroe_camera)
 	$Line2D.set_points(get_node("Gasria").nav_path)

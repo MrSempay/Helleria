@@ -156,6 +156,12 @@ func _input(event):
 [sub_resource type="RectangleShape2D" id=31]
 extents = Vector2( 36, 31 )
 
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 21, 20 )
+
+[sub_resource type="RectangleShape2D" id=30]
+extents = Vector2( 40.5, 19 )
+
 [sub_resource type="RectangleShape2D" id=23]
 extents = Vector2( 29.5, 14.5 )
 
@@ -166,12 +172,6 @@ extents = Vector2( 51.8333, 10 )
 extents = Vector2( 7.66667, 6.16666 )
 
 [sub_resource type="RectangleShape2D" id=29]
-
-[sub_resource type="RectangleShape2D" id=27]
-extents = Vector2( 21, 20 )
-
-[sub_resource type="RectangleShape2D" id=30]
-extents = Vector2( 40.5, 19 )
 
 [node name="First_Scene" type="Node2D"]
 script = ExtResource( 2 )
@@ -1005,6 +1005,25 @@ script = ExtResource( 7 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Areas_For_Jumping/JAUlt32"]
 shape = SubResource( 9 )
 
+[node name="Line2D2" type="Line2D" parent="."]
+points = PoolVector2Array( 1890, 922 )
+
+[node name="Area_For_Waiting_Gasria" type="Area2D" parent="."]
+position = Vector2( 1839, 999 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Waiting_Gasria"]
+shape = SubResource( 27 )
+
+[node name="Area_For_Starting_Fight" type="Area2D" parent="."]
+position = Vector2( 627, 1349 )
+collision_layer = 63
+collision_mask = 63
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Starting_Fight"]
+shape = SubResource( 30 )
+
 [node name="Snares_Of_Boss" type="Node2D" parent="."]
 position = Vector2( 581, 275 )
 z_index = -1
@@ -1211,25 +1230,6 @@ scale = Vector2( 3, 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Dialoge_Layer/Dialoge_Area_4"]
 shape = SubResource( 24 )
-
-[node name="Line2D2" type="Line2D" parent="."]
-points = PoolVector2Array( 1890, 922 )
-
-[node name="Area_For_Waiting_Gasria" type="Area2D" parent="."]
-position = Vector2( 1839, 999 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Waiting_Gasria"]
-shape = SubResource( 27 )
-
-[node name="Area_For_Starting_Fight" type="Area2D" parent="."]
-position = Vector2( 627, 1349 )
-collision_layer = 63
-collision_mask = 63
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Starting_Fight"]
-shape = SubResource( 30 )
 
 [node name="Light_Objects" type="Node2D" parent="."]
 

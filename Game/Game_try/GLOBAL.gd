@@ -106,10 +106,112 @@ func scene(name, dialoge_between_scenes = false):
 		get_tree().change_scene("res://Game/Dialoge_Field.tscn")
 		
 	
-
 func first_spell_changing(speed, armor=0):
 	speed = speed * 0.5
 	return speed
+	
+var file = File.new()
+
+func save_game(main_scene):
+	# for main scene:
+	var data_save = {}
+	data_save["scene"] = main_scene.get_name()
+	if main_scene.has_node("Light_Objects"):
+		data_save["Light_Objects"] = []
+		for i in range(main_scene.get_node("Light_Objects").get_children().size()):
+			data_save["Light_Objects"].append(main_scene.get_node("Light_Objects").get_children()[i].get_node("AnimatedSprite").get_animation())
+	if main_scene.has_node("Dialoge_Layer"):
+		var i = 0
+		data_save["Dialoge_Layer"] = []
+		while i < main_scene.get_node("Dialoge_Layer").get_children().size():
+			data_save["Dialoge_Layer"].append(main_scene.get_node("Dialoge_Layer").get_children()[i].get_name())
+			i += 1
+			
+# Creating an array of arrays, each underarray consist a positions of stone walls, which were existing at moment of save.
+	if main_scene.has_node("Snares_Of_Boss"):
+		var i = 0
+		data_save["Snares_Of_Boss"] = []
+		while i < main_scene.get_node("Snares_Of_Boss").get_children().size():
+			var j = 0
+			data_save["Snares_Of_Boss"].append([])
+			while j < main_scene.get_node("Snares_Of_Boss").get_children()[i].get_node("PositionsWalls").get_children().size():
+				if main_scene.get_node("Snares_Of_Boss").get_children()[i].get_node("PositionsWalls").get_children()[j].get_name()[0] == "S":
+					data_save["Snares_Of_Boss"][i].append(main_scene.get_node("Snares_Of_Boss").get_children()[i].get_node("PositionsWalls").get_children()[j].global_position)
+				j += 1
+			i += 1
+	file.open("user://hellaria.txt", File.WRITE_READ)
+	print(data_save)
+	file.store_var(to_json(data_save))
+	print(file.get_path_absolute())
+	file.close()
+
+func load_game():
+	file.open("user://hellaria.txt", File.READ)
+	var loaded_data = JSON.parse(file.get_var()).get_result()
+	file.close()
+	GLOBAL.scene(loaded_data["scene"])
+	yield(get_tree(), "idle_frame")
+	var main_scene = get_tree().get_current_scene()
+	if main_scene.has("Light_Objects"):
+		for i in range(main_scene.get_node("Light_Objects").get_children().size()):
+			main_scene.get_node("Light_Objects").get_children()[i].get_node("AnimatedSprite").set_animation(loaded_data["Light_Objects"][i])
+	if main_scene.has("Dialoge_Layer"):
+		var i = 0
+		while i < main_scene.get_node("Dialoge_Layer").get_children().size():
+			if !loaded_data["Dialoge_Layer"].has(main_scene.get_node("Dialoge_Layer").get_children()[i]):
+				main_scene.get_node("Dialoge_Layer").get_children()[i].queue_free()
+			i += 1
+	if main_scene.has_node("Snares_Of_Boss"):
+		var i = 0
+		while i < main_scene.get_node("Snares_Of_Boss").get_children().size():
+			var j = 0
+			while j < main_scene.get_node("Snares_Of_Boss").get_children()[i].get_node("PositionsWalls").get_children().size():
+				if main_scene.get_node("Snares_Of_Boss").get_children()[i].get_node("PositionsWalls").get_children()[j].get_name()[0] == "S":
+					main_scene.get_node("Snares_Of_Boss").get_children()[i].get_node("PositionsWalls").get_children()[j].queue_free()
+				j += 1
+			i += 1
+	
+	
+
+func pause_or_unpause_game(main_scene, pause):
+	for i in range(main_scene.get_children().size()):
+		main_scene.get_children()[i].set_physics_process(!pause)
+		if pause:
+			if main_scene.get_children()[i].has_node("Sprite"):
+				if main_scene.get_children()[i].get_node("Sprite").get_class() == "AnimatedSprite":
+					main_scene.get_children()[i].get_node("Sprite").stop()
+			if main_scene.get_children()[i].has_node("AnimatedSprite"): 
+				main_scene.get_children()[i].get_node("AnimatedSprite").stop()
+		else:
+			if main_scene.get_children()[i].has_node("Sprite"):
+				if main_scene.get_children()[i].get_node("Sprite").get_class() == "AnimatedSprite":
+					main_scene.get_children()[i].get_node("Sprite").play()
+			if main_scene.get_children()[i].has_node("AnimatedSprite"): 
+				main_scene.get_children()[i].get_node("AnimatedSprite").play()
+		if main_scene.get_children()[i].has_node("Timers"):
+			for j in range(main_scene.get_children()[i].get_node("Timers").get_children().size()):
+				main_scene.get_children()[i].get_node("Timers").get_children()[j].set_paused(pause)
+			for j in range(main_scene.get_children()[i].get_node("For_Status_Bars").get_children().size()):
+				main_scene.get_children()[i].get_node("For_Status_Bars").get_children()[j].get_node("Timer").set_paused(pause)
+	if main_scene.has_node("Timers"):
+		for i in range(main_scene.get_node("Timers").get_children().size()):
+			main_scene.get_node("Timers").get_children()[i].set_paused(pause)
+	if main_scene.has_node("Heroe"):
+		for i in range(main_scene.get_node("Heroe/Buttons_Of_Heroe").get_children().size()):
+			if main_scene.get_node("Heroe/Buttons_Of_Heroe").get_children()[i].get_class() == "Button":
+				main_scene.get_node("Heroe/Buttons_Of_Heroe").get_children()[i].set_disabled(pause)
+		if pause:
+			main_scene.get_node("Heroe/Icon").stop()
+			var local_menu = preload("res://Game/Local_Menu.tscn").instance()
+			local_menu.set_position(Vector2(-30,-77))
+			main_scene.get_node("Heroe").add_child(local_menu)
+		else: 
+			main_scene.get_node("Heroe/Icon").play()
+			if main_scene.has_node("Heroe/Local_Menu"):
+				main_scene.get_node("Heroe/Local_Menu").queue_free()
+
+	
+	
 	
 func get_segments_from_CollisionShape_or_collisionPolygon(area):
 	var array_of_segments = []
