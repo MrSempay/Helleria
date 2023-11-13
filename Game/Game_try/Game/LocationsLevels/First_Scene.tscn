@@ -207,7 +207,7 @@ position = Vector2( 919, 688 )
 position = Vector2( 1288, 1003 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 1444, 1001 )
+position = Vector2( 1155, 743 )
 
 [node name="Position_Aglea" type="Position2D" parent="."]
 position = Vector2( 2674, 1528 )
@@ -216,10 +216,10 @@ position = Vector2( 2674, 1528 )
 position = Vector2( 2674, 1528 )
 
 [node name="Position_Adalard" type="Position2D" parent="."]
-position = Vector2( 1691, 908 )
+position = Vector2( 1975, 1507 )
 
 [node name="Position_Belotur" type="Position2D" parent="."]
-position = Vector2( 1763, 1050 )
+position = Vector2( 1341, 811 )
 
 [node name="Ally" type="Position2D" parent="."]
 position = Vector2( 117, 188 )

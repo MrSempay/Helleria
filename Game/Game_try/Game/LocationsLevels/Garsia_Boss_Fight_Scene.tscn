@@ -82,7 +82,7 @@ scale = Vector2( 3, 1 )
 shape = SubResource( 4 )
 
 [node name="Position_Heroe" type="Position2D" parent="."]
-position = Vector2( 370, 54 )
+position = Vector2( 216, 492 )
 
 [node name="Positions_For_Enemies" type="Node2D" parent="."]
 
@@ -93,7 +93,7 @@ position = Vector2( 144, -62 )
 position = Vector2( 894, 85 )
 
 [node name="Position_Her" type="Position2D" parent="Positions_For_Enemies"]
-position = Vector2( -304, 250 )
+position = Vector2( -317, 341 )
 
 [node name="Position_Sed" type="Position2D" parent="Positions_For_Enemies"]
 
