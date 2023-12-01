@@ -14,6 +14,8 @@ var manacost_column = 35
 var amount_arrows = 5
 var damage_stone_sword = 10
 var scale_gravity = 2
+var health
+var mana
 var arrow = preload("res://Game/Spells/Arrow.tscn")
 var column = preload("res://Game/Spells/Column.tscn")
 var velocity = Vector2()
@@ -75,7 +77,10 @@ func handle_hit(damage, attacking_character, attacking_object = null):
 
 
 	if $HP_Heroe.value <= 0:
-		self.queue_free()
+		if get_parent().has_method("Fight_Scene"):
+			get_parent().start_transition_between_scenes_with_dialogue(get_tree().get_current_scene().get_name())
+			GLOBAL.just_statment = true
+		#self.queue_free()
 		
 		
 func mana_using(manacost):
@@ -83,15 +88,24 @@ func mana_using(manacost):
 	$value_of_Mana.text = str($Mana_Heroe.value)
 	
 func _ready():
+	#var tet = IBO.new()
+	#tet.name = "IBO"
+	#add_child(tet)
+	#print(has_node("IBO"))
+
+	#print(get_node("IBO").d)
 	#self.set_physics_process(false)
+	health = SPELLS_PARAMETERS.characters[name_character]["health"]
+	mana = SPELLS_PARAMETERS.characters[name_character]["mana"]
+	#print(get_children())
 
 
-	$HP_Heroe.max_value = SPELLS_PARAMETERS.HP_Heroe
-	$HP_Heroe.value = SPELLS_PARAMETERS.HP_Heroe
+	$HP_Heroe.max_value = SPELLS_PARAMETERS.characters[name_character]["health"]
+	$HP_Heroe.value = SPELLS_PARAMETERS.characters[name_character]["health"]
 	$value_of_HP.text = str($HP_Heroe.value)
 	
-	$Mana_Heroe.max_value = SPELLS_PARAMETERS.mana_Heroe
-	$Mana_Heroe.value = SPELLS_PARAMETERS.mana_Heroe
+	$Mana_Heroe.max_value = SPELLS_PARAMETERS.characters[name_character]["mana"]
+	$Mana_Heroe.value = SPELLS_PARAMETERS.characters[name_character]["mana"]
 	$value_of_Mana.text = str($Mana_Heroe.value)
 	
 	
@@ -112,9 +126,7 @@ func _timeout():
 	print("Timed out!")
 
 func _physics_process(delta):
-	self.set_process(false)
-	self.set_process_input(false)
-	self.set_process_internal(false)
+
 	#print(timer.time_left)
 	#print(timer.is_paused())
 	#print(scale_speed_moving)
@@ -543,5 +555,6 @@ func create_animation_for_disappearing():
 
 
 func _on_Call_Menu_Button_pressed():
-	GLOBAL.pause_or_unpause_game(get_parent(), !has_node("Local_Menu"))
-	GLOBAL.load_game()
+	if $AnimationPlayer.current_animation != "disappearing":
+		GLOBAL.pause_or_unpause_game(get_parent(), !has_node("Local_Menu"), true)
+	

@@ -6,6 +6,8 @@ var enemies_on_floor = {
 	"Jeison": "Third",
 	"Adalard": "First"
 }
+
+
 var heroe_on_floor = "First"
 
 func Fight_Scene():

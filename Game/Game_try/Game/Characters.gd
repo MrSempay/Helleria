@@ -73,7 +73,9 @@ var number_of_moving
 var auto_manual_navigation = false
 
 var position_attack_area_x
-
+var flying_mod = false
+var can_fly = false
+var delay_for_monitoring_ground = false 
 
 func handle_hit(damage, attacking_character, attacking_object = null):
 	var what_attacks = attacking_character
@@ -93,7 +95,7 @@ func handle_hit(damage, attacking_character, attacking_object = null):
 
 
 	if $health_Enemy_1.value <= 0:
-		get_parent().changing_scene_if_enemies_die(name_character)
+		get_parent().changing_scene_if_enemies_die(name_character, GLOBAL.name_of_dialoge_for_dialoge_field_scene.split("-")[0])
 		if GLOBAL.died_enemies_at_first_level.has(name_character):
 			GLOBAL.died_enemies_at_first_level[name_character] = true
 		self.queue_free()
@@ -192,8 +194,15 @@ func _physics_process(delta):
 	#print(str(self.get_global_position()) + " HER ")
 	#print(get_parent().triggered_enemies[name])
 	#print(get_parent().triggered_enemies[name_character])
+	
+	if can_fly:
+		if $RayCastVertical_3.get_collider() && flying_mod && delay_for_monitoring_ground:
+			print("?????????")
+			delay_for_monitoring_ground = false
+			flying_mod = false
+	
 	if nav_path.size() > 0:
-		if !auto_manual_navigation && manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
+		if !auto_manual_navigation && manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && ($Sprite.get_animation() == "run" or $Sprite.get_animation() == "flying"):
 			if target_points_for_manual_navigation != []:
 				current_target = target_points_for_manual_navigation[0]
 				update_way()
@@ -251,6 +260,7 @@ func _physics_process(delta):
 		#var heroe = get_parent().get_node("Heroe")
 		if get_parent().get_name() != "root":
 			if get_parent().triggered_enemies[name_character] == true:   # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping			
+				#print(name_character)
 				#print(nav_path)
 				#print(current_target)
 				#print(name_character)
@@ -287,13 +297,16 @@ func _physics_process(delta):
 				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 					if $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
 						stop_machine = false
-				#print(j < nav_path.size() - 1)
+				#if name_character == "Gasria":
+				#	print($Sprite.get_animation())
+					#print("j " + str(nav_path[j].y))
+					#print("j + 1 " + str(nav_path[j + 1].y))
+				#	print(target_points_for_manual_navigation)
+				#	print(nav_path)
 				#print(current_target)
 				#print(get_parent().triggered_enemies[name_character])
-				#print(nav_path)
 				#print(speed)
-				if j < nav_path.size() - 1 && ($Sprite.get_animation() == "idle" or $Sprite.get_animation() == "jump" or $Sprite.get_animation() == "run" or $Sprite.get_animation() == "jumping_to_point" or $Sprite.get_animation() == "preparing_jumping_to_point") && $Handle_Attack/CollisionShape2D.is_disabled():
-					#print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+				if j < nav_path.size() - 1 && ($Sprite.get_animation() == "idle" or $Sprite.get_animation() == "jump" or $Sprite.get_animation() == "run" or $Sprite.get_animation() == "jumping_to_point" or $Sprite.get_animation() == "preparing_jumping_to_point" or $Sprite.get_animation() == "flying") && $Handle_Attack/CollisionShape2D.is_disabled():
 					if (nav_path[j].x - nav_path[j+1].x) >= 0:
 						
 						$RayCastHorizontal_1.set_cast_to(Vector2(-19,0))
@@ -306,7 +319,11 @@ func _physics_process(delta):
 							move_and_collide(Vector2(-1,0) * speed * scale_speed_moving)
 							get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 							if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
-								animate("run")
+								if !flying_mod:
+									animate("run")
+								else:
+									move_and_collide(Vector2(0, get_angle_incline_of_segment_to_X_axeDEGREES(nav_path[j], nav_path[j+1], true)) * 0.1 * scale_speed_moving)
+									animate("fly")
 						$Sprite.flip_h = true
 					if (nav_path[j].x - nav_path[j+1].x) <= -0:
 						$RayCastHorizontal_1.set_cast_to(Vector2(19,0))
@@ -319,30 +336,41 @@ func _physics_process(delta):
 							move_and_collide(Vector2(1,0) * speed * scale_speed_moving)
 							get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 							if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
-								animate("run")
+								if !flying_mod:
+									animate("run")
+								else:
+									move_and_collide(Vector2(0, get_angle_incline_of_segment_to_X_axeDEGREES(nav_path[j], nav_path[j+1], true)) * 0.5 * scale_speed_moving)
+									animate("fly")
 						$Sprite.flip_h = false
 
 				if j < nav_path.size() - 1:
 					if ((self.global_position.x - nav_path[j+1].x) < stop_distance_to_point && (self.global_position.x - nav_path[j+1].x) > -stop_distance_to_point) && j < nav_path.size() - 1:
 						j += 1
-	if !$RayCastVertical_3.get_collider():
-		velocity.y += delta * 970 * scale_gravity
-		velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
-		#translate(velocity)
-		#velocity.y = 0
-	else:
-			
-		#print("Еблявая хуета")
-		if $Sprite.get_animation() == "jumping_to_point":
-			manual_navigation = false
-			speed = 2.5
-			animate("idle")
+	print(flying_mod)
+	if !flying_mod:
+		if !$RayCastVertical_3.get_collider() or can_fly:
+			velocity.y += delta * 970 * scale_gravity
+			velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
+			#translate(velocity)
+			#velocity.y = 0
+		else:
+				
+			#print("Еблявая хуета")
+			if $Sprite.get_animation() == "jumping_to_point":
+				manual_navigation = false
+				speed = 2.5
+				animate("idle")
 			update_way()
 		
 func start_jump_enemy():
 	if (is_on_floor() or $RayCastVertical_3.get_collider()) && $Sprite.get_animation()[0] != "A":
-		velocity.y = -JUMP_POWER
-		velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
+		if !can_fly:
+			velocity.y = -JUMP_POWER
+			velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
+		else:
+			animate("flying")
+			flying_mod = true
+			create_timer_for_change_parameters(0.5, true, {"delay_for_monitoring_ground": true})
 
 
 func _on_Timer_Of_HP_timeout():
@@ -595,26 +623,29 @@ func not_enough_mana_for_ongoing_spell(name_spell, timer): #Abstract method, see
 
 """ --------------------------------------------- """
 
+var stone_wallInstanced
 
 """ --------------- STONE WALL --------------- """
 
 func stone_wall(position_of_wall, should_be_disappearence_after_time = true, parent_node = get_parent()):
 	if spells_ready["stone_wall_ready"]:
 		mana_using(SPELLS_PARAMETERS.characters[name_character]["stone_wall"]["stone_wall_manacost"])
-		var stone_wall1 = stone_wall.instance()
-		stone_wall1.name = "Stone_Wall" + str(self.global_position.x + parent_node.global_position.x)
-		parent_node.add_child(stone_wall1)
-		stone_wall1.set_global_position(position_of_wall)
-		stone_wall1.get_node("AnimatedSprite").play("wall_growing")
+		var current_wall = stone_wallInstanced.duplicate()
+		current_wall.name = "Stone_Wall" + str(self.global_position.x + parent_node.global_position.x)
+		current_wall.first_anim = "wall_growing"
+		current_wall.already_anim_created = true
+		parent_node.add_child(current_wall)
+		current_wall.set_global_position(position_of_wall)
+		current_wall.get_node("AnimatedSprite").play("wall_growing")
 		if parent_node.get_name() == "PositionsWalls":
-			stone_wall1.get_node("AnimatedSprite").flip_h = (position_of_wall.x < parent_node.get_parent().global_position.x)
+			current_wall.get_node("AnimatedSprite").flip_h = (position_of_wall.x < parent_node.get_parent().global_position.x)
 		if SPELLS_PARAMETERS.characters[name_character]["stone_wall"]["stone_wall_calldown"] > 0:
 			creating_timer_for_calldown("jumping_to_point")
 			spells_ready["stone_wall_ready"] = false
 		if should_be_disappearence_after_time:
 			var timer_for_disappearence_wall = Timer.new()
 			timer_for_disappearence_wall.set_wait_time(SPELLS_PARAMETERS.characters[name_character]["stone_wall"]["time_to_disappearance_wall"])
-			timer_for_disappearence_wall.connect("timeout", self, "_on_timer_for_disappearance_wall_timeout", [stone_wall1, timer_for_disappearence_wall])
+			timer_for_disappearence_wall.connect("timeout", self, "_on_timer_for_disappearance_wall_timeout", [current_wall, timer_for_disappearence_wall])
 			timer_for_disappearence_wall.one_shot = true
 			get_node("Timers").add_child(timer_for_disappearence_wall)
 			timer_for_disappearence_wall.start()
@@ -884,7 +915,7 @@ func _on_Timer_For_Updaiting_Way_timeout():
 			
 			
 func update_way():
-	if current_target != null && !$Sprite.get_animation() == "jumping_to_point" && (is_on_floor() or $RayCastVertical_3.get_collider()):
+	if current_target != null && !$Sprite.get_animation() == "jumping_to_point" && (is_on_floor() or $RayCastVertical_3.get_collider() or flying_mod):
 		$NavigationAgent2D.set_target_location(current_target)
 		$NavigationAgent2D.get_final_location()
 		nav_path = $NavigationAgent2D.get_nav_path()
@@ -898,9 +929,10 @@ func _on_Area_For_Starting_Fight_body_entered(body):
 			GLOBAL.position_heroe_before_fight = get_parent().get_node("Heroe").global_position
 			body.create_animation_for_disappearing()
 			body.get_node("AnimationPlayer").play("disappearing")
-			body.stun = true
-			self.stun = true
-			self.animate("idle")
+			body.set_physics_process(false)
+			get_parent().set_physics_process(false)
+			self.set_physics_process(false)
+			animate("idle")
 			for i in range(get_parent().get_node("Light_Objects").get_children().size()):
 				get_parent().get_node("Light_Objects").get_children()[i].fading = true
 			var timer = Timer.new()
@@ -967,5 +999,30 @@ func _on_Timer_For_Going_Back_timeout():
 	
 func thrust(body, shift):
 	translate(Vector2(-1,0) * shift * abs(self.global_position.x - body.global_position.x))
+	
+	
+func create_timer_for_change_parameters(wait_time, one_shot, parameters):
+	var timer_for_anything = Timer.new()
+	timer_for_anything.set_wait_time(wait_time)
+	timer_for_anything.one_shot = one_shot
+	timer_for_anything.name = "Timer_For_Anything"
+	timer_for_anything.connect("timeout", self, "_on_create_timer_for_change_parameters", [timer_for_anything, parameters])
+	get_node("Timers").add_child(timer_for_anything)
+	timer_for_anything.start()
+	
+func _on_create_timer_for_change_parameters(timer_for_anything, parameters):
+	for key in parameters.keys():
+		set(key, parameters[key])
+	timer_for_anything.queue_free()
 
-
+func get_angle_incline_of_segment_to_X_axeDEGREES(first_point_of_segment, second_point_of_segment, for_flying_navigation = false):
+	var zetta_degrees = atan2(second_point_of_segment.y - first_point_of_segment.y, second_point_of_segment.x - first_point_of_segment.x) * 180/PI
+	if !for_flying_navigation:
+		return zetta_degrees
+	if abs(zetta_degrees) > 90:
+		zetta_degrees = (180 - abs(zetta_degrees)) * sign(zetta_degrees)
+	if abs(zetta_degrees) <= 20:
+		return 0
+	
+	print(zetta_degrees/100)
+	return zetta_degrees/100

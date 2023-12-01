@@ -38,3 +38,4 @@ animation = "wave_starting"
 frame = 1
 
 [connection signal="body_entered" from="." to="." method="_on_Wave_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

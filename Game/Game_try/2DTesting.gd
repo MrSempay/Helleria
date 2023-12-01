@@ -1,32 +1,35 @@
 extends Node2D
 
-
-func _physics_process(delta):
-	$KinematicBody2D.translate(Vector2(0,1))
+class_name IBO
+#var stone_wall_of_Gasria
+#func _physics_process(delta):
+#	$KinematicBody2D.translate(Vector2(0,1))
 
 func say_hello():
 	print("Hello!")
 
-func ibo(mega):
+static func ibo():
 	print("a")
-	mega.call_func()
 	print("b")
 func foo():
 	return("bar")
 var d = "assd"
 const namm = "res://Game/Characters/Heroe.tscn"
 func _ready():
+
+	set("d", 15)
+	#print(self.get_property_list())
 	#var her = load(namm)
 	#get_tree().change_scene_to(her)
 	#her.instance().modulate = Color(0.3, 0.3, 0.3, 0)
 	
 	#get_tree().get_current_scene().free()
 	#print(get_tree().get_current_scene().get_name())
-	self.modulate.a = 1
-	var ibo = self.get("modulate")[3]
+	#self.modulate.a = 1
+	#var ibo = self.get("modulate")[3]
 	#print(ibo)
 	#var property_name = "a"
-	#var property_value = str2var("ibo." + property_name)
+	#var property_value = str2var("Vector2(0, 0)")
 
 
 	#var a = funcref($Ibo, "foo")

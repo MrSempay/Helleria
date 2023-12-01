@@ -89,5 +89,6 @@ func resize():
 		get_parent().get_node("Jumping_Button").set_position(Vector2(89, -16 * (1 + (get_viewport().size.x/get_viewport().size.y - 1.76) * 2)))
 		get_parent().get_node("Buttons_Of_Heroe").set_position(Vector2(111, 32 * (1 - (get_viewport().size.x/get_viewport().size.y - 1.76) * 1)))
 	resolution_x = get_viewport().size.x
-	camera_scale = Vector2(0.25 * 1024/resolution_x,0.25 * 1024/resolution_x)
+	get_parent().get_node("Call_Menu").scale = Vector2(resolution_x/1024, resolution_x/1024)
+	camera_scale = Vector2(0.25 * 1024/resolution_x, 0.25 * 1024/resolution_x)
 	set_zoom(camera_scale)

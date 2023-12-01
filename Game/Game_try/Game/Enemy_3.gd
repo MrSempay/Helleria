@@ -3,6 +3,7 @@ extends KinematicBody2D
 var damage_increase = 0
 var vampirism = 0
 var speed = 2.5
+var scale_speed_moving = 1
 var velocity = Vector2()
 var name_character = "Belotur"
 var trigger_of_ally = false
@@ -63,6 +64,8 @@ var number_of_moving
 var dat = 1
 
 
+var auto_manual_navigation = false
+
 
 func _ready():
 	health = SPELLS_PARAMETERS.characters[name_character]["health"]
@@ -101,7 +104,7 @@ func handle_hit(damage, attacking_character, attacking_object = null):
 
 
 	if $health_Enemy_1.value <= 0:
-		get_parent().changing_scene_if_enemies_die(name_character)
+		get_parent().changing_scene_if_enemies_die(name_character, GLOBAL.name_of_dialoge_for_dialoge_field_scene.split("-")[0])
 		if GLOBAL.died_enemies_at_first_level.has(name_character):
 			GLOBAL.died_enemies_at_first_level[name_character] = true
 		self.queue_free()
