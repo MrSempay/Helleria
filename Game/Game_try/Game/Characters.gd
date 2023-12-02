@@ -194,12 +194,21 @@ func _physics_process(delta):
 	#print(str(self.get_global_position()) + " HER ")
 	#print(get_parent().triggered_enemies[name])
 	#print(get_parent().triggered_enemies[name_character])
-	
+	if name_character == "Gasria":
+		print($Sprite.get_animation())
 	if can_fly:
 		if $RayCastVertical_3.get_collider() && flying_mod && delay_for_monitoring_ground:
-			print("?????????")
+			animate("ending_flying")
 			delay_for_monitoring_ground = false
 			flying_mod = false
+			$CollisionPolygon2D.disabled = false
+			$CollisionShape2D.disabled = false
+		if !$RayCastVertical_3.get_collider() && $Sprite.get_animation() != "flying":
+			print("IBOOO SHIT")
+			animate("starting_flying")
+			flying_mod = true
+			$CollisionShape2D.disabled = true
+			$CollisionPolygon2D.disabled = true
 	
 	if nav_path.size() > 0:
 		if !auto_manual_navigation && manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && ($Sprite.get_animation() == "run" or $Sprite.get_animation() == "flying"):
@@ -306,7 +315,7 @@ func _physics_process(delta):
 				#print(current_target)
 				#print(get_parent().triggered_enemies[name_character])
 				#print(speed)
-				if j < nav_path.size() - 1 && ($Sprite.get_animation() == "idle" or $Sprite.get_animation() == "jump" or $Sprite.get_animation() == "run" or $Sprite.get_animation() == "jumping_to_point" or $Sprite.get_animation() == "preparing_jumping_to_point" or $Sprite.get_animation() == "flying") && $Handle_Attack/CollisionShape2D.is_disabled():
+				if j < nav_path.size() - 1 && ($Sprite.get_animation() == "idle" or $Sprite.get_animation() == "jump" or $Sprite.get_animation() == "run" or $Sprite.get_animation() == "jumping_to_point" or $Sprite.get_animation() == "preparing_jumping_to_point" or $Sprite.get_animation() == "flying" or $Sprite.get_animation() == "starting_flying" or $Sprite.get_animation() == "ending_flying") && $Handle_Attack/CollisionShape2D.is_disabled():
 					if (nav_path[j].x - nav_path[j+1].x) >= 0:
 						
 						$RayCastHorizontal_1.set_cast_to(Vector2(-19,0))
@@ -316,13 +325,13 @@ func _physics_process(delta):
 						$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
 						$RayCastVertical.set_position(Vector2(-11,1))
 						if !stop_machine:
-							move_and_collide(Vector2(-1,0) * speed * scale_speed_moving)
+							move_and_collide(Vector2(-1,0) * speed * scale_speed_moving*0.5)
 							get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 							if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
 								if !flying_mod:
 									animate("run")
 								else:
-									move_and_collide(Vector2(0, get_angle_incline_of_segment_to_X_axeDEGREES(nav_path[j], nav_path[j+1], true)) * 0.1 * scale_speed_moving)
+									move_and_collide(Vector2(0, get_angle_incline_of_segment_to_X_axeDEGREES(nav_path[j], nav_path[j+1], true)) * 1 * scale_speed_moving)
 									animate("fly")
 						$Sprite.flip_h = true
 					if (nav_path[j].x - nav_path[j+1].x) <= -0:
@@ -333,20 +342,20 @@ func _physics_process(delta):
 						$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
 						$RayCastVertical.set_position(Vector2(11,1))
 						if !stop_machine:
-							move_and_collide(Vector2(1,0) * speed * scale_speed_moving)
+							move_and_collide(Vector2(1,0) * speed * scale_speed_moving*0.5)
 							get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
 							if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
 								if !flying_mod:
 									animate("run")
 								else:
-									move_and_collide(Vector2(0, get_angle_incline_of_segment_to_X_axeDEGREES(nav_path[j], nav_path[j+1], true)) * 0.5 * scale_speed_moving)
+									move_and_collide(Vector2(0, get_angle_incline_of_segment_to_X_axeDEGREES(nav_path[j], nav_path[j+1], true)) * 1 * scale_speed_moving)
 									animate("fly")
 						$Sprite.flip_h = false
 
 				if j < nav_path.size() - 1:
 					if ((self.global_position.x - nav_path[j+1].x) < stop_distance_to_point && (self.global_position.x - nav_path[j+1].x) > -stop_distance_to_point) && j < nav_path.size() - 1:
 						j += 1
-	print(flying_mod)
+	#print(flying_mod)
 	if !flying_mod:
 		if !$RayCastVertical_3.get_collider() or can_fly:
 			velocity.y += delta * 970 * scale_gravity
@@ -368,9 +377,11 @@ func start_jump_enemy():
 			velocity.y = -JUMP_POWER
 			velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 		else:
-			animate("flying")
+			animate("starting_flying")
 			flying_mod = true
 			create_timer_for_change_parameters(0.5, true, {"delay_for_monitoring_ground": true})
+			$CollisionShape2D.disabled = true
+			$CollisionPolygon2D.disabled = true
 
 
 func _on_Timer_Of_HP_timeout():
@@ -859,6 +870,10 @@ func _on_Sprite_animation_finished(by_stune = false):
 				timer_for_duration_armor.one_shot = true
 				get_node("Timers").add_child(timer_for_duration_armor)
 				timer_for_duration_armor.start()
+			"starting_flying":
+				animate("flying")
+			"ending_flying":
+				animate("idle")
 	else:
 		animate("idle")
 		speed = 2.5
@@ -1019,10 +1034,9 @@ func get_angle_incline_of_segment_to_X_axeDEGREES(first_point_of_segment, second
 	var zetta_degrees = atan2(second_point_of_segment.y - first_point_of_segment.y, second_point_of_segment.x - first_point_of_segment.x) * 180/PI
 	if !for_flying_navigation:
 		return zetta_degrees
-	if abs(zetta_degrees) > 90:
-		zetta_degrees = (180 - abs(zetta_degrees)) * sign(zetta_degrees)
-	if abs(zetta_degrees) <= 20:
-		return 0
+	#if abs(zetta_degrees) > 90:
+	#	zetta_degrees = (180 - abs(zetta_degrees)) * sign(zetta_degrees)
+	#if abs(zetta_degrees) <= 10:
+	#	return 0
 	
-	print(zetta_degrees/100)
-	return zetta_degrees/100
+	return sign(zetta_degrees/100)
