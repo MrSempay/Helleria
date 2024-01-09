@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Хир(призывмертвых)8.png-5d7f71874bf5f25f439d0a01846aea4f.stex"
+path="res://.import/Хир(призывмертвых)8.png-b38ed0af1f01b2fd4645391d6aa6929e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Gasria/Призыв мертвых/Хир/Хир(призывмертвых)8.png"
-dest_files=[ "res://.import/Хир(призывмертвых)8.png-5d7f71874bf5f25f439d0a01846aea4f.stex" ]
+source_file="res://Anims/Garsia/Призыв мертвых/Хир/Хир(призывмертвых)8.png"
+dest_files=[ "res://.import/Хир(призывмертвых)8.png-b38ed0af1f01b2fd4645391d6aa6929e.stex" ]
 
 [params]
 

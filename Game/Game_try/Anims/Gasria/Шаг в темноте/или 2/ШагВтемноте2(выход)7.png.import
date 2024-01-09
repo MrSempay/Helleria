@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ШагВтемноте2(выход)7.png-d2c7158bd734a1b500fbbf03a4bd85ce.stex"
+path="res://.import/ШагВтемноте2(выход)7.png-2ef140ded8c2321c789494be5a81c9dd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)7.png"
-dest_files=[ "res://.import/ШагВтемноте2(выход)7.png-d2c7158bd734a1b500fbbf03a4bd85ce.stex" ]
+source_file="res://Anims/Garsia/Шаг в темноте/или 2/ШагВтемноте2(выход)7.png"
+dest_files=[ "res://.import/ШагВтемноте2(выход)7.png-2ef140ded8c2321c789494be5a81c9dd.stex" ]
 
 [params]
 

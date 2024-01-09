@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Джейсон(призывмертвых)8.png-d7ff74849909740bff4cef13effb2463.stex"
+path="res://.import/Джейсон(призывмертвых)8.png-3a6c8738de72a3ce30fe8b66958cb8dc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Gasria/Призыв мертвых/Джейсон/Джейсон(призывмертвых)8.png"
-dest_files=[ "res://.import/Джейсон(призывмертвых)8.png-d7ff74849909740bff4cef13effb2463.stex" ]
+source_file="res://Anims/Garsia/Призыв мертвых/Джейсон/Джейсон(призывмертвых)8.png"
+dest_files=[ "res://.import/Джейсон(призывмертвых)8.png-3a6c8738de72a3ce30fe8b66958cb8dc.stex" ]
 
 [params]
 

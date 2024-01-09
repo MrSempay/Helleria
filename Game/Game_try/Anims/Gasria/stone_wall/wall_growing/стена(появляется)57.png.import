@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/стена(появляется)57.png-2ba70b6ab927fd857bfdd3e0dd34d611.stex"
+path="res://.import/стена(появляется)57.png-4f42b64c381873a95e1cc1855c897448.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Gasria/stone_wall/wall_growing/стена(появляется)57.png"
-dest_files=[ "res://.import/стена(появляется)57.png-2ba70b6ab927fd857bfdd3e0dd34d611.stex" ]
+source_file="res://Anims/Garsia/Стена/стена(появляется)57.png"
+dest_files=[ "res://.import/стена(появляется)57.png-4f42b64c381873a95e1cc1855c897448.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

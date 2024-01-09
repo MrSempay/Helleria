@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/волна4.png-085d886bf04a0b5845928c4d60c3e1ed.stex"
+path="res://.import/волна4.png-9ca39c1d2af3f1896d970b19b1945271.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Gasria/Волна/волна4.png"
-dest_files=[ "res://.import/волна4.png-085d886bf04a0b5845928c4d60c3e1ed.stex" ]
+source_file="res://Anims/Garsia/Волна/волна4.png"
+dest_files=[ "res://.import/волна4.png-9ca39c1d2af3f1896d970b19b1945271.stex" ]
 
 [params]
 

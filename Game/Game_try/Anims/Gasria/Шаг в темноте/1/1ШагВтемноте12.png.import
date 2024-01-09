@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/1ШагВтемноте12.png-6bbda19b96ca8ea1922e801393c80ebc.stex"
+path="res://.import/1ШагВтемноте12.png-37fb80536d8328dcf5b99bca5be3ca57.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Gasria/Шаг в темноте/1/1ШагВтемноте12.png"
-dest_files=[ "res://.import/1ШагВтемноте12.png-6bbda19b96ca8ea1922e801393c80ebc.stex" ]
+source_file="res://Anims/Garsia/Шаг в темноте/1/1ШагВтемноте12.png"
+dest_files=[ "res://.import/1ШагВтемноте12.png-37fb80536d8328dcf5b99bca5be3ca57.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

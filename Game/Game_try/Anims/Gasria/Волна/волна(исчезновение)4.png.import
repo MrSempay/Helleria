@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/волна(исчезновение)4.png-de38cc7d8ccc6a180f0389421d082e35.stex"
+path="res://.import/волна(исчезновение)4.png-c32a6c0734be5768ebb109597f90faa3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Gasria/Волна/волна(исчезновение)4.png"
-dest_files=[ "res://.import/волна(исчезновение)4.png-de38cc7d8ccc6a180f0389421d082e35.stex" ]
+source_file="res://Anims/Garsia/Волна/волна(исчезновение)4.png"
+dest_files=[ "res://.import/волна(исчезновение)4.png-c32a6c0734be5768ebb109597f90faa3.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Гарсия4.png-e60b82179c6e4cf61ec23977b65077d7.stex"
+path="res://.import/Гарсия4.png-20fb10894e7d1aaea88880bff096408e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Gasria/Гарсия/Гарсия4.png"
-dest_files=[ "res://.import/Гарсия4.png-e60b82179c6e4cf61ec23977b65077d7.stex" ]
+source_file="res://Anims/Garsia/Гарсия/Гарсия4.png"
+dest_files=[ "res://.import/Гарсия4.png-20fb10894e7d1aaea88880bff096408e.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

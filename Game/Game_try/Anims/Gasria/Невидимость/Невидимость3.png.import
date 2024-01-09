@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Невидимость3.png-8d3fad63da06111564def1abb47ec4b7.stex"
+path="res://.import/Невидимость3.png-2c9cef8bb23b13b55e1245c29b9ce9ee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Gasria/Невидимость/Невидимость3.png"
-dest_files=[ "res://.import/Невидимость3.png-8d3fad63da06111564def1abb47ec4b7.stex" ]
+source_file="res://Anims/Garsia/Невидимость/Невидимость3.png"
+dest_files=[ "res://.import/Невидимость3.png-2c9cef8bb23b13b55e1245c29b9ce9ee.stex" ]
 
 [params]
 

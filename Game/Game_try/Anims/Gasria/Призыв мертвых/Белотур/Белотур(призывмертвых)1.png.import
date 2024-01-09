@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Белотур(призывмертвых)1.png-5d831322dafb43daa8494155aafa383f.stex"
+path="res://.import/Белотур(призывмертвых)1.png-2faa2da3fd33f8dcda9f8b896ecc727b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Gasria/Призыв мертвых/Белотур/Белотур(призывмертвых)1.png"
-dest_files=[ "res://.import/Белотур(призывмертвых)1.png-5d831322dafb43daa8494155aafa383f.stex" ]
+source_file="res://Anims/Garsia/Призыв мертвых/Белотур/Белотур(призывмертвых)1.png"
+dest_files=[ "res://.import/Белотур(призывмертвых)1.png-2faa2da3fd33f8dcda9f8b896ecc727b.stex" ]
 
 [params]
 

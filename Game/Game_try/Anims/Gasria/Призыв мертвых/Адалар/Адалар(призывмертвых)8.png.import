@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Адалар(призывмертвых)8.png-e54ff25cdd3b62aacc87a313c3d99d26.stex"
+path="res://.import/Адалар(призывмертвых)8.png-3713ef99362a92e8f4923f33128fab8a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Gasria/Призыв мертвых/Адалар/Адалар(призывмертвых)8.png"
-dest_files=[ "res://.import/Адалар(призывмертвых)8.png-e54ff25cdd3b62aacc87a313c3d99d26.stex" ]
+source_file="res://Anims/Garsia/Призыв мертвых/Адалар/Адалар(призывмертвых)8.png"
+dest_files=[ "res://.import/Адалар(призывмертвых)8.png-3713ef99362a92e8f4923f33128fab8a.stex" ]
 
 [params]
 

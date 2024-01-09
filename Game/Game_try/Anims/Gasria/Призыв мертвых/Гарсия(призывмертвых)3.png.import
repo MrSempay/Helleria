@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Гарсия(призывмертвых)3.png-b22ca866caba3f3157179c509a0bf01f.stex"
+path="res://.import/Гарсия(призывмертвых)3.png-f511923bed9a231bf8ac1070d19c2f72.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Gasria/Призыв мертвых/Гарсия(призывмертвых)3.png"
-dest_files=[ "res://.import/Гарсия(призывмертвых)3.png-b22ca866caba3f3157179c509a0bf01f.stex" ]
+source_file="res://Anims/Garsia/Призыв мертвых/Гарсия(призывмертвых)3.png"
+dest_files=[ "res://.import/Гарсия(призывмертвых)3.png-f511923bed9a231bf8ac1070d19c2f72.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

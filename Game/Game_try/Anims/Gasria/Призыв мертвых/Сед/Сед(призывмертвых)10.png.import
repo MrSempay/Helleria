@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Сед(призывмертвых)10.png-499b238ad42cd818c08f74f57622e477.stex"
+path="res://.import/Сед(призывмертвых)10.png-0f93fdad0eb3e1fbc853656dbbfe955f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Anims/Gasria/Призыв мертвых/Сед/Сед(призывмертвых)10.png"
-dest_files=[ "res://.import/Сед(призывмертвых)10.png-499b238ad42cd818c08f74f57622e477.stex" ]
+source_file="res://Anims/Garsia/Призыв мертвых/Сед/Сед(призывмертвых)10.png"
+dest_files=[ "res://.import/Сед(призывмертвых)10.png-0f93fdad0eb3e1fbc853656dbbfe955f.stex" ]
 
 [params]
 
