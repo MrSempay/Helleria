@@ -80,9 +80,10 @@ func _on_Dialoge_Field_released():
 	
 	
 func resiz1e():
-	var resolution_x = get_viewport().size.x
-	var amendment_y = 0
-	if get_viewport().size.x/get_viewport().size.y > 1.83:
-		amendment_y = 15 * get_viewport().size.x/get_viewport().size.y * 4
-	self.scale = Vector2(3 * resolution_x/1024, self_scale * resolution_x/1024)
-	position = Vector2(252, self_y - amendment_y) * resolution_x/1024
+	if get_parent().get_name() == "root":
+		var resolution_x = get_viewport().size.x
+		var amendment_y = 0
+		if get_viewport().size.x/get_viewport().size.y > 1.83:
+			amendment_y = 15 * get_viewport().size.x/get_viewport().size.y * 4
+		self.scale = Vector2(3 * resolution_x/1024, self_scale * resolution_x/1024)
+		position = Vector2(252, self_y - amendment_y) * resolution_x/1024

@@ -11,13 +11,15 @@ var heroe1
 	#		break
 
 func _ready():
-	
 	heroe1 = heroe.instance()
 	heroe1.position = $Position_Heroe.global_position
 	self.add_child(heroe1)
 	var j = 0
-	triggered_enemies = LOCATIONS_PARAMETERS.locations[self.get_name()]["characters_for_uploading"]
+	#print(LOCATIONS_PARAMETERS.locations[self.get_name()]["characters_for_uploading"].keys())
+	triggered_enemies = LOCATIONS_PARAMETERS.locations[self.get_name()]["characters_for_uploading"].duplicate()
+	#print(self.get_name())
 	for key in LOCATIONS_PARAMETERS.locations[self.get_name()]["characters_for_uploading"].keys():
+		#print(enemies)
 		var enemy = load("res://Game/Characters/" + key + ".tscn")
 		enemies.append(enemy.instance())
 		enemies[j].position = get_node("Positions_For_Enemies/Position_" + key).global_position
@@ -25,6 +27,7 @@ func _ready():
 		enemies[j].set_collision_mask(0)
 		enemies[j].set_collision_layer_bit(j + 2, true)
 		enemies[j].set_collision_mask_bit(j + 2, true)
+		
 		self.add_child(enemies[j])
 		j += 1
 	
@@ -50,12 +53,17 @@ func _ready():
 			self.add_child(heroe1)
 	else:
 		self.add_child(heroe1)
-		
-func start_manual_moving(body = null, array_of_characters = null, array_of_target_points = null, stay_triggered = null, area_which_was_triggered = null, initial_position = null, array_of_velocity = null):
+#func _physics_process(delta):
+	#print(has_node("Her"))
+	
+
+func start_manual_moving(body = null, array_of_characters_names = null, array_of_target_points = null, stay_triggered = null, area_which_was_triggered = null, initial_position = null, array_of_velocity = null):
 	if body != null:
 		if body.has_method("start_jump_heroe"):
-			for i in range(array_of_characters.size()):
-				array_of_characters[i] = get_node(array_of_characters[i])
+			var array_of_characters = []
+			for i in range(array_of_characters_names.size()):
+				array_of_characters.append(get_node(array_of_characters_names[i]))
+				
 				array_of_characters[i].animate("idle")
 				if area_which_was_triggered != null:
 					array_of_characters[i].area_from_which_manual_navigation_was_started = area_which_was_triggered
@@ -71,8 +79,9 @@ func start_manual_moving(body = null, array_of_characters = null, array_of_targe
 				array_of_characters[i].manual_navigation = true
 				get_node("Areas_For_Moving/" + area_which_was_triggered).queue_free()
 	else:
-		for i in range(array_of_characters.size()):
-			array_of_characters[i] = get_node(array_of_characters[i])
+		var array_of_characters = []
+		for i in range(array_of_characters_names.size()):
+			array_of_characters.append(get_node(array_of_characters_names[i]))
 			if initial_position != null:
 				array_of_characters[i].global_position = initial_position[i]
 			self.triggered_enemies[array_of_characters[i].get_name()] = true
@@ -123,8 +132,9 @@ func start_transition_between_scenes_with_dialogue(name_target_scene):
 		if is_instance_valid(enemies[i]):
 			enemies[i].set_physics_process(false)
 			enemies[i].animate("idle")
-	for i in range(get_node("Light_Objects").get_children().size()):
-		get_node("Light_Objects").get_children()[i].fading = true
+	if has_node("Light_Objects"):
+		for i in range(get_node("Light_Objects").get_children().size()):
+			get_node("Light_Objects").get_children()[i].fading = true
 	var timer = Timer.new()
 	add_child(timer)
 	timer.wait_time = 2.5
@@ -133,7 +143,8 @@ func start_transition_between_scenes_with_dialogue(name_target_scene):
 	timer.start()
 
 func _on_Area_Stop_Moving_area_entered(area):
-	if area.get_name() == "AreaOfEnemy":
+	if area.get_name() == "AreaOfEnemy" && !area.get_parent().flying_mod:
+		print("TRUE")
 		area.get_parent().speed = 0
 		area.get_parent().stop_machine = true
 		if !area.get_parent().has_node("TimerStartMoving"):

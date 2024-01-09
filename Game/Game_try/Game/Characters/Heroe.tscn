@@ -369,6 +369,7 @@ shape = SubResource( 4 )
 
 [node name="Dialoge_Field" type="TouchScreenButton" parent="CanvasLayer"]
 visible = false
+show_behind_parent = true
 material = SubResource( 35 )
 position = Vector2( 66.6666, 133.333 )
 scale = Vector2( 2.59668, 2.30769 )
@@ -401,6 +402,16 @@ margin_bottom = 49.7778
 rect_scale = Vector2( 0.4, 0.4 )
 fit_content_height = true
 scroll_active = false
+
+[node name="Camera_Of_Heroe" type="Camera2D" parent="."]
+position = Vector2( 0, -19 )
+scale = Vector2( 0.5, 0.5 )
+zoom = Vector2( 0.9, 0.9 )
+drag_margin_left = 0.36
+drag_margin_top = 0.37
+drag_margin_right = 0.4
+drag_margin_bottom = 0.39
+script = ExtResource( 23 )
 
 [node name="Icon" type="AnimatedSprite" parent="."]
 position = Vector2( -2, 10 )
@@ -460,16 +471,6 @@ rect_scale = Vector2( 0.5, 0.5 )
 text = "250
 
 "
-
-[node name="Camera_Of_Heroe" type="Camera2D" parent="."]
-position = Vector2( 0, -19 )
-scale = Vector2( 0.496, 0.497 )
-zoom = Vector2( 0.9, 0.9 )
-drag_margin_left = 0.36
-drag_margin_top = 0.37
-drag_margin_right = 0.4
-drag_margin_bottom = 0.39
-script = ExtResource( 23 )
 
 [node name="Jumping_Button" type="TouchScreenButton" parent="."]
 material = SubResource( 28 )
@@ -599,11 +600,6 @@ margin_top = 12.0
 margin_right = 1013.0
 margin_bottom = 68.0
 text = "Edit"
-
-[node name="Sprite" type="Sprite" parent="Call_Menu"]
-position = Vector2( 861, 120 )
-scale = Vector2( 0.13606, 0.112416 )
-texture = ExtResource( 117 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 32 )

@@ -191,6 +191,7 @@ var characters = {
 	"Her": {
 		"health": 120,
 		"mana": 150,
+		"speed": 2,
 		
 		"handle_attack": {
 			"handle_attack_damage": 15,  #Spear 
@@ -215,6 +216,7 @@ var characters = {
 	"Jeison": {
 		"health": 150,
 		"mana": 250,
+		"speed": 2,
 		
 		"damage_block_chain": {
 			"damage_block_chain_fraction_absorbed_damage": 0.5, 
@@ -238,7 +240,8 @@ var characters = {
 	
 	"Gasria": {
 		"health": 450,
-		"mana": 250,
+		"mana": 22250,
+		"speed": 2,
 		
 		"stone_wall": {
 			"stone_wall_calldown": 0,
@@ -276,27 +279,36 @@ var characters = {
 			"call_of_the_dead_duration": 0 # if spell has to be endless 
 
 
+		},
+		
+		"teleport": {
+			"teleport_manacost": 5.0,
+			"teleport_calldown": 0
 		}
 	},
 	
 	"Akira": {
 		"health": 2750,
-		"mana": 1500
+		"mana": 1500,
+		"speed": 2
 	},
 	
 	"Aglea": {
 		"health": 2750,
-		"mana": 1500
+		"mana": 1500,
+		"speed": 2
 	},
 	
 	"Belotur": {
 		"health": 150,
-		"mana": 1500
+		"mana": 1500,
+		"speed": 2
 	},
 	
 	"Heroe": {
-		"health": 1,
-		"mana": 1500
+		"health": 459,
+		"mana": 1500,
+		"speed": 2
 	}
 }
 

@@ -109,6 +109,7 @@ shape = SubResource( 9 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Sprite5/StaticBody2D"]
 position = Vector2( -1, -9 )
+scale = Vector2( 0.995, 1 )
 shape = SubResource( 10 )
 
 [node name="Sprite6" type="Sprite" parent="."]

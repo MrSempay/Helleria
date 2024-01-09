@@ -49,13 +49,14 @@ var position_heroe_before_fight = Vector2(0, 0)
 
 var cameras = {
 	"Heroe/CanvasLayer": true,
-	"Camera_For_Speaking": false
+	"Camera_For_Speaking": false,
+	"Enemy_Camera": false
 }
 
 var died_enemies_at_first_level = {
-	"Jeison": false,
-	"Adalard": false,
-	"Belotur": false,
+	"Jeison": true,
+	"Adalard": true,
+	"Belotur": true,
 	"Gasria": false,
 	"Akira": false,
 	"Aglea": false
@@ -329,6 +330,7 @@ func go_through_all_nodes_from_the_given_node(node, pause_them = null):
 			if N is Timer:
 				N.set_paused(pause_them)
 			N.set_physics_process(!pause_them)
+			N.set_process_input(!pause_them)
 			if N is AnimatedSprite:
 				if !(N.get_sprite_frames().get_animation_names().has("torchOn") or N.get_sprite_frames().get_animation_names().has("growing")):
 					N.set_playing(!pause_them)

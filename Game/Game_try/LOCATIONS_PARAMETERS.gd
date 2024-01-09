@@ -33,6 +33,7 @@ var locations = {
 		},
 		
 		"characters_for_uploading": {"Gasria": false, "Jeison": false, "Belotur": false, "Adalard": false, "Aglea": false, "Akira": false}
+		#"characters_for_uploading": {"Gasria": false}
 	},
 	
 	"Max_Level_Fight_Scene": {

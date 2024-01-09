@@ -1,17 +1,21 @@
-[gd_scene load_steps=88 format=2]
+[gd_scene load_steps=144 format=2]
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
 [ext_resource path="res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3" type="AudioStream" id=2]
 [ext_resource path="res://Game/Characters/Area_For_Starting_Fight.gd" type="Script" id=3]
 [ext_resource path="res://Anims/Gasria/Гарсия/Гарсия3.png" type="Texture" id=4]
-[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсии)3.png" type="Texture" id=5]
-[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсии)4.png" type="Texture" id=6]
-[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсии)1.png" type="Texture" id=7]
-[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсии)5.png" type="Texture" id=8]
-[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсии)6.png" type="Texture" id=9]
-[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсии)2.png" type="Texture" id=10]
-[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсии)7.png" type="Texture" id=11]
-[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсии)8.png" type="Texture" id=12]
+[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсия)8.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)3.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)5.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)6.png" type="Texture" id=8]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)7.png" type="Texture" id=9]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)8.png" type="Texture" id=10]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)4.png" type="Texture" id=11]
+[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсия)6.png" type="Texture" id=12]
+[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсия)7.png" type="Texture" id=13]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)2.png" type="Texture" id=14]
+[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсия)3.png" type="Texture" id=15]
+[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсия)2.png" type="Texture" id=16]
 [ext_resource path="res://Anims/Gasria/Гарсия/Гарсия5.png" type="Texture" id=17]
 [ext_resource path="res://Anims/Gasria/Гарсия/Гарсия4.png" type="Texture" id=18]
 [ext_resource path="res://Anims/Gasria/Гарсия/Гарсия6.png" type="Texture" id=19]
@@ -26,6 +30,7 @@
 [ext_resource path="res://Anims/Gasria/Шаг в темноте/1/1ШагВтемноте47.png" type="Texture" id=28]
 [ext_resource path="res://Anims/Gasria/Шаг в темноте/1/1ШагВтемноте50.png" type="Texture" id=29]
 [ext_resource path="res://Anims/Gasria/Шаг в темноте/1/1ШагВтемноте51.png" type="Texture" id=30]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)1.png" type="Texture" id=31]
 [ext_resource path="res://Anims/Gasria/Шаг в темноте/1/1ШагВтемноте49.png" type="Texture" id=32]
 [ext_resource path="res://Anims/Gasria/Шаг в темноте/1/1ШагВтемноте52.png" type="Texture" id=33]
 [ext_resource path="res://Anims/Gasria/Шаг в темноте/1/1ШагВтемноте46.png" type="Texture" id=34]
@@ -75,10 +80,58 @@
 [ext_resource path="res://Anims/Gasria/Шаг в темноте/1/1ШагВтемноте27.png" type="Texture" id=78]
 [ext_resource path="res://Anims/Gasria/Шаг в темноте/1/1ШагВтемноте28.png" type="Texture" id=79]
 [ext_resource path="res://Anims/Gasria/Гарсия/Гарсия2.png" type="Texture" id=80]
+[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсия)4.png" type="Texture" id=81]
+[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсия)1.png" type="Texture" id=82]
+[ext_resource path="res://Anims/Gasria/Теневой огонь/теневойОгонь(анимациГарсия)5.png" type="Texture" id=83]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)7.png" type="Texture" id=84]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)19.png" type="Texture" id=85]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)25.png" type="Texture" id=86]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)32.png" type="Texture" id=87]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)17.png" type="Texture" id=88]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)15.png" type="Texture" id=89]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)27.png" type="Texture" id=90]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)18.png" type="Texture" id=91]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)19.png" type="Texture" id=92]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)26.png" type="Texture" id=93]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)9.png" type="Texture" id=94]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)30.png" type="Texture" id=95]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)3.png" type="Texture" id=96]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)28.png" type="Texture" id=97]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)14.png" type="Texture" id=98]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)29.png" type="Texture" id=99]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)13.png" type="Texture" id=100]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)18.png" type="Texture" id=101]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)21.png" type="Texture" id=102]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)31.png" type="Texture" id=103]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)12.png" type="Texture" id=104]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)16.png" type="Texture" id=105]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)11.png" type="Texture" id=106]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)16.png" type="Texture" id=107]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)11.png" type="Texture" id=108]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)22.png" type="Texture" id=109]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)23.png" type="Texture" id=110]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)24.png" type="Texture" id=111]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)1.png" type="Texture" id=112]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)6.png" type="Texture" id=113]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)8.png" type="Texture" id=114]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)12.png" type="Texture" id=115]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)13.png" type="Texture" id=116]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)20.png" type="Texture" id=117]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)5.png" type="Texture" id=118]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)9.png" type="Texture" id=119]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)14.png" type="Texture" id=120]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)10.png" type="Texture" id=121]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)17.png" type="Texture" id=122]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)2.png" type="Texture" id=123]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)4.png" type="Texture" id=124]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(выход)10.png" type="Texture" id=125]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/или 2/ШагВтемноте2(вход)15.png" type="Texture" id=126]
+[ext_resource path="res://Anims/Gasria/Шаг в темноте/1/1ШагВтемноте48.png" type="Texture" id=127]
+[ext_resource path="res://32131.png" type="Texture" id=128]
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 7 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 82 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 81 ), ExtResource( 83 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 5 ) ],
 "loop": false,
 "name": "A_fier_ball",
 "speed": 5.0
@@ -88,7 +141,17 @@ animations = [ {
 "name": "A_invisibility",
 "speed": 7.0
 }, {
-"frames": [ ExtResource( 34 ), ExtResource( 28 ), ExtResource( 32 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 33 ) ],
+"frames": [ ExtResource( 112 ), ExtResource( 123 ), ExtResource( 96 ), ExtResource( 124 ), ExtResource( 118 ), ExtResource( 113 ), ExtResource( 84 ), ExtResource( 114 ), ExtResource( 119 ), ExtResource( 125 ), ExtResource( 108 ), ExtResource( 104 ), ExtResource( 116 ), ExtResource( 98 ), ExtResource( 89 ), ExtResource( 105 ), ExtResource( 88 ), ExtResource( 91 ), ExtResource( 85 ) ],
+"loop": true,
+"name": "A_teleport_end",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 94 ), ExtResource( 121 ), ExtResource( 106 ), ExtResource( 115 ), ExtResource( 100 ), ExtResource( 120 ), ExtResource( 126 ), ExtResource( 107 ), ExtResource( 122 ), ExtResource( 101 ), ExtResource( 92 ), ExtResource( 117 ), ExtResource( 102 ), ExtResource( 109 ), ExtResource( 110 ), ExtResource( 111 ), ExtResource( 86 ), ExtResource( 93 ), ExtResource( 90 ), ExtResource( 97 ), ExtResource( 99 ), ExtResource( 95 ), ExtResource( 103 ), ExtResource( 87 ) ],
+"loop": false,
+"name": "A_teleport_start",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 28 ), ExtResource( 127 ), ExtResource( 32 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 33 ) ],
 "loop": false,
 "name": "ending_flying",
 "speed": 10.0
@@ -123,6 +186,38 @@ extents = Vector2( 3, 11.5 )
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 1.25, 9 )
 
+[sub_resource type="Animation" id=13]
+resource_name = "Bat's Light"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Light2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 2.0 ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "Bat's Off Light"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Light2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 2.0, 0.0 ]
+}
+
 [sub_resource type="Animation" id=2]
 length = 0.001
 loop = true
@@ -138,10 +233,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [ PoolVector2Array( 0, 0, -8, 0, -8, 22, -1, 22, -1, 14, 0, 14, 0, 22, 6, 22, 6, 0 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Light2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "щгп"
-length = 0.1
+length = 0.5
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:polygon")
@@ -150,7 +257,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.03, 0.06, 0.08 ),
+"times": PoolRealArray( 0, 0.14, 0.31, 0.48 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 14, -1, 14, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 14, 8, 14, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ) ]
@@ -159,26 +266,42 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 109, 53.5 )
 
-[sub_resource type="Animation" id=6]
-resource_name = "EXTRA"
-length = 2.5
+[sub_resource type="Animation" id=15]
+resource_name = "Bat's Light"
+length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("Light2D:energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 2.5 ),
+"times": PoolRealArray( 0, 0.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ) ]
+"values": [ 0.0, 2.0 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=16]
+resource_name = "Bat's Off Light"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 2.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=17]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("Light2D:energy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -187,7 +310,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ) ]
+"values": [ 0.0 ]
 }
 
 [sub_resource type="RectangleShape2D" id=8]
@@ -208,8 +331,7 @@ script = ExtResource( 51 )
 position = Vector2( -3, 0 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 4 )
-animation = "A_fier_ball"
-frame = 7
+animation = "idle"
 playing = true
 
 [node name="Area_For_Wall_Detecting" type="Area2D" parent="."]
@@ -238,6 +360,8 @@ one_way_collision_margin = 12.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionPolygon2D"]
 reset_on_save = false
+"anims/Bat's Light" = SubResource( 13 )
+"anims/Bat's Off Light" = SubResource( 14 )
 anims/RESET = SubResource( 2 )
 "anims/щгп" = SubResource( 3 )
 
@@ -304,7 +428,7 @@ cast_to = Vector2( 19, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_2" type="RayCast2D" parent="."]
-position = Vector2( 0.170013, -13.08 )
+position = Vector2( 0, -14 )
 enabled = true
 cast_to = Vector2( 19, 0 )
 collision_mask = 2097152
@@ -312,7 +436,7 @@ collision_mask = 2097152
 [node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
 position = Vector2( 0, 15 )
 enabled = true
-cast_to = Vector2( 3, 0 )
+cast_to = Vector2( 10, 0 )
 collision_mask = 2097152
 
 [node name="RayCastHorizontal_4" type="RayCast2D" parent="."]
@@ -340,8 +464,9 @@ cast_to = Vector2( 0, -26 )
 collision_mask = 2097152
 
 [node name="RayCastVertical_3" type="RayCast2D" parent="."]
+position = Vector2( -1, 14 )
 enabled = true
-cast_to = Vector2( 0, 27 )
+cast_to = Vector2( 0, 14 )
 collision_mask = 2097152
 
 [node name="RayCastFlyingProjectile" type="RayCast2D" parent="."]
@@ -367,8 +492,9 @@ visible = false
 stream = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/EXTRA = SubResource( 6 )
-anims/RESET = SubResource( 7 )
+"anims/Bat's Light" = SubResource( 15 )
+"anims/Bat's Off Light" = SubResource( 16 )
+anims/RESET = SubResource( 17 )
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_max_distance = 10.0
@@ -404,7 +530,7 @@ disabled = true
 one_shot = true
 
 [node name="Timer_For_Updaiting_Way" type="Timer" parent="Timers"]
-wait_time = 0.3
+wait_time = 0.7
 autostart = true
 
 [node name="Timer_For_Going_Back" type="Timer" parent="Timers"]
@@ -428,6 +554,17 @@ one_shot = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaOfEnemy"]
 position = Vector2( -1, 6 )
 shape = SubResource( 12 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.2, 0.2 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 0, -20 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 128 )
+color = Color( 1, 0, 0, 1 )
+energy = 0.0
 
 [connection signal="body_entered" from="Area_For_Wall_Detecting" to="." method="_on_Area_For_Wall_Detecting_body_entered"]
 [connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]

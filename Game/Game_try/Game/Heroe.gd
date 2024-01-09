@@ -79,7 +79,6 @@ func handle_hit(damage, attacking_character, attacking_object = null):
 	if $HP_Heroe.value <= 0:
 		if get_parent().has_method("Fight_Scene"):
 			get_parent().start_transition_between_scenes_with_dialogue(get_tree().get_current_scene().get_name())
-			GLOBAL.just_statment = true
 		#self.queue_free()
 		
 		

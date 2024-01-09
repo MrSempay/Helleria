@@ -81,11 +81,12 @@ func _ready():
 		if GLOBAL.died_enemies_at_first_level[key] == false:
 			var enemy = load("res://Game/Characters/" + key + ".tscn")
 			enemies.append(enemy.instance())
-	if GLOBAL.first_cat_scene:
-		triggered_enemies = {"Adalard": true, "Belotur": true, "Jeison": true, "Gasria": false, "Akira": true, "Aglea": true}
-		GLOBAL.cameras = {"Heroe/CanvasLayer": false, "Camera_For_Speaking": true}
-	else:
-		GLOBAL.cameras = {"Heroe/CanvasLayer": true, "Camera_For_Speaking": false}
+	if !GLOBAL.cameras["Enemy_Camera"]:
+		if GLOBAL.first_cat_scene:
+			triggered_enemies = {"Adalard": true, "Belotur": true, "Jeison": true, "Gasria": false, "Akira": true, "Aglea": true}
+			GLOBAL.cameras = {"Heroe/CanvasLayer": false, "Camera_For_Speaking": true, "Enemy_Camera": false}
+		else:
+			GLOBAL.cameras = {"Heroe/CanvasLayer": true, "Camera_For_Speaking": false, "Enemy_Camera": false}
 	
 	if self.has_node("Dialoge_Layer"):
 		for i in range($Dialoge_Layer.get_children().size()):
@@ -275,24 +276,26 @@ func dialoge_start(body = null, dialoge_area_name = null, lock_interface = false
 		if GLOBAL.cameras[key] == true:
 			activated_camera = key
 			break
-	if get_node(activated_camera + "/Dialoge_Field").file.is_open():
-		get_node("Heroe/CanvasLayer/Dialoge_Field").file.close()
-	get_node(activated_camera + "/Dialoge_Field").current_scene = self
-	get_node(activated_camera + "/Dialoge_Field").dialoge_name = dialoge_area_name
-	get_node(activated_camera + "/Dialoge_Field").set_visible(true)
-	get_node(activated_camera + "/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + ".txt", File.READ) 
-	var k = str(get_node(activated_camera + "/Dialoge_Field").file.get_line())
-	get_node(activated_camera + "/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
-	get_node(activated_camera + "/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
-	get_node(activated_camera + "/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
-	get_node("Dialoge_Layer/" + dialoge_area_name).queue_free()
+	activated_camera = "Heroe/CanvasLayer"
+	if activated_camera != "Enemy_Camera":
+		if get_node(activated_camera + "/Dialoge_Field").file.is_open():
+			get_node("Heroe/CanvasLayer/Dialoge_Field").file.close()
+		get_node(activated_camera + "/Dialoge_Field").current_scene = self
+		get_node(activated_camera + "/Dialoge_Field").dialoge_name = dialoge_area_name
+		get_node(activated_camera + "/Dialoge_Field").set_visible(true)
+		get_node(activated_camera + "/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + ".txt", File.READ) 
+		var k = str(get_node(activated_camera + "/Dialoge_Field").file.get_line())
+		get_node(activated_camera + "/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+		get_node(activated_camera + "/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
+		get_node(activated_camera + "/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
+		get_node("Dialoge_Layer/" + dialoge_area_name).queue_free()
 
 
 func dialoge_finished(dialoge_name):
 	match dialoge_name:
 		"Dialoge_Area_3":
 			#LOCATIONS_PARAMETERS.locations["Garsia_Boss_Fight_Scene"]["characters_for_uploading"].merge(GLOBAL.died_enemies_at_first_level, true)
-			start_manual_moving(null, ["Gasria"], [[Vector2(2450, 830), Vector2(2512, 927), Vector2(2160, 920), Vector2(1842, 996), Vector2(1600, 1109), Vector2(627, 1356)]], [true], null, [Vector2(1225, 800)], [2.5])
+			start_manual_moving(null, ["Gasria"], [[Vector2(2450, 830), Vector2(2512, 927), Vector2(2160, 920), Vector2(1842, 996), Vector2(1600, 1109), Vector2(627, 1376)]], [true], null, [Vector2(1225, 800)], [2.5])
 		"Dialoge_Area_2":
 			start_manual_moving(null, ["Aglea", "Akira", "Adalard", "Belotur", "Jeison"], [[Vector2(3250, 1530)], [Vector2(3280, 1530)], [Vector2(1165, 1530)], [Vector2(1135, 1530)], [Vector2(1105, 1530)]], [false, false, false, false, false], null, null, [2.5, 2.5, 2.5, 2.5, 2.5])
 
@@ -411,4 +414,5 @@ func _on_Area_For_Waiting_Gasria_body_entered(body):
 func _on_Area_For_Starting_Fight_body_entered(body):
 	if body.get_name() == "Gasria":
 		get_node("Gasria").special_physics_process_controlling = true
+		get_node("Gasria").animate("idle")
 		get_node("Gasria/Area_For_Starting_Fight").monitoring = true

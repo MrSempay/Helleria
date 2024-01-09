@@ -16,7 +16,20 @@ func foo():
 var d = "assd"
 const namm = "res://Game/Characters/Heroe.tscn"
 func _ready():
-
+	var sum = 0
+	#var splited_initial = "3970; 3990; 4010; 4005; 3995; 3965; 4005; 4015; 4005; 4000; 3965; 3970; 4015; 4035; 3975; 3985; 3985; 4000; 4010; 4005; 4000; 4000; 4010; 3995; 3990; 3995; 4000; 3980; 3970; 4040; 4015; 4005; 4005; 4015; 3990; 3995; 4000; 3965; 4040; 4005".split(";")
+	#var splited_initial = "1.1 1.5 2.1 2.8 3.7 4.6".split(" ")
+	var splited_initial = "12 9 7.5 6.8 5.1 4.3".split(" ")
+	for i in range(splited_initial.size()):
+		sum += float(splited_initial[i])
+	print(sum/splited_initial.size())
+	print(splited_initial.size())
+	var q = 0
+	for i in range(splited_initial.size()):
+		q += pow((float(splited_initial[i]) - sum/splited_initial.size()), 2)
+	q = sqrt(q/(splited_initial.size() - 1))
+	print(q)
+	
 	set("d", 15)
 	#print(self.get_property_list())
 	#var her = load(namm)
@@ -81,6 +94,7 @@ func get_segments_from_CollisionShape_or_collisionPolygon(area):
 
 
 func intersecting_vectors(mass_segment1, mass_segment2):
+
 	#X_AB(t) = mass_points1[i][0].x + t * (mass_points1[i][1].x - mass_points1[i][0].x)
 	#C.y + s * (D.y - C.y) = A.y + t * (B.y - A.y)
 	#C.x + s * (D.x - C.x) = A.x + t * (B.x - A.x)          s * (D.x - C.x) - (s * coefficient_at_s + absolute_term_at_s) * (B.x - A.x) = A.x - C.x

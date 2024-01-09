@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Flying_Projectiles.gd" type="Script" id=1]
-[ext_resource path="res://Anims/Flying_projectiles/fier_ball/flying_projectile/бросок камня(норм)22.png" type="Texture" id=2]
+[ext_resource path="res://Anims/Flying_projectiles/fier_ball/creating_projectile/теневойОгонь1.png" type="Texture" id=2]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

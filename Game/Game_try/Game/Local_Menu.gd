@@ -10,8 +10,10 @@ func _on_Continue_Game_pressed():
 
 
 func _on_Save_Game_pressed():
-	GLOBAL.save_game(get_parent().get_parent())
+	if !get_tree().get_current_scene().has_method("Fight_Scene"):
+		GLOBAL.save_game(get_parent().get_parent())
 
 
 func _on_Settings_pressed():
-	GLOBAL.load_game()
+	if !get_tree().get_current_scene().has_method("Fight_Scene"):
+		GLOBAL.load_game()

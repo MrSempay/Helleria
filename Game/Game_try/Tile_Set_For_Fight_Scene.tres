@@ -153,7 +153,7 @@ extents = Vector2( 24, 31 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 10 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 52.7175, 3.57675 )
+"shape_transform": Transform2D( 0.995, 0, 0, 1, 52.7175, 3.57675 )
 } ]
 3/z_index = 0
 4/name = "Sprite6"
