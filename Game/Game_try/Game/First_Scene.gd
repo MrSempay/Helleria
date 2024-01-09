@@ -2,6 +2,7 @@ extends Node2D
 
 onready var area_of_dialoge_camera = get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
 
+
 var in_area_for_artifical_intelligance_controlling_1 = [0,0,0,0,0,0,0,0]
 var in_area_for_artifical_intelligance_controlling_2 = [0,0,0,0,0,0,0,0]
 var in_area_for_artifical_intelligance_controlling_3 = [0,0,0,0,0,0,0,0]
@@ -20,13 +21,18 @@ var position_enemy = ""
 var Belotur_was_triggered = false
 var Jeison_was_triggered = false
 var Adalard_was_triggered = false
+
+var enemies = []   
+var positions_for_positions = {
+	
+}
 var triggered_enemies = {"Adalard": false, "Belotur": false, "Jeison": false, "Gasria": false, "Akira": false, "Aglea": false}
 
 #var ally = preload("res://Game/Characters/Ally.tscn")
-var enemy_1 = preload("res://Game/Characters/Enemy_1.tscn")
+var enemy_1 = preload("res://Game/Characters/Akira.tscn")
 var enemy_2 = preload("res://Game/Characters/Adalard.tscn")
 var enemy_3 = preload("res://Game/Characters/Belotur.tscn")
-var enemy_4 = preload("res://Game/Characters/Enemy44.tscn")
+var enemy_4 = preload("res://Game/Characters/Aglea.tscn")
 var enemy_5 = preload("res://Game/Characters/Jeison.tscn")
 var gasria = preload("res://Game/Characters/Gasria.tscn")
 
@@ -71,6 +77,10 @@ func First_Scene():
 
 
 func _ready():
+	for key in LOCATIONS_PARAMETERS.locations[self.get_name()]["characters_for_uploading"].keys():
+		if GLOBAL.died_enemies_at_first_level[key] == false:
+			var enemy = load("res://Game/Characters/" + key + ".tscn")
+			enemies.append(enemy.instance())
 	if GLOBAL.first_cat_scene:
 		triggered_enemies = {"Adalard": true, "Belotur": true, "Jeison": true, "Gasria": false, "Akira": true, "Aglea": true}
 		GLOBAL.cameras = {"Heroe/CanvasLayer": false, "Camera_For_Speaking": true}
@@ -86,36 +96,27 @@ func _ready():
 			if $Snares_Of_Boss.get_children()[i].has_node("Wall_Growing"):
 				$Snares_Of_Boss.get_children()[i].get_node("Wall_Growing").connect("area_entered", self, "_on_Wall_Growing_area_entered", [$Snares_Of_Boss.get_children()[i].get_node("Wall_Growing")])
 
-	gasria1.position = $Position_Gasria.global_position
-	self.add_child(gasria1)
+	#gasria1.position = $Positions_For_Enemies/Position_Gasria.global_position
+	#self.add_child(gasria1)
 	$NavigationPolygonInstance2.set_enter_cost(2)
+	if GLOBAL.position_heroe_before_fight is String:
+		print(GLOBAL.position_heroe_before_fight)
+
 	if GLOBAL.first_cat_scene:
 		$Position_Heroe.set_global_position(Vector2(2535, 1528))
 	elif GLOBAL.position_heroe_before_fight != Vector2(0, 0):
 		$Position_Heroe.set_global_position(GLOBAL.position_heroe_before_fight)
 		GLOBAL.position_heroe_before_fight = Vector2(0, 0)
-	else:
-		#$Position_Heroe.set_global_position(Vector2(2218, 1528))
-		pass
+
+	if GLOBAL.first_cat_scene:
+		$Positions_For_Enemies/Position_Belotur.set_global_position(Vector2(3535, 1528))
+
+	if GLOBAL.first_cat_scene:
+		$Positions_For_Enemies/Position_Adalard.set_global_position(Vector2(3535, 1528))
 		
 	if GLOBAL.first_cat_scene:
-		$Position_Belotur.set_global_position(Vector2(3535, 1528))
-	else:
-		pass
-		#$Position_Belotur.set_global_position(first_position_Belotur)
-		
-	if GLOBAL.first_cat_scene:
-		$Position_Adalard.set_global_position(Vector2(3535, 1528))
-	else:
-		pass
-		
-	if GLOBAL.first_cat_scene:
-		$Position_Jeison.set_global_position(Vector2(3530, 1528))
-	else:
-		pass
-	#$Position_Jeison.set_global_position(first_position_Jeison)
-	#ally_1.position = $Ally.global_position
-	#self.add_child(ally_1)
+		$Positions_For_Enemies/Position_Jeison.set_global_position(Vector2(3530, 1528))
+
 	heroe_1.position = $Position_Heroe.global_position
 	if GLOBAL.name_of_dialoge_for_dialoge_field_scene != "":
 		if GLOBAL.name_of_dialoge_for_dialoge_field_scene.split("-")[1] == self.get_name():
@@ -129,36 +130,43 @@ func _ready():
 			self.add_child(heroe_1)
 	else:
 		self.add_child(heroe_1)
-	if GLOBAL.life_Aglea == true:
+	
+	for i in range(enemies.size()):
+		self.add_child(enemies[i])
 		if !GLOBAL.first_cat_scene:
-			enemy_1_1.position = $Position_Aglea.global_position
+			enemies[i].position = get_node("Positions_For_Enemies/Position_" + enemies[i].name_character).global_position
+	
+	"""if GLOBAL.life_Aglea == true:
+		if !GLOBAL.first_cat_scene:
+			enemy_1_1.position = $Positions_For_Enemies/Position_Aglea.global_position
 		self.add_child(enemy_1_1)
 	if !GLOBAL.died_enemies_at_first_level["Adalard"]:
 		if !GLOBAL.first_cat_scene:
-			enemy_1_2.position = $Position_Adalard.global_position
+			enemy_1_2.position = $Positions_For_Enemies/Position_Adalard.global_position
 		self.add_child(enemy_1_2)
 	if !GLOBAL.died_enemies_at_first_level["Belotur"]:
 		if !GLOBAL.first_cat_scene:
-			enemy_1_3.position = $Position_Belotur.global_position
+			enemy_1_3.position = $Positions_For_Enemies/Position_Belotur.global_position
 		self.add_child(enemy_1_3)
 	if GLOBAL.life_Akira == true:
 		if !GLOBAL.first_cat_scene:
-			enemy_1_4.position = $Position_Akira.global_position
+			enemy_1_4.position = $Positions_For_Enemies/Position_Akira.global_position
 		self.add_child(enemy_1_4)
 	if !GLOBAL.died_enemies_at_first_level["Jeison"]:
 		if !GLOBAL.first_cat_scene:
-			enemy_1_5.position = $Position_Jeison.global_position
-		self.add_child(enemy_1_5)
+			enemy_1_5.position = $Positions_For_Enemies/Position_Jeison.global_position
+		self.add_child(enemy_1_5)"""
 	door_1.position = $Position_Door.global_position
 	self.add_child(door_1)
 	GLOBAL.heroe_uploaded = true
 	get_node("Gasria/Trigger_Area").set_monitoring(false)
-	GLOBAL.save_game(self)
 	
 func _physics_process(delta):
+	#print(triggered_enemies)
 	#print(get_node("Snares_Of_Boss/Area2D6/PositionsWalls"))
 	#print(GLOBAL.dialoge_No_heroe_camera)
 	#print(GLOBAL.dialoge_heroe_camera)
+	#print(get_node("Gasria").nav_path is String)
 	$Line2D.set_points(get_node("Gasria").nav_path)
 			
 	#if GLOBAL.life_Belotur:
@@ -284,7 +292,7 @@ func dialoge_finished(dialoge_name):
 	match dialoge_name:
 		"Dialoge_Area_3":
 			#LOCATIONS_PARAMETERS.locations["Garsia_Boss_Fight_Scene"]["characters_for_uploading"].merge(GLOBAL.died_enemies_at_first_level, true)
-			start_manual_moving(null, ["Gasria"], [[Vector2(2450, 830), Vector2(2512, 927), Vector2(2160, 920), Vector2(1842, 996), Vector2(1600, 1109), Vector2(627, 1356)]], [false], null, [Vector2(1225, 800)], [2.5])
+			start_manual_moving(null, ["Gasria"], [[Vector2(2450, 830), Vector2(2512, 927), Vector2(2160, 920), Vector2(1842, 996), Vector2(1600, 1109), Vector2(627, 1356)]], [true], null, [Vector2(1225, 800)], [2.5])
 		"Dialoge_Area_2":
 			start_manual_moving(null, ["Aglea", "Akira", "Adalard", "Belotur", "Jeison"], [[Vector2(3250, 1530)], [Vector2(3280, 1530)], [Vector2(1165, 1530)], [Vector2(1135, 1530)], [Vector2(1105, 1530)]], [false, false, false, false, false], null, null, [2.5, 2.5, 2.5, 2.5, 2.5])
 
@@ -294,7 +302,7 @@ func _on_Stop_Machine_body_entered(body):
 		#body.stop_machine = true
 
 
-
+"""
 func _on_NoSpeed_Area_body_entered(body):
 	if body.has_method("enemy"):
 		body.get_node("Timers/Timer_For_Stop_Machine").start()
@@ -307,7 +315,7 @@ func _on_NoSpeed_Area_body_entered(body):
 			else:
 				body.speed = 0
 				body.stop_machine = true
-
+"""
 
 func _on_Speed_Area_body_entered(body):
 	if body.has_method("enemy"):
@@ -402,4 +410,5 @@ func _on_Area_For_Waiting_Gasria_body_entered(body):
 
 func _on_Area_For_Starting_Fight_body_entered(body):
 	if body.get_name() == "Gasria":
+		get_node("Gasria").special_physics_process_controlling = true
 		get_node("Gasria/Area_For_Starting_Fight").monitoring = true

@@ -600,6 +600,11 @@ margin_right = 1013.0
 margin_bottom = 68.0
 text = "Edit"
 
+[node name="Sprite" type="Sprite" parent="Call_Menu"]
+position = Vector2( 861, 120 )
+scale = Vector2( 0.13606, 0.112416 )
+texture = ExtResource( 117 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 32 )
 anims/appearing = SubResource( 33 )

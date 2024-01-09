@@ -1,11 +1,20 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://2DTesting.gd" type="Script" id=1]
 [ext_resource path="res://t.fufz ]etmf.gd" type="Script" id=2]
+[ext_resource path="res://Anims/Gasria/stone_wall/idle/стена(СТАТИЧ.)1.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 [sub_resource type="RectangleShape2D" id=2]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "ibo",
+"speed": 5.0
+} ]
 
 [node name="2DTesting" type="Node2D"]
 script = ExtResource( 1 )
@@ -29,4 +38,10 @@ position = Vector2( 91, -14 )
 shape = SubResource( 2 )
 
 [node name="Ibo" type="KinematicBody2D" parent="."]
+position = Vector2( 142, 100 )
 script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Ibo"]
+position = Vector2( -142, -98 )
+frames = SubResource( 3 )
+animation = "ibo"

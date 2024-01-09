@@ -58,3 +58,5 @@ margin_bottom = 107.0
 size_flags_vertical = 2
 
 [connection signal="pressed" from="Control/Continue_Game" to="." method="_on_Continue_Game_pressed"]
+[connection signal="pressed" from="Control/Save_Game" to="." method="_on_Save_Game_pressed"]
+[connection signal="pressed" from="Control/Settings" to="." method="_on_Settings_pressed"]

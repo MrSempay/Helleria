@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "IBO",
+"language": "GDScript",
+"path": "res://2DTesting.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Ibo",
 "language": "GDScript",
 "path": "res://t.fufz ]etmf.gd"
 } ]
 _global_script_class_icons={
+"IBO": "",
 "Ibo": ""
 }
 

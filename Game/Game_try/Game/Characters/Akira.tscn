@@ -1,106 +1,35 @@
-[gd_scene load_steps=105 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://qn8kKPkSkEQZWgQvA51oyOlYDY7q2bpXbJ3vHAoDKF0LAEPf76eC6TI3XxkAOgtpDiPgueiaHTQfywcbq8OV_4R4.jpg" type="Texture" id=1]
-[ext_resource path="res://Game/Enemy_3.gd" type="Script" id=2]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч11.png" type="Texture" id=3]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++4.png" type="Texture" id=4]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++5.png" type="Texture" id=5]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++6.png" type="Texture" id=6]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++7.png" type="Texture" id=7]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++8.png" type="Texture" id=8]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++9.png" type="Texture" id=9]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++10.png" type="Texture" id=10]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++11.png" type="Texture" id=11]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++12.png" type="Texture" id=12]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++13.png" type="Texture" id=13]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++14.png" type="Texture" id=14]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++15.png" type="Texture" id=15]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++16.png" type="Texture" id=16]
-[ext_resource path="res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3" type="AudioStream" id=17]
-[ext_resource path="res://Game/Characters/Area_For_Starting_Fight.gd" type="Script" id=18]
-[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel5.png" type="Texture" id=19]
-[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel4.png" type="Texture" id=20]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч12.png" type="Texture" id=21]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч9.png" type="Texture" id=22]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++3.png" type="Texture" id=23]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч10.png" type="Texture" id=24]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++2.png" type="Texture" id=25]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Земляной ёж/АнимПерс/земляной ёж++1.png" type="Texture" id=26]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч8.png" type="Texture" id=27]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч7.png" type="Texture" id=28]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч13.png" type="Texture" id=29]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч14.png" type="Texture" id=30]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч15.png" type="Texture" id=31]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч16.png" type="Texture" id=32]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч17.png" type="Texture" id=33]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч18.png" type="Texture" id=34]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч19.png" type="Texture" id=35]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч20.png" type="Texture" id=36]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч21.png" type="Texture" id=37]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч22.png" type="Texture" id=38]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч23.png" type="Texture" id=39]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч24.png" type="Texture" id=40]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч25.png" type="Texture" id=41]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч26.png" type="Texture" id=42]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч27.png" type="Texture" id=43]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч28.png" type="Texture" id=44]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч1.png" type="Texture" id=45]
-[ext_resource path="res://Anims/Belotur+/Движ/Anim++7.png" type="Texture" id=46]
-[ext_resource path="res://Anims/Belotur+/Движ/Anim++2.png" type="Texture" id=47]
-[ext_resource path="res://Anims/Belotur+/Движ/Anim++5.png" type="Texture" id=48]
-[ext_resource path="res://Anims/Belotur+/Движ/Anim++3.png" type="Texture" id=49]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++1.png" type="Texture" id=50]
-[ext_resource path="res://Anims/Belotur+/Движ/Anim++6.png" type="Texture" id=51]
-[ext_resource path="res://Anims/Belotur+/Движ/Anim++4.png" type="Texture" id=52]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++2.png" type="Texture" id=53]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++18.png" type="Texture" id=54]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++17.png" type="Texture" id=55]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++16.png" type="Texture" id=56]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++15.png" type="Texture" id=57]
-[ext_resource path="res://Anims/Belotur+/Движ/Anim++1.png" type="Texture" id=58]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++7.png" type="Texture" id=59]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++5.png" type="Texture" id=60]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++6.png" type="Texture" id=61]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++4.png" type="Texture" id=62]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++3.png" type="Texture" id=63]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++8.png" type="Texture" id=64]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++21.png" type="Texture" id=65]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++22.png" type="Texture" id=66]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++23.png" type="Texture" id=67]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++24.png" type="Texture" id=68]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++25.png" type="Texture" id=69]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++26.png" type="Texture" id=70]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++27.png" type="Texture" id=71]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++28.png" type="Texture" id=72]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++20.png" type="Texture" id=73]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++19.png" type="Texture" id=74]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч3.png" type="Texture" id=75]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч2.png" type="Texture" id=76]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч4.png" type="Texture" id=77]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч5.png" type="Texture" id=78]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч6.png" type="Texture" id=79]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч29.png" type="Texture" id=80]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч30.png" type="Texture" id=81]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч31.png" type="Texture" id=82]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч32.png" type="Texture" id=83]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч33.png" type="Texture" id=84]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Каменный меч/каменныймеч34.png" type="Texture" id=85]
-[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel1.png" type="Texture" id=86]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++9.png" type="Texture" id=87]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++10.png" type="Texture" id=88]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++14.png" type="Texture" id=89]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++11.png" type="Texture" id=90]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++13.png" type="Texture" id=91]
-[ext_resource path="res://Anims/Belotur+/Земляное ядро/Бросок камня/АнимПерс/бросок камня(норм)++12.png" type="Texture" id=92]
-[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel2.png" type="Texture" id=93]
-[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel3.png" type="Texture" id=94]
-[ext_resource path="res://Anims/Belotur+/Jump/animJumpBel6.png" type="Texture" id=96]
+[ext_resource path="res://Game/Enemy44.gd" type="Script" id=2]
+[ext_resource path="res://Anims/Akira/anim1.png" type="Texture" id=3]
+[ext_resource path="res://Anims/Akira/anim2.png" type="Texture" id=4]
+[ext_resource path="res://Anims/Akira/anim3.png" type="Texture" id=5]
+[ext_resource path="res://Anims/Akira/anim4.png" type="Texture" id=6]
+[ext_resource path="res://Anims/Akira/anim5.png" type="Texture" id=7]
+[ext_resource path="res://Anims/Akira/anim6.png" type="Texture" id=8]
+[ext_resource path="res://Game/Characters/Area_For_Starting_Fight.gd" type="Script" id=9]
+[ext_resource path="res://metal-gear-rising-ost-the-only-thing-i-know-for-real_444559330.mp3" type="AudioStream" id=10]
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3, 11.5 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 length = 0.001
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:polygon")
 tracks/0/interp = 1
@@ -114,7 +43,7 @@ tracks/0/keys = {
 "values": [ PoolVector2Array( 0, 0, -8, 0, -8, 22, -1, 22, -1, 14, 0, 14, 0, 22, 6, 22, 6, 0 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "щгп"
 length = 0.24
 step = 0.01
@@ -131,49 +60,10 @@ tracks/0/keys = {
 "values": [ PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 14, -1, 14, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 14, 8, 14, 8, -8 ), PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 ) ]
 }
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 26 ), ExtResource( 25 ), ExtResource( 23 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
-"loop": false,
-"name": "hedgehod",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 58 ) ],
-"loop": false,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 86 ), ExtResource( 93 ), ExtResource( 94 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 96 ) ],
-"loop": true,
-"name": "jump",
-"speed": 40.0
-}, {
-"frames": [ ExtResource( 58 ), ExtResource( 47 ), ExtResource( 49 ), ExtResource( 52 ), ExtResource( 48 ), ExtResource( 46 ), ExtResource( 51 ) ],
-"loop": true,
-"name": "run",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 50 ), ExtResource( 53 ), ExtResource( 63 ), ExtResource( 62 ), ExtResource( 60 ), ExtResource( 59 ), ExtResource( 61 ), ExtResource( 64 ), ExtResource( 88 ), ExtResource( 87 ), ExtResource( 90 ), ExtResource( 92 ), ExtResource( 91 ), ExtResource( 89 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 55 ), ExtResource( 54 ), ExtResource( 74 ), ExtResource( 73 ), ExtResource( 66 ), ExtResource( 65 ), ExtResource( 67 ), ExtResource( 69 ), ExtResource( 68 ), ExtResource( 70 ), ExtResource( 72 ), ExtResource( 71 ) ],
-"loop": false,
-"name": "stone",
-"speed": 16.0
-}, {
-"frames": [ ExtResource( 45 ), ExtResource( 76 ), ExtResource( 75 ), ExtResource( 77 ), ExtResource( 78 ), ExtResource( 79 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 22 ), ExtResource( 24 ), ExtResource( 3 ), ExtResource( 21 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 80 ), ExtResource( 81 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 85 ), ExtResource( 84 ) ],
-"loop": false,
-"name": "stoneSword",
-"speed": 30.0
-} ]
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 109, 53.5 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 167, 53.5 )
-
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 26, 33.75 )
-
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 31, 14 )
-
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 resource_name = "EXTRA"
 length = 2.5
 tracks/0/type = "value"
@@ -189,7 +79,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.5, 1.5 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=7]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:scale")
@@ -204,68 +94,186 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[node name="Belotur" type="KinematicBody2D"]
-position = Vector2( 328, 165 )
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 31, 14 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 46.8215, 18.25 )
+
+[node name="Akira" type="KinematicBody2D"]
+position = Vector2( 330, 163 )
 z_index = 3
-collision_layer = 516
-collision_mask = 516
+collision_layer = 8
+collision_mask = 8
 script = ExtResource( 2 )
 
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1, 0 )
+scale = Vector2( 0.208, 0.208 )
+frames = SubResource( 1 )
+animation = "run"
+frame = 4
+
 [node name="Area_For_Stop_Machine" type="Area2D" parent="."]
-collision_layer = 128
-collision_mask = 128
+collision_layer = 135
+collision_mask = 135
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Stop_Machine"]
 position = Vector2( -1, 4.5 )
-shape = SubResource( 10 )
+shape = SubResource( 2 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( 0, -6 )
+position = Vector2( -0.645767, -6.08 )
 scale = Vector2( 0.3, 1 )
-polygon = PoolVector2Array( 0, 0, -8, 0, -8, 22, -1, 22, -1, 14, 0, 14, 0, 22, 6, 22, 6, 0 )
+polygon = PoolVector2Array( 0, -8, -11, -8, -11, 22, -1, 22, -1, 14, 0, 14, 0, 22, 8, 22, 8, -8 )
 one_way_collision_margin = 12.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionPolygon2D"]
 reset_on_save = false
-anims/RESET = SubResource( 5 )
-"anims/щгп" = SubResource( 6 )
+anims/RESET = SubResource( 3 )
+"anims/щгп" = SubResource( 4 )
 
-[node name="Timer_Stone" type="Timer" parent="."]
-wait_time = 7.0
+[node name="Trigger_Area" type="Area2D" parent="."]
+position = Vector2( 0.170013, -7.08 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Area"]
+position = Vector2( 1, -21.5 )
+shape = SubResource( 5 )
+one_way_collision_margin = 0.0
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0.170013, -7.08 )
+
+[node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0, -35 )
+enabled = true
+cast_to = Vector2( 19, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_2" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0.170013, -13.08 )
+enabled = true
+cast_to = Vector2( 19, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( -4.32134e-07, 7 )
+enabled = true
+cast_to = Vector2( 3, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_4" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( -4.32134e-07, -23 )
+enabled = true
+cast_to = Vector2( 19, 0 )
+collision_mask = 2097152
+
+[node name="RayCastHorizontal_For_Heroe" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( -4.32134e-07, 2 )
+enabled = true
+cast_to = Vector2( 192, 0 )
+
+[node name="RayCastVertical" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 11, 1 )
+enabled = true
+cast_to = Vector2( 0, 22 )
+collision_mask = 4194304
+
+[node name="RayCastVertical_2" type="RayCast2D" parent="."]
+visible = false
+position = Vector2( 0.170013, -13.08 )
+enabled = true
+cast_to = Vector2( 0, -26 )
+collision_mask = 2097152
+
+[node name="RayCastVertical_3" type="RayCast2D" parent="."]
+visible = false
+enabled = true
+cast_to = Vector2( 0, 17 )
+collision_mask = 2097152
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/EXTRA = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_max_distance = 10.0
+navigation_layers = 16
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 0.170013, -7.08 )
+width = 5.0
+
+[node name="Area_For_Starting_Fight" type="Area2D" parent="."]
+scale = Vector2( 0.7, 1 )
+collision_layer = 17
+collision_mask = 17
+script = ExtResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Starting_Fight"]
+shape = SubResource( 8 )
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="Timer_Stop_Machine" type="Timer" parent="Timers"]
+wait_time = 0.3
+
+[node name="Timer_For_Updaiting_Way" type="Timer" parent="Timers"]
+wait_time = 0.3
+autostart = true
+
+[node name="Timer_For_Going_Back" type="Timer" parent="Timers"]
+wait_time = 5.0
 one_shot = true
 
-[node name="Timer_Stone_Sword" type="Timer" parent="."]
-wait_time = 2.0
+[node name="Timer_Of_Stun" type="Timer" parent="Timers"]
+wait_time = 3.0
 one_shot = true
 
-[node name="Timer_Hedgehod" type="Timer" parent="."]
-wait_time = 11.678
-one_shot = true
+[node name="Timer_Of_HP" type="Timer" parent="Timers"]
+autostart = true
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 2, 2 )
-frames = SubResource( 1 )
-animation = "idle"
+[node name="Timer_Of_Mana" type="Timer" parent="Timers"]
+autostart = true
 
-[node name="HP_Enemy_1" type="TextureProgress" parent="."]
-margin_left = -30.0
-margin_top = -35.0
-margin_right = 200.0
+[node name="Handle_Attack" type="Area2D" parent="."]
+visible = false
+position = Vector2( 32, -3 )
+scale = Vector2( 0.7, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Handle_Attack"]
+shape = SubResource( 9 )
+disabled = true
+
+[node name="For_Status_Bars" type="Node2D" parent="."]
+position = Vector2( -2, -43 )
+
+[node name="health_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -21.0
+margin_top = -34.0
+margin_right = 124.0
 margin_bottom = -13.0
 rect_scale = Vector2( 0.25, 0.25 )
-max_value = 200.0
-value = 200.0
+max_value = 150.0
+value = 150.0
 texture_progress = ExtResource( 1 )
 tint_progress = Color( 1, 0, 0, 1 )
 nine_patch_stretch = true
 
-[node name="Timer_Of_HP" type="Timer" parent="HP_Enemy_1"]
-autostart = true
-
-[node name="Mana_Enemy_1" type="TextureProgress" parent="."]
-margin_left = -30.0
-margin_top = -30.0
-margin_right = 200.0
+[node name="mana_Enemy_1" type="TextureProgress" parent="."]
+margin_left = -21.0
+margin_top = -29.0
+margin_right = 124.0
 margin_bottom = -8.0
 rect_scale = Vector2( 0.25, 0.25 )
 max_value = 250.0
@@ -274,157 +282,22 @@ texture_progress = ExtResource( 1 )
 tint_progress = Color( 0, 0.133333, 1, 1 )
 nine_patch_stretch = true
 
-[node name="Timer_Of_Mana" type="Timer" parent="Mana_Enemy_1"]
-autostart = true
-
-[node name="value_of_HP" type="Label" parent="."]
-margin_left = -8.0
-margin_top = -36.0
-margin_right = 20.0
-margin_bottom = 12.0
+[node name="value_of_health" type="Label" parent="."]
+margin_left = -8.82999
+margin_top = -35.08
+margin_right = 19.17
+margin_bottom = 12.92
 rect_scale = Vector2( 0.5, 0.5 )
-text = "200
-
-
+text = "500
 
 "
 
-[node name="value_of_Mana" type="Label" parent="."]
-margin_left = -8.0
-margin_top = -30.0
-margin_right = 32.0
-margin_bottom = 18.0
+[node name="value_of_mana" type="Label" parent="."]
+margin_left = -8.82999
+margin_top = -29.08
+margin_right = 31.17
+margin_bottom = 18.92
 rect_scale = Vector2( 0.5, 0.5 )
 text = "250
 
 "
-
-[node name="Trigger_Area" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger_Area"]
-position = Vector2( 0, -21.5 )
-shape = SubResource( 3 )
-one_way_collision_margin = 0.0
-
-[node name="Stone_Position" type="Position2D" parent="."]
-position = Vector2( 34, -2 )
-
-[node name="Stone_Sword" type="Area2D" parent="."]
-position = Vector2( 25, -6 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone_Sword"]
-position = Vector2( 0, -12.25 )
-shape = SubResource( 4 )
-disabled = true
-
-[node name="Area_For_Starting_Fight" type="Area2D" parent="."]
-position = Vector2( 0, 1 )
-scale = Vector2( 0.7, 1 )
-collision_layer = 5
-collision_mask = 5
-script = ExtResource( 18 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_For_Starting_Fight"]
-shape = SubResource( 7 )
-
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-visible = false
-
-[node name="Timer_Of_Stun" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
-[node name="RayCastHorizontal_1" type="RayCast2D" parent="."]
-position = Vector2( 0, -35 )
-enabled = true
-cast_to = Vector2( 16, 0 )
-collision_mask = 2097152
-
-[node name="RayCastHorizontal_2" type="RayCast2D" parent="."]
-position = Vector2( 0, -6 )
-enabled = true
-cast_to = Vector2( 16, 0 )
-collision_mask = 2097152
-
-[node name="RayCastHorizontal_3" type="RayCast2D" parent="."]
-position = Vector2( 0, 7 )
-enabled = true
-cast_to = Vector2( 3, 0 )
-collision_mask = 2097152
-
-[node name="RayCastHorizontal_4" type="RayCast2D" parent="."]
-position = Vector2( 0, -24 )
-enabled = true
-cast_to = Vector2( 16, 0 )
-collision_mask = 2097152
-
-[node name="RayCastHorizontal_For_Heroe" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( 192, 0 )
-
-[node name="RayCastVertical" type="RayCast2D" parent="."]
-position = Vector2( 11, 1 )
-enabled = true
-cast_to = Vector2( 0, 22 )
-collision_mask = 4194304
-
-[node name="RayCastVertical_2" type="RayCast2D" parent="."]
-position = Vector2( 0, -6 )
-enabled = true
-cast_to = Vector2( 0, -26 )
-collision_mask = 2097152
-
-[node name="RayCastVertical_3" type="RayCast2D" parent="."]
-enabled = true
-cast_to = Vector2( 0, 17 )
-collision_mask = 2097152
-
-[node name="RayCastStone" type="RayCast2D" parent="."]
-visible = false
-position = Vector2( 34, -2 )
-enabled = true
-cast_to = Vector2( 0, 0 )
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 17 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/EXTRA = SubResource( 8 )
-anims/RESET = SubResource( 9 )
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 3.0
-target_desired_distance = 3.0
-path_max_distance = 25.0
-navigation_layers = 4
-
-[node name="Line2D" type="Line2D" parent="."]
-visible = false
-width = 5.0
-
-[node name="Timer_Stop_Machine" type="Timer" parent="."]
-wait_time = 0.3
-
-[node name="Timer_For_Updaiting_Way" type="Timer" parent="."]
-wait_time = 0.3
-autostart = true
-
-[node name="Timer_For_Going_Back" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
-[connection signal="timeout" from="Timer_Stone" to="." method="_on_Timer_Stone_timeout"]
-[connection signal="timeout" from="Timer_Stone_Sword" to="." method="_on_Timer_Stone_Sword_timeout"]
-[connection signal="timeout" from="Timer_Hedgehod" to="." method="_on_Timer_Hedgehod_timeout"]
-[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
-[connection signal="timeout" from="HP_Enemy_1/Timer_Of_HP" to="." method="_on_Timer_Of_HP_timeout"]
-[connection signal="timeout" from="Mana_Enemy_1/Timer_Of_Mana" to="." method="_on_Timer_Of_Mana_timeout"]
-[connection signal="body_entered" from="Trigger_Area" to="." method="_on_Trigger_Area_body_entered"]
-[connection signal="body_entered" from="Stone_Sword" to="." method="_on_Stone_Sword_body_entered"]
-[connection signal="body_entered" from="Area_For_Starting_Fight" to="." method="_on_Area_For_Starting_Fight_body_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
-[connection signal="timeout" from="Timer_Of_Stun" to="." method="_on_Timer_Of_Stun_timeout"]
-[connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_NavigationAgent2D_path_changed"]
-[connection signal="timeout" from="Timer_Stop_Machine" to="." method="_on_Timer_Stop_Machine_timeout"]
-[connection signal="timeout" from="Timer_For_Updaiting_Way" to="." method="_on_Timer_For_Updaiting_Way_timeout"]
-[connection signal="timeout" from="Timer_For_Going_Back" to="." method="_on_Timer_For_Going_Back_timeout"]

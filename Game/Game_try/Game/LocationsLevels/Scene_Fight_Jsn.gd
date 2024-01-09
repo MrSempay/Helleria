@@ -77,7 +77,7 @@ func dialoge_finished(dialoge_name):
 	pass
 	
 
-func changing_scene_if_enemies_die(name_character):
+func changing_scene_if_enemies_die(name_character, name_target_scene):
 	if name_character == "Jeison":
-		start_transition_between_scenes_with_dialogue()
+		start_transition_between_scenes_with_dialogue(name_target_scene)
 	

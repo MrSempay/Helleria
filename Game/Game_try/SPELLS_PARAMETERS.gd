@@ -292,6 +292,11 @@ var characters = {
 	"Belotur": {
 		"health": 150,
 		"mana": 1500
+	},
+	
+	"Heroe": {
+		"health": 1,
+		"mana": 1500
 	}
 }
 

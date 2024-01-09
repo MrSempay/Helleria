@@ -30,7 +30,9 @@ var locations = {
 			"Adalard": "1lvl_Batle_Scene",
 			"Jeison": "Scene_Fight_Jsn",
 			"Gasria": "Garsia_Boss_Fight_Scene"
-		}
+		},
+		
+		"characters_for_uploading": {"Gasria": false, "Jeison": false, "Belotur": false, "Adalard": false, "Aglea": false, "Akira": false}
 	},
 	
 	"Max_Level_Fight_Scene": {

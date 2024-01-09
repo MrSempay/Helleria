@@ -39,7 +39,7 @@ animations = [ {
 "frames": [ ExtResource( 17 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 15 ), ExtResource( 24 ) ],
 "loop": false,
 "name": "wall_destruction",
-"speed": 15.0
+"speed": 7.0
 }, {
 "frames": [ ExtResource( 13 ), ExtResource( 2 ), ExtResource( 14 ), ExtResource( 23 ), ExtResource( 18 ), ExtResource( 16 ), ExtResource( 21 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 1 ) ],
 "loop": false,
@@ -61,6 +61,8 @@ shape = SubResource( 1 )
 position = Vector2( 7, -5 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
-animation = "idle"
+animation = "wall_growing"
+frame = 13
+playing = true
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
