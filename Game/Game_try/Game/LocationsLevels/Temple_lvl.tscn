@@ -101,10 +101,10 @@ position = Vector2( 147, 451 )
 zoom = Vector2( 0.4, 0.4 )
 script = ExtResource( 17 )
 
-[node name="Area_Of_Dialoge_Camera" type="Area2D" parent="Camera_For_Speaking"]
+[node name="Dialoge_In_Temple" type="Area2D" parent="Camera_For_Speaking"]
 script = ExtResource( 16 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera_For_Speaking/Area_Of_Dialoge_Camera"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera_For_Speaking/Dialoge_In_Temple"]
 shape = SubResource( 8 )
 disabled = true
 
@@ -577,5 +577,5 @@ script = ExtResource( 3 )
 position = Vector2( 4, -108 )
 shape = SubResource( 10 )
 
-[connection signal="mouse_entered" from="Camera_For_Speaking/Area_Of_Dialoge_Camera" to="Camera_For_Speaking/Area_Of_Dialoge_Camera" method="_on_Area_Of_Dialoge_Camera_mouse_entered"]
-[connection signal="mouse_exited" from="Camera_For_Speaking/Area_Of_Dialoge_Camera" to="Camera_For_Speaking/Area_Of_Dialoge_Camera" method="_on_Area_Of_Dialoge_Camera_mouse_exited"]
+[connection signal="mouse_entered" from="Camera_For_Speaking/Dialoge_In_Temple" to="Camera_For_Speaking/Dialoge_In_Temple" method="_on_Area_Of_Dialoge_Camera_mouse_entered"]
+[connection signal="mouse_exited" from="Camera_For_Speaking/Dialoge_In_Temple" to="Camera_For_Speaking/Dialoge_In_Temple" method="_on_Area_Of_Dialoge_Camera_mouse_exited"]
