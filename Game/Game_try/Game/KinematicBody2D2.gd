@@ -23,7 +23,7 @@ func inputt(event):
 	#	if event.is_pressed():
 			z_index = 5
 			return z_index
-			print(event.is_pressed())
+			#(event.is_pressed())
 		else:
 			z_index = -15
 			return z_index

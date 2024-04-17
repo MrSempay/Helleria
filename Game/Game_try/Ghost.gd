@@ -68,14 +68,14 @@ func ally():
 
 func handle_hit(damage, damage_save = 0):
 	beat_in_heroe = true
-	print(damage)
+	#(damage)
 	$HP_Heroe.value -= damage * armor * defense
 	$value_of_HP.text = str($HP_Heroe.value)
 	if $HP_Heroe.value > 0:
-		print("You were hit! Your health: ", $HP_Heroe.value)
+		#("You were hit! Your health: ", $HP_Heroe.value)
 	else:
 		GLOBAL.life_heroe = false
-		print("You died")
+		#("You died")
 		queue_free()
 		
 		
@@ -248,8 +248,8 @@ func _on_Button_Third_pressed():
 				picture_weapon.set_visible(true)
 				#for i in range(10):
 				#	array_arrows[int(i)] = arrow
-				#	print(array_arrows[int(i)].number)
-					#print(array_arrows[int(i)])
+				#	#(array_arrows[int(i)].number)
+					##(array_arrows[int(i)])
 			else:
 				picture_weapon.set_visible(false)
 				#defense = 1

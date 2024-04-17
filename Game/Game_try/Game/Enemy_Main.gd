@@ -64,7 +64,7 @@ func _physics_process(delta):
 		if anim_2.current_animation_position > 0.39 && GLOBAL.life_heroe == true:
 			animation_start = false
 			weapon_enemy.attack()
-		#print(anim_2.current_animation_position)
+		##(anim_2.current_animation_position)
 		
 		
 
@@ -72,9 +72,9 @@ func handle_hit(damage):
 	#health -= damage
 	$health_Enemy_1.value -= damage
 	if $health_Enemy_1.value > 0:
-		print("Enemy was hit! Health of enemy: ", $health_Enemy_1.value)
+		#("Enemy was hit! Health of enemy: ", $health_Enemy_1.value)
 	else:
-		print("Enemy was destroyed")
+		#("Enemy was destroyed")
 		GLOBAL.life_first_enemy = false
 		queue_free()
 

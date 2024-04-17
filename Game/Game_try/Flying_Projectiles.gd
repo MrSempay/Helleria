@@ -19,14 +19,14 @@ func _ready():
 			if dir_animation_of_spell.open("res://Anims/Flying_projectiles/" + name_spell + "/" + folder_name_of_animation + "/") == OK:
 				dir_animation_of_spell.list_dir_begin(true)
 				var animation_frame = dir_animation_of_spell.get_next()
-				#print(folder_name_of_animation)
+				##(folder_name_of_animation)
 				while animation_frame != "":
 					if not animation_frame.ends_with(".import"):
 						$Sprite.get_sprite_frames().add_frame(folder_name_of_animation, load("res://Anims/Flying_projectiles/" + name_spell + "/" + folder_name_of_animation + "/" + animation_frame))
 					animation_frame = dir_animation_of_spell.get_next()
 			folder_name_of_animation = dir_spell.get_next()
-	else:
-		print("An error occurred when trying to access the path.")
+	#else:
+		#("An error occurred when trying to access the path.")
 	$Sprite.play("creating_projectile")
 
 	if get_node("../" + selfish + "/RayCastFlyingProjectile").get_collider():
@@ -42,11 +42,11 @@ func _ready():
 func _physics_process(delta):
 	if $Sprite.get_frame() == 7:
 		_on_Sprite_animation_finished()
-	#print($Sprite.get_frame())
-	#print($Sprite.get_sprite_frames().get_frame_count("creating_projectile"))
-	#print($Sprite.get_sprite_frames().get_frame_count("creating_projectile"))
+	##($Sprite.get_frame())
+	##($Sprite.get_sprite_frames().get_frame_count("creating_projectile"))
+	##($Sprite.get_sprite_frames().get_frame_count("creating_projectile"))
 	#for i in range($Sprite.get_sprite_frames().get_frame_count("creating_projectile")):
-	#	print($Sprite.get_sprite_frames().get_frame("creating_projectile", i))
+	#	#($Sprite.get_sprite_frames().get_frame("creating_projectile", i))
 	if $Sprite.get_animation() == "flying_projectile":
 		translate(SPELLS_PARAMETERS.characters[selfish][name_spell][name_spell + "_speed"] * delta * vector.normalized())
 

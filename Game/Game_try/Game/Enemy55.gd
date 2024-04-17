@@ -9,7 +9,7 @@ func _ready():
 
 func _physics_process(delta):
 	#print(self.global_position)
-	#print($Sprite.get_animation())
+	##($Sprite.get_animation())
 	if get_parent().has_node("Heroe"):
 		if heroe == null:
 			if((self.global_position.x) - get_parent().get_node("Heroe").global_position.x) > 0:

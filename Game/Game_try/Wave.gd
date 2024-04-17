@@ -16,7 +16,7 @@ var local_parameters = {
 
 
 func _ready():
-	print(local_parameters)
+	#(local_parameters)
 	$AnimatedSprite.play(local_parameters["current_animation"])
 	self.global_position = local_parameters["global_position_for_wave"]
 	$AnimatedSprite.flip_h = local_parameters["flip_h"]
@@ -30,7 +30,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	#print($AnimatedSprite.flip_h)
+	##($AnimatedSprite.flip_h)
 	local_parameters["global_position_for_wave"] = global_position
 	if !get_parent() is Viewport:
 		local_parameters["velocity"].x = SPELLS_PARAMETERS.characters[local_parameters["character_who_casted_wave"]][local_parameters["name_of_wave"] + "_wave"][local_parameters["name_of_wave"] + "_wave_speed"] * delta * local_parameters["vector"] * local_parameters["speed"]

@@ -49,7 +49,7 @@ func _physics_process(delta):
 		anim_player2.play("Bat's Off Light")
 	if !$RayCastVertical_3.get_collider() && $Sprite.get_animation() != "flying":
 		if $Sprite.get_animation() != "A_teleport_end":
-			#print(bats_light.energy)
+			##(bats_light.energy)
 			if anim_player2.get_current_animation() != "Bat's Light" && bats_light.energy == 0:
 				anim_player2.play("Bat's Light")
 				
@@ -61,7 +61,7 @@ func _physics_process(delta):
 					anim_player2.play("Bat's Light")
 	""" --------------------------------- """
 	
-	#print(get_parent().triggered_enemies[name_character])
+	##(get_parent().triggered_enemies[name_character])
 	if get_parent().has_method("Fight_Scene") && heroe != null && is_instance_valid(heroe):
 		if j + 1 < nav_path.size():
 			if(nav_path[j].x - nav_path[j + 1].x > 0):
@@ -132,7 +132,7 @@ func start_jump_enemy():
 			if !flying_mod:
 				
 				if anim_player2.get_current_animation() != "Bat's Light" && bats_light.energy == 0:
-					print("che za parasha?")
+					#("che za parasha?")
 					anim_player2.play("Bat's Light")
 				animate("starting_flying")
 				flying_mod = true
@@ -154,14 +154,14 @@ func _on_Snare_Area_body_entered(body, snare_which_was_activated):
 		var position_for_wave = snare_which_was_activated.get_node("PositionsWalls/Position2D2").global_position
 		if snare_which_was_activated.get_node("PositionsWalls").get_children().size() == 3:
 			var position_for_wall = snare_which_was_activated.get_node("PositionsWalls/Position2D").global_position
-			#print(snare_which_was_activated.get_node("PositionsWalls").get_children())
+			##(snare_which_was_activated.get_node("PositionsWalls").get_children())
 			for i in range(snare_which_was_activated.get_node("PositionsWalls").get_children().size()):
-				#print(snare_which_was_activated.get_node("PositionsWalls").get_children()[i].get_name()[0])
+				##(snare_which_was_activated.get_node("PositionsWalls").get_children()[i].get_name()[0])
 				if snare_which_was_activated.get_node("PositionsWalls").get_children()[i].get_name()[0] == "S":
-					#print(snare_which_was_activated.get_node("PositionsWalls").get_children()[i].global_position)
-					#print(snare_which_was_activated.get_node("PositionsWalls/Position2D").global_position)
+					##(snare_which_was_activated.get_node("PositionsWalls").get_children()[i].global_position)
+					##(snare_which_was_activated.get_node("PositionsWalls/Position2D").global_position)
 					if snare_which_was_activated.get_node("PositionsWalls").get_children()[i].global_position == snare_which_was_activated.get_node("PositionsWalls/Position2D").global_position:
-						#print(true)
+						##(true)
 						position_for_wall = snare_which_was_activated.get_node("PositionsWalls/Position2D2").global_position
 						position_for_wave = snare_which_was_activated.get_node("PositionsWalls/Position2D").global_position
 			stone_wall(position_for_wall, false, snare_which_was_activated.get_node("PositionsWalls"))

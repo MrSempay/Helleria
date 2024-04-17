@@ -79,8 +79,10 @@ func First_Scene():
 func _ready():
 	for key in LOCATIONS_PARAMETERS.locations[self.get_name()]["characters_for_uploading"].keys():
 		if GLOBAL.died_enemies_at_first_level[key] == false:
+			#print(key)
 			var enemy = load("res://Game/Characters/" + key + ".tscn")
 			enemies.append(enemy.instance())
+			#print(enemies)
 	if !GLOBAL.cameras["Enemy_Camera"]:
 		if GLOBAL.first_cat_scene:
 			triggered_enemies = {"Adalard": true, "Belotur": true, "Jeison": true, "Garsia": false, "Akira": true, "Aglea": true}
@@ -100,8 +102,7 @@ func _ready():
 	#Garsia1.position = $Positions_For_Enemies/Position_Garsia.global_position
 	#self.add_child(Garsia1)
 	$NavigationPolygonInstance2.set_enter_cost(2)
-	if GLOBAL.position_heroe_before_fight is String:
-		print(GLOBAL.position_heroe_before_fight)
+
 
 	if GLOBAL.first_cat_scene:
 		$Position_Heroe.set_global_position(Vector2(2535, 1528))
@@ -163,11 +164,11 @@ func _ready():
 	get_node("Garsia/Trigger_Area").set_monitoring(false)
 	
 func _physics_process(delta):
-	#print(triggered_enemies)
-	#print(get_node("Snares_Of_Boss/Area2D6/PositionsWalls"))
-	#print(GLOBAL.dialoge_No_heroe_camera)
-	#print(GLOBAL.dialoge_heroe_camera)
-	#print(get_node("Garsia").nav_path is String)
+	##(triggered_enemies)
+	##(get_node("Snares_Of_Boss/Area2D6/PositionsWalls"))
+	##(GLOBAL.dialoge_No_heroe_camera)
+	##(GLOBAL.dialoge_heroe_camera)
+	##(get_node("Garsia").nav_path is String)
 	$Line2D.set_points(get_node("Garsia").nav_path)
 			
 	#if GLOBAL.life_Belotur:
@@ -230,7 +231,7 @@ func _physics_process(delta):
 
 func _on_Wall_Growing_area_entered(area, area_which_was_triggered):
 	if area.get_name() == "Area_For_Wall_Detecting":
-		#print(true)
+		##(true)
 		var position_for_wall = area_which_was_triggered.get_parent().get_node("PositionsWalls/Position2D2").global_position
 		if abs(area_which_was_triggered.global_position.x - area_which_was_triggered.get_parent().get_node("PositionsWalls/Position2D").global_position.x) < abs(area_which_was_triggered.global_position.x - area_which_was_triggered.get_parent().get_node("PositionsWalls/Position2D2").global_position.x):
 			position_for_wall = area_which_was_triggered.get_parent().get_node("PositionsWalls/Position2D").global_position

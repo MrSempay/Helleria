@@ -11,18 +11,21 @@ var heroe1
 	#		break
 
 func _ready():
+	
 	heroe1 = heroe.instance()
 	heroe1.position = $Position_Heroe.global_position
 	self.add_child(heroe1)
 	var j = 0
-	#print(LOCATIONS_PARAMETERS.locations[self.get_name()]["characters_for_uploading"].keys())
+	##(LOCATIONS_PARAMETERS.locations[self.get_name()]["characters_for_uploading"].keys())
 	triggered_enemies = LOCATIONS_PARAMETERS.locations[self.get_name()]["characters_for_uploading"].duplicate()
-	#print(self.get_name())
+	##(self.get_name())
+	
 	for key in LOCATIONS_PARAMETERS.locations[self.get_name()]["characters_for_uploading"].keys():
-		#print(enemies)
+		print(key)
 		var enemy = load("res://Game/Characters/" + key + ".tscn")
 		enemies.append(enemy.instance())
 		enemies[j].position = get_node("Positions_For_Enemies/Position_" + key).global_position
+		#print(enemies[j])
 		enemies[j].set_collision_layer(0)
 		enemies[j].set_collision_mask(0)
 		enemies[j].set_collision_layer_bit(j + 2, true)
@@ -54,7 +57,7 @@ func _ready():
 	else:
 		self.add_child(heroe1)
 #func _physics_process(delta):
-	#print(has_node("Her"))
+	##(has_node("Her"))
 	
 
 func start_manual_moving(body = null, array_of_characters_names = null, array_of_target_points = null, stay_triggered = null, area_which_was_triggered = null, initial_position = null, array_of_velocity = null):
@@ -112,14 +115,14 @@ func dialoge_start(body = null, dialoge_area_name = null, dialoge_between_scenes
 				break
 		var first_dialoge
 		var start_dir_of_dialoge = Directory.new()
-		print("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D")
+		#("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D")
 		start_dir_of_dialoge.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D")
 		start_dir_of_dialoge.list_dir_begin(true, true)
 		first_dialoge = start_dir_of_dialoge.get_next()
 
 		if get_node(activated_camera + "/Dialoge_Field").file.is_open():
 			get_node("Heroe/CanvasLayer/Dialoge_Field").file.close()
-		print(first_dialoge)
+		#(first_dialoge)
 		get_node(activated_camera + "/Dialoge_Field").current_scene = self
 		get_node(activated_camera + "/Dialoge_Field").information_about_current_dialogue_tree["dialogue_name"] = first_dialoge
 		get_node(activated_camera + "/Dialoge_Field").information_about_current_dialogue_tree["path_to_dialogue_folder"] = "res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D/" + first_dialoge
@@ -135,7 +138,7 @@ func dialoge_start(body = null, dialoge_area_name = null, dialoge_between_scenes
 			var m = "none"
 			while m != "":
 				m = str(get_node(activated_camera + "/Dialoge_Field").file_for_choice.get_line())
-				print(m)
+				#(m)
 				if m != "":
 					var button = Button.new()
 					button.connect("pressed", get_node("Camera_For_Speaking/Dialoge_Field"), "_on_buttons_for_choice_pressed", [button])

@@ -90,13 +90,13 @@ func _ready():
 	#var tet = IBO.new()
 	#tet.name = "IBO"
 	#add_child(tet)
-	#print(has_node("IBO"))
+	##(has_node("IBO"))
 
-	#print(get_node("IBO").d)
+	##(get_node("IBO").d)
 	#self.set_physics_process(false)
 	health = SPELLS_PARAMETERS.characters[name_character]["health"]
 	mana = SPELLS_PARAMETERS.characters[name_character]["mana"]
-	#print(get_children())
+	##(get_children())
 
 
 	$HP_Heroe.max_value = SPELLS_PARAMETERS.characters[name_character]["health"]
@@ -121,15 +121,14 @@ func _ready():
 
 
 
-func _timeout():
-	print("Timed out!")
+
 
 func _physics_process(delta):
 
-	#print(timer.time_left)
-	#print(timer.is_paused())
-	#print(scale_speed_moving)
-	#print(is_stopped())
+	##(timer.time_left)
+	##(timer.is_paused())
+	##(scale_speed_moving)
+	##(is_stopped())
 	match $Icon.get_animation():
 		"idle":
 			#$RayCastForFloor.set_enabled(true)
@@ -319,8 +318,8 @@ func navigation(number_of_moving):
 
 func dialoge(array_dialoge_flags, number_of_dialoge):
 	var area_of_dialoge_camera = get_parent().get_node("Camera_For_Speaking/Area_Of_Dialoge_Camera")
-	#print(array_dialoge_flags[i])
-	#print(area_of_dialoge_camera.input_touch)
+	##(array_dialoge_flags[i])
+	##(area_of_dialoge_camera.input_touch)
 	if array_dialoge_flags.size() != 0:
 		if $Icon.is_flipped_h():
 			$Dialoge_Window_Position.set_position(Vector2(-10,-42))
@@ -521,17 +520,17 @@ func thrust(body, shift):
 	#for i in range(get_parent().collisions.size()):
 	#	ray_cast_thrust.set_collision_mask_bit(get_parent().collisions[i], true)
 	
-	#print("Бит 1 " + str(ray_cast_thrust.get_collision_mask_bit(1)))
-	#print("Бит 2 " + str(ray_cast_thrust.get_collision_mask_bit(2)))
-	#print("Бит 3 " + str(ray_cast_thrust.get_collision_mask_bit(3)))
-	#print("Бит 4 " + str(ray_cast_thrust.get_collision_mask_bit(4)))
-	#print("Бит 10 " + str(ray_cast_thrust.get_collision_mask_bit(10)))
+	##("Бит 1 " + str(ray_cast_thrust.get_collision_mask_bit(1)))
+	##("Бит 2 " + str(ray_cast_thrust.get_collision_mask_bit(2)))
+	##("Бит 3 " + str(ray_cast_thrust.get_collision_mask_bit(3)))
+	##("Бит 4 " + str(ray_cast_thrust.get_collision_mask_bit(4)))
+	##("Бит 10 " + str(ray_cast_thrust.get_collision_mask_bit(10)))
 	#if ray_cast_thrust.get_collider():
 	#	shift = abs(self.global_position.x - ray_cast_thrust.get_collision_point().x)
 	#else:
 		#if ray_cast_thrust.get_cast_to() != Vector2(0, 100):
 		#ray_cast_thrust.set_cast_to(Vector2(0, 100))
-	#print(ray_cast_thrust.get_collision_point().x)
+	##(ray_cast_thrust.get_collision_point().x)
 	for i in range(shift):
 		move_and_collide(Vector2(1,0) * direction)
 	#translate(Vector2(1,0) * shift * direction)

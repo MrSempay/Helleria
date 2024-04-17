@@ -6,9 +6,9 @@ func _ready():
 
 
 func _physics_process(delta):
-	#print(self.global_position)
+	##(self.global_position)
 
-	#print(manual_navigation)
+	##(manual_navigation)
 	if is_instance_valid(heroe) && !stun:
 		if get_parent().get_name() == "Scene_Fight_Jsn" && manual_navigation:
 			stun = false
@@ -40,7 +40,7 @@ func _on_Sprite_animation_finished():
 		animate("idle")
 		speed = 2.5
 		mana_using(SPELLS_PARAMETERS.manacost_spear_punch_Her)
-		print(true)
+		#(true)
 		$Handle_Attack/CollisionShape2D.set_disabled(false)
 """
 

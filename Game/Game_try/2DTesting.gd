@@ -6,11 +6,11 @@ class_name IBO
 #	$KinematicBody2D.translate(Vector2(0,1))
 
 func say_hello():
-	print("Hello!")
+	#("Hello!")
 
 static func ibo():
-	print("a")
-	print("b")
+	#("a")
+	#("b")
 func foo():
 	return("bar")
 var d = "assd"
@@ -22,31 +22,31 @@ func _ready():
 	var splited_initial = "12 9 7.5 6.8 5.1 4.3".split(" ")
 	for i in range(splited_initial.size()):
 		sum += float(splited_initial[i])
-	print(sum/splited_initial.size())
-	print(splited_initial.size())
+	#(sum/splited_initial.size())
+	#(splited_initial.size())
 	var q = 0
 	for i in range(splited_initial.size()):
 		q += pow((float(splited_initial[i]) - sum/splited_initial.size()), 2)
 	q = sqrt(q/(splited_initial.size() - 1))
-	print(q)
+	#(q)
 	
 	set("d", 15)
-	#print(self.get_property_list())
+	##(self.get_property_list())
 	#var her = load(namm)
 	#get_tree().change_scene_to(her)
 	#her.instance().modulate = Color(0.3, 0.3, 0.3, 0)
 	
 	#get_tree().get_current_scene().free()
-	#print(get_tree().get_current_scene().get_name())
+	##(get_tree().get_current_scene().get_name())
 	#self.modulate.a = 1
 	#var ibo = self.get("modulate")[3]
-	#print(ibo)
+	##(ibo)
 	#var property_name = "a"
 	#var property_value = str2var("Vector2(0, 0)")
 
 
 	#var a = funcref($Ibo, "foo")
-	#print(a) # Prints bar
+	##(a) # #s bar
 
 
 
@@ -55,14 +55,14 @@ func _ready():
 	#self.add_child(nodil)
 	#self.get_node("Ibo").queue_free()
 	#yield(get_tree(), "idle_frame")
-	#print(nodil)
-	#print(self.get_node("Ibo"))
+	##(nodil)
+	##(self.get_node("Ibo"))
 
 	#$Area2D.connect("body_entered", self, "_on_Area2D_body_entered", [1, 2])
-	#print(get_segments_from_CollisionShape_or_collisionPolygon($Area2D))
-	#print($Area2D/CollisionShape2D.shape.extents.x)
-	#print(Vector2(0, 50).cross(Vector2(50,-20)))
-	#print(intersecting_vectors(get_segments_from_CollisionShape_or_collisionPolygon($Area2D2), [[Vector2(196,21), Vector2(210,22)]]))
+	##(get_segments_from_CollisionShape_or_collisionPolygon($Area2D))
+	##($Area2D/CollisionShape2D.shape.extents.x)
+	##(Vector2(0, 50).cross(Vector2(50,-20)))
+	##(intersecting_vectors(get_segments_from_CollisionShape_or_collisionPolygon($Area2D2), [[Vector2(196,21), Vector2(210,22)]]))
 
 
 func get_segments_from_CollisionShape_or_collisionPolygon(area):
@@ -110,8 +110,8 @@ func intersecting_vectors(mass_segment1, mass_segment2):
 	# правильные: var s = (A.x + t * (B.x - A.x) - C.x)/(D.x - C.x)
 	var is_intersection = false
 	for i in range(mass_segment1.size()):
-		#print((B.x - A.x))
-		#print((D.x - C.x))
+		##((B.x - A.x))
+		##((D.x - C.x))
 		A.x = mass_segment1[i][0].x
 		A.y = mass_segment1[i][0].y
 		B.x = mass_segment1[i][1].x
@@ -124,8 +124,8 @@ func intersecting_vectors(mass_segment1, mass_segment2):
 			if ((B.x - A.x) * (D.y - C.y) == (B.y - A.y) * (D.x - C.x)):
 				pass
 			else:
-				#print(((B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x)))
-				#print(((mass_segment1[i][1].x - mass_segment1[i][0].x) * (mass_segment2[i][1].x - mass_segment2[i][0].x) - (mass_segment1[j][1].y - mass_segment1[j][0].y) * (mass_segment2[j][1].y - mass_segment2[j][0].y)))
+				##(((B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x)))
+				##(((mass_segment1[i][1].x - mass_segment1[i][0].x) * (mass_segment2[i][1].x - mass_segment2[i][0].x) - (mass_segment1[j][1].y - mass_segment1[j][0].y) * (mass_segment2[j][1].y - mass_segment2[j][0].y)))
 				t = ((C.x - A.x) * (D.y - C.y) - (C.y - A.y) * (D.x - C.x)) / ((B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x))
 				s = (A.x + t * (B.x - A.x) - C.x)/(D.x - C.x)
 				if s >= 0 && s <= 1 && t >= 0 && t <= 1:
@@ -137,13 +137,13 @@ func intersecting_vectors(mass_segment1, mass_segment2):
 	#var s = (A.x - C.x + (C.y - A.y)/(B.y - A.y) * (B.x - A.x)) / ((D.x - C.x) - (D.y - C.y)/(B.y - A.y) * (B.x - A.x))
 	#var ibo = (C.x + s * (D.x - C.x) - A.x)/(B.x - A.x)
 	#var t = ((C.y - A.y) * (D.x - C.x) + (A.x - C.x) * (D.y - C.y)) / ((B.x - A.x) * (D.y - C.y) - (B.y - A.y) * (D.x - C.x))
-	#print(ibo)
+	##(ibo)
 	return false
 
 
 
 func _on_Area2D_body_entered(tody = null, mda = 5, k = 11):
-	print(tody)
-	print(mda)
-	print(k)
+	#(tody)
+	#(mda)
+	#(k)
 	

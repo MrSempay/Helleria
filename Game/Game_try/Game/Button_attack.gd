@@ -21,12 +21,12 @@ var Attack3 = Attack2.new()
 func _pressed():
 	#GLOBAL.Attack = 100
 	#Attack1.RUN(GLOBAL.Attack)
-	#print("Hello world!")
+	##("Hello world!")
 	#text = str(GLOBAL.counter + 1)
 	if Attack3.damage(GLOBAL.counter) > 0:
 		GLOBAL.counter += 1
-		print("Damage: 1")
-		print("Health: ", Attack3.damage(GLOBAL.counter), "\n")
+		#("Damage: 1")
+		#("Health: ", Attack3.damage(GLOBAL.counter), "\n")
 	else:
 		GLOBAL.counter += 1
 	#	text = str(GLOBAL.counter)

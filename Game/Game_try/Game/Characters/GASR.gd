@@ -118,11 +118,11 @@ func _ready():
 	$Sprite.connect("animation_finished", self, "_on_Sprite_animation_finished")
 
 func _physics_process(delta):
-	#print(chains_ready["damage_block_chain_ready"])
+	##(chains_ready["damage_block_chain_ready"])
 	health = $health_Enemy_1.value
-	#print(str(self.get_global_position()) + " HER ")
-	#print(get_parent().triggered_enemies[name])
-	#print(get_parent().triggered_enemies[name_character])
+	##(str(self.get_global_position()) + " HER ")
+	##(get_parent().triggered_enemies[name])
+	##(get_parent().triggered_enemies[name_character])
 	if manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
 		if target_points_for_manual_navigation != []:
 			current_target = target_points_for_manual_navigation[0]
@@ -135,16 +135,16 @@ func _physics_process(delta):
 			get_parent().triggered_enemies[name] = should_be_triggered_after_manual_navigation
 			if get_parent().has_method("already_finished_manual_navigation_which_started_from_area_entering") && area_from_which_manual_navigation_was_started != null:
 				get_parent().already_finished_manual_navigation_which_started_from_area_entering(self.name_character, area_from_which_manual_navigation_was_started)
-	#print(self.global_position)
-	#print(current_target)
-	#print(manual_navigation)
-	#print(trigger_of_ally)
-	#print($RayCastVertical_3.get_collider() )
-	#print(nav_path)
-	#print($Sprite.get_animation())
-	#print(nav_path)
-	#print(speed)
-	#print(self.global_position.x)
+	##(self.global_position)
+	##(current_target)
+	##(manual_navigation)
+	##(trigger_of_ally)
+	##($RayCastVertical_3.get_collider() )
+	##(nav_path)
+	##($Sprite.get_animation())
+	##(nav_path)
+	##(speed)
+	##(self.global_position.x)
 	
 
 	
@@ -172,7 +172,7 @@ func _physics_process(delta):
 		velocity = move_and_slide(velocity, FOR_ANY_UNITES.FLOOR)
 	else:
 			
-		#print("Еблявая хуета")
+		##("Еблявая хуета")
 		if $Sprite.get_animation() == "jumping_to_point":
 			manual_navigation = false
 			speed = 2.5
@@ -180,7 +180,7 @@ func _physics_process(delta):
 			update_way()
 	
 	if get_parent().has_node("Heroe") && !stun && !special_physics_process_controlling:
-		#print(heroe.global_position.x)
+		##(heroe.global_position.x)
 		if((self.global_position.x) - get_parent().get_node("Heroe").global_position.x) > 0:
 			$Handle_Attack.set_position(Vector2(-position_attack_area_x, -6))
 			$Sprite.flip_h = true
@@ -189,11 +189,11 @@ func _physics_process(delta):
 			$Sprite.flip_h = false
 		#var heroe = get_parent().get_node("Heroe")
 		if get_parent().get_node("Heroe").in_invisibility or get_parent().triggered_enemies[name_character] == true:       # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping			
-			#print("SHIT")
+			##("SHIT")
 			if j < nav_path.size() - 1:
-				#print(true)
+				##(true)
 				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
-					#print(false)
+					##(false)
 					if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
 						if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && nav_path[j].y > nav_path[j+1].y:
 							start_jump_enemy()
@@ -206,13 +206,13 @@ func _physics_process(delta):
 			if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 				if $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
 					stop_machine = false
-			#print(j < nav_path.size() - 1)
-			#print(current_target)
-			#print(get_parent().triggered_enemies[name_character])
-			#print(nav_path)
-			#print(nav_path)
+			##(j < nav_path.size() - 1)
+			##(current_target)
+			##(get_parent().triggered_enemies[name_character])
+			##(nav_path)
+			##(nav_path)
 			if j < nav_path.size() - 1 && ($Sprite.get_animation() == "idle" or $Sprite.get_animation() == "jump" or $Sprite.get_animation() == "run" or $Sprite.get_animation() == "jumping_to_point" or $Sprite.get_animation() == "preparing_jumping_to_point") && $Handle_Attack/CollisionShape2D.is_disabled():
-				#print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+				##("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 				if (nav_path[j].x - nav_path[j+1].x) >= 0:
 					$RayCastHorizontal_1.set_cast_to(Vector2(-19,0))
 					$RayCastHorizontal_2.set_cast_to(Vector2(-19,0))
@@ -246,9 +246,9 @@ func _physics_process(delta):
 		
 		
 func start_jump_enemy():
-	#print("IBOO")
+	##("IBOO")
 	if is_on_floor() or $RayCastVertical_3.get_collider():
-		#print("AAAAAAAAAAAAA")
+		##("AAAAAAAAAAAAA")
 		#animate("jump")
 		velocity.y = -JUMP_POWER 
 
@@ -317,7 +317,7 @@ func squall_attack(amount_attacks):
 			spells_ready["squall_attack_ready"] = false
 			amount_squall_attacks = amount_attacks
 			animate("A_squall_attack")
-			#print(SPELLS_PARAMETERS.characters[name_character][$Sprite.get_animation().substr(2, $Sprite.get_animation().length())].has($Sprite.get_animation().substr(2, $Sprite.get_animation().length()) + "_thrust"))
+			##(SPELLS_PARAMETERS.characters[name_character][$Sprite.get_animation().substr(2, $Sprite.get_animation().length())].has($Sprite.get_animation().substr(2, $Sprite.get_animation().length()) + "_thrust"))
 			
 
 
@@ -483,7 +483,7 @@ func _on_timer_for_disappearance_wall_timeout(stone_wall1, timer):
 """ --------------------------------------------- """
 
 func creating_timer_for_calldown(spell):
-	print(spell)
+	#(spell)
 	var timer_for_calldown = Timer.new()
 	timer_for_calldown.set_wait_time(SPELLS_PARAMETERS.characters[name_character][spell][spell + "_calldown"])
 	timer_for_calldown.connect("timeout", self, "_on_timer_for_calldown_spells_timeout", [spell, timer_for_calldown])
@@ -514,7 +514,7 @@ func _on_Sprite_animation_finished():
 			t = 0
 			animate("idle")
 	if $Sprite.get_animation() == "preparing_jumping_to_point":
-		#print(true)
+		##(true)
 		animate("jumping_to_point")
 	#if $Sprite.get_animation() == "jumping_to_point":
 	#	animate("idle")

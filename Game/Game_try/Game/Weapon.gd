@@ -65,7 +65,7 @@ func _physics_process(delta):
 				timer_of_stone.start()
 				button_second.set_disabled(true)
 			elif GLOBAL.counter_of_stone > 0 && heroe_mana.value < stone_1.manacost && GLOBAL.counter_of_second_button > 0:
-				print("You haven't mana for this spell, need ", (stone_1.manacost - heroe_mana.value), " more mana!")
+				#("You haven't mana for this spell, need ", (stone_1.manacost - heroe_mana.value), " more mana!")
 				GLOBAL.counter_of_stone -= 1
 		"hedgehod":
 			var hedgehod_1 = hedgehod.instance()
@@ -77,9 +77,9 @@ func _physics_process(delta):
 				timer_of_hedgehod.start()
 				button_third.set_disabled(true)
 			elif GLOBAL.counter_of_hedgehod > 0 && heroe_mana.value < hedgehod_1.manacost:
-				print("You haven't mana for this spell, need ", (hedgehod_1.manacost - heroe_mana.value), " more mana!")
+				#("You haven't mana for this spell, need ", (hedgehod_1.manacost - heroe_mana.value), " more mana!")
 				GLOBAL.counter_of_hedgehod -= 1
-				print(false)
+				#(false)
 		"stone_sword":
 			if GLOBAL.counter_of_first_button == 1 && first_spawn:
 				first_spawn = false
@@ -97,11 +97,11 @@ func attack():
 	
 
 func _on_Weapon_body_entered(body: Node) -> void:
-	#print(true)
+	##(true)
 	if body.has_method("handle_hit") && !body.has_method("start_jump"):
 		body.handle_hit(damage)
 	#if body.has_method("attacl"):
-		#print(shape.is_disabled())
+		##(shape.is_disabled())
 	match GLOBAL.spell_of_button:
 		"sheld":
 			pass

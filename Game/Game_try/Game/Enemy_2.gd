@@ -31,9 +31,9 @@ func handle_hit(damage):
 	$HP_Enemy_1.value -= damage
 	$value_of_HP.text = str($HP_Enemy_1.value)
 	if $HP_Enemy_1.value > 0:
-		print(name_character + " was hit! Health of enemy: ", $HP_Enemy_1.value)
+		#(name_character + " was hit! Health of enemy: ", $HP_Enemy_1.value)
 	else:
-		print(name_character + " was destroyed")
+		#(name_character + " was destroyed")
 		GLOBAL.life_first_enemy = false
 		queue_free()
 

@@ -11,7 +11,7 @@ func _ready():
 
 
 func _on_Timer_timeout():
-	#print(i)
+	##(i)
 	if i > 0.1:
 		i = i - 0.1
 		$RichTextLabel.set_text(str(i))

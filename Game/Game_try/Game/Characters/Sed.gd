@@ -89,13 +89,13 @@ func _ready():
 
 func _physics_process(delta):
 	health = $health_Enemy_1.value
-	#print(self.get_global_position())
+	##(self.get_global_position())
 	#if j < nav_path.size() - 1:
 	#	if (nav_path[j].x - nav_path[j+1].x) >= 0:
 	#		$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(-192,0))
 	#	if (nav_path[j].x - nav_path[j+1].x) <= -0:
 	#		$RayCastHorizontal_For_Heroe.set_cast_to(Vector2(192,0))
-	#print($RayCastHorizontal_For_Heroe.get_cast_to())
+	##($RayCastHorizontal_For_Heroe.get_cast_to())
 	if manual_navigation && (self.global_position.x - nav_path[nav_path.size() - 1].x < 20 && self.global_position.x - nav_path[nav_path.size() - 1].x > -20 && self.global_position.y - nav_path[nav_path.size() - 1].y < 20 && self.global_position.y - nav_path[nav_path.size() - 1].y > -20) && $Sprite.get_animation() == "run":
 		if target_points_for_manual_navigation != []:
 			current_target = target_points_for_manual_navigation[0]
@@ -108,8 +108,8 @@ func _physics_process(delta):
 			get_parent().triggered_enemies[name] = should_be_triggered_after_manual_navigation
 			if get_parent().has_method("already_finished_manual_navigation_which_started_from_area_entering") && area_from_which_manual_navigation_was_started != null:
 				get_parent().already_finished_manual_navigation_which_started_from_area_entering(self.name_character, area_from_which_manual_navigation_was_started)
-	#print("ibo")
-	#print($Sprite.get_animation())
+	##("ibo")
+	##($Sprite.get_animation())
 	if $Sprite.get_animation() == "idle_shield":
 		if $Sprite.flip_h == true:
 			armor_left = SPELLS_PARAMETERS.fraction_absorbed_damage_armor_Sed
@@ -162,10 +162,10 @@ func _physics_process(delta):
 					start_jump_enemy()
 				if $RayCastHorizontal_3.get_collider():
 					start_jump_enemy()
-			#print($RayCastHorizontal_For_Heroe.get_collider())
-			#print(get_parent().get_node("Heroe/RayCastForFloor").get_collider())
-			#print($mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_chaining_Sed)
-			#print($Sprite.get_animation() == "idle")
+			##($RayCastHorizontal_For_Heroe.get_collider())
+			##(get_parent().get_node("Heroe/RayCastForFloor").get_collider())
+			##($mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_chaining_Sed)
+			##($Sprite.get_animation() == "idle")
 			if $RayCastHorizontal_For_Heroe.get_collider() && get_parent().get_node("Heroe/RayCastForFloor").get_collider() && $mana_Enemy_1.value >= SPELLS_PARAMETERS.manacost_chaining_Sed && $Sprite.get_animation() == "idle":
 				if ((((self.global_position.x - heroe.global_position.x) < 800) && ((self.global_position.x - heroe.global_position.x) > 53)) or (((self.global_position.x - heroe.global_position.x) > -800) && ((self.global_position.x - heroe.global_position.x) < -53))) && chaining_ready && $RayCastVertical_3.get_collider() && $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
 						if((self.global_position.x) - heroe.global_position.x) > 0:
@@ -297,12 +297,12 @@ func _on_Timer_For_Updaiting_Way_timeout():
 	if get_parent().has_node("Heroe"):
 		#if get_parent().current_target != Vector2(0,0):
 		if !manual_navigation:
-			#print(true)
-			#print(get_parent().current_target)
+			##(true)
+			##(get_parent().current_target)
 			$NavigationAgent2D.set_target_location(current_target)
 			$NavigationAgent2D.get_final_location()
 			nav_path = $NavigationAgent2D.get_nav_path()
-			#print(nav_path)
+			##(nav_path)
 			#get_parent().get_node("Line2D2").points = $NavigationAgent2D.get_nav_path()
 			j = 0
 

@@ -12,8 +12,8 @@ func _ready():
 func _physics_process(delta):
 
 	#if get_name() == "Torch12":
-	#	print(variation_energy)
-	#	print(fading)
+	#	#(variation_energy)
+	#	#(fading)
 	if ($AnimatedSprite.get_animation() == "torchOn" or $AnimatedSprite.get_animation() == "glowing") && fading == null:
 		variation_energy = 2.8 * scaleT
 	# Amendment of speed of fading torches

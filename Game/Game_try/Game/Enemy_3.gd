@@ -156,8 +156,8 @@ func _physics_process(delta):
 		$Timers/Timer_For_Updaiting_Way.set_wait_time(0.3)
 	if get_parent().has_node("Heroe") && heroe == null:
 		heroe = get_parent().get_node("Heroe")
-	#print($Sprite.get_animation())
-	#print(speed)
+	##($Sprite.get_animation())
+	##(speed)
 	if !manual_navigation && heroe != null && is_instance_valid(heroe):
 		if get_parent().get_name() != "Garsia_Boss_Fight_Scene":
 			current_target = heroe.global_position
@@ -334,9 +334,9 @@ func _physics_process(delta):
 						if $RayCastHorizontal_3.get_collider():
 							start_jump_enemy()
 
-			#print($Sprite.get_frame())
-			#print($Sprite.get_animation())
-			#print(speed)
+			##($Sprite.get_frame())
+			##($Sprite.get_animation())
+			##(speed)
 			if j < nav_path.size() - 1 && $Sprite.get_animation() != "stone" && $Sprite.get_animation() != "stoneSword" && $Sprite.get_animation() != "hedgehod":
 					if (nav_path[j].x - nav_path[j+1].x) >= 0:
 							$RayCastHorizontal_1.set_cast_to(Vector2(-19,0))

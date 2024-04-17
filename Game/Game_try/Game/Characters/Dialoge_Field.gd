@@ -40,7 +40,7 @@ func _ready():
 		modulate = Color(0.0, 0.0, 0.0, 1.0)
 		dialoge_name = GLOBAL.name_of_dialoge_for_dialoge_field_scene
 		current_scene = GLOBAL.name_of_dialoge_for_dialoge_field_scene.split("-")[0]
-		if file.open("res://Dialoges/"+ current_scene + "/" + dialoge_name + "/Text_D/" + information_about_current_dialogue_tree["first_dialoge"] + "/" + information_about_current_dialogue_tree["first_dialoge"] + ".txt", File.READ) == 7:
+		if file.open("res://Dialoges/"+ current_scene + "/" + dialoge_name + "/Text_D/" + information_about_current_dialogue_tree["dialogue_name"] + "/" + information_about_current_dialogue_tree["dialogue_name"] + ".txt", File.READ) == 7:
 			GLOBAL.scene(GLOBAL.name_of_dialoge_for_dialoge_field_scene.split("-")[1], false)
 			queue_free()
 			return
@@ -78,7 +78,7 @@ func _on_Dialoge_Field_pressed():
 				return
 			self.set_visible(false)
 			file.close()
-			print(current_scene)
+			#(current_scene)
 			current_scene.dialoge_finished(dialoge_name)
 		mouse_in_area = true
 		can_press = false
@@ -102,18 +102,18 @@ func resiz1e():
 		
 func _on_buttons_for_choice_pressed(button):
 	#information_about_current_dialogue_tree["index_of_choice"] = button.get_text()[0]
-	print(button.get_text()[0])
-	#print(information_about_current_dialogue_tree["dialogue_name"])
-	#print(information_about_current_dialogue_tree["dialogue_name"])
+	#(button.get_text()[0])
+	##(information_about_current_dialogue_tree["dialogue_name"])
+	##(information_about_current_dialogue_tree["dialogue_name"])
 	information_about_current_dialogue_tree["dialogue_name"] = information_about_current_dialogue_tree["dialogue_name"].left(information_about_current_dialogue_tree["index_of_depth_dialogue"]) + button.get_text()[0] + information_about_current_dialogue_tree["dialogue_name"].right(information_about_current_dialogue_tree["index_of_depth_dialogue"] + 1)
-	print(information_about_current_dialogue_tree["dialogue_name"])
+	#(information_about_current_dialogue_tree["dialogue_name"])
 
 	information_about_current_dialogue_tree["index_of_depth_dialogue"] += 2
 	var dir_of_next_dialogue = Directory.new()
-	#print(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"])
+	##(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"])
 	if dir_of_next_dialogue.open(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"]) == OK:
 		file.close()
-		print(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"] + "/" +  information_about_current_dialogue_tree["dialogue_name"] + ".txt")
+		#(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"] + "/" +  information_about_current_dialogue_tree["dialogue_name"] + ".txt")
 		if file.open(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"] + "/" +  information_about_current_dialogue_tree["dialogue_name"] + ".txt", File.READ) == OK:
 			var k = str(file.get_line())
 			$Sprite.set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))

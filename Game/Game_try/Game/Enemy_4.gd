@@ -12,9 +12,9 @@ func handle_hit(damage):
 	$health_Enemy_1.value -= damage
 	$value_of_HP.text = str($health_Enemy_1.value)
 	if $health_Enemy_1.value > 0:
-		print(name_enemy + " was hit! Health of enemy: ", $health_Enemy_1.value)
+		#(name_enemy + " was hit! Health of enemy: ", $health_Enemy_1.value)
 	else:
-		print(name_enemy + " was destroyed")
+		#(name_enemy + " was destroyed")
 		GLOBAL.life_first_enemy = false
 		queue_free()
 
@@ -31,7 +31,7 @@ func _physics_process(delta):
 	
 		if abs((self.global_position.x - 0) - ally.global_position.x) < abs((self.global_position.x) - heroe.global_position.x):
 			$Sprite.flip_h = true
-			print(true)
+			#(true)
 		
 		
 		

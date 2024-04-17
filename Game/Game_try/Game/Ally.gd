@@ -16,9 +16,9 @@ func handle_hit(damage):
 	$HP_Ally.value -= damage
 	$value_of_HP.text = str($HP_Ally.value)
 	if $HP_Ally.value > 0:
-		print(name_ally + " was hit! Health of enemy: ", $HP_Ally.value)
+		#(name_ally + " was hit! Health of enemy: ", $HP_Ally.value)
 	else:
-		print(name_ally + " was destroyed")
+		#(name_ally + " was destroyed")
 		queue_free()
 
 

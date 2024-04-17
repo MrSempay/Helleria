@@ -54,9 +54,9 @@ var cameras = {
 }
 
 var died_enemies_at_first_level = {
-	"Jeison": true,
-	"Adalard": true,
-	"Belotur": true,
+	"Jeison": false,
+	"Adalard": false,
+	"Belotur": false,
 	"Garsia": false,
 	"Akira": false,
 	"Aglea": false
@@ -199,24 +199,24 @@ func save_game(main_scene):
 		}
 		
 	file.open("user://hellaria.txt", File.WRITE_READ)
-	#print(data_save)
+	##(data_save)
 	file.store_var(to_json(data_save))
-	print(file.get_path_absolute())
+	#(file.get_path_absolute())
 	file.close()
 
 func load_game():
 	file.open("user://hellaria.txt", File.READ)
 	var loaded_data = JSON.parse(file.get_var()).get_result()
 	loaded_data = check_type_for_detectingVector2(loaded_data)
-	#print(loaded_data["Enemies"]["Belotur"])
+	##(loaded_data["Enemies"]["Belotur"])
 	#for i in range(loaded_data["Enemies"].size()):
 	#	for key in loaded_data["Enemies"][i].keys():
 	#		if key == "speed":
-	#			print(typeof(loaded_data["Enemies"][i][key]))
+	#			#(typeof(loaded_data["Enemies"][i][key]))
 	file.close()
 	for key in loaded_data["GLOBAL"].keys():
 		set(key, loaded_data["GLOBAL"][key])
-	#print(loaded_data["Snares_Of_Boss"])
+	##(loaded_data["Snares_Of_Boss"])
 	GLOBAL.scene(loaded_data["scene"][0])
 	yield(get_tree(), "idle_frame")
 	var main_scene = get_tree().get_current_scene()
@@ -397,8 +397,8 @@ func intersecting_vectors(mass_segment1, mass_segment2):
 func making_animation_for_sprite_from_folder(path, sprite, anim_name, animation_loop = false, sprite_position = Vector2(0, 0), fps = 5, start_animation_after_completing = true):
 	var dir_animation = Directory.new()
 	if dir_animation.open(path) == OK:
-		#print(anim_name)
-		#print(sprite.get_sprite_frames().get_animation_names())
+		##(anim_name)
+		##(sprite.get_sprite_frames().get_animation_names())
 		dir_animation.list_dir_begin(true)
 		var animation_frame = dir_animation.get_next()
 		if sprite.get_sprite_frames() == null:
@@ -410,7 +410,7 @@ func making_animation_for_sprite_from_folder(path, sprite, anim_name, animation_
 		sprite.scale = Vector2(2, 2)
 		while animation_frame != "":
 			if not animation_frame.ends_with(".import"):
-				#print(animation_frame)
+				##(animation_frame)
 				sprite.get_sprite_frames().add_frame(anim_name, load(path + "/" + animation_frame))
 			animation_frame = dir_animation.get_next()
 	if start_animation_after_completing:

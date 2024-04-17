@@ -16,7 +16,7 @@ func Fight_Scene():
 func _ready():
 	if self.has_node("Areas_For_Floors"):
 		for i in range($Areas_For_Floors.get_children().size()):
-			#print($Areas_For_Floors.get_children())
+			##($Areas_For_Floors.get_children())
 			$Areas_For_Floors.get_children()[i].connect("area_entered", self, "_on_Area_For_Floor_entered", [$Areas_For_Floors.get_children()[i]])
 			
 
@@ -27,13 +27,13 @@ func _on_Area_For_Floor_entered(area, area_which_was_triggered):
 	if area.get_name() == "Area_For_Stop_Machine":
 		enemies_on_floor[area.get_parent().get_name()] = area_which_was_triggered.get_name().split("_")[1]
 		#if area.get_parent().get_name() == "Adalard":
-		#53н7 	print(enemies_on_floor["Adalard"])
+		#53н7 	#(enemies_on_floor["Adalard"])
 	if area.get_name() == "Heroe_Area":
 		heroe_on_floor = area_which_was_triggered.get_name().split("_")[1]
 		
 func _on_NoSpeed_Area2_body_entered(body):
 		if body.has_method("enemy"):
-			print("TRUE")
+			#("TRUE")
 			if body.get_node("RayCastHorizontal_For_Heroe").get_collider():
 				if !body.get_node("RayCastHorizontal_For_Heroe").get_collider().has_method("Heroe"):
 					body.speed = 0

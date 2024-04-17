@@ -166,11 +166,11 @@ func _ready():
 	anim_player1 = get_node("CollisionPolygon2D/AnimationPlayer")
 	anim_player2 = $AnimationPlayer
 
-	#print(self.get_name())
+	##(self.get_name())
 	name_character = self.get_name()
 	health = SPELLS_PARAMETERS.characters[name_character]["health"]
 	mana = SPELLS_PARAMETERS.characters[name_character]["mana"]
-	#print(get_children())
+	##(get_children())
 	$health_Enemy_1.max_value = SPELLS_PARAMETERS.characters[name_character]["health"]
 	$health_Enemy_1.value = SPELLS_PARAMETERS.characters[name_character]["health"]
 	$value_of_health.text = str($health_Enemy_1.value)
@@ -194,24 +194,24 @@ var angle_to_X_Axe
 
 func _physics_process(delta):
 
-	#print(chains_ready["damage_block_chain_ready"])
+	##(chains_ready["damage_block_chain_ready"])
 	health = $health_Enemy_1.value
 	mana = $mana_Enemy_1.value
-	#print(str(self.get_global_position()) + " HER ")
-	#print(get_parent().triggered_enemies[name])
-	#print(get_parent().triggered_enemies[name_character])
+	##(str(self.get_global_position()) + " HER ")
+	##(get_parent().triggered_enemies[name])
+	##(get_parent().triggered_enemies[name_character])
 	#if name_character == "Garsia":
-		#print(flying_mod)
-		#print(special_physics_process_controlling)
-	#print(self.global_position)
-	#print(current_target)
-	#print(manual_navigation)
-	#print(trigger_of_ally)
-	#print($RayCastVertical_3.get_collider() )
-	#print(nav_path)
-	#print(nav_path)
-	#print(speed)
-	#print(self.global_position.x)
+		##(flying_mod)
+		##(special_physics_process_controlling)
+	##(self.global_position)
+	##(current_target)
+	##(manual_navigation)
+	##(trigger_of_ally)
+	##($RayCastVertical_3.get_collider() )
+	##(nav_path)
+	##(nav_path)
+	##(speed)
+	##(self.global_position.x)
 	
 
 	
@@ -232,7 +232,7 @@ func _physics_process(delta):
 		ally = get_parent().get_node("Ally")
 
 	if !manual_navigation && heroe != null && is_instance_valid(heroe):
-		#print("???")
+		##("???")
 		current_target = heroe.global_position
 	if nav_path.size() > j+1:
 		angle_to_X_Axe = get_angle_incline_of_segment_to_X_axeDEGREES($RayCastHorizontal_3.global_position, nav_path[j + 1], false)
@@ -241,7 +241,7 @@ func _physics_process(delta):
 
 	if can_fly:
 		if $RayCastVertical_3.get_collider() && flying_mod && delay_for_monitoring_ground && (!$RayCastHorizontal_3.get_collider() && !$RayCastHorizontal_2.get_collider()):
-			#print("che zs hueta?")
+			##("che zs hueta?")
 			animate("ending_flying")
 			#anim_player2.play("Bat's Off Light")
 			delay_for_monitoring_ground = false
@@ -250,9 +250,9 @@ func _physics_process(delta):
 			#$CollisionPolygon2D.disabled = false
 			#$CollisionShape2D.disabled = false
 		if !$RayCastVertical_3.get_collider() && $Sprite.get_animation() != "starting_flying" && $Sprite.get_animation() != "ending_flying" && $Sprite.get_animation() != "flying":
-			print("XNJ PF T<FYFZ {ETNF!&!&!&}")
+			#("XNJ PF T<FYFZ {ETNF!&!&!&}")
 			if $Sprite.get_animation() != "A_teleport_end":
-				print("???")
+				#("???")
 				animate("starting_flying")
 				#if anim_player2.get_current_animation() != "Bat's Light" or $Light2D.energy < 2:
 				#	anim_player2.play("Bat's Light")
@@ -278,18 +278,18 @@ func _physics_process(delta):
 	
 	""" physics for spetial controlong """
 	#if name_character == "Garsia":
-	#	print(anim_player2.get_current_animation())
-	#	print($Light2D.energy)
+	#	#(anim_player2.get_current_animation())
+	#	#($Light2D.energy)
 	
-	print($Sprite.get_animation())
+	#($Sprite.get_animation())
 	if special_physics_process_controlling:
 		if ($Sprite.get_animation() == "flying" or $Sprite.get_animation() == "starting_flying" or $Sprite.get_animation() == "ending_flying") && flying_mod:
 			#if nav_path.size() > j+1:
-				#print(nav_path[j + 1].y)
-				#print($RayCastHorizontal_3.global_position.y)
+				##(nav_path[j + 1].y)
+				##($RayCastHorizontal_3.global_position.y)
 			#get_node("CollisionPolygon2D/AnimationPlayer").play("щгп")
-			#print(get_angle_incline_of_segment_to_X_axeDEGREES($RayCastHorizontal_3.global_position, nav_path[j + 1], true))
-			#print(Vector2(0, get_angle_incline_of_segment_to_X_axeDEGREES($RayCastHorizontal_3.global_position, nav_path[j + 1] + Vector2(0, 15), true) * 1 * scale_speed_moving))
+			##(get_angle_incline_of_segment_to_X_axeDEGREES($RayCastHorizontal_3.global_position, nav_path[j + 1], true))
+			##(Vector2(0, get_angle_incline_of_segment_to_X_axeDEGREES($RayCastHorizontal_3.global_position, nav_path[j + 1] + Vector2(0, 15), true) * 1 * scale_speed_moving))
 			if $RayCastHorizontal_3.get_collider():
 				move_and_collide(Vector2(0, get_angle_incline_of_segment_to_X_axeDEGREES($RayCastHorizontal_3.global_position, nav_path[j + 1] , true) * 3 * scale_speed_moving))
 			elif $RayCastHorizontal_2.get_collider():
@@ -304,7 +304,7 @@ func _physics_process(delta):
 	""" --------------------------------- """
 	
 	if !stun && !special_physics_process_controlling:
-		#print(heroe.global_position.x)
+		##(heroe.global_position.x)
 		if get_parent().has_node("Heroe"):
 			if((self.global_position.x) - get_parent().get_node("Heroe").global_position.x) > 0:
 				$Handle_Attack.set_position(Vector2(-position_attack_area_x, -6))
@@ -315,44 +315,44 @@ func _physics_process(delta):
 		#var heroe = get_parent().get_node("Heroe")
 		if get_parent().get_name() != "root":
 			if get_parent().triggered_enemies[name_character] == true:   # This paragraph implemented for moving AI in "not-fight scenes". Here created algoritm for finding the shortest ways to heroe, alrotimes for jumping			
-				#print(name_character)
-				#print(nav_path)
-				#print(current_target)
-				#print(name_character)
-				#print("SHIT")
+				##(name_character)
+				##(nav_path)
+				##(current_target)
+				##(name_character)
+				##("SHIT")
 				if j < nav_path.size() - 1:
-					#print(true)
+					##(true)
 					if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
-						#print(false)
+						##(false)
 						if !$RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
 							if ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && nav_path[j].y > nav_path[j+1].y:
 								start_jump_enemy()
 					elif ($RayCastHorizontal_1.get_collider() or $RayCastHorizontal_2.get_collider() or $RayCastHorizontal_4.get_collider()) && !$RayCastVertical_2.get_collider() && nav_path[j].y > nav_path[j+1].y:
 								start_jump_enemy()
 					if $RayCastVertical.get_collider():
-						#print(speed)
+						##(speed)
 						#update_way()
-						#print( "Collider " + str($RayCastVertical.get_collider().global_position.y) )
-						#print( "path " + str(nav_path[1].y))
+						##( "Collider " + str($RayCastVertical.get_collider().global_position.y) )
+						##( "path " + str(nav_path[1].y))
 						if $RayCastVertical.get_collider().has_node("Area_To_Jump"):
 							if nav_path.size() == 2:
 								if GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider().get_node("Area_To_Jump")), [[nav_path[0], nav_path[1]]]):
 									start_jump_enemy()
-									#print(nav_path)
+									##(nav_path)
 							else:
 								if GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider().get_node("Area_To_Jump")), [[nav_path[0], nav_path[1]], [nav_path[1], nav_path[2]]]):
 									start_jump_enemy()
-									#print(nav_path)
+									##(nav_path)
 						if nav_path.size() == 2:
 							if !GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider()), [[nav_path[0], nav_path[1]]]):
 								start_jump_enemy()
-								#print(nav_path)
+								##(nav_path)
 						else:
 							if !GLOBAL.intersecting_vectors(GLOBAL.get_segments_from_CollisionShape_or_collisionPolygon($RayCastVertical.get_collider()), [[nav_path[0], nav_path[1]], [nav_path[1], nav_path[2]]]):
 								start_jump_enemy()
-								#print(nav_path)
+								##(nav_path)
 					if $RayCastHorizontal_3.get_collider() or $RayCastHorizontal_2.get_collider():
-						#print(flying_mod)
+						##(flying_mod)
 						if flying_mod:
 							special_physics_process_controlling = true
 						start_jump_enemy()
@@ -360,15 +360,15 @@ func _physics_process(delta):
 					if $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
 						stop_machine = false
 				#if name_character == "Garsia":
-				#	print($Sprite.get_animation())
-					#print("j " + str(nav_path[j].y))
-					#print("j + 1 " + str(nav_path[j + 1].y))
-				#	print(target_points_for_manual_navigation)
-				#	print(nav_path)
-				#print(current_target)
-				#print(speed)
+				#	#($Sprite.get_animation())
+					##("j " + str(nav_path[j].y))
+					##("j + 1 " + str(nav_path[j + 1].y))
+				#	#(target_points_for_manual_navigation)
+				#	#(nav_path)
+				##(current_target)
+				##(speed)
 				if j < nav_path.size() - 1 && ($Sprite.get_animation() == "idle" or $Sprite.get_animation() == "jump" or $Sprite.get_animation() == "run" or $Sprite.get_animation() == "jumping_to_point" or $Sprite.get_animation() == "preparing_jumping_to_point" or $Sprite.get_animation() == "flying" or $Sprite.get_animation() == "starting_flying" or $Sprite.get_animation() == "ending_flying") && $Handle_Attack/CollisionShape2D.is_disabled():
-					#print(get_parent().triggered_enemies[name_character])
+					##(get_parent().triggered_enemies[name_character])
 					j
 					if (nav_path[j].x - nav_path[j+1].x) > 0:
 						
@@ -381,14 +381,14 @@ func _physics_process(delta):
 						if !stop_machine:
 							move_and_collide(Vector2(-1,0) * speed * scale_speed_moving)
 							anim_player1.play("щгп")
-							print("ibo")
-							print(get_angle_incline_of_segment_to_X_axeDEGREES($RayCastHorizontal_3.global_position, nav_path[j + 1] + Vector2(0, 15), true) * 3 * scale_speed_moving)
+							#("ibo")
+							#(get_angle_incline_of_segment_to_X_axeDEGREES($RayCastHorizontal_3.global_position, nav_path[j + 1] + Vector2(0, 15), true) * 3 * scale_speed_moving)
 							if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
 								if !flying_mod:
 									animate("run")
 								else:
-									print($RayCastHorizontal_3.global_position)
-									print(nav_path[j + 1])
+									#($RayCastHorizontal_3.global_position)
+									#(nav_path[j + 1])
 									if $RayCastHorizontal_3.global_position.y > nav_path[j + 1].y:
 										move_and_collide(Vector2(0, get_angle_incline_of_segment_to_X_axeDEGREES($RayCastHorizontal_3.global_position, nav_path[j + 1], true)) * 3 * scale_speed_moving)
 									else:
@@ -405,8 +405,8 @@ func _physics_process(delta):
 						if !stop_machine:
 							move_and_collide(Vector2(1,0) * speed * scale_speed_moving)
 							anim_player1.play("щгп")
-							print("shit")
-							print(get_angle_incline_of_segment_to_X_axeDEGREES($RayCastHorizontal_3.global_position, nav_path[j + 1], true) * 3 * scale_speed_moving)
+							#("shit")
+							#(get_angle_incline_of_segment_to_X_axeDEGREES($RayCastHorizontal_3.global_position, nav_path[j + 1], true) * 3 * scale_speed_moving)
 							if $Sprite.get_animation() != "jumping_to_point" && $Sprite.get_animation() != "preparing_jumping_to_point":
 								if !flying_mod:
 									animate("run")
@@ -421,7 +421,7 @@ func _physics_process(delta):
 				if j < nav_path.size() - 1:
 					if ((self.global_position.x - nav_path[j+1].x) < stop_distance_to_point && (self.global_position.x - nav_path[j+1].x) > -stop_distance_to_point) && j < nav_path.size() - 1:
 						j += 1
-	#print(flying_mod)
+	##(flying_mod)
 	if !flying_mod:
 		if !$RayCastVertical_3.get_collider() or can_fly:
 			velocity.y += delta * 970 * scale_gravity
@@ -430,7 +430,7 @@ func _physics_process(delta):
 			#velocity.y = 0
 		else:
 				
-			#print("Еблявая хуета")
+			##("Еблявая хуета")
 			if $Sprite.get_animation() == "jumping_to_point":
 				manual_navigation = false
 				speed = 2.5
@@ -523,7 +523,7 @@ func squall_attack(amount_attacks):
 			spells_ready["squall_attack_ready"] = false
 			amount_squall_attacks = amount_attacks
 			animate("A_squall_attack")
-			#print(SPELLS_PARAMETERS.characters[name_character][$Sprite.get_animation().substr(2, $Sprite.get_animation().length())].has($Sprite.get_animation().substr(2, $Sprite.get_animation().length()) + "_thrust"))
+			##(SPELLS_PARAMETERS.characters[name_character][$Sprite.get_animation().substr(2, $Sprite.get_animation().length())].has($Sprite.get_animation().substr(2, $Sprite.get_animation().length()) + "_thrust"))
 			
 
 
@@ -827,7 +827,7 @@ func invisibility(condition_for_activation, target = null):
 						anim_player.add_animation("animation_invisibility", new_anim)
 						var track_idx = new_anim.add_track(Animation.TYPE_VALUE)
 						var animation_time = $Sprite.get_sprite_frames().get_frame_count("A_invisibility")/$Sprite.get_sprite_frames().get_animation_speed("A_invisibility")
-						print(animation_time)
+						#(animation_time)
 						new_anim.track_set_path(track_idx, ".:modulate:a")
 						new_anim.track_insert_key(track_idx, 0, 1.0)
 						new_anim.track_insert_key(track_idx, 2, 0.0)
@@ -855,7 +855,7 @@ func call_characters(names_characters_which_have_to_be_called, positions_for_spa
 	if mana_controlling("mana_control", name_of_spell) && spells_ready[name_of_spell + "_ready"]:
 		timers_for_consumption_health_or_mana[name_of_spell] = mana_controlling("mana_using", name_of_spell)
 		for i in range(names_characters_which_have_to_be_called.size()):
-			#print(names_characters_which_have_to_be_called[i])
+			##(names_characters_which_have_to_be_called[i])
 			array_of_characters_which_were_called.append(load("res://Game/Characters/" + names_characters_which_have_to_be_called[i] + ".tscn").instance())
 			array_of_characters_which_were_called[i].position = positions_for_spawn[i]
 			get_parent().triggered_enemies[names_characters_which_have_to_be_called[i]] = true
@@ -913,7 +913,7 @@ func _on_Sprite_animation_finished(by_stune = false):
 	$Sprite.set_speed_scale(1)
 	if !by_stune:
 		if $Sprite.get_animation()[0] == "A":
-			#print($Sprite.get_animation().split("_"))
+			##($Sprite.get_animation().split("_"))
 			if $Sprite.get_animation().split("_")[1] == "handle":
 				spells_ready["handle_attack_ready"] = true
 				animate("idle")
@@ -967,11 +967,11 @@ func _on_Sprite_animation_finished(by_stune = false):
 			"ending_flying":
 				animate("idle")
 			"A_teleport_start":
-				print("start")
+				#("start")
 				global_position = point_to_teleport
 				animate("A_teleport_end")
 			"A_teleport_end":
-				print("emd")
+				#("emd")
 				animate("idle")
 				speed = 2.5
 	else:

@@ -21,8 +21,8 @@ func _physics_process(delta):
 	yield(get_tree(), "idle_frame")
 	if self_sprite.get_animation() == "wall_destruction" && first_anim != "wall_destruction":
 		first_anim = "wall_destruction"
-	#print(self_sprite.get_frame())
-	#print(self_sprite.get_sprite_frames().get_animation_names())
+	##(self_sprite.get_frame())
+	##(self_sprite.get_sprite_frames().get_animation_names())
 	if first:
 		if self_sprite.is_flipped_h():
 			$CollisionShape2D.set_position($CollisionShape2D.get_position() + Vector2(16,0))
@@ -41,8 +41,8 @@ func creating_animations_for_wall_from_folder(path, fps_and_loop_for_each_animat
 		dir_of_dir_animations.list_dir_begin(true)
 		var animation = dir_of_dir_animations.get_next()
 		while animation != "":
-			#print(animation)
-			#print(self_sprite.get_sprite_frames())
+			##(animation)
+			##(self_sprite.get_sprite_frames())
 			if sprite.get_sprite_frames().get_animation_names().has(animation):
 				sprite.get_sprite_frames().clear(animation)
 			sprite = GLOBAL.making_animation_for_sprite_from_folder(path + animation, sprite, animation, fps_and_loop_for_each_animationDictionaryArrays[animation][1], Vector2(0, 0), fps_and_loop_for_each_animationDictionaryArrays[animation][0], false)

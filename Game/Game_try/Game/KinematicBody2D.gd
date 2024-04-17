@@ -48,10 +48,10 @@ func handle_hit(damage, damage_save = 0):
 	$HP_Heroe.value -= damage * armor * defense
 	$value_of_HP.text = str($HP_Heroe.value)
 	if $HP_Heroe.value > 0:
-		print("You were hit! Your health: ", $HP_Heroe.value)
+		#("You were hit! Your health: ", $HP_Heroe.value)
 	else:
 		GLOBAL.life_heroe = false
-		print("You died")
+		#("You died")
 		queue_free()
 		
 		
@@ -195,8 +195,8 @@ func _on_Button_Third_pressed():
 				picture_weapon.set_visible(true)
 				#for i in range(10):
 				#	array_arrows[int(i)] = arrow
-				#	print(array_arrows[int(i)].number)
-					#print(array_arrows[int(i)])
+				#	#(array_arrows[int(i)].number)
+					##(array_arrows[int(i)])
 			else:
 				picture_weapon.set_visible(false)
 				#defense = 1
@@ -213,8 +213,8 @@ func _on_Timer_Of_Spell_timeout():
 func _on_CanvasLayer_use_move_vector(move_vector):
 	$Icon.flip_h = move_vector.x < 0
 	var stone_position_1 = Vector2()
-	print(true)
-	print($Icon.flip_h)
+	#(true)
+	#($Icon.flip_h)
 	if move_vector.x < 0:
 		stone_position_1 = Vector2(-221, -68)
 		stone_position.set_position(stone_position_1)

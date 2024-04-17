@@ -71,9 +71,9 @@ func _on_Jump2_body_exited(body):
 		var event_dist_from_centreX = (event.position.x - get_parent().position.x - 187)
 		var event_dist_from_centreY = (event.position.y - get_parent().position.y - 1038)
 		var event_dist_from_centre = Vector2(event_dist_from_centreX, event_dist_from_centreY).length()
-		#print(get_parent().position.x - 187)
-		print(event_dist_from_centre)
-		#print(get_parent().position.y - 1038)
-		#print(event.position.y - get_parent().position.x - 1074)
+		##(get_parent().position.x - 187)
+		#(event_dist_from_centre)
+		##(get_parent().position.y - 1038)
+		##(event.position.y - get_parent().position.x - 1074)
 		
 	"""

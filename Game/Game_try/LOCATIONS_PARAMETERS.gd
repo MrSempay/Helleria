@@ -32,7 +32,7 @@ var locations = {
 			"Garsia": "Garsia_Boss_Fight_Scene"
 		},
 		
-		"characters_for_uploading": {"Garsia": false, "Jeison": false, "Belotur": false, "Adalard": false, "Aglea": false, "Akira": false}
+		"characters_for_uploading": {"Garsia": true, "Jeison": true, "Belotur": true, "Adalard": true, "Aglea": true, "Akira": true}
 		#"characters_for_uploading": {"Garsia": false}
 	},
 	
