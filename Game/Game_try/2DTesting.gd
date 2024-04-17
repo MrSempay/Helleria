@@ -1,7 +1,7 @@
 extends Node2D
 
 class_name IBO
-#var stone_wall_of_Gasria
+#var stone_wall_of_Garsia
 #func _physics_process(delta):
 #	$KinematicBody2D.translate(Vector2(0,1))
 

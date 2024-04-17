@@ -18,7 +18,7 @@ func _ready():
 	
 	resolution_x = get_viewport().size.x
 	get_parent().get_node("Call_Menu").scale = Vector2(resolution_x/1024, resolution_x/1024)
-	camera_scale = Vector2(0.25 * 1024/resolution_x,0.25 * 1024/resolution_x)/0.1
+	camera_scale = Vector2(0.25 * 1024/resolution_x,0.25 * 1024/resolution_x)#/0.1
 	set_zoom(camera_scale)
 	
 	get_viewport().connect("size_changed",self,"resize")

@@ -238,7 +238,7 @@ var characters = {
 		}
 	},
 	
-	"Gasria": {
+	"Garsia": {
 		"health": 450,
 		"mana": 22250,
 		"speed": 2,

@@ -4,9 +4,20 @@ var current_scene = null
 var dialoge_name
 var mouse_in_area = false
 var file = File.new()
+var file_for_choice = File.new()
 var can_press = true
 var self_y = 441
 var self_scale = 3
+
+var information_about_current_dialogue_tree = {
+	"must_choose": false,
+	#"index_of_choice": 1,
+	"dialogue_name": "",
+	"index_of_depth_dialogue": 2,
+	"path_to_dialogue_folder": ""
+}
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,7 +40,7 @@ func _ready():
 		modulate = Color(0.0, 0.0, 0.0, 1.0)
 		dialoge_name = GLOBAL.name_of_dialoge_for_dialoge_field_scene
 		current_scene = GLOBAL.name_of_dialoge_for_dialoge_field_scene.split("-")[0]
-		if file.open("res://Dialoges/" + current_scene + "/" + dialoge_name + ".txt", File.READ) == 7:
+		if file.open("res://Dialoges/"+ current_scene + "/" + dialoge_name + "/Text_D/" + information_about_current_dialogue_tree["first_dialoge"] + "/" + information_about_current_dialogue_tree["first_dialoge"] + ".txt", File.READ) == 7:
 			GLOBAL.scene(GLOBAL.name_of_dialoge_for_dialoge_field_scene.split("-")[1], false)
 			queue_free()
 			return
@@ -54,7 +65,7 @@ func dialoge_start(file_name, file):
 
 # && GLOBAL.name_of_dialoge_for_dialoge_field_scene != ""
 func _on_Dialoge_Field_pressed():
-	if can_press == true && !GLOBAL.just_statment:
+	if can_press == true && !GLOBAL.just_statment && !information_about_current_dialogue_tree["must_choose"]:
 		var k = str(file.get_line())
 		$Sprite.set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
 		if k != "":
@@ -67,6 +78,7 @@ func _on_Dialoge_Field_pressed():
 				return
 			self.set_visible(false)
 			file.close()
+			print(current_scene)
 			current_scene.dialoge_finished(dialoge_name)
 		mouse_in_area = true
 		can_press = false
@@ -87,3 +99,45 @@ func resiz1e():
 			amendment_y = 15 * get_viewport().size.x/get_viewport().size.y * 4
 		self.scale = Vector2(3 * resolution_x/1024, self_scale * resolution_x/1024)
 		position = Vector2(252, self_y - amendment_y) * resolution_x/1024
+		
+func _on_buttons_for_choice_pressed(button):
+	#information_about_current_dialogue_tree["index_of_choice"] = button.get_text()[0]
+	print(button.get_text()[0])
+	#print(information_about_current_dialogue_tree["dialogue_name"])
+	#print(information_about_current_dialogue_tree["dialogue_name"])
+	information_about_current_dialogue_tree["dialogue_name"] = information_about_current_dialogue_tree["dialogue_name"].left(information_about_current_dialogue_tree["index_of_depth_dialogue"]) + button.get_text()[0] + information_about_current_dialogue_tree["dialogue_name"].right(information_about_current_dialogue_tree["index_of_depth_dialogue"] + 1)
+	print(information_about_current_dialogue_tree["dialogue_name"])
+
+	information_about_current_dialogue_tree["index_of_depth_dialogue"] += 2
+	var dir_of_next_dialogue = Directory.new()
+	#print(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"])
+	if dir_of_next_dialogue.open(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"]) == OK:
+		file.close()
+		print(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"] + "/" +  information_about_current_dialogue_tree["dialogue_name"] + ".txt")
+		if file.open(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"] + "/" +  information_about_current_dialogue_tree["dialogue_name"] + ".txt", File.READ) == OK:
+			var k = str(file.get_line())
+			$Sprite.set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+			$RichTextLabel.set_text(k.split(":: ")[1])
+			$RichTextLabel2.set_text(k.split(":: ")[0])
+			file_for_choice.close()
+			if file_for_choice.open(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"] + "/" + "Choice.txt", File.READ) == OK:
+				information_about_current_dialogue_tree["must_choose"] = true
+				for i in range ($ButtonsForChoice.get_children().size()):
+					remove_child($ButtonsForChoice.get_children()[i])
+					$ButtonsForChoice.get_children()[i].queue_free()
+				var m = "none"
+				while m != "":
+					m = str(file_for_choice.get_line())
+					if m != "":
+						var button1 = Button.new()
+						button1.connect("pressed", self, "_on_buttons_for_choice_pressed", [button1])
+						$ButtonsForChoice.add_child(button1)
+						button1.set_text(m)
+			else:
+				information_about_current_dialogue_tree["must_choose"] = false
+			information_about_current_dialogue_tree["path_to_dialogue_folder"] = information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"]
+	else:
+		information_about_current_dialogue_tree["must_choose"] = false
+		for i in range ($ButtonsForChoice.get_children().size()):
+			remove_child($ButtonsForChoice.get_children()[i])
+			$ButtonsForChoice.get_children()[i].queue_free()

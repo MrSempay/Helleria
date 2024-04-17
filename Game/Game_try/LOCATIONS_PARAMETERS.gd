@@ -4,8 +4,8 @@ var locations = {
 	"Garsia_Boss_Fight_Scene": {
 		
 		
-		#"characters_for_uploading": {"Gasria": false, "Belotur": true, "Jeison": true, "Adalard": true}
-		"characters_for_uploading": {"Gasria": false}
+		#"characters_for_uploading": {"Garsia": false, "Belotur": true, "Jeison": true, "Adalard": true}
+		"characters_for_uploading": {"Garsia": false}
 	},
 	
 	"Scene_Fight_Jsn": {
@@ -29,14 +29,18 @@ var locations = {
 			"Belotur": "Max_Level_Fight_Scene",
 			"Adalard": "1lvl_Batle_Scene",
 			"Jeison": "Scene_Fight_Jsn",
-			"Gasria": "Garsia_Boss_Fight_Scene"
+			"Garsia": "Garsia_Boss_Fight_Scene"
 		},
 		
-		"characters_for_uploading": {"Gasria": false, "Jeison": false, "Belotur": false, "Adalard": false, "Aglea": false, "Akira": false}
-		#"characters_for_uploading": {"Gasria": false}
+		"characters_for_uploading": {"Garsia": false, "Jeison": false, "Belotur": false, "Adalard": false, "Aglea": false, "Akira": false}
+		#"characters_for_uploading": {"Garsia": false}
 	},
 	
 	"Max_Level_Fight_Scene": {
 		"characters_for_uploading": {"Belotur": true}
+	},
+	
+	"Temple_lvl": {
+		"characters_for_uploading": {}
 	}
 }

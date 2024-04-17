@@ -8,13 +8,14 @@ var anim1 = AnimationPlayer.new()
 var anim2 = AnimationPlayer.new()
 var anim3 = AnimationPlayer.new()
 
-var first_activating_Gasria_in_fight = true
+var first_activating_Garsia_in_fight = true
 var positions_for_current_targets = [Vector2(675, 25), Vector2(691, 184), Vector2(309, 315), Vector2(444, 484), Vector2(86, 57)]
 
 var names_characters_which_have_to_be_called = []
  
 func _ready():
-	get_parent().triggered_enemies[name_character] = true
+	if get_parent().get_class() != "Viewport":
+		get_parent().triggered_enemies[name_character] = true
 	bats_light = $Light2D
 	can_fly = true
 	spells_ready["teleport_ready"] = true
@@ -24,7 +25,7 @@ func _ready():
 		for key in GLOBAL.died_enemies_at_first_level.keys():
 			if GLOBAL.died_enemies_at_first_level[key] == true:
 				names_characters_which_have_to_be_called.append(key)
-				positions_for_characters_which_have_to_be_called.append(GLOBAL.position_for_died_enemies_at_Gasria_fight[key])
+				positions_for_characters_which_have_to_be_called.append(GLOBAL.position_for_died_enemies_at_Garsia_fight[key])
 		spells_ready["call_of_the_dead_ready"] = true
 		call_characters(names_characters_which_have_to_be_called, positions_for_characters_which_have_to_be_called, "call_of_the_dead", true)
 		get_node("Trigger_Area").scale = Vector2(0.4, 1)
@@ -35,7 +36,7 @@ func _ready():
 		$value_of_mana.visible = false
 		if stone_wallInstanced == null:
 			stone_wallInstanced = stone_wall.instance()
-			stone_wallInstanced.creating_animations_for_wall_from_folder("res://Anims/Gasria/stone_wall/", {"idle": [7, true], "wall_growing": [55, false], "wall_destruction": [14, false]}, stone_wallInstanced.get_node("AnimatedSprite"))
+			stone_wallInstanced.creating_animations_for_wall_from_folder("res://Anims/Garsia/stone_wall/", {"idle": [7, true], "wall_growing": [55, false], "wall_destruction": [14, false]}, stone_wallInstanced.get_node("AnimatedSprite"))
 	$Area_For_Starting_Fight.set_monitoring(false)
 	if get_parent().has_node("Snares_Of_Boss"):
 		for i in range(get_parent().get_node("Snares_Of_Boss").get_children().size()):
@@ -93,12 +94,12 @@ func _physics_process(delta):
 				$RayCastVertical.set_position(Vector2(11,1))
 		#if ((self.global_position.x) - get_parent().get_node("Heroe").global_position.x) < 50:
 		if get_parent().triggered_enemies[name_character] == true:
-			if first_activating_Gasria_in_fight:
+			if first_activating_Garsia_in_fight:
 				auto_manual_navigation = true
 				manual_navigation = true
 				current_target = Vector2(675, 25)
 				update_way()
-				first_activating_Gasria_in_fight = false
+				first_activating_Garsia_in_fight = false
 				free_timers_for_consumption(timers_for_consumption_health_or_mana["call_of_the_dead"])
 				for i in range(names_characters_which_have_to_be_called.size()):
 					if is_instance_valid(get_parent().get_node(names_characters_which_have_to_be_called[i])):

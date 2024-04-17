@@ -200,7 +200,7 @@ func _physics_process(delta):
 	#print(str(self.get_global_position()) + " HER ")
 	#print(get_parent().triggered_enemies[name])
 	#print(get_parent().triggered_enemies[name_character])
-	#if name_character == "Gasria":
+	#if name_character == "Garsia":
 		#print(flying_mod)
 		#print(special_physics_process_controlling)
 	#print(self.global_position)
@@ -277,7 +277,7 @@ func _physics_process(delta):
 					get_parent().already_finished_manual_navigation_which_started_from_area_entering(self.name_character, area_from_which_manual_navigation_was_started)
 	
 	""" physics for spetial controlong """
-	#if name_character == "Gasria":
+	#if name_character == "Garsia":
 	#	print(anim_player2.get_current_animation())
 	#	print($Light2D.energy)
 	
@@ -359,7 +359,7 @@ func _physics_process(delta):
 				if $RayCastHorizontal_For_Heroe.get_collider() && !$RayCastVertical_2.get_collider():
 					if $RayCastHorizontal_For_Heroe.get_collider().has_method("start_jump_heroe"):
 						stop_machine = false
-				#if name_character == "Gasria":
+				#if name_character == "Garsia":
 				#	print($Sprite.get_animation())
 					#print("j " + str(nav_path[j].y))
 					#print("j + 1 " + str(nav_path[j + 1].y))

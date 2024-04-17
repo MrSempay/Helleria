@@ -26,7 +26,7 @@ var enemies = []
 var positions_for_positions = {
 	
 }
-var triggered_enemies = {"Adalard": false, "Belotur": false, "Jeison": false, "Gasria": false, "Akira": false, "Aglea": false}
+var triggered_enemies = {"Adalard": false, "Belotur": false, "Jeison": false, "Garsia": false, "Akira": false, "Aglea": false}
 
 #var ally = preload("res://Game/Characters/Ally.tscn")
 var enemy_1 = preload("res://Game/Characters/Akira.tscn")
@@ -34,7 +34,7 @@ var enemy_2 = preload("res://Game/Characters/Adalard.tscn")
 var enemy_3 = preload("res://Game/Characters/Belotur.tscn")
 var enemy_4 = preload("res://Game/Characters/Aglea.tscn")
 var enemy_5 = preload("res://Game/Characters/Jeison.tscn")
-var gasria = preload("res://Game/Characters/Gasria.tscn")
+var Garsia = preload("res://Game/Characters/Garsia.tscn")
 
 var heroe = preload("res://Game/Characters/Heroe.tscn")
 var door = preload("res://Game/Tile_setsTools_for_level/Tools_for_level/Doors/Door.tscn")
@@ -45,7 +45,7 @@ var enemy_1_2 = enemy_2.instance()
 var enemy_1_3 = enemy_3.instance()
 var enemy_1_4 = enemy_4.instance()
 var enemy_1_5 = enemy_5.instance()
-var gasria1 = gasria.instance()
+var Garsia1 = Garsia.instance()
 var heroe_1 = heroe.instance()
 var door_1 = door.instance()
 
@@ -83,7 +83,7 @@ func _ready():
 			enemies.append(enemy.instance())
 	if !GLOBAL.cameras["Enemy_Camera"]:
 		if GLOBAL.first_cat_scene:
-			triggered_enemies = {"Adalard": true, "Belotur": true, "Jeison": true, "Gasria": false, "Akira": true, "Aglea": true}
+			triggered_enemies = {"Adalard": true, "Belotur": true, "Jeison": true, "Garsia": false, "Akira": true, "Aglea": true}
 			GLOBAL.cameras = {"Heroe/CanvasLayer": false, "Camera_For_Speaking": true, "Enemy_Camera": false}
 		else:
 			GLOBAL.cameras = {"Heroe/CanvasLayer": true, "Camera_For_Speaking": false, "Enemy_Camera": false}
@@ -91,14 +91,14 @@ func _ready():
 	if self.has_node("Dialoge_Layer"):
 		for i in range($Dialoge_Layer.get_children().size()):
 			$Dialoge_Layer.get_children()[i].connect("body_entered", self, "dialoge_start", [$Dialoge_Layer.get_children()[i].get_name()])
-	#$Areas_For_Moving/Moving_Gasria_Area_1.connect("body_entered", self, "_on_Area_For_Moving_After_Heroe_entered", [[self.get_node("Gasria")], [Vector2(170,523)], [false], "Moving_Guards_Area_1"])
+	#$Areas_For_Moving/Moving_Garsia_Area_1.connect("body_entered", self, "_on_Area_For_Moving_After_Heroe_entered", [[self.get_node("Garsia")], [Vector2(170,523)], [false], "Moving_Guards_Area_1"])
 	if self.has_node("Snares_Of_Boss"):
 		for i in range($Snares_Of_Boss.get_children().size()):
 			if $Snares_Of_Boss.get_children()[i].has_node("Wall_Growing"):
 				$Snares_Of_Boss.get_children()[i].get_node("Wall_Growing").connect("area_entered", self, "_on_Wall_Growing_area_entered", [$Snares_Of_Boss.get_children()[i].get_node("Wall_Growing")])
 
-	#gasria1.position = $Positions_For_Enemies/Position_Gasria.global_position
-	#self.add_child(gasria1)
+	#Garsia1.position = $Positions_For_Enemies/Position_Garsia.global_position
+	#self.add_child(Garsia1)
 	$NavigationPolygonInstance2.set_enter_cost(2)
 	if GLOBAL.position_heroe_before_fight is String:
 		print(GLOBAL.position_heroe_before_fight)
@@ -160,15 +160,15 @@ func _ready():
 	door_1.position = $Position_Door.global_position
 	self.add_child(door_1)
 	GLOBAL.heroe_uploaded = true
-	get_node("Gasria/Trigger_Area").set_monitoring(false)
+	get_node("Garsia/Trigger_Area").set_monitoring(false)
 	
 func _physics_process(delta):
 	#print(triggered_enemies)
 	#print(get_node("Snares_Of_Boss/Area2D6/PositionsWalls"))
 	#print(GLOBAL.dialoge_No_heroe_camera)
 	#print(GLOBAL.dialoge_heroe_camera)
-	#print(get_node("Gasria").nav_path is String)
-	$Line2D.set_points(get_node("Gasria").nav_path)
+	#print(get_node("Garsia").nav_path is String)
+	$Line2D.set_points(get_node("Garsia").nav_path)
 			
 	#if GLOBAL.life_Belotur:
 	#	if $Belotur.global_position == first_position_Belotur:
@@ -234,7 +234,7 @@ func _on_Wall_Growing_area_entered(area, area_which_was_triggered):
 		var position_for_wall = area_which_was_triggered.get_parent().get_node("PositionsWalls/Position2D2").global_position
 		if abs(area_which_was_triggered.global_position.x - area_which_was_triggered.get_parent().get_node("PositionsWalls/Position2D").global_position.x) < abs(area_which_was_triggered.global_position.x - area_which_was_triggered.get_parent().get_node("PositionsWalls/Position2D2").global_position.x):
 			position_for_wall = area_which_was_triggered.get_parent().get_node("PositionsWalls/Position2D").global_position
-		get_node("Gasria").stone_wall(position_for_wall, false, area_which_was_triggered.get_parent().get_node("PositionsWalls"))
+		get_node("Garsia").stone_wall(position_for_wall, false, area_which_was_triggered.get_parent().get_node("PositionsWalls"))
 	
 func start_manual_moving(body = null, array_of_characters = null, array_of_target_points = null, stay_triggered = null, area_which_was_triggered = null, initial_position = null, array_of_velocity = null):
 	if body != null:
@@ -295,7 +295,7 @@ func dialoge_finished(dialoge_name):
 	match dialoge_name:
 		"Dialoge_Area_3":
 			#LOCATIONS_PARAMETERS.locations["Garsia_Boss_Fight_Scene"]["characters_for_uploading"].merge(GLOBAL.died_enemies_at_first_level, true)
-			start_manual_moving(null, ["Gasria"], [[Vector2(2450, 830), Vector2(2512, 927), Vector2(2160, 920), Vector2(1842, 996), Vector2(1600, 1109), Vector2(627, 1376)]], [true], null, [Vector2(1225, 800)], [2.5])
+			start_manual_moving(null, ["Garsia"], [[Vector2(2450, 830), Vector2(2512, 927), Vector2(2160, 920), Vector2(1842, 996), Vector2(1600, 1109), Vector2(627, 1376)]], [true], null, [Vector2(1225, 800)], [2.5])
 		"Dialoge_Area_2":
 			start_manual_moving(null, ["Aglea", "Akira", "Adalard", "Belotur", "Jeison"], [[Vector2(3250, 1530)], [Vector2(3280, 1530)], [Vector2(1165, 1530)], [Vector2(1135, 1530)], [Vector2(1105, 1530)]], [false, false, false, false, false], null, null, [2.5, 2.5, 2.5, 2.5, 2.5])
 
@@ -402,17 +402,17 @@ func from_dex_to_bin(array):
 
 
 
-func _on_Area_For_Waiting_Gasria_body_entered(body):
-	if body.get_name() == "Gasria":
+func _on_Area_For_Waiting_Garsia_body_entered(body):
+	if body.get_name() == "Garsia":
 
-		if abs(get_node("Gasria").global_position.x - get_node("Heroe").global_position.x) > 190:
-			get_node("Gasria").special_physics_process_controlling = true
-		get_node("Area_For_Waiting_Gasria").queue_free()
+		if abs(get_node("Garsia").global_position.x - get_node("Heroe").global_position.x) > 190:
+			get_node("Garsia").special_physics_process_controlling = true
+		get_node("Area_For_Waiting_Garsia").queue_free()
 
 
 
 func _on_Area_For_Starting_Fight_body_entered(body):
-	if body.get_name() == "Gasria":
-		get_node("Gasria").special_physics_process_controlling = true
-		get_node("Gasria").animate("idle")
-		get_node("Gasria/Area_For_Starting_Fight").monitoring = true
+	if body.get_name() == "Garsia":
+		get_node("Garsia").special_physics_process_controlling = true
+		get_node("Garsia").animate("idle")
+		get_node("Garsia/Area_For_Starting_Fight").monitoring = true

@@ -8,7 +8,7 @@ var already_anim_created = false
 func _ready():
 	self_sprite = $AnimatedSprite
 	if get_tree().get_current_scene().get_name() == "First_Scene" && !already_anim_created:
-		creating_animations_for_wall_from_folder("res://Anims/Gasria/stone_wall/", {"idle": [7, true], "wall_growing": [55, false], "wall_destruction": [14, false]})
+		creating_animations_for_wall_from_folder("res://Anims/Garsia/stone_wall/", {"idle": [7, true], "wall_growing": [55, false], "wall_destruction": [14, false]})
 	self_sprite.play(first_anim)
 	yield(get_tree(), "idle_frame")
 	if get_parent().get_name() == "PositionsWalls":

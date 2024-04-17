@@ -197,6 +197,7 @@ z_index = -3
 texture = ExtResource( 12 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 position = Vector2( 2294, 1349 )
 color = Color( 0, 0, 0, 1 )
 
@@ -226,7 +227,7 @@ position = Vector2( 1058, 717 )
 
 [node name="Positions_For_Enemies" type="Node2D" parent="."]
 
-[node name="Position_Gasria" type="Position2D" parent="Positions_For_Enemies"]
+[node name="Position_Garsia" type="Position2D" parent="Positions_For_Enemies"]
 position = Vector2( 919, 688 )
 
 [node name="Position_Jeison" type="Position2D" parent="Positions_For_Enemies"]
@@ -317,6 +318,7 @@ position = Vector2( -30.5, -46.25 )
 shape = SubResource( 17 )
 
 [node name="NPIUlt3" type="NavigationPolygonInstance" parent="."]
+visible = false
 position = Vector2( 2651, 899 )
 navpoly = SubResource( 12 )
 
@@ -330,6 +332,7 @@ rotation = 0.135144
 shape = SubResource( 16 )
 
 [node name="NPIUlt4" type="NavigationPolygonInstance" parent="."]
+visible = false
 position = Vector2( 2622, 1148 )
 navpoly = SubResource( 19 )
 navigation_layers = 0
@@ -342,45 +345,54 @@ position = Vector2( -220.5, 2 )
 shape = SubResource( 20 )
 
 [node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="."]
+visible = false
 navpoly = SubResource( 5 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="."]
+visible = false
 position = Vector2( 1973, 1498 )
 z_index = 1
 navpoly = SubResource( 2 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance4" type="NavigationPolygonInstance" parent="."]
+visible = false
 position = Vector2( 1351, 782 )
 navpoly = SubResource( 13 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance6" type="NavigationPolygonInstance" parent="."]
+visible = false
 position = Vector2( 2219, 1064 )
 navpoly = SubResource( 14 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance7" type="NavigationPolygonInstance" parent="."]
+visible = false
 navpoly = SubResource( 15 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance3" type="NavigationPolygonInstance" parent="."]
+visible = false
 position = Vector2( -481, 67 )
 navpoly = SubResource( 18 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance5" type="NavigationPolygonInstance" parent="."]
+visible = false
 position = Vector2( -32, -9 )
 navpoly = SubResource( 21 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance8" type="NavigationPolygonInstance" parent="."]
+visible = false
 position = Vector2( 1896, 913 )
 navpoly = SubResource( 25 )
 navigation_layers = 63
 
 [node name="NavigationPolygonInstance9" type="NavigationPolygonInstance" parent="."]
+visible = false
 navpoly = SubResource( 26 )
 navigation_layers = 63
 

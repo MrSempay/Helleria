@@ -403,6 +403,12 @@ rect_scale = Vector2( 0.4, 0.4 )
 fit_content_height = true
 scroll_active = false
 
+[node name="ButtonsForChoice" type="VBoxContainer" parent="CanvasLayer/Dialoge_Field"]
+margin_left = 0.999901
+margin_top = -96.0
+margin_right = 181.0
+margin_bottom = -4.0
+
 [node name="Camera_Of_Heroe" type="Camera2D" parent="."]
 position = Vector2( 0, -19 )
 scale = Vector2( 0.5, 0.5 )

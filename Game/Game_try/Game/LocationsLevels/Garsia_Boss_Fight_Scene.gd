@@ -1,7 +1,7 @@
 extends "res://Locations.gd"
 
 var enemies_on_floor = {
-	"Gasria": "Third",
+	"Garsia": "Third",
 	"Belotur": "Second",
 	"Jeison": "Third",
 	"Adalard": "First"
@@ -21,7 +21,7 @@ func _ready():
 			
 
 func _physics_process(delta):
-	$Line2D2.set_points(get_node("Gasria").nav_path)
+	$Line2D2.set_points(get_node("Garsia").nav_path)
 
 func _on_Area_For_Floor_entered(area, area_which_was_triggered):
 	if area.get_name() == "Area_For_Stop_Machine":

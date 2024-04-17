@@ -57,12 +57,12 @@ var died_enemies_at_first_level = {
 	"Jeison": true,
 	"Adalard": true,
 	"Belotur": true,
-	"Gasria": false,
+	"Garsia": false,
 	"Akira": false,
 	"Aglea": false
 }
 
-const position_for_died_enemies_at_Gasria_fight = {
+const position_for_died_enemies_at_Garsia_fight = {
 	"Jeison": Vector2(906, 75),
 	"Belotur": Vector2(914, 213),
 	"Adalard": Vector2(906, 355)
@@ -252,7 +252,7 @@ func load_game():
 					stone_wall.first_anim = loaded_data["Snares_Of_Boss"][i][j]["first_anim"]
 				if loaded_data["Snares_Of_Boss"][i][loaded_data["Snares_Of_Boss"][i].size() - 1][0] == false:
 					main_scene.get_node("Snares_Of_Boss").get_children()[i].set_monitoring(false)
-					main_scene.get_node("Gasria").creating_timer_for_calldown_snare(main_scene.get_node("Snares_Of_Boss").get_children()[i])
+					main_scene.get_node("Garsia").creating_timer_for_calldown_snare(main_scene.get_node("Snares_Of_Boss").get_children()[i])
 				j += 1
 			i += 1
 	if loaded_data.has("Enemies"):

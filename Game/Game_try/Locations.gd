@@ -110,17 +110,41 @@ func dialoge_start(body = null, dialoge_area_name = null, dialoge_between_scenes
 			if GLOBAL.cameras[key] == true:
 				activated_camera = key
 				break
+		var first_dialoge
+		var start_dir_of_dialoge = Directory.new()
+		print("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D")
+		start_dir_of_dialoge.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D")
+		start_dir_of_dialoge.list_dir_begin(true, true)
+		first_dialoge = start_dir_of_dialoge.get_next()
+
 		if get_node(activated_camera + "/Dialoge_Field").file.is_open():
 			get_node("Heroe/CanvasLayer/Dialoge_Field").file.close()
+		print(first_dialoge)
 		get_node(activated_camera + "/Dialoge_Field").current_scene = self
+		get_node(activated_camera + "/Dialoge_Field").information_about_current_dialogue_tree["dialogue_name"] = first_dialoge
+		get_node(activated_camera + "/Dialoge_Field").information_about_current_dialogue_tree["path_to_dialogue_folder"] = "res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D/" + first_dialoge
 		get_node(activated_camera + "/Dialoge_Field").dialoge_name = dialoge_area_name
 		get_node(activated_camera + "/Dialoge_Field").set_visible(true)
-		get_node(activated_camera + "/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + ".txt", File.READ) 
+		get_node(activated_camera + "/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D/" + first_dialoge + "/" + first_dialoge + ".txt", File.READ) 
 		var k = str(get_node(activated_camera + "/Dialoge_Field").file.get_line())
 		get_node(activated_camera + "/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
 		get_node(activated_camera + "/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
 		get_node(activated_camera + "/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
-		get_node("Dialoge_Layer/" + dialoge_area_name).queue_free()
+		if get_node(activated_camera + "/Dialoge_Field").file_for_choice.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D/" + first_dialoge + "/choice.txt", File.READ) == OK:
+			get_node(activated_camera + "/Dialoge_Field").information_about_current_dialogue_tree["must_choose"] = true
+			var m = "none"
+			while m != "":
+				m = str(get_node(activated_camera + "/Dialoge_Field").file_for_choice.get_line())
+				print(m)
+				if m != "":
+					var button = Button.new()
+					button.connect("pressed", get_node("Camera_For_Speaking/Dialoge_Field"), "_on_buttons_for_choice_pressed", [button])
+					get_node(activated_camera + "/Dialoge_Field/ButtonsForChoice").add_child(button)
+					button.set_text(m)
+		else:
+			get_node(activated_camera + "/Dialoge_Field").information_about_current_dialogue_tree["must_choose"] = false
+		if get_parent().has_node("Dialoge_Layer"):
+			get_node("Dialoge_Layer/" + dialoge_area_name).queue_free()
 
 # If GLOBAL.just_statment then name_target_scene will mean only target scene, if GLOBAL.just_statment is 
 # false, then name_target_scene will mean also and second part of dialogue name between scenes
@@ -144,7 +168,6 @@ func start_transition_between_scenes_with_dialogue(name_target_scene):
 
 func _on_Area_Stop_Moving_area_entered(area):
 	if area.get_name() == "AreaOfEnemy" && !area.get_parent().flying_mod:
-		print("TRUE")
 		area.get_parent().speed = 0
 		area.get_parent().stop_machine = true
 		if !area.get_parent().has_node("TimerStartMoving"):
@@ -174,5 +197,6 @@ func changing_scene_if_enemies_die(name_character, name_target_scene):
 		start_transition_between_scenes_with_dialogue(name_target_scene)
 	
 
-
+func dialoge_finished(dialoge_name):
+	pass
 

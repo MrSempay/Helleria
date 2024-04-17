@@ -27,13 +27,7 @@ func _physics_process(delta):
 		elif GLOBAL.move_vector_1_ghost.x < 0:
 			$Sprite.flip_h = true
 			
-	if animation_finished:
-		get_parent().get_node("Camera_For_Speaking")._set_current(true)
-		get_parent().get_node("Imaginary_Heroe/Sprite").set_visible(true)
-		GLOBAL.heroe_dialoge_started = true
-		GLOBAL.imaginary_heroe_dialoge_started = true
-		queue_free()
-		
+	
 	
 func animate(art):
 	$Sprite.play(art)
@@ -49,5 +43,14 @@ func _on_Area2D_body_entered(body):
 
 func _on_Sprite_animation_finished():
 	if $Sprite.get_animation() == "moves_in":
-		animation_finished = true
+		GLOBAL.cameras["Heroe/CanvasLayer"] =  false
+		GLOBAL.cameras["Camera_For_Speaking"] =  true
+
+
+		get_parent().get_node("Camera_For_Speaking")._set_current(true)
+		get_parent().get_node("Imaginary_Heroe/Sprite").set_visible(true)
+		GLOBAL.heroe_dialoge_started = true
+		GLOBAL.imaginary_heroe_dialoge_started = true
+		get_parent().dialoge_start(null, "Dialoge_Area_1")
+		queue_free()
 
