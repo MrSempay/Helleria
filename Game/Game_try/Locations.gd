@@ -141,7 +141,7 @@ func dialoge_start(body = null, dialoge_area_name = null, dialoge_between_scenes
 				#(m)
 				if m != "":
 					var button = Button.new()
-					button.connect("pressed", get_node("Camera_For_Speaking/Dialoge_Field"), "_on_buttons_for_choice_pressed", [button])
+					button.connect("pressed", get_node(activated_camera + "/Dialoge_Field"), "_on_buttons_for_choice_pressed", [button])
 					get_node(activated_camera + "/Dialoge_Field/ButtonsForChoice").add_child(button)
 					button.set_text(m)
 		else:

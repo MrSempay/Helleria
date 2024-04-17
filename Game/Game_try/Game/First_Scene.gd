@@ -270,7 +270,7 @@ func start_manual_moving(body = null, array_of_characters = null, array_of_targe
 			array_of_characters[i].speed = array_of_velocity[i]
 			array_of_characters[i].manual_navigation = true
 
-	
+"""
 func dialoge_start(body = null, dialoge_area_name = null, lock_interface = false, dialoge_between_scenes = false):
 	var activated_camera
 	for key in GLOBAL.cameras.keys():
@@ -287,9 +287,78 @@ func dialoge_start(body = null, dialoge_area_name = null, lock_interface = false
 		get_node(activated_camera + "/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + ".txt", File.READ) 
 		var k = str(get_node(activated_camera + "/Dialoge_Field").file.get_line())
 		get_node(activated_camera + "/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+		print("ibo" + k)
 		get_node(activated_camera + "/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
 		get_node(activated_camera + "/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
-		get_node("Dialoge_Layer/" + dialoge_area_name).queue_free()
+		get_node("Dialoge_Layer/" + dialoge_area_name).queue_free() """
+func dialoge_start(body = null, dialoge_area_name = null, dialoge_between_scenesNameTargetScene = null):
+	var right_body = false
+	if body != null:
+		if body.has_method("start_jump_heroe") or body.has_method("enemy"):
+			right_body = true
+	if body == null or right_body:
+		if dialoge_between_scenesNameTargetScene != null:
+			start_transition_between_scenes_with_dialogue(dialoge_between_scenesNameTargetScene)
+			return
+		var activated_camera
+		for key in GLOBAL.cameras.keys():
+			if GLOBAL.cameras[key] == true:
+				activated_camera = key
+				break
+		var first_dialoge
+		var start_dir_of_dialoge = Directory.new()
+		#("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D")
+		start_dir_of_dialoge.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D")
+		start_dir_of_dialoge.list_dir_begin(true, true)
+		first_dialoge = start_dir_of_dialoge.get_next()
+		print(activated_camera)
+		if get_node(activated_camera + "/Dialoge_Field").file.is_open():
+			get_node("Heroe/CanvasLayer/Dialoge_Field").file.close()
+		#(first_dialoge)
+		get_node(activated_camera + "/Dialoge_Field").current_scene = self
+		get_node(activated_camera + "/Dialoge_Field").information_about_current_dialogue_tree["dialogue_name"] = first_dialoge
+		get_node(activated_camera + "/Dialoge_Field").information_about_current_dialogue_tree["path_to_dialogue_folder"] = "res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D/" + first_dialoge
+		get_node(activated_camera + "/Dialoge_Field").dialoge_name = dialoge_area_name
+		get_node(activated_camera + "/Dialoge_Field").set_visible(true)
+		get_node(activated_camera + "/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D/" + first_dialoge + "/" + first_dialoge + ".txt", File.READ) 
+		var k = str(get_node(activated_camera + "/Dialoge_Field").file.get_line())
+		get_node(activated_camera + "/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
+		get_node(activated_camera + "/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
+		get_node(activated_camera + "/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
+		print(get_node(activated_camera + "/Dialoge_Field").information_about_current_dialogue_tree)
+		if get_node(activated_camera + "/Dialoge_Field").file_for_choice.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D/" + first_dialoge + "/choice.txt", File.READ) == OK:
+			get_node(activated_camera + "/Dialoge_Field").information_about_current_dialogue_tree["must_choose"] = true
+			var m = "none"
+			while m != "":
+				m = str(get_node(activated_camera + "/Dialoge_Field").file_for_choice.get_line())
+				#(m)
+				if m != "":
+					var button = Button.new()
+					button.connect("pressed", get_node(activated_camera + "/Dialoge_Field"), "_on_buttons_for_choice_pressed", [button])
+					get_node(activated_camera + "/Dialoge_Field/ButtonsForChoice").add_child(button)
+					button.set_text(m)
+		else:
+			get_node(activated_camera + "/Dialoge_Field").information_about_current_dialogue_tree["must_choose"] = false
+		if has_node("Dialoge_Layer"):
+			get_node("Dialoge_Layer/" + dialoge_area_name).queue_free()
+
+func start_transition_between_scenes_with_dialogue(name_target_scene):
+	get_node("Heroe").create_animation_for_disappearing()
+	get_node("Heroe/AnimationPlayer").play("disappearing")
+	get_node("Heroe").set_physics_process(false)
+	for i in range(enemies.size()):
+		if is_instance_valid(enemies[i]):
+			enemies[i].set_physics_process(false)
+			enemies[i].animate("idle")
+	if has_node("Light_Objects"):
+		for i in range(get_node("Light_Objects").get_children().size()):
+			get_node("Light_Objects").get_children()[i].fading = true
+	var timer = Timer.new()
+	add_child(timer)
+	timer.wait_time = 2.5
+	timer.one_shot = true
+	timer.connect("timeout", self, "_on_timer_for_start_changing_scene_to_dialoge_timeout", [timer, name_target_scene])
+	timer.start()
 
 
 func dialoge_finished(dialoge_name):
