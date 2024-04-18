@@ -268,6 +268,7 @@ shape = SubResource( 1 )
 disabled = true
 
 [node name="Dialoge_Field" type="TouchScreenButton" parent="Camera_For_Speaking"]
+visible = false
 position = Vector2( -90.9999, 52 )
 z_index = 5
 normal = ExtResource( 6 )
@@ -304,6 +305,7 @@ margin_bottom = -33.0
 rect_scale = Vector2( 0.4, 0.7 )
 rect_clip_content = true
 theme = SubResource( 32 )
+alignment = 1
 
 [node name="NPIUlt" type="NavigationPolygonInstance" parent="."]
 visible = false
