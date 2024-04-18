@@ -322,6 +322,9 @@ func dialoge_start(body = null, dialoge_area_name = null, dialoge_between_scenes
 		get_node(activated_camera + "/Dialoge_Field").set_visible(true)
 		get_node(activated_camera + "/Dialoge_Field").file.open("res://Dialoges/"+ self.get_name() + "/" + dialoge_area_name + "/Text_D/" + first_dialoge + "/" + first_dialoge + ".txt", File.READ) 
 		var k = str(get_node(activated_camera + "/Dialoge_Field").file.get_line())
+		print(k)
+		print(k)
+		print("ююю")
 		get_node(activated_camera + "/Dialoge_Field/Sprite").set_texture(load("res://Icons_For_Characters/" + k.split(":: ")[0] + ".jpg"))
 		get_node(activated_camera + "/Dialoge_Field/RichTextLabel").set_text(k.split(":: ")[1])
 		get_node(activated_camera + "/Dialoge_Field/RichTextLabel2").set_text(k.split(":: ")[0])
@@ -334,6 +337,7 @@ func dialoge_start(body = null, dialoge_area_name = null, dialoge_between_scenes
 				#(m)
 				if m != "":
 					var button = Button.new()
+
 					button.connect("pressed", get_node(activated_camera + "/Dialoge_Field"), "_on_buttons_for_choice_pressed", [button])
 					get_node(activated_camera + "/Dialoge_Field/ButtonsForChoice").add_child(button)
 					button.set_text(m)

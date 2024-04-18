@@ -428,3 +428,12 @@ func making_animation_for_sprite_from_folder(path, sprite, anim_name, animation_
 #        Rename-Item $_.FullName -NewName $newName
 #    }
 #}
+
+#change coding to UTF-8 in all folders in given. Doesn't change coding it files already in UTF-8
+#$Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
+#Get-ChildItem -Path 'C:\Your\Path\Here' -Filter *.txt -Recurse | ForEach-Object {
+#    $content = Get-Content $_.FullName
+#    if ($content -and [System.Text.Encoding]::UTF8.GetPreamble() -ne $Utf8NoBomEncoding.GetPreamble()) {
+#        [System.IO.File]::WriteAllLines($_.FullName, $content, $Utf8NoBomEncoding)
+#   }
+#}
