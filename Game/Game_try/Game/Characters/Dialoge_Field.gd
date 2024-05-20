@@ -18,6 +18,9 @@ var information_about_current_dialogue_tree = {
 }
 
 
+#func _physics_process(delta):
+	#print(information_about_current_dialogue_tree["dialogue_name"])
+	#print(get_parent().get_parent())
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -61,6 +64,7 @@ func _ready():
 
 
 func dialoge_start(file_name, file):
+	
 	pass
 
 # && GLOBAL.name_of_dialoge_for_dialoge_field_scene != ""
@@ -101,17 +105,20 @@ func resiz1e():
 		position = Vector2(252, self_y - amendment_y) * resolution_x/1024
 		
 func _on_buttons_for_choice_pressed(button):
+	#print("???")
+	#print(information_about_current_dialogue_tree)
 	#information_about_current_dialogue_tree["index_of_choice"] = button.get_text()[0]
 	#(button.get_text()[0])
 	##(information_about_current_dialogue_tree["dialogue_name"])
-	##(information_about_current_dialogue_tree["dialogue_name"])
+	#print(information_about_current_dialogue_tree["dialogue_name"])
 	information_about_current_dialogue_tree["dialogue_name"] = information_about_current_dialogue_tree["dialogue_name"].left(information_about_current_dialogue_tree["index_of_depth_dialogue"]) + button.get_text()[0] + information_about_current_dialogue_tree["dialogue_name"].right(information_about_current_dialogue_tree["index_of_depth_dialogue"] + 1)
-	#(information_about_current_dialogue_tree["dialogue_name"])
+	#print(information_about_current_dialogue_tree["dialogue_name"])
 
 	information_about_current_dialogue_tree["index_of_depth_dialogue"] += 2
 	var dir_of_next_dialogue = Directory.new()
 	##(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"])
 	if dir_of_next_dialogue.open(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"]) == OK:
+		print("MDA")
 		file.close()
 		#(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"] + "/" +  information_about_current_dialogue_tree["dialogue_name"] + ".txt")
 		if file.open(information_about_current_dialogue_tree["path_to_dialogue_folder"] + "/" + information_about_current_dialogue_tree["dialogue_name"] + "/" +  information_about_current_dialogue_tree["dialogue_name"] + ".txt", File.READ) == OK:
